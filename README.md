@@ -1,6 +1,6 @@
 Go See Foundation
 
-A website to facilitate event postings, streamline volunteer operations, manage member-volunteer-donor contacts, while maintaining a high level of accessibility.
+An accessible website for the Go See Foundation to facilitate event postings, streamline volunteer operations, manage member-volunteer-donor contacts.
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@ A website to facilitate event postings, streamline volunteer operations, manage 
 
 ### Purpose
 
-{Short paragraph description of the non-profit mission and the purpose of this project. Who will this project help, why is it necessary. Impact of the project.}
+Go See Foundation’s mission is to encourage, inspire and empower those experiencing vision loss to remain active and engaged with their world. They provide accessible resources, podcasts, and fun excursions to connect and empower others
 
 ### Team
 
@@ -21,7 +21,10 @@ The Go See Foundation team consists of {#} Cal Poly students. Over the course of
 
 - [First Last](https://www.linkedin.com/) - Project Manager
 - [First Last](https://www.linkedin.com/) - Designer
-- [First Last](https://www.linkedin.com/) - Tech Lead
+- [First Last](https://www.linkedin.com/) - Designer
+- [First Last](https://www.linkedin.com/) - Designer
+- [First Last](https://www.linkedin.com/) - Designer
+- [Ryan Agdassi](https://www.linkedin.com/in/ryan-agdassi/) - Tech Lead
 - [First Last](https://www.linkedin.com/) - Tech Lead
 - [First Last](https://www.linkedin.com/) - Software Developer
 - [First Last](https://www.linkedin.com/) - Software Developer
