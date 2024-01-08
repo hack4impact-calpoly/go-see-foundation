@@ -11,6 +11,9 @@ An accessible website for the Go See Foundation to facilitate event postings, st
 
 ## Overview
 
+Our project centers on developing a volunteer managment system with the twist of incorpating a high level of accessibility.
+
+
 ### Purpose
 
 Go See Foundation’s mission is to encourage, inspire and empower those experiencing vision loss to remain active and engaged with their world. They provide accessible resources, podcasts, and fun excursions to connect and empower others
@@ -25,14 +28,11 @@ The Go See Foundation team consists of {#} Cal Poly students. Over the course of
 - [First Last](https://www.linkedin.com/) - Designer
 - [First Last](https://www.linkedin.com/) - Designer
 - [Ryan Agdassi](https://www.linkedin.com/in/ryan-agdassi/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Software Developer
-- [First Last](https://www.linkedin.com/) - Software Developer
-- [First Last](https://www.linkedin.com/) - Software Developer
-- [First Last](https://www.linkedin.com/) - Software Developer
-- [First Last](https://www.linkedin.com/) - Software Developer
-- [First Last](https://www.linkedin.com/) - Software Developer
-
+- [Eduardo Huezo-Lopez](https://www.linkedin.com/) - Tech Lead
+- [Chloe Anbarcioglu](https://www.linkedin.com/) - Software Developer
+- [Aiden Tung](https://www.linkedin.com/) - Software Developer
+- [Aarav Sharma](https://www.linkedin.com/) - Software Developer
+- [Dhvani Goel](https://www.linkedin.com/) - Software Developer
 
 
 ## Getting Started And Contributing
