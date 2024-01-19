@@ -1,6 +1,6 @@
-# name of non-profit
+# Go See Foundation
 
-{One sentence description of the project}
+An accessible website for the Go See Foundation to facilitate event postings, streamline volunteer operations, manage member-volunteer-donor contacts.
 
 ## Table of Contents
 
@@ -11,9 +11,12 @@
 
 ## Overview
 
+Our project centers on developing a volunteer managment system with the twist of incorpating a high level of accessibility.
+
 ### Purpose
 
-{Short paragraph description of the non-profit mission and the purpose of this project. Who will this project help, why is it necessary. Impact of the project.}
+Go See Foundation’s mission is to encourage, inspire and empower those experiencing vision loss to remain active and engaged with their world. They provide accessible resources, podcasts, and fun excursions to connect and empower others
+
 
 ### Team
 
