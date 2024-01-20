@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const url: string = process.env.MONGO_URI as string;
 let connection: typeof mongoose;
+/* comment*/
 
 /**
  * Makes a connection to a MongoDB database. If a connection already exists, does nothing
