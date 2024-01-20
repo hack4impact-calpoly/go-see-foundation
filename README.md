@@ -1,6 +1,6 @@
 # Go See Foundation
 
-An accessible website for the Go See Foundation to facilitate event postings, streamline volunteer operations, manage member-volunteer-donor contacts.
+An accessible website for the Go See Foundation to facilitate event postings, streamline volunteer operations, and manage member-volunteer-donor contacts.
 
 ## Table of Contents
 
@@ -11,7 +11,7 @@ An accessible website for the Go See Foundation to facilitate event postings, st
 
 ## Overview
 
-Our project centers on developing a volunteer managment system with the twist of incorpating a high level of accessibility.
+Our project centers on developing a volunteer managment system with the challenge of incorpating a high level of accessibility.
 
 ### Purpose
 
@@ -20,13 +20,25 @@ Go See Foundation’s mission is to encourage, inspire and empower those experie
 
 ### Team
 
-The {non-profit name} team consists of {#} Cal Poly students. Over the course of about 9 months, we worked as a team to deploy this web application. The team members are listed below:
+The Go See Foundation team consists of 16 Cal Poly students. Over the course of about 9 months, we worked as a team to deploy this web application. The team members are listed below:
 
-- [First Last](https://www.linkedin.com/) - Project Manager
-- [First Last](https://www.linkedin.com/) - Designer
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Software Developer
+- Britta Kleitsch - Product Manager
+- Billy Woodward - Designer
+- Garrett Reinhard - Designer
+- Marta Lukomska - Designer
+- Eduardo Huezo - Tech Lead
+- Ryan Agdassi - Tech Lead
+- Aarav Sharma - Software Developer
+- Aiden Tung - Software Developer
+- Angela Chen - Software Developer
+- Chloe Anbarcioglu - Software Developer
+- Dhvani Goel - Software Developer
+- Holden Evers - Software Developer
+- Ida Voong - Software Developer
+- Sean Nguyen - Software Developer
+- Sriya Adunur - Software Developer
+- Tammy Si - Software Developer
+
 
 ## Getting Started And Contributing
 
