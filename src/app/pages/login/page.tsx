@@ -1,8 +1,9 @@
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import Navbar from "../../components/Navbar";
-import style from "./LoginPage.module.css";
+import style from "./login.module.css";
+import logoImage from "../../images/Go-See-HLogo.fw_.png";
 
 export default function LoginMobilePage() {
   const [loginData, setLoginData] = useState({
@@ -20,10 +21,9 @@ export default function LoginMobilePage() {
     // if email does not exist --> send error message to user
   }
 
-  // function handleSignUp(event: React.FormEvent<HTMLFormElement>) {
-  //   event.preventDefault();
-  //   console.log("sign up pressed");
-  // }
+  function handleSignUp() {
+    console.log("sign up pressed");
+  }
 
   const handleLoginChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -36,23 +36,24 @@ export default function LoginMobilePage() {
   };
 
   return (
-    <div>
+    <div className={style.loginPage}>
       <Navbar />
       <main>
         <div className={style.logo}>
           <Image
             className={style.logoImg}
-            src="../../images/GO-See-HLogo.fw_.png"
+            src={logoImage}
             alt="A picture of the Go See Foundation's Logo"
-            width="720"
-            height="190"
+            width="720" // about 1/5 of the original image width
+            height="190" // about 1/5 of the original image height
           ></Image>
         </div>
         <form className={style.loginForm} onSubmit={handleLogin}>
           <h1 className={style.loginTitle}>LOGIN</h1>
-          <label htmlFor="email" className={style.loginInputLabel}>
+
+          {/* <label htmlFor="email" className={style.loginInputLabel}>
             Enter Email
-          </label>
+          </label> */}
           <input
             type="text"
             id="email"
@@ -62,9 +63,10 @@ export default function LoginMobilePage() {
             onChange={handleLoginChange}
             required
           />
-          <label htmlFor="password" className={style.loginInputLabel}>
+
+          {/* <label htmlFor="password" className={style.loginInputLabel}>
             Enter Password
-          </label>
+          </label> */}
           <input
             type="text"
             id="password"
@@ -74,15 +76,23 @@ export default function LoginMobilePage() {
             onChange={handleLoginChange}
             required
           />
-          <button type="submit">LOGIN</button>
+
+          <button className="submitButton" type="submit">
+            LOGIN
+          </button>
+
+          <div className="signUp">
+            <h2 className="signUpTitle">No Account?</h2>
+            <button
+              className="signUpButton"
+              type="button"
+              onClick={handleSignUp}
+            >
+              SIGN UP
+            </button>
+            {/* change href when signup page made*/}
+          </div>
         </form>
-        <div className="signUp">
-          <h2 className="signUpTitle">No Account?</h2>
-          <Link className="signUpButton" href="/">
-            SIGN UP
-          </Link>{" "}
-          {/* change href when signup page made*/}
-        </div>
       </main>
     </div>
   );
