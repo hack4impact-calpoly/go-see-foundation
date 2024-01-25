@@ -2,7 +2,9 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import "./createAccount.css";
+import logo from "../images/GO-See-HLogo.fw_.png";
+// import "./createAccount.css";
+import styles from "./createAccount.module.css";
 
 const CreateAccount = () => {
   const [account, setAccount] = useState({
@@ -19,25 +21,83 @@ const CreateAccount = () => {
     setAccount({ ...account, [event.id]: event.value });
   };
 
-  const handleAccountSubmit = () => {};
+  const handleCreateAccount = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    //if successful, redirect to different page
+  };
 
   return (
-    <div className="createAccount">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="../../images/GO-See-HLogo.fw_.png" alt="logo" />
-      <form onChange={handleAccountChange} onSubmit={handleAccountSubmit}>
-        <input type="text" id="first" placeholder="First Name" />
-        <input type="text" id="last" placeholder="Last Name" />
-        <input type="tel" id="phone" placeholder="Phone Number" />
-        <input type="email" id="email" placeholder="Email" />
-        <select id="user">
-          <option value="Member">Member</option>
-          <option value="Volunteer">Volunteer</option>
-          <option value="Partner/Doner">Partner/Doner</option>
-        </select>
-        <input type="password" id="password" placeholder="Password" />
-        <input type="submit" />
-      </form>
+    // <div className="createAccount">
+    <div className={styles.createAccount}>
+      <Image
+        src={logo}
+        alt="Go See Foundation's Logo"
+        width="720"
+        height="190"
+      />
+      <div>
+        <form
+          className={styles.createForm}
+          onChange={handleAccountChange}
+          onSubmit={handleCreateAccount}
+        >
+          <button className={styles.button}>Sign up now!</button>
+          <div className={styles.row}>
+            <input
+              className={styles.input}
+              type="text"
+              id="first"
+              placeholder="First Name"
+              required
+            />
+            <input
+              className={styles.input}
+              type="text"
+              id="last"
+              placeholder="Last Name"
+              required
+            />
+          </div>
+          <div className={styles.row}>
+            <input
+              className={styles.input}
+              type="tel"
+              id="phone"
+              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
+              placeholder="Phone Number"
+              required
+            />
+            <input
+              className={styles.input}
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div className={styles.row}>
+            <select className={styles.input} id="user">
+              <option value="select" disabled selected>
+                Select One
+              </option>
+              <option value="Member">Member</option>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Partner/Doner">Partner/Doner</option>
+            </select>
+            <input
+              className={styles.input}
+              type="password"
+              id="password"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button className={styles.button} type="submit">
+            Create Account
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

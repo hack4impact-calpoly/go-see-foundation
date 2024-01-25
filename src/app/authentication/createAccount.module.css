@@ -1,0 +1,33 @@
+.createAccount {
+  text-align: center;
+  margin: 0rem 10rem;
+}
+
+.createForm {
+  /* display: inline-block; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input {
+  /* display: flex; */
+  width: 300px;
+  padding: 10px;
+  margin: 2px;
+  /* align-items: flex-start; */
+  gap: 10px;
+
+  border-radius: 25px;
+  background: #fff;
+}
+
+.button {
+  width: 200px;
+  height: 50px;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  background: #fff;
+}
