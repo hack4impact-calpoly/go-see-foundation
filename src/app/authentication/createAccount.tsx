@@ -30,12 +30,18 @@ const CreateAccount = () => {
   return (
     // <div className="createAccount">
     <div className={styles.createAccount}>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Inter"
+      ></link>
       <Image
         src={logo}
         alt="Go See Foundation's Logo"
-        width="720"
-        height="190"
+        width="360"
+        height="95"
       />
+      <br></br>
+      <br></br>
       <div>
         <form
           className={styles.createForm}
@@ -43,6 +49,7 @@ const CreateAccount = () => {
           onSubmit={handleCreateAccount}
         >
           <button className={styles.button}>Sign up now!</button>
+          <br></br>
           <div className={styles.row}>
             <input
               className={styles.input}
@@ -93,6 +100,7 @@ const CreateAccount = () => {
               required
             />
           </div>
+          <br></br>
           <button className={styles.button} type="submit">
             Create Account
           </button>
