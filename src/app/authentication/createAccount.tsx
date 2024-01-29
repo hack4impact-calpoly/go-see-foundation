@@ -90,7 +90,7 @@ const CreateAccount = () => {
               </option>
               <option value="Member">Member</option>
               <option value="Volunteer">Volunteer</option>
-              <option value="Partner/Doner">Partner/Doner</option>
+              <option value="Partner/Doner">Partner/Donor</option>
             </select>
             <input
               className={styles.input}
