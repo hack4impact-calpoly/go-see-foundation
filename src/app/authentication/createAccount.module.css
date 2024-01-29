@@ -28,6 +28,10 @@
   -webkit-box-sizing: content-box;
 }
 
+.input::placeholder {
+  color: #000000;
+}
+
 .button {
   font-family: Inter;
   font-weight: 900;
