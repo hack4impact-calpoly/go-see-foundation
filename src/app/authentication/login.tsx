@@ -1,4 +1,4 @@
-/*Login page */
+/* Login page */
 
 "use client";
 import React, { useState } from "react";
