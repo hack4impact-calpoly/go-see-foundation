@@ -36,19 +36,18 @@ export default function LoginPage() {
     }));
   };
 
-return (
+  return (
     <div className="loginPage">
       <main>
-        <div className="logo">
+        <form className="loginForm" onSubmit={handleLogin}>
           <Image
             className="logoImg"
             src={logoImage}
             alt="A picture of the Go See Foundation's Logo"
-            width="720" // about 1/5 of the original image width
+            width="650" // about 1/5 of the original image width
             height="190" // about 1/5 of the original image height
           ></Image>
-        </div>
-        <form className="loginForm" onSubmit={handleLogin}>
+
           <h1 className="loginTitle">LOGIN</h1>
 
           {/* <label htmlFor="email" className={style.loginInputLabel}>
