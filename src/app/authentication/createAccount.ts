@@ -1,3 +1,0 @@
-// Create Account Page
-
-export{};

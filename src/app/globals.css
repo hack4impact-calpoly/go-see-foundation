@@ -1,0 +1,16 @@
+:root {
+  /* variables */
+  --gs-blue: #1d2f5d;
+}
+
+* {
+  font-family: Inter;
+}
+
+body {
+  background-color: var(--gs-blue);
+}
+
+html {
+  height: 100%;
+}
