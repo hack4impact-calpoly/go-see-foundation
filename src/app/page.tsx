@@ -1,12 +1,10 @@
 import Navbar from "@components/Navbar";
-import CreateAccount from "./authentication/createAccount";
+import CreateAccount from "./pages/authentication/createAccount/page";
 
 export default function Home() {
   return (
     <main>
-      <Navbar />
       <h1>Home</h1>
-      <CreateAccount />
     </main>
   );
 }

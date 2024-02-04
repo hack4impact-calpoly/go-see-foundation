@@ -3,7 +3,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import logo from "../images/GO-See-HLogo.fw_.png";
+import logo from "../../../images/GO-See-HLogo.fw_.png";
 // import "./createAccount.css";
 import styles from "./createAccount.module.css";
 
