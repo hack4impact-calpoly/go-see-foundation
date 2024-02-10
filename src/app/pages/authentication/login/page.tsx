@@ -6,6 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import "./login.css";
 import logoImage from "../../../images/GO-See-HLogo.fw_.png";
+import backgroundLogo from "../../../images/eyeBackground.png";
+import emailIcon from "../../../images/emailIcon.png";
+import passwordIcon from "../../../images/passwordIcon.png";
 
 export default function LoginPage() {
   const [loginData, setLoginData] = useState({
@@ -40,6 +43,15 @@ export default function LoginPage() {
 
   return (
     <div className="loginPage">
+      {/* <div className="backgroundLogoContainer">
+        <Image
+          src={backgroundLogo}
+          alt="background logo for the Go See Foundation"
+          height="1500"
+          width="1500"
+          className="backgroundLogo"
+        />
+      </div> */}
       <h1 className="welcomeTitle">Welcome back to your account!</h1>
       <form className="loginForm" onSubmit={handleLogin}>
         {/* <Image
@@ -50,30 +62,50 @@ export default function LoginPage() {
           height="190" // about 1/5 of the original image height
         ></Image> */}
         <h2 className="formTitle">LOGIN</h2>
-        {/* <label htmlFor="email" className={style.loginInputLabel}>
-            Enter Email
-          </label> */}
-        <input
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Email"
-          value={loginData.email}
-          onChange={handleLoginChange}
-          required
-        />
-        {/* <label htmlFor="password" className={style.loginInputLabel}>
-            Enter Password
-          </label> */}
-        <input
-          type="text"
-          id="password"
-          name="password"
-          placeholder="Password"
-          value={loginData.password}
-          onChange={handleLoginChange}
-          required
-        />
+        <div className="inputWrapper">
+          <Image
+            className="emailIcon"
+            src={emailIcon}
+            alt="An email icon"
+            width="40"
+            height="40"
+          />
+          <label htmlFor="email" className="loginInputLabel">
+            {" "}
+            {/*for screen readers*/}
+            {/* Enter Email */}
+          </label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value={loginData.email}
+            onChange={handleLoginChange}
+            required
+          />
+        </div>
+        <div className="inputWrapper">
+          <Image
+            className="emailIcon"
+            src={passwordIcon}
+            alt="An email icon"
+            width="40"
+            height="40"
+          />
+          <label htmlFor="password" className="loginInputLabel">
+            {/* Enter Password */}
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={loginData.password}
+            onChange={handleLoginChange}
+            required
+          />
+        </div>
         <div className="rememberMeCheckbox">
           <label htmlFor="rememberMe">
             <input
@@ -81,10 +113,10 @@ export default function LoginPage() {
               id="rememberMe"
               name="rememberMe"
               className="inline"
-            />{" "}
-            <p id="rememberMeText" className="inline">
-              Remember me?
-            </p>
+            />
+            {/* <p id="rememberMeText" className="inline"> */}
+            Remember me?
+            {/* </p> */}
           </label>
         </div>
         <button className="loginButton" type="submit">

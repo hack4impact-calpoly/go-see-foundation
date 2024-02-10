@@ -2,11 +2,33 @@
 
 .loginPage {
   border-radius: 15px;
-  background-color: #1d2f5d;
+  /* background-color: #1d2f5d; */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+.backgroundLogoContainer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  justify-self: center;
+  justify-content: center;
+  align-self: center;
+  align-content: center;
+}
+
+.backgroundLogo {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: none;
+  justify-self: center;
+  align-self: center;
+  object-position: 50% 50%;
 }
 
 .welcomeTitle {
@@ -26,23 +48,21 @@
   justify-content: center;
   align-items: center;
   width: 50vw;
+  margin-bottom: 2%;
 
   border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.95);
 }
 
 .formTitle {
-  flex: 1;
   font-family: "Helvetica", sans-serif;
   font-size: 42px;
   color: black;
+  margin-top: 2vh;
+  margin-bottom: 3vh;
 
   /* debugging */
-  background-color: purple;
-}
-
-.logoImg {
-  padding: 40px;
+  /* background-color: purple; */
 }
 
 input {
@@ -63,11 +83,24 @@ input {
   margin-top: 0;
 }
 
+#password {
+  margin-bottom: 20px;
+}
+
+.wrapper {
+  display: relative;
+}
+
+.icon {
+  position: absolute;
+}
+
 .loginButton {
-  width: 60%;
+  width: 55%;
   /* height: 80px; */
   padding: 15px 0;
   margin: 10px;
+  margin-bottom: 0;
   border-radius: 16px;
   border: none; /* Remove the default button border */
   outline: none; /* Remove the focus outline */
@@ -79,8 +112,21 @@ input {
   background-color: #1d2f5d;
 }
 
+.forgotPasswordLink {
+  color: black;
+  font-size: 24px;
+  font-family: "Helvetica", sans-serif;
+  font-weight: 100;
+}
+
+.break {
+  background-color: black;
+  height: 3px;
+  width: 20%;
+  margin: 0;
+}
+
 .signUp {
-  margin: 40px;
   width: 60%;
 }
 
@@ -89,13 +135,14 @@ input {
   font-size: 28px;
   font-weight: 500;
   color: #1d2f5d;
+  margin: 2vh 0;
 }
 
 .signUpButton {
   width: 70%;
   height: 60px;
   padding: 10px;
-  margin: 10px;
+  margin-bottom: 4vh;
   border-radius: 16px;
   outline: none; /* Remove the focus outline */
   box-shadow: none;
@@ -108,18 +155,25 @@ input {
 }
 
 .rememberMeCheckbox {
-  /* debugging */
-  background-color: white;
+  width: 85%;
+  padding-right: 20px;
+  text-align: left;
+  font-size: 14pt;
+  font-weight: 500;
+}
+
+.rememberMeCheckbox input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  border-radius: 16px;
+  /*#3f4e75*/
 }
 
 .inline {
   display: inline;
-}
-
-.break {
-  background-color: black;
-  height: 5px;
-  width: 25%;
+  vertical-align: middle;
+  margin: 0 0.5em 0.2em 0;
+  width: 15%;
 }
 
 /* Media queries for smaller screens */
