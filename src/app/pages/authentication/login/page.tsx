@@ -1,5 +1,3 @@
-/* Login page */
-
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -27,7 +25,8 @@ export default function LoginPage() {
       "\nYour password is: " +
       loginData.password +
       "\nYou checked 'Remeber Me': " +
-      String(loginData.remember);
+      String(loginData.remember) +
+      "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
     alert(message);
 
     // TODO: try to fetch the user from database using email
@@ -56,7 +55,6 @@ export default function LoginPage() {
 
   return (
     <div className="loginPage">
-      {/* TODO: add background logo */}
       <div className="backgroundLogoContainer">
         <Image
           src={backgroundLogo}
@@ -127,7 +125,7 @@ export default function LoginPage() {
 
         {/*TODO: change href to proper forget page*/}
         <Link href="/" className="forgotPasswordLink">
-          <h3 className="forgotPasswordText">Forgot Password</h3>
+          Forgot Password
         </Link>
 
         <div className="break"></div>
