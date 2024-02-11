@@ -6,7 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "./login.css";
-import backgroundLogo from "../../../images/eyeBackground.png";
+import style from "./login.css";
+import backgroundLogo from "../../../images/backgroundLogo.png";
 import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
 
@@ -57,15 +58,16 @@ export default function LoginPage() {
   return (
     <div className="loginPage">
       {/* TODO: add background logo */}
-      {/* <div className="backgroundLogoContainer">
+      <div className="backgroundLogoContainer">
         <Image
           src={backgroundLogo}
           alt="background logo for the Go See Foundation"
-          height="1500"
-          width="1500"
+          height="0"
+          width="0"
+          style={style.backgroundLogo}
           className="backgroundLogo"
         />
-      </div> */}
+      </div>
       <h1 className="welcomeTitle">Welcome back to your account!</h1>
       <form className="loginForm" onSubmit={handleLogin}>
         <h2 className="formTitle">LOGIN</h2>
