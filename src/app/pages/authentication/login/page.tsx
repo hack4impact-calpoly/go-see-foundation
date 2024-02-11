@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -51,6 +51,14 @@ export default function LoginPage() {
       ...prevLoginData,
       [name]: value,
     }));
+  };
+
+  const handleRememberMe = (): void => {
+    setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      remember: !loginData.remember,
+    }));
+    console.log("Remember me set to: " + String(loginData.remember));
   };
 
   return (
@@ -114,6 +122,8 @@ export default function LoginPage() {
               type="checkbox"
               id="rememberMe"
               name="rememberMe"
+              value={String(loginData.remember)}
+              onClick={handleRememberMe}
               className="inline"
             />
             Remember me?
