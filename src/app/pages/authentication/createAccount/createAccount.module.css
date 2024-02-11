@@ -5,23 +5,42 @@
   margin: 0rem 10rem;
 }
 
+.title {
+  color: #ffffff;
+  font-weight: 700;
+}
+
 .createForm {
   /* display: inline-block; */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+}
+
+.container {
+  width: 50%;
+  margin: 50px auto;
+  background-color: #ffffff; /* Set background color for the container */
+  padding: 20px;
+  border-radius: 10px; /* Optional: Add rounded corners to the container */
+}
+
+.heading {
+  text-align: left;
+  font-weight: 700;
+  font-size: 22px;
 }
 
 .input {
   /* display: flex; */
-  font-family: Inter;
-  font-weight: 1000;
-  font-size: 20px;
+  font-weight: 700;
+  font-size: 18px;
   color: #000000;
-  width: 300px;
+  width: 500px;
   height: 30px;
   padding: 10px;
-  margin: 15px;
+  margin: 5px;
   /* align-items: flex-start; */
   gap: 15px;
 
@@ -35,15 +54,45 @@
   color: #000000;
 }
 
-.button {
-  font-family: Inter;
-  font-weight: 900;
-  color: #000000;
-  width: 170px;
+.signup {
+  font-family: Helvetica;
+  font-weight: 700;
+  color: #ffffff;
+  width: 250px;
   height: 50px;
   font-size: 20px;
   align-items: center;
   justify-content: center;
   border-radius: 15px;
+  background: #1d2f5d;
+}
+
+.login {
+  font-family: Helvetica;
+  font-weight: 700;
+  color: #1d2f5d;
+  width: 170px;
+  height: 40px;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
   background: #fff;
+}
+
+.emailnotifs {
+  float: right;
+}
+
+div.wrapper {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 200px;
+  height: 300px;
+  border: 1px solid black;
+  padding: 10px;
+  margin: 10px;
 }

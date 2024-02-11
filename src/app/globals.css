@@ -4,7 +4,10 @@
 }
 
 * {
-  font-family: Inter;
+  /* font-family: Inter; */
+  font-family: "Helvetica Neue", "HelveticaNeue-Light", "Helvetica Neue Light",
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 200;
 }
 
 body {
