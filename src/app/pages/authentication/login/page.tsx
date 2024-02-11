@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "./login.css";
-import style from "./login.css";
 import backgroundLogo from "../../../images/backgroundLogo.png";
 import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
@@ -22,14 +21,14 @@ export default function LoginPage() {
   function handleLogin(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     console.log("login pressed");
-    // const message =
-    //   "Login pressed.\n\nYour username is: " +
-    //   loginData.email +
-    //   "\nYour password is: " +
-    //   loginData.password +
-    //   "\nYou checked 'Remeber Me': " +
-    //   String(loginData.remember);
-    // alert(message);
+    const message =
+      "Login pressed.\n\nYour username is: " +
+      loginData.email +
+      "\nYour password is: " +
+      loginData.password +
+      "\nYou checked 'Remeber Me': " +
+      String(loginData.remember);
+    alert(message);
 
     // TODO: try to fetch the user from database using email
     // if email exists, verify password --> if password match, next page
@@ -39,10 +38,10 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
-    // const message =
-    //   "Sign up pressed. You will now be redirected to the Create Account page.";
-    // alert(message);
-    // push("/pages/authentication/createAccount");
+    const message =
+      "Sign up pressed. You will now be redirected to the Create Account page.";
+    alert(message);
+    push("/pages/authentication/createAccount");
   }
 
   const handleLoginChange = (
@@ -64,7 +63,6 @@ export default function LoginPage() {
           alt="background logo for the Go See Foundation"
           height="0"
           width="0"
-          style={style.backgroundLogo}
           className="backgroundLogo"
           priority={true}
         />
