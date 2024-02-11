@@ -39,6 +39,8 @@
   font-family: "Helvetica", sans-serif;
   font-size: 42px;
   color: white;
+
+  /* debugging */
   /* background-color: black; */
 }
 
@@ -67,12 +69,13 @@
 
 input {
   flex: 1;
-  width: 85%;
-  height: 50px;
-  padding: 15px 10px;
+  height: 100%;
+  padding: 10px 0px;
+  padding-left: 50px;
   margin: 10px;
+  transform: translate(-1vw, 0%);
   font-family: "Helvetica", sans-serif;
-  font-size: 24px;
+  font-size: 18pt;
   color: black;
   border-radius: 16px;
   border: 2pt solid black; /*width style color*/
@@ -87,12 +90,27 @@ input {
   margin-bottom: 20px;
 }
 
-.wrapper {
-  display: relative;
+.inputWrapper {
+  display: flex;
+  width: 90%;
+
+  /* debugging */
+  /* background-color: bisque; */
 }
 
-.icon {
-  position: absolute;
+.emailIcon {
+  position: relative;
+  transform: translate(130%, 35%);
+  z-index: 1;
+}
+
+.passwordIcon {
+  position: relative;
+  transform: translate(130%, 70%);
+  z-index: 1;
+
+  /* debugging */
+  /* background-color: aqua; */
 }
 
 .loginButton {
@@ -155,8 +173,7 @@ input {
 }
 
 .rememberMeCheckbox {
-  width: 85%;
-  padding-right: 20px;
+  width: 78%;
   text-align: left;
   font-size: 14pt;
   font-weight: 500;
@@ -172,8 +189,8 @@ input {
 .inline {
   display: inline;
   vertical-align: middle;
-  margin: 0 0.5em 0.2em 0;
-  width: 15%;
+  margin: 0 0 0.2em 0;
+  /* width: 15%; */
 }
 
 /* Media queries for smaller screens */

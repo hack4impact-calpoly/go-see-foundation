@@ -4,13 +4,14 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import "./login.css";
-import logoImage from "../../../images/GO-See-HLogo.fw_.png";
 import backgroundLogo from "../../../images/eyeBackground.png";
 import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
 
 export default function LoginPage() {
+  const { push } = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -20,6 +21,14 @@ export default function LoginPage() {
   function handleLogin(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     console.log("login pressed");
+    const message =
+      "Login pressed.\n\nYour username is: " +
+      loginData.email +
+      "\nYour password is: " +
+      loginData.password +
+      "\nYou checked 'Remeber Me': " +
+      String(loginData.remember);
+    alert(message);
 
     // TODO: try to fetch the user from database using email
     // if email exists, verify password --> if password match, next page
@@ -29,6 +38,10 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
+    const message =
+      "Sign up pressed. You will now be redirected to the Create Account page.";
+    alert(message);
+    push("/pages/authentication/createAccount");
   }
 
   const handleLoginChange = (
@@ -43,6 +56,7 @@ export default function LoginPage() {
 
   return (
     <div className="loginPage">
+      {/* TODO: add background logo */}
       {/* <div className="backgroundLogoContainer">
         <Image
           src={backgroundLogo}
@@ -54,27 +68,16 @@ export default function LoginPage() {
       </div> */}
       <h1 className="welcomeTitle">Welcome back to your account!</h1>
       <form className="loginForm" onSubmit={handleLogin}>
-        {/* <Image
-          className="logoImg"
-          src={logoImage}
-          alt="A picture of the Go See Foundation's Logo"
-          width="650" // about 1/5 of the original image width
-          height="190" // about 1/5 of the original image height
-        ></Image> */}
         <h2 className="formTitle">LOGIN</h2>
         <div className="inputWrapper">
           <Image
             className="emailIcon"
             src={emailIcon}
             alt="An email icon"
-            width="40"
-            height="40"
+            width="30"
+            height="30"
           />
-          <label htmlFor="email" className="loginInputLabel">
-            {" "}
-            {/*for screen readers*/}
-            {/* Enter Email */}
-          </label>
+          <label htmlFor="email" className="loginInputLabel"></label>
           <input
             type="text"
             id="email"
@@ -87,11 +90,11 @@ export default function LoginPage() {
         </div>
         <div className="inputWrapper">
           <Image
-            className="emailIcon"
+            className="passwordIcon"
             src={passwordIcon}
             alt="An email icon"
-            width="40"
-            height="40"
+            width="30"
+            height="30"
           />
           <label htmlFor="password" className="loginInputLabel">
             {/* Enter Password */}
@@ -114,9 +117,7 @@ export default function LoginPage() {
               name="rememberMe"
               className="inline"
             />
-            {/* <p id="rememberMeText" className="inline"> */}
             Remember me?
-            {/* </p> */}
           </label>
         </div>
         <button className="loginButton" type="submit">
