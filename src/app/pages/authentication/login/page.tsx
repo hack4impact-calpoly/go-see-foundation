@@ -1,20 +1,33 @@
-/* Login page */
-
 "use client";
-import React, { useState } from "react";
+import React, { MouseEventHandler, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import "./login.css";
-import logoImage from "../../../images/GO-See-HLogo.fw_.png";
+import backgroundLogo from "../../../images/backgroundLogo.png";
+import emailIcon from "../../../images/emailIcon.png";
+import passwordIcon from "../../../images/passwordIcon.png";
 
 export default function LoginPage() {
+  const { push } = useRouter();
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
+    remember: false,
   });
 
   function handleLogin(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     console.log("login pressed");
+    const message =
+      "Login pressed.\n\nYour username is: " +
+      loginData.email +
+      "\nYour password is: " +
+      loginData.password +
+      "\nYou checked 'Remeber Me': " +
+      String(loginData.remember) +
+      "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
+    alert(message);
 
     // TODO: try to fetch the user from database using email
     // if email exists, verify password --> if password match, next page
@@ -24,6 +37,10 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
+    const message =
+      "Sign up pressed. You will now be redirected to the Create Account page.";
+    alert(message);
+    push("/pages/authentication/createAccount");
   }
 
   const handleLoginChange = (
@@ -36,51 +53,95 @@ export default function LoginPage() {
     }));
   };
 
+  const handleRememberMe = (): void => {
+    setLoginData((prevLoginData) => ({
+      ...prevLoginData,
+      remember: !loginData.remember,
+    }));
+    console.log("Remember me set to: " + String(loginData.remember));
+  };
+
   return (
     <div className="loginPage">
-      <form className="loginForm" onSubmit={handleLogin}>
+      <div className="backgroundLogoContainer">
         <Image
-          className="logoImg"
-          src={logoImage}
-          alt="A picture of the Go See Foundation's Logo"
-          width="650" // about 1/5 of the original image width
-          height="190" // about 1/5 of the original image height
-        ></Image>
-
-        <h1 className="loginTitle">LOGIN</h1>
-
-        {/* <label htmlFor="email" className={style.loginInputLabel}>
-            Enter Email
-          </label> */}
-        <input
-          type="text"
-          id="email"
-          name="email"
-          placeholder="Email"
-          value={loginData.email}
-          onChange={handleLoginChange}
-          required
+          src={backgroundLogo}
+          alt="background logo for the Go See Foundation"
+          height="0"
+          width="0"
+          className="backgroundLogo"
+          priority={true}
         />
-
-        {/* <label htmlFor="password" className={style.loginInputLabel}>
-            Enter Password
-          </label> */}
-        <input
-          type="text"
-          id="password"
-          name="password"
-          placeholder="Password"
-          value={loginData.password}
-          onChange={handleLoginChange}
-          required
-        />
-
+      </div>
+      <h1 className="welcomeTitle">Welcome back to your account!</h1>
+      <form className="loginForm" onSubmit={handleLogin}>
+        <h2 className="formTitle">LOGIN</h2>
+        <div className="inputWrapper">
+          <Image
+            className="emailIcon"
+            src={emailIcon}
+            alt="An email icon"
+            width="30"
+            height="30"
+          />
+          <label htmlFor="email" className="loginInputLabel"></label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Email"
+            value={loginData.email}
+            onChange={handleLoginChange}
+            required
+          />
+        </div>
+        <div className="inputWrapper">
+          <Image
+            className="passwordIcon"
+            src={passwordIcon}
+            alt="An email icon"
+            width="30"
+            height="30"
+          />
+          <label htmlFor="password" className="loginInputLabel">
+            {/* Enter Password */}
+          </label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={loginData.password}
+            onChange={handleLoginChange}
+            required
+          />
+        </div>
+        <div className="rememberMeCheckbox">
+          <label htmlFor="rememberMe">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              name="rememberMe"
+              value={String(loginData.remember)}
+              onClick={handleRememberMe}
+              className="inline"
+            />
+            Remember me?
+          </label>
+        </div>
         <button className="loginButton" type="submit">
           LOG IN
         </button>
 
+        {/*TODO: change href to proper forget page*/}
+        <Link href="/" className="forgotPasswordLink">
+          Forgot Password
+        </Link>
+
+        <div className="break"></div>
+
         <div className="signUp">
-          <h2 className="signUpTitle">No Account?</h2>
+          <h2 className="signUpTitle">Not a Member yet?</h2>
           <button className="signUpButton" type="button" onClick={handleSignUp}>
             SIGN UP
           </button>
