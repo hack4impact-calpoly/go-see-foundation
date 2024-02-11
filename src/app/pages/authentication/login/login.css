@@ -2,13 +2,10 @@
 
 .loginPage {
   border-radius: 15px;
-  /* background-color: #1d2f5d; */
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  /* background-image: url("/src/app/images/backgroundLogo.png"); */
-  /* background-image: linear-gradient(red, yellow, blue); */
 }
 
 .backgroundLogoContainer {
@@ -41,10 +38,9 @@
 .welcomeTitle {
   width: 50vw;
   padding: 10px;
-  border-radius: 10px;
   line-height: 1.6;
   font-family: "Helvetica", sans-serif;
-  font-size: 42px;
+  font-size: 36pt;
   color: white;
 
   /* debugging */
@@ -65,13 +61,21 @@
 
 .formTitle {
   font-family: "Helvetica", sans-serif;
-  font-size: 42px;
+  font-size: 32pt;
   color: black;
   margin-top: 2vh;
   margin-bottom: 3vh;
 
   /* debugging */
   /* background-color: purple; */
+}
+
+.inputWrapper {
+  display: flex;
+  width: 90%;
+
+  /* debugging */
+  /* background-color: bisque; */
 }
 
 input {
@@ -97,14 +101,6 @@ input {
   margin-bottom: 20px;
 }
 
-.inputWrapper {
-  display: flex;
-  width: 90%;
-
-  /* debugging */
-  /* background-color: bisque; */
-}
-
 .emailIcon {
   position: relative;
   transform: translate(130%, 35%);
@@ -115,14 +111,29 @@ input {
   position: relative;
   transform: translate(130%, 70%);
   z-index: 1;
+}
 
-  /* debugging */
-  /* background-color: aqua; */
+.rememberMeCheckbox {
+  width: 78%;
+  text-align: left;
+  font-size: 14pt;
+  font-weight: 500;
+}
+
+.rememberMeCheckbox input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+  border-radius: 16px;
+}
+
+.inline {
+  display: inline;
+  vertical-align: middle;
+  margin: 0 0 0.2em 0;
 }
 
 .loginButton {
   width: 55%;
-  /* height: 80px; */
   padding: 15px 0;
   margin: 10px;
   margin-bottom: 0;
@@ -131,15 +142,19 @@ input {
   outline: none; /* Remove the focus outline */
   box-shadow: none;
   font-family: "Helvetica", sans-serif;
-  font-size: 36px;
+  font-size: 24pt;
   font-weight: 600;
   color: white;
   background-color: #1d2f5d;
 }
 
+.loginButton:hover {
+  cursor: pointer;
+}
+
 .forgotPasswordLink {
   color: black;
-  font-size: 24px;
+  font-size: 18pt;
   font-family: "Helvetica", sans-serif;
   font-weight: 100;
 }
@@ -157,7 +172,7 @@ input {
 
 .signUpTitle {
   font-family: "Helvetica", sans-serif;
-  font-size: 28px;
+  font-size: 22pt;
   font-weight: 500;
   color: #1d2f5d;
   margin: 2vh 0;
@@ -166,128 +181,81 @@ input {
 .signUpButton {
   width: 70%;
   height: 60px;
-  padding: 10px;
   margin-bottom: 4vh;
   border-radius: 16px;
   outline: none; /* Remove the focus outline */
   box-shadow: none;
   font-family: "Helvetica", sans-serif;
-  font-size: 30px;
+  font-size: 22pt;
   font-weight: bold;
-  color: 1d2f5d;
+  color: #1d2f5d;
   border: 2.5pt solid #1d2f5d;
   background-color: #bbcfff;
-}
-
-.rememberMeCheckbox {
-  width: 78%;
-  text-align: left;
-  font-size: 14pt;
-  font-weight: 500;
-}
-
-.rememberMeCheckbox input[type="checkbox"] {
-  width: 1em;
-  height: 1em;
-  border-radius: 16px;
-  /*#3f4e75*/
-}
-
-.inline {
-  display: inline;
-  vertical-align: middle;
-  margin: 0 0 0.2em 0;
-  /* width: 15%; */
 }
 
 /* Media queries for smaller screens */
 
 @media only screen and (max-width: 800px) {
-  .loginPage {
-    border-radius: 15px;
-    background-color: #1d2f5d;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  .welcomeTitle {
+    width: 70vw;
+    line-height: 1.2;
+    font-size: 30pt;
   }
 
   .loginForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
+    width: 80vw;
+    margin-bottom: 5%;
     align-items: center;
   }
 
-  .logoImg {
-    padding: 40px;
-    width: 80vw;
-    height: 16vh;
-  }
-
-  .loginTitle {
-    width: 40vw;
-    height: 8vh;
-    padding: 10px;
-    border-radius: 10px;
-    line-height: 1.8;
-    font-family: "Helvetica", sans-serif;
-    font-size: 38px;
-    color: white;
-    background-color: black;
+  .formTitle {
+    font-size: 30pt;
   }
 
   input {
-    width: 60vw;
-    height: 5vh;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    font-family: "Helvetica", sans-serif;
-    font-size: 20px;
-    color: black;
-    background-color: white;
+    height: 4vh;
+    font-size: 16pt;
+  }
+
+  .emailIcon {
+    transform: translate(150%, 35%);
+  }
+
+  .passwordIcon {
+    transform: translate(150%, 70%);
+  }
+
+  .rememberMeCheckbox {
+    width: 73%;
   }
 
   .loginButton {
-    width: 40vw;
     height: 8vh;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    font-family: "Helvetica", sans-serif;
-    font-size: 28px;
-    color: black;
-    background-color: #bbcfff;
+    padding: 0;
+    font-size: 22pt;
   }
 
-  .signUp {
-    margin: 40px;
+  .forgotPasswordLink {
+    font-size: 14pt;
+    font-weight: lighter;
+  }
+
+  .break {
+    height: 4px;
+    width: 30%;
+    margin: 2%;
   }
 
   .signUpTitle {
-    font-family: "Helvetica", sans-serif;
-    font-size: 18px;
-    color: white;
+    font-size: 20pt;
+    margin: 1vh;
   }
 
   .signUpButton {
-    width: 30vw;
-    height: 6vh;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    font-family: "Helvetica", sans-serif;
-    font-size: 20px;
-    color: black;
-    background-color: white;
+    width: 80%;
+    height: 7vh;
+    padding: 0;
+    margin-top: 1vh;
+    font-size: 18pt;
   }
 }

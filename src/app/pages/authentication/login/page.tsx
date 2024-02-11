@@ -22,14 +22,14 @@ export default function LoginPage() {
   function handleLogin(event: React.FormEvent<HTMLFormElement>): void {
     event.preventDefault();
     console.log("login pressed");
-    const message =
-      "Login pressed.\n\nYour username is: " +
-      loginData.email +
-      "\nYour password is: " +
-      loginData.password +
-      "\nYou checked 'Remeber Me': " +
-      String(loginData.remember);
-    alert(message);
+    // const message =
+    //   "Login pressed.\n\nYour username is: " +
+    //   loginData.email +
+    //   "\nYour password is: " +
+    //   loginData.password +
+    //   "\nYou checked 'Remeber Me': " +
+    //   String(loginData.remember);
+    // alert(message);
 
     // TODO: try to fetch the user from database using email
     // if email exists, verify password --> if password match, next page
@@ -39,10 +39,10 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
-    const message =
-      "Sign up pressed. You will now be redirected to the Create Account page.";
-    alert(message);
-    push("/pages/authentication/createAccount");
+    // const message =
+    //   "Sign up pressed. You will now be redirected to the Create Account page.";
+    // alert(message);
+    // push("/pages/authentication/createAccount");
   }
 
   const handleLoginChange = (
@@ -66,6 +66,7 @@ export default function LoginPage() {
           width="0"
           style={style.backgroundLogo}
           className="backgroundLogo"
+          priority={true}
         />
       </div>
       <h1 className="welcomeTitle">Welcome back to your account!</h1>
