@@ -9,7 +9,7 @@
 .backgroundLogoContainer {
   display: flex;
   position: absolute;
-  width: 90vw;
+  width: 100vw;
   height: 100vh;
   z-index: -2;
 
@@ -18,16 +18,15 @@
 }
 
 .backgroundLogo {
-  position: relative;
+  position: fixed;
   z-index: -1;
-  width: 100vw;
-  height: fit-content;
-  /* margin: 5vh 5vw; */
-  /* padding: 5vh 5vw; */
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 90%;
   object-fit: contain;
   justify-self: center;
   align-self: center;
-  /* object-position: center -100%; */
   opacity: 25%;
 }
 
