@@ -1,52 +1,63 @@
-/* createAccount, CSS*/
-
 .createAccount {
-  text-align: center;
-  margin: 0rem 10rem;
-}
-
-.title {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-.createForm {
-  /* display: inline-block; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
+.title {
+  width: 50vw;
+  text-align: center;
+  color: #ffffff;
+  font-size: 36px;
+  font-weight: 700;
+}
+
 .container {
-  width: 50%;
-  margin: 50px auto;
-  background-color: #ffffff; /* Set background color for the container */
+  width: 50vw;
+  margin: 50px;
+  background-color: #ffffff; 
   padding: 20px;
-  border-radius: 10px; /* Optional: Add rounded corners to the container */
+  border-radius: 10px; 
 }
 
 .heading {
   text-align: left;
   font-weight: 700;
   font-size: 22px;
+  padding-left: 4%;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chkboxcontainer {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 4%;
+}
+
+.chkboxcontainer input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  margin-right: 10px;
 }
 
 .input {
-  /* display: flex; */
   font-weight: 700;
   font-size: 18px;
   color: #000000;
-  width: 500px;
+  width: 90%;
   height: 30px;
   padding: 10px;
   margin: 5px;
-  /* align-items: flex-start; */
   gap: 15px;
 
-  border-radius: 15px;
+  border-radius: 12px;
   background: #fff;
-  box-sizing: content-box; /* Standard property */
+  box-sizing: content-box;
   -webkit-box-sizing: content-box;
 }
 
@@ -54,16 +65,30 @@
   color: #000000;
 }
 
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+.break {
+  background-color: black;
+  height: 3px;
+  width: 20%;
+  margin: 20px;
+}
+
 .signup {
   font-family: Helvetica;
   font-weight: 700;
   color: #ffffff;
-  width: 250px;
+  width: 50%;
   height: 50px;
   font-size: 20px;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
+  border-radius: 12px;
   background: #1d2f5d;
 }
 
@@ -71,17 +96,23 @@
   font-family: Helvetica;
   font-weight: 700;
   color: #1d2f5d;
-  width: 170px;
-  height: 40px;
-  font-size: 15px;
+  background-color: #BBCFFF;
+  width: 40%;
+  height: 50px;
+  font-size: 18px;
   align-items: center;
   justify-content: center;
-  border-radius: 15px;
-  background: #fff;
+  border-radius: 12px;
 }
 
-.emailnotifs {
-  float: right;
+.checkboxtext {
+  font-size: 18px;
+  font-weight: 400;
+} 
+
+.accounttext {
+  font-size: 24px;
+  font-weight: 400;
 }
 
 div.wrapper {
@@ -95,4 +126,138 @@ div.wrapper {
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
+}
+
+/* Media queries for smaller screens */
+
+@media only screen and (max-width: 800px) {
+  .createAccount {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .title {
+    width: 70vw;
+    text-align: center;
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 700;
+  }
+  
+  .container {
+    width: 70vw;
+    margin: 30px;
+    background-color: #ffffff; 
+    padding: 20px;
+    border-radius: 10px; 
+  }
+  
+  .heading {
+    text-align: left;
+    font-weight: 700;
+    font-size: 20px;
+    padding-left: 4%;
+  }
+  
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .chkboxcontainer {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 1%;
+  }
+
+  .chkboxcontainer input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin-right: 10px;
+  }
+  
+  .input {
+    font-weight: 500;
+    font-size: 16px;
+    color: #000000;
+    width: 90%;
+    height: 30px;
+    padding: 10px;
+    margin: 5px;
+    gap: 15px;
+  
+    border-radius: 12px;
+    background: #fff;
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+  }
+  
+  .input::placeholder {
+    color: #000000;
+  }
+  
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+  
+  .break {
+    background-color: black;
+    height: 3px;
+    width: 40%;
+    margin: 20px;
+  }
+  
+  .signup {
+    font-family: Helvetica;
+    font-weight: 700;
+    color: #ffffff;
+    width: 75%;
+    height: 50px;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: #1d2f5d;
+  }
+  
+  .login {
+    font-family: Helvetica;
+    font-weight: 700;
+    color: #1d2f5d;
+    background-color: #BBCFFF;
+    width: 60%;
+    height: 50px;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+  }
+  
+  .checkboxtext {
+    font-size: 16px;
+    font-weight: 400;
+  } 
+  
+  .accounttext {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  div.wrapper {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+  }
 }
