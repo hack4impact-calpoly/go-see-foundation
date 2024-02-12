@@ -31,27 +31,28 @@ const CreateAccount = () => {
   return (
     // <div className="createAccount">
     <div className={styles.createAccount}>
-      <link
+      {/* need to change to Helvetica Neue 
+            <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Inter"
-      ></link>
-      <Image
+      ></link>*/}
+      {/* <Image
         src={logo}
         alt="Go See Foundation's Logo"
         width="360"
         height="95"
-      />
+      /> */}
       <br></br>
-      <br></br>
-      <div>
+      <h1 className={styles.title}>Sign in and join the Go See community!</h1>
+      <div className={styles.container}>
         <form
           className={styles.createForm}
           onChange={handleAccountChange}
           onSubmit={handleCreateAccount}
         >
-          <button className={styles.button}>Sign up now!</button>
-          <br></br>
-          <div className={styles.row}>
+          {/* <button className={styles.button}>Sign up now!</button> */}
+          <h2 className={styles.heading}>Step 1: Personal Info:</h2>
+          <div className={styles.inputs}>
             <input
               className={styles.input}
               type="text"
@@ -66,8 +67,32 @@ const CreateAccount = () => {
               placeholder="Last Name"
               required
             />
+            <input
+              className={styles.input}
+              type="text"
+              id="birth"
+              placeholder="Date of Birth"
+              required
+            />
+            <select className={styles.input} id="user">
+              <option value="select" disabled selected>
+                Select One
+              </option>
+              <option value="Member">Member</option>
+              <option value="Volunteer">Volunteer</option>
+              <option value="Partner/Donor">Partner/Donor</option>
+            </select>
           </div>
-          <div className={styles.row}>
+          <br></br>
+          <h2 className={styles.heading}>Step 2: Account Info:</h2>
+          <div className={styles.inputs}>
+            <input
+              className={styles.input}
+              type="email"
+              id="email"
+              placeholder="Email"
+              required
+            />
             <input
               className={styles.input}
               type="tel"
@@ -78,33 +103,37 @@ const CreateAccount = () => {
             />
             <input
               className={styles.input}
-              type="email"
-              id="email"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className={styles.row}>
-            <select className={styles.input} id="user">
-              <option value="select" disabled selected>
-                Select One
-              </option>
-              <option value="Member">Member</option>
-              <option value="Volunteer">Volunteer</option>
-              <option value="Partner/Doner">Partner/Donor</option>
-            </select>
-            <input
-              className={styles.input}
               type="password"
               id="password"
               placeholder="Password"
               required
             />
+            <input
+              className={styles.input}
+              type="password"
+              id="password"
+              placeholder="Repeat Password"
+              required
+            />
+          </div>
+          <div className={styles.chkboxcontainer}>
+            <input type="checkbox" id="myCheckbox" name="myCheckbox" />
+            <label className={styles.checkboxtext} htmlFor="myCheckbox">
+              Sign me up for email notifications.
+            </label>
           </div>
           <br></br>
-          <button className={styles.button} type="submit">
-            Create Account
-          </button>
+          <div className={styles.buttons}>
+            <button className={styles.signup} id="signup" type="submit">
+              SIGN UP
+            </button>
+            <br></br>
+            <div className={styles.break}></div>
+            <p className={styles.accounttext}>Already have an account?</p>
+            <button className={styles.login} id="login">
+              LOG IN
+            </button>
+          </div>
         </form>
       </div>
     </div>
