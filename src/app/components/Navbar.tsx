@@ -42,6 +42,7 @@ export default function Navbar() {
               JOIN US
             </button>
           </Link>
+          <button className={`${styles.button} ${styles.menu}`}>MENU</button>
         </div>
       </div>
       <div className={styles.subbar}>
