@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../images/GO-See-HLogo.fw_.png";
@@ -7,25 +8,16 @@ import styles from "./navbar.module.css";
 export default function Navbar() {
   return (
     <div className={styles.navbar}>
-      {/* <ul>
-        <li>
-          <Link href="/">Home</Link>
-        </li>
-        <li>
-          <Link href="/pages/authentication/login">Login</Link>
-        </li>
-        <li>
-          <Link href="/pages/authentication/createAccount">Create Account</Link>
-        </li>
-      </ul> */}
       <div className={styles.mainbar}>
-        <Image
-          src={logo}
-          className={styles.logo}
-          alt="Go See Foundation's Logo"
-          width="360"
-          height="95"
-        />
+        <div className={styles.image}>
+          <Image
+            src={logo}
+            className={styles.logo}
+            alt="Go See Foundation's Logo"
+            width="360"
+            height="95"
+          />
+        </div>
         <div className={styles.mainButtons}>
           <Link href="">
             <button className={`${styles.button} ${styles.donate}`}>
@@ -42,22 +34,30 @@ export default function Navbar() {
               JOIN US
             </button>
           </Link>
-          <button className={`${styles.button} ${styles.menu}`}>MENU</button>
+          <button className={`${styles.button} ${styles.menu}`}>MENU ≡</button>
         </div>
       </div>
       <div className={styles.subbar}>
-        <Link className={styles.link} href="/">
-          HOME
-        </Link>
-        <Link className={styles.link} href="/">
-          GET INVOLVED
-        </Link>
-        <Link className={styles.link} href="/">
-          RESOURCES
-        </Link>
-        <Link className={styles.link} href="/">
-          ABOUT US
-        </Link>
+        <div className={styles.linkWrapper}>
+          <Link className={styles.link} href="/">
+            HOME
+          </Link>
+        </div>
+        <div className={styles.linkWrapper}>
+          <Link className={styles.link} href="/">
+            GET INVOLVED
+          </Link>
+        </div>
+        <div className={styles.linkWrapper}>
+          <Link className={styles.link} href="/">
+            RESOURCES
+          </Link>
+        </div>
+        <div className={styles.linkWrapper}>
+          <Link className={styles.link} href="/">
+            ABOUT US
+          </Link>
+        </div>
       </div>
     </div>
   );
