@@ -1,21 +1,49 @@
 import connectDB from "@database/db";
 import { NextRequest, NextResponse } from "next/server";
-import Users, {IUser} from "@database/userSchema"
+import Users, { IUser } from "@database/userSchema";
+const bcrypt = require("bcrypt");
 
 export async function POST(req: NextRequest) {
-    await connectDB();
-    try{
-        const { username, password, userType, firstName, lastName, phoneNum, email}: IUser = await req.json()
-        if (!username || !password || !userType || !firstName || !lastName || !phoneNum || !email) {
-            return NextResponse.json("Failed: Invalid User", { status: 400 });
-        }
-        const bcrypt = require('bcrypt');
-        const salt = bcrypt.genSaltSync(10)
-        const hashedPassword = await bcrypt.hash(password, salt)
-        const newUser = await Users.create({ username, hashedPassword, userType, firstName, lastName, phoneNum, email });
-        return NextResponse.json("Success: Registration Complete", { status: 200 });
+  await connectDB();
+  try {
+    const {
+      username,
+      password,
+      userType,
+      firstName,
+      lastName,
+      phoneNum,
+      email,
+    }: IUser = await req.json();
+    if (
+      !username ||
+      !password ||
+      !userType ||
+      !firstName ||
+      !lastName ||
+      !phoneNum ||
+      !email
+    ) {
+      return NextResponse.json("Failed: Invalid User", { status: 400 });
     }
-    catch{
-        return NextResponse.json("Failed: User Not Added", { status: 400 });
-    }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log(hashedPassword);
+    const newUser = new Users({
+      username,
+      password: hashedPassword,
+      userType,
+      firstName,
+      lastName,
+      phoneNum,
+      email,
+    });
+    console.log(newUser);
+    console.log(hashedPassword);
+    await newUser.save();
+    return NextResponse.json("Success: Registration Complete", { status: 200 });
+  } catch (err) {
+    return NextResponse.json(`${err}`, { status: 400 });
+  }
 }
