@@ -5,9 +5,11 @@
 }
 
 .mainButtons {
-  /* display: flex; */
-  /* vertical-align: middle; */
-  margin: auto;
+  /* display: flex;
+  vertical-align: middle; */
+  position: relative;
+  right: 0;
+  margin-left: auto;
 }
 
 @media only screen and (min-width: 801px) {
@@ -15,18 +17,23 @@
     display: flex;
     position: relative;
     padding: 20px;
+    padding-bottom: 0px;
+  }
+
+  .mainButtons {
+    display: flex;
+    flex-direction: row;
   }
 
   .logo {
-    /* width: 507px;
-    height: 127px; */
-    margin-right: 30px;
+    width: 300px;
+    height: auto;
   }
 
   .button {
-    width: 260px;
-    height: 58px;
-    font-size: 30px;
+    width: 14vw;
+    height: 6vh;
+    font-size: 25px;
     font-weight: 700;
     margin: 10px;
   }
@@ -61,7 +68,7 @@
   }
 
   .link {
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 700;
     color: black;
     text-decoration: none;
@@ -78,9 +85,22 @@
     padding: 20px;
   }
 
-  /* .subbar:not(.menu:focus) {
-    display: none;
-  } */
+  .mainButtons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .mainTop {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mainBottom {
+    display: flex;
+    flex-direction: column;
+  }
 
   .image {
     margin-left: auto;
@@ -137,6 +157,10 @@
     width: inherit;
   }
 
+  .subbar:not(.menu:focus) {
+    display: none;
+  }
+
   .linkWrapper {
     display: flex;
     vertical-align: middle;
@@ -144,7 +168,8 @@
     background-color: #1d2f5d;
     width: 100%;
     height: 2.75rem;
-    /* border: 3px solid #fff; */
+    border: 3px solid #fff;
+    width: 99%;
   }
 
   .link {
