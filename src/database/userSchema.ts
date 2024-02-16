@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-type IUser = {
+export type IUser = {
   username: string;
   password: string;
   userType: string;
@@ -14,14 +14,14 @@ type IUser = {
 const UserSchema = new Schema<IUser>({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  userType : { type: String, required: true},
-  firstName : { type: String, required: true},
-  lastName : { type: String, required: true},
-  phoneNum : { type: String, required: true},
-  email: { type: String, required: true, unique: true }
+  userType: { type: String, required: true },
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  phoneNum: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
 });
 
-export default mongoose.models.User || mongoose.model("User", UserSchema);
-export type {IUser};
+// export default mongoose.models.User || mongoose.model("User", UserSchema);
+const Users = mongoose.models["users"] || mongoose.model("users", UserSchema);
 
-
+export default Users;
