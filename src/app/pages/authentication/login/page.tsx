@@ -1,5 +1,5 @@
 "use client";
-import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,6 +10,10 @@ import passwordIcon from "../../../images/passwordIcon.png";
 
 export default function LoginPage() {
   const { push } = useRouter();
+  const emailInputRef = useRef<HTMLInputElement | null>(null);
+  const passwordInputRef = useRef<HTMLInputElement | null>(null);
+  const rememberMeInputRef = useRef<HTMLInputElement | null>(null);
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -37,8 +41,7 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
-    const message =
-      "Sign up pressed. You will now be redirected to the Create Account page.";
+    const message = "Sign up pressed. You will now be redirected to the Create Account page.";
     alert(message);
     push("/pages/authentication/createAccount");
   }
@@ -60,6 +63,24 @@ export default function LoginPage() {
     }));
     console.log("Remember me set to: " + String(loginData.remember));
   };
+
+  const handleInputKeyPressEmailInput = (event : any) => {
+    if (event.key === 'tab' && emailInputRef.current !== null) {
+      emailInputRef.current.focus();
+    }
+  }
+
+  const handleInputKeyPressPassworrd = (event : any ) => {
+     if (event.key === 'tab' && passwordInputRef.current !== null) {
+       passwordInputRef.current.focus(); 
+     }  
+  }
+
+  const handleInputKeyPressRemeberMe = (event : any) => {
+     if (event.key === 'tab' && rememberMeInputRef.current !== null) {
+        rememberMeInputRef.current.focus();
+     }
+  }
 
   return (
     <div className="loginPage">
@@ -92,6 +113,8 @@ export default function LoginPage() {
             placeholder="Email"
             value={loginData.email}
             onChange={handleLoginChange}
+            onKeyPress={handleInputKeyPressEmailInput}
+            ref={emailInputRef}
             required
           />
         </div>
@@ -113,6 +136,8 @@ export default function LoginPage() {
             placeholder="Password"
             value={loginData.password}
             onChange={handleLoginChange}
+            onKeyPress={handleInputKeyPressPassworrd}
+            ref={passwordInputRef}
             required
           />
         </div>
@@ -124,6 +149,8 @@ export default function LoginPage() {
               name="rememberMe"
               value={String(loginData.remember)}
               onClick={handleRememberMe}
+              ref={rememberMeInputRef}
+              onKeyPress={handleInputKeyPressRemeberMe}
               className="inline"
             />
             Remember me?
