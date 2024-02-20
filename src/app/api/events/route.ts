@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
-import EventSchema, { IEvent } from "@database/eventSchema";
+import EventSchema from "@database/eventSchema";
 
 export async function GET(req: NextRequest) {
   await connectDB();
