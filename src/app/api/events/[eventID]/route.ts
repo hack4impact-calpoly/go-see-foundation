@@ -9,8 +9,6 @@ type IParams = {
 };
 
 export async function GET(req: NextRequest, { params }: IParams) {
-  console.log(params);
-  console.log(params.eventID);
   await connectDB();
   const { eventID } = params;
 
@@ -18,7 +16,9 @@ export async function GET(req: NextRequest, { params }: IParams) {
     const event = await EventSchema.findOne({ eventID }).orFail();
     return NextResponse.json(event);
   } catch (err) {
-    return NextResponse.json("Event not found.", { status: 404 });
+    return NextResponse.json(`Event ${eventID} not found. Error: ${err}`, {
+      status: 404,
+    });
   }
 }
 
