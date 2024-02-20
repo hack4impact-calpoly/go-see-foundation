@@ -48,5 +48,13 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest, { params }: IParams) {
-  return NextResponse.json("Event deleted", { status: 200 });
+  await connectDB();
+  const { eventID } = params;
+
+  try {
+    const deleted = await EventSchema.deleteOne({ eventID }).orFail();
+    return NextResponse.json(`Event deleted: ${deleted}`, { status: 200 });
+  } catch (err) {
+    return NextResponse.json(`Event not found. Error: ${err}`, { status: 400 });
+  }
 }
