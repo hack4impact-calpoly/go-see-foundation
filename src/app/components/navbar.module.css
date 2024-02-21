@@ -1,0 +1,182 @@
+.navbar {
+  background-color: white;
+  width: 100%;
+  /* flex-shrink: 0; */
+}
+
+.mainButtons {
+  /* display: flex;
+  vertical-align: middle; */
+  position: relative;
+  right: 0;
+  margin-left: auto;
+}
+
+@media only screen and (min-width: 801px) {
+  .mainbar {
+    display: flex;
+    position: relative;
+    padding: 20px;
+    padding-bottom: 0px;
+  }
+
+  .mainButtons {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .logo {
+    width: 350px;
+    height: auto;
+  }
+
+  .button {
+    width: 14vw;
+    height: 6vh;
+    font-size: 25px;
+    font-weight: 700;
+    margin: 10px;
+  }
+
+  .donate {
+    border-radius: 16px;
+    background-color: #1d2f5d;
+    color: #fff;
+  }
+
+  .login {
+    border-radius: 16px;
+    border: 4px solid #1d2f5d;
+    background: #fff;
+  }
+
+  .join {
+    border-radius: 16px;
+    background: #bbcfff;
+    border: none;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .subbar {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+  }
+
+  .link {
+    font-size: 17px;
+    font-weight: 700;
+    color: black;
+    text-decoration: none;
+    margin: 10px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .mainbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    padding: 20px 0px;
+  }
+
+  .mainButtons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .mainTop {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .mainBottom {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .image {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .logo {
+    width: 256px;
+    height: 64px;
+  }
+
+  .button {
+    width: 160px;
+    height: 34px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 9.846px;
+    margin: 10px;
+  }
+
+  .donate {
+    border-radius: 0.61538rem;
+    background-color: #1d2f5d;
+    color: #fff;
+  }
+
+  .login {
+    border-radius: 0.61538rem;
+    border: 2.462px solid #1d2f5d;
+    background: #fff;
+  }
+
+  .join {
+    border-radius: 0.61538rem;
+    background: #bbcfff;
+    border: none;
+  }
+
+  .menu {
+    border-radius: 9.846px;
+    border: 2.462px solid #1d2f5d;
+    background: #fff;
+  }
+
+  .menu:focus {
+    background-color: #bbcfff;
+  }
+
+  .subbar {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    width: inherit;
+  }
+
+  .subbar:not(.menu:focus) {
+    display: none;
+  }
+
+  .linkWrapper {
+    display: flex;
+    vertical-align: middle;
+    color: white;
+    background-color: #1d2f5d;
+    width: 100%;
+    height: 2.75rem;
+    border: 3px solid #fff;
+    width: 99%;
+  }
+
+  .link {
+    font-size: 20px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    margin: 10px;
+  }
+}
