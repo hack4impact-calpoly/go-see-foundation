@@ -10,6 +10,18 @@ import HomeEvents from "@components/HomeEvents";
 import HomeQuote from "@components/HomeQuote";
 
 export default function home() {
+  const images = [
+    // groupImage,
+    "../images/Menu.png",
+    "/../../images/GO-See-HLogo.fw_.png",
+  ];
+  const imageAlts = ["a group photo", "a menu", "the go see logo"];
+  const quotes = [
+    "hello world! this is a quote!",
+    "We need a dr. seuss quote here",
+    "third quote testing the buttons",
+  ];
+
   return (
     <div className="home">
       <Image
@@ -30,7 +42,7 @@ export default function home() {
           JOIN US
         </button>
         <FounderStory />
-        <Carousel />
+        <Carousel images={images} imageAlts={imageAlts} quotes={quotes} />
         <HomeEvents />
         <HomeQuote />
       </div>
