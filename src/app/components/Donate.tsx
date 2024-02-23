@@ -5,6 +5,7 @@ export default function Donate() {
   const [time, setTime] = useState("Once");
   const [amount, setAmount] = useState("$25");
 
+  /* handles changes with the time buttons */
   const timeOnClick = (e: any) => {
     e.preventDefault();
     // check if already selected
@@ -13,7 +14,6 @@ export default function Donate() {
     }
     // make sure it's the only button selected
     document.querySelectorAll(".timeButton").forEach((b) => {
-      console.log("here");
       b.classList.remove("selected");
     });
 
@@ -23,6 +23,7 @@ export default function Donate() {
     setTime(e.target.innerHTML);
   };
 
+  /* handles changes with the amount button */
   const amountOnClick = (e: any) => {
     e.preventDefault();
     // check if already selected
@@ -41,6 +42,17 @@ export default function Donate() {
     setAmount(e.target.innerHTML);
   };
 
+  /* handle changes with the change of the input */
+  const amountInput = (e: any) => {
+    /* user has decided to entire stuff in remove the selected from buttons */
+    document.querySelectorAll(".amountButton").forEach((b) => {
+      b.classList.remove("selected");
+    });
+    /* make that inputted value the new amount value */
+    setAmount(`$${e.target.value}`);
+  };
+
+  /* for submitting the form */
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // handle the form submission here
@@ -73,7 +85,12 @@ export default function Donate() {
             $250
           </button>
           <p>Input your own Donation amount below:</p>
-          <input type="text" className="customInput"></input>
+          <input
+            type="number"
+            className="customInput"
+            min="0"
+            onChange={amountInput}
+          ></input>
         </div>
         <button type="submit">Donate</button>
       </form>
