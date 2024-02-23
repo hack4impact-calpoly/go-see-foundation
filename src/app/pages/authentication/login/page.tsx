@@ -10,9 +10,10 @@ import passwordIcon from "../../../images/passwordIcon.png";
 
 export default function LoginPage() {
   const { push } = useRouter();
-  const emailInputRef = useRef<HTMLInputElement | null>(null);
-  const passwordInputRef = useRef<HTMLInputElement | null>(null);
-  const rememberMeInputRef = useRef<HTMLInputElement | null>(null);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const rememberMeInputRef = useRef<HTMLInputElement>(null);
+  const loginButtonRef = useRef<HTMLInputElement>(null);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -64,23 +65,45 @@ export default function LoginPage() {
     console.log("Remember me set to: " + String(loginData.remember));
   };
 
-  const handleInputKeyPressEmailInput = (event : any) => {
-    if (event.key === 'tab' && emailInputRef.current !== null) {
-      emailInputRef.current.focus();
+  
+
+  const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      switch (e.currentTarget.id) {
+        case "email":
+          passwordInputRef?.current?.focus();
+          break;
+        case "password":
+          rememberMeInputRef?.current?.focus();
+          break;
+        case "rememberMe":
+          loginButtonRef?.current?.focus();
+          break;
+        
+        default:
+          break;
+      }
+    }
+  };
+
+
+
+const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+  if (e.key === "Tab") {
+    e.preventDefault();
+    switch (e.currentTarget.id) {
+      case "signup":
+        loginButtonRef?.current?.focus();
+        break;
+      case "login":
+        rememberMeInputRef?.current?.focus(); // Move focus to the next input field
+        break;
+      default:
+        break;
     }
   }
-
-  const handleInputKeyPressPassworrd = (event : any ) => {
-     if (event.key === 'tab' && passwordInputRef.current !== null) {
-       passwordInputRef.current.focus(); 
-     }  
-  }
-
-  const handleInputKeyPressRemeberMe = (event : any) => {
-     if (event.key === 'tab' && rememberMeInputRef.current !== null) {
-        rememberMeInputRef.current.focus();
-     }
-  }
+};
 
   return (
     <div className="loginPage">
@@ -113,7 +136,7 @@ export default function LoginPage() {
             placeholder="Email"
             value={loginData.email}
             onChange={handleLoginChange}
-            onKeyPress={handleInputKeyPressEmailInput}
+            onKeyDown={(e) => handleInputKeyPress(e)}
             ref={emailInputRef}
             required
           />
@@ -136,7 +159,7 @@ export default function LoginPage() {
             placeholder="Password"
             value={loginData.password}
             onChange={handleLoginChange}
-            onKeyPress={handleInputKeyPressPassworrd}
+            onKeyDown={(e) => handleInputKeyPress(e)}
             ref={passwordInputRef}
             required
           />
@@ -150,13 +173,17 @@ export default function LoginPage() {
               value={String(loginData.remember)}
               onClick={handleRememberMe}
               ref={rememberMeInputRef}
-              onKeyPress={handleInputKeyPressRemeberMe}
+              onKeyDown={(e) => handleInputKeyPress(e)}
               className="inline"
             />
             Remember me?
           </label>
         </div>
-        <button className="loginButton" type="submit">
+        <button
+          className="loginButton"
+          type="submit"
+          onKeyDown={(e) => handleButtonKeyPress(e)}
+          id="login">
           LOG IN
         </button>
 
@@ -169,7 +196,12 @@ export default function LoginPage() {
 
         <div className="signUp">
           <h2 className="signUpTitle">Not a Member yet?</h2>
-          <button className="signUpButton" type="button" onClick={handleSignUp}>
+          <button
+            className="signUpButton"
+            type="button" 
+            onClick={handleSignUp}
+            onKeyDown={(e) => handleButtonKeyPress(e)}
+            id="signup">
             SIGN UP
           </button>
           {/* change href when signup page made*/}
