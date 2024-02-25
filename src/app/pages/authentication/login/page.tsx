@@ -7,13 +7,16 @@ import "./login.css";
 import backgroundLogo from "../../../images/backgroundLogo.png";
 import emailIcon from "../../../images/emailIcon.png";
 import passwordIcon from "../../../images/passwordIcon.png";
+import { sign } from "crypto";
 
 export default function LoginPage() {
   const { push } = useRouter();
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
   const rememberMeInputRef = useRef<HTMLInputElement>(null);
-  const loginButtonRef = useRef<HTMLInputElement>(null);
+  const loginButtonRef = useRef<HTMLButtonElement>(null);
+  const forgetPasswordRef = useRef<HTMLAnchorElement>(null);
+  const signUpRef = useRef<HTMLButtonElement>(null);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -65,8 +68,6 @@ export default function LoginPage() {
     console.log("Remember me set to: " + String(loginData.remember));
   };
 
-  
-
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab") {
       e.preventDefault();
@@ -80,30 +81,45 @@ export default function LoginPage() {
         case "rememberMe":
           loginButtonRef?.current?.focus();
           break;
-        
-        default:
+        case "login":
+          forgetPasswordRef?.current?.focus();
           break;
+        case "forgotPassword":
+          signUpRef?.current?.focus();
+          break;
+        case "signUp":
+          emailInputRef?.current?.focus();
+          break;
+        default:
+          return;
       }
     }
   };
 
 
+  const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      switch (e.currentTarget.id) {
+        case "rememberMe":
 
-const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-  if (e.key === "Tab") {
-    e.preventDefault();
-    switch (e.currentTarget.id) {
-      case "signup":
-        loginButtonRef?.current?.focus();
-        break;
-      case "login":
-        rememberMeInputRef?.current?.focus(); // Move focus to the next input field
-        break;
-      default:
-        break;
+          loginButtonRef?.current?.focus();
+          break;
+        case "login":
+          forgetPasswordRef?.current?.focus(); 
+          break;
+        case "forgotPassword":
+          signUpRef?.current?.focus();
+          break;
+        case "signUp":
+          console.log("Hither")
+          emailInputRef?.current?.focus();
+          break;
+        default:
+          break;
+      }
     }
-  }
-};
+  };
 
   return (
     <div className="loginPage">
@@ -180,15 +196,23 @@ const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
           </label>
         </div>
         <button
+          id="login"
           className="loginButton"
           type="submit"
-          onKeyDown={(e) => handleButtonKeyPress(e)}
-          id="login">
+          ref={loginButtonRef}
+          onKeyDown={(e : any) => handleInputKeyPress(e)}
+          >
           LOG IN
         </button>
 
         {/*TODO: change href to proper forget page*/}
-        <Link href="/" className="forgotPasswordLink">
+        <Link 
+          href="/" 
+          className="forgotPasswordLink"
+          id="forgotPassword"
+          ref={forgetPasswordRef}
+          onKeyDown={(e : any) => handleInputKeyPress(e)}
+          >
           Forgot Password
         </Link>
 
@@ -200,8 +224,9 @@ const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
             className="signUpButton"
             type="button" 
             onClick={handleSignUp}
-            onKeyDown={(e) => handleButtonKeyPress(e)}
-            id="signup">
+            ref={signUpRef}
+            onKeyDown={(e : any) => handleInputKeyPress(e)}
+            id="signUp">
             SIGN UP
           </button>
           {/* change href when signup page made*/}
