@@ -63,6 +63,7 @@
   width: 50%;
   font-size: 1.1em;
   align-self: center;
+  border-radius: 4pt;
 }
 
 .donateComponent button[type="submit"] {
