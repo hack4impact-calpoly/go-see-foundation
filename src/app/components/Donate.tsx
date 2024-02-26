@@ -1,4 +1,7 @@
 import { useState } from "react";
+import "./Donate.css";
+import donateImage from "../images/donateImage.png";
+import Image from "next/image";
 
 export default function Donate() {
   // holds the user selections
@@ -56,6 +59,7 @@ export default function Donate() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // handle the form submission here
+    // FUNCTIONALITY TO DO FOR BACKEND
     console.log(time, amount);
   };
 
@@ -64,36 +68,46 @@ export default function Donate() {
       <h1>Your Donation will help us GO See More</h1>
       <form className="donateForm" onSubmit={handleSubmit}>
         <div className="donateTime">
-          <button className="timeButton selected" onClick={timeOnClick}>
-            Once
+          <button className="timeButton right selected" onClick={timeOnClick}>
+            Give Once
           </button>
-          <button className="timeButton" onClick={timeOnClick}>
+          <button className="timeButton left" onClick={timeOnClick}>
             Monthly
           </button>
         </div>
         <div className="donateAmount">
-          <button className="amountButton selected" onClick={amountOnClick}>
-            $25
-          </button>
-          <button className="amountButton" onClick={amountOnClick}>
-            $50
-          </button>
-          <button className="amountButton" onClick={amountOnClick}>
-            $100
-          </button>
-          <button className="amountButton" onClick={amountOnClick}>
-            $250
-          </button>
+          <div className="amntButtonDiv">
+            <button className="amountButton selected" onClick={amountOnClick}>
+              $25
+            </button>
+            <button className="amountButton" onClick={amountOnClick}>
+              $50
+            </button>
+            <button className="amountButton" onClick={amountOnClick}>
+              $100
+            </button>
+            <button className="amountButton" onClick={amountOnClick}>
+              $250
+            </button>
+          </div>
           <p>Input your own Donation amount below:</p>
           <input
             type="number"
             className="customInput"
             min="0"
             onChange={amountInput}
+            placeholder="$$$$$"
           ></input>
         </div>
-        <button type="submit">Donate</button>
+        <button type="submit">DONATE</button>
       </form>
+      <Image
+        className="donateImage"
+        src={donateImage}
+        alt="A photo of GO Foundation members and a dog"
+        /*width = "500"
+            height= "500"*/
+      ></Image>{" "}
     </div>
   );
 }
