@@ -4,9 +4,11 @@ import styles from "./homeEvents.module.css";
 import PastEventCard from "./PastEventCard";
 import UpcomingEventCard from "./UpcomingEventCard";
 import { IEvent } from "@database/eventSchema";
+import { useRouter } from "next/navigation";
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
+  const { push } = useRouter();
 
   const fetchAllEvents = async () => {
     try {
@@ -47,8 +49,23 @@ export default function HomeEvents() {
     fetchEventData();
   }, []);
 
-  console.log(events);
-  console.log(events[1]);
+  const handleViewAll = () => {
+    // TODO: probably want to use {name} to navigate to a new page with the event details
+    console.log("View All pressed");
+    const message =
+      "View All pressed. You will now be redirected to a page with all past events, news, and articles.";
+    alert(message);
+    push("/pages/authentication/login");
+  };
+
+  const handleAllEvents = () => {
+    // TODO: probably want to use {name} to navigate to a new page with the event details
+    console.log("All Events pressed");
+    const message =
+      "All Events pressed. You will now be redirected to a page with all upcoming.";
+    alert(message);
+    push("/pages/authentication/createAccount");
+  };
 
   return (
     <div className={styles.container}>
@@ -60,7 +77,9 @@ export default function HomeEvents() {
               <PastEventCard event={e} />
             ))}
           </div>
-          <button className={styles.viewAllArticles}>VIEW ALL ARTICLES</button>
+          <button className={styles.viewAllArticles} onClick={handleViewAll}>
+            VIEW ALL ARTICLES
+          </button>
         </div>
         <div className={styles.break}></div>
         <div className={styles.upcomingEvents}>
@@ -73,7 +92,9 @@ export default function HomeEvents() {
           <div className={styles.break2}></div>
           <UpcomingEventCard event={events[1]} /> */}
           </div>
-          <button className={styles.allEventsButton}>ALL EVENTS</button>
+          <button className={styles.allEventsButton} onClick={handleAllEvents}>
+            ALL EVENTS
+          </button>
         </div>
       </div>
     </div>
