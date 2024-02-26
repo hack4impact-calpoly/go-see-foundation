@@ -1,0 +1,126 @@
+.donateComponent {
+  background-color: white;
+  display: grid;
+  grid-template-rows: 1f 8fr;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 10%;
+  border-radius: 14pt;
+  padding: 2.5em;
+  justify-content: center;
+  text-align: center;
+}
+
+.donateComponent h1 {
+  color: #1d2f5d;
+  grid-column: 1 / 3;
+  text-align: center;
+  margin: 0 0 1em 0;
+  font-weight: bold;
+}
+
+.donateComponent button {
+  color: #1d2f5d;
+  font-weight: bold;
+  border-radius: 4pt;
+  border-width: 0.2em;
+  border-color: #1d2f5d;
+  background-color: white;
+  font-size: 14pt;
+}
+
+.donateComponent .donateImage {
+  box-shadow: 12px 12px 0px #fbb135;
+  width: 60%;
+  height: auto;
+  justify-self: center;
+  align-self: center;
+}
+
+.donateComponent form {
+  display: grid;
+  align-items: space-evenly;
+  grid-template-rows: 1fr 4fr 1fr;
+}
+
+.donateComponent form .amntButtonDiv {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+  margin: 0;
+}
+
+/* for making the arrows on input go away */
+.donateComponent input::-webkit-outer-spin-button,
+.donateComponent input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.donateComponent input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+  width: 50%;
+  font-size: 1.1em;
+  align-self: center;
+  border-radius: 4pt;
+}
+
+.donateComponent button[type="submit"] {
+  justify-self: center;
+  background-color: #fbb135;
+  width: 60%;
+  border-color: #fbb135;
+  height: 60%;
+}
+
+.donateComponent .donateTime {
+  display: flex;
+  height: 80%;
+}
+
+.donateComponent .donateTime button {
+  width: 100%;
+}
+
+/* for the once and monthly buttons to look slightly overlapped */
+.donateComponent .donateTime .right {
+  margin-right: -3px;
+}
+.donateComponent .donateTime .left {
+  margin-left: -3px;
+}
+
+.donateComponent .amountButton {
+  padding: 0.5em 0.8em;
+}
+
+.donateComponent .selected {
+  background-color: #1d2f5d;
+  color: white;
+  z-index: 1;
+}
+
+.donateAmount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.donateAmount p {
+  font-size: 16pt;
+  font-weight: bold;
+  color: #1d2f5d;
+}
+
+@media only screen and (max-width: 800px) {
+  .donateComponent .donateImage {
+    display: none;
+  }
+  .donateComponent form {
+    display: grid;
+    align-items: space-evenly;
+    grid-template-rows: 1fr 4fr 1fr;
+    grid-column: 1/3;
+  }
+}
