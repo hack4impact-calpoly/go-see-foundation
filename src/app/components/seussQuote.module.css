@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  padding-top: 200px;
+  gap: 40px;
+}
+
+.quote {
+  color: #fff;
+  text-align: center;
+  font-family: "Helvetica Neue";
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 40px; /* 133.333% */
+  letter-spacing: 0.6px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+
+.author {
+  color: #fbb135;
+  font-family: "Helvetica Neue";
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 40px;
+  letter-spacing: 0.6px;
+}

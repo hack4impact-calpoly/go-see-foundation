@@ -1,13 +1,14 @@
 import mongoose from "mongoose";
-import { Schema, model } from 'mongoose';
+import { Schema, model } from "mongoose";
 
-type IEvent = {
-  picture: String // assumes URL
-  alt: String
-  description: String
-  date: Date
-  name: String
-}
+export type IEvent = {
+  picture: string; // assumes URL
+  alt: string;
+  description: String;
+  date: Date;
+  name: String;
+  eventID: String;
+};
 
 const eventSchema = new Schema<IEvent>({
   picture: { type: String, required: true },
@@ -15,8 +16,10 @@ const eventSchema = new Schema<IEvent>({
   description: { type: String, required: true },
   date: { type: Date, required: true },
   name: { type: String, required: true },
-})
+  eventID: { type: String, required: true },
+});
 
-const Event = mongoose.models['events'] || mongoose.model('events', eventSchema)
+const Event =
+  mongoose.models["events"] || mongoose.model("events", eventSchema);
 
-export default Event
+export default Event;
