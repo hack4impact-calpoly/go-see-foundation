@@ -111,12 +111,7 @@ const CreateAccount = () => {
 
   return (
     <div className={styles.createAccount}>
-      <Image
-        src={logo}
-        alt="Go See Foundation's Logo"
-        width="360"
-        height="95"
-      />
+      
       <br></br>
       <h1 className={styles.title}>Sign in and join the Go See community!</h1>
       <div className={styles.container}>
