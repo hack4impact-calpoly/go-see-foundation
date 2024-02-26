@@ -1,0 +1,128 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  /* padding: 0 0 0 3%; */
+
+  font-size: 100%;
+
+  background-color: white;
+}
+
+.offset {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.title {
+  padding-top: 0.5%;
+  margin: 1.5% 0;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 2.4em;
+  font-weight: bold;
+  color: #1d2f5d;
+
+  /* background-color: green; */
+}
+
+.upcomingEvents .title {
+  padding: 0;
+  height: fit-content;
+  margin: 1% 0;
+}
+
+.pastEvents,
+.upcomingEvents {
+  display: flex;
+  flex-direction: column;
+}
+
+.pastEventsCards,
+.upcomingEventsCards {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+  /* gap: 1%; */
+
+  /* background-color: yellow; */
+}
+
+.upcomingEventsCards {
+  margin: auto 0;
+}
+
+.viewAllArticles {
+  width: fit-content;
+  margin: 1% auto 1% auto;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.4em;
+  font-weight: bold;
+  color: #1d2f5d;
+  border: none;
+  border-bottom: 3px solid #bbcfff;
+
+  background-color: white;
+}
+
+.break {
+  width: 15em;
+  height: 10px;
+
+  background-color: #fbb135;
+}
+
+.break2 {
+  width: 10em;
+  height: 100px;
+
+  background-color: #fbb135;
+}
+
+.allEventsButton {
+  width: fit-content;
+  margin: auto;
+  margin-top: 2%;
+  padding: 0.4em 3em;
+
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #1d2f5d;
+
+  border: none;
+  border-radius: 16px;
+  background-color: #fbb135;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    height: fit-content;
+    width: 100%;
+  }
+
+  .title {
+    font-size: 2em;
+    margin: 4% 0;
+  }
+
+  .upcomingEvents .title {
+    margin: 5% 0;
+  }
+
+  .pastEventsCards,
+  .upcomingEventsCards {
+    flex-direction: column;
+    gap: 5%;
+    align-content: space-between;
+    justify-content: space-between;
+  }
+
+  .viewAllArticles {
+    margin-top: 4%;
+    margin-bottom: 10%;
+  }
+
+  .allEventsButton {
+    margin-bottom: 8%;
+  }
+}
