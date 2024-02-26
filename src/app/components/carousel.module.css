@@ -1,128 +1,102 @@
 .container {
   display: flex;
   flex-direction: column;
-  margin-left: 7.5%;
-  margin-right: 7.5%;
+  width: 100%;
   justify-content: center;
   justify-self: center;
-  /* TODO: make everything dynamic */
-  border-radius: 15px;
-
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* .fullCarousel {
-  display: flex;
-  flex-direction: row;
-  margin-left: 7.5%;
-  margin-right: 7.5%;
-  justify-content: center;
-  justify-self: center;
-  border-radius: 15px;
-
-  background-color: rgba(255, 255, 255, 0.8); 
-} */
-
-.quoteContainer {
-  flex: 1;
-  white-space: pre-wrap;
-  margin-top: 3%;
-  margin-bottom: 3%;
-
-  /* background-color: cyan; */
-}
-
-.quote {
-  /* TODO: make everything dynamic */
-  font-size: 20pt;
-  font-family: "Helvetica", sans-serif;
-  flex-wrap: wrap;
-  margin-left: 7.5%;
-  margin-right: 7.5%;
-  margin-top: 5%;
-  text-align: left;
-  padding: 25px;
   border-radius: 16px;
-  overflow-y: auto;
-  max-height: 60vh;
+  font-size: 100%;
 
-  /* background-color: lavender; */
+  background-color: #1d2f5d;
+  /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+.container h2 {
+  display: flex;
+  flex: 1;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 2.75em;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+
+  justify-self: center;
+  align-self: center;
+  /* background-color: green; */
+}
+
+.fullCarousel {
+  display: flex;
+  flex: 18;
+  flex-direction: column;
+  border-radius: 15px;
+
+  /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
 .carousel {
   position: relative;
-  flex: 1;
-  /* TODO: make everything dynamic */
-  border-radius: 10px;
+  flex: 9;
+  border-radius: 16px;
   height: 70vh;
-  max-width: 1200px;
+  max-width: 100%;
   margin: auto;
-  margin-top: 3%;
-  margin-bottom: 3%;
-  overflow: hidden;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 0 2%;
 
   /* background-color: lime; */
 }
 
-.carouseImage {
+.carouselImage {
   display: flex;
-  flex: 9;
-  width: 85%;
-  height: 55vh;
+  max-height: 55vh;
   margin: auto;
-  margin-top: 7%;
+  width: 90%;
+
+  /* background-color: navy; */
 }
 
 .image {
+  display: flex;
+  flex: 1;
   width: 100%;
-  height: 100%;
-  /* TODO: make everything dynamic */
-  border-radius: 15px;
-  border: rgba(220, 220, 220, 1) solid 4px;
+  /* height: 100%; */
+  border-radius: 25px;
   object-fit: cover;
   justify-self: center;
   align-self: center;
+  margin: auto;
 }
 
 .slideDirection {
   display: flex;
-  justify-content: space-between;
+  flex: 1;
+  margin: auto;
+
+  /* background-color: pink; */
 }
 
 .left,
 .right {
-  background-color: #fb666675;
-  color: #fff;
-  /* TODO: make everything dynamic */
-  padding: 10px 8px 8px 13px;
+  height: 1.2em;
+  width: 1.2em;
   border-radius: 50%;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  margin: auto 10px;
-  height: 25px;
-  width: 25px;
-}
+  margin: auto;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 2em;
+  color: #33363f;
 
-.left {
-  left: 0;
-  padding: 10px 4px 8px 15px;
-}
-
-.right {
-  right: 0;
-  padding: 10px 4px 8px 14px;
+  background-color: #fbb135;
 }
 
 .indicator {
   flex: 1;
-  /* TODO: make everything dynamic */
   display: flex;
   justify-content: center;
-  margin-top: 20px;
-  gap: 20px;
+  margin-top: 2%;
+  gap: 1%;
   color: black;
   border-color: black;
   border-width: 2px;
@@ -131,13 +105,100 @@
 }
 
 .dot {
-  background-color: #333;
-  /* TODO: make everything dynamic */
-  width: 15px;
-  height: 15px;
+  background-color: #fbb135;
+  width: 0.7vw;
+  height: 0.7vw;
   border-radius: 50%;
 }
 
 .active {
-  background-color: #fa2020;
+  background-color: #f6ff00;
+}
+
+.quoteContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  /* background-color: cyan; */
+}
+
+.quote,
+.quoteSrc {
+  flex: 1;
+  font-size: 20pt;
+  font-family: "Helvetica", sans-serif;
+  flex-wrap: wrap;
+  border-radius: 16px;
+  overflow-y: auto;
+  max-height: 30vh;
+  margin: 0 10%;
+  text-align: center;
+
+  /* background-color: lavender; */
+}
+
+.quote {
+  font-style: italic;
+  color: #fbb135;
+  margin-top: 2.5%;
+}
+
+.quoteSrc {
+  color: white;
+  margin-bottom: 2.5%;
+}
+
+/* Media queries for smaller screens */
+
+@media only screen and (max-width: 800px) {
+  .container {
+    height: 100vh;
+    width: 100%;
+  }
+
+  .container h2 {
+    margin: 10%;
+    font-size: 2em;
+  }
+
+  .carousel {
+    height: 40vh;
+    padding: 0 3%;
+  }
+
+  .carouselImage {
+    height: 100%;
+    overflow-x: scroll;
+  }
+
+  .image {
+    height: 100%;
+    width: max-content;
+    object-fit: cover;
+  }
+
+  .indicator {
+    gap: 4%;
+    margin-bottom: 0;
+  }
+
+  .dot {
+    height: 3vw;
+    width: 3vw;
+  }
+
+  .quoteContainer {
+    flex: 5;
+    display: inline;
+  }
+
+  .quote,
+  .quoteSrc {
+    font-size: 14pt;
+  }
+
+  .quoteSrc {
+    margin: 2% 10% 5% 10%;
+  }
 }

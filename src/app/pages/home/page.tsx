@@ -11,15 +11,20 @@ import HomeQuote from "@components/HomeQuote";
 
 export default function home() {
   const images = [
-    // groupImage,
-    "../images/Menu.png",
-    "/../../images/GO-See-HLogo.fw_.png",
+    "/Group_Photo.jpeg",
+    "/backgroundLogo.png",
+    "/GO-See-HLogo.fw_.png",
   ];
   const imageAlts = ["a group photo", "a menu", "the go see logo"];
   const quotes = [
-    "hello world! this is a quote!",
+    "Practicing Yoga has always been a challenge for me, but doing it with my GO SEE friends have been so much fun!!",
     "We need a dr. seuss quote here",
     "third quote testing the buttons",
+  ];
+  const quoteSrc = [
+    "Mark Jonas (member)",
+    "Quote Author 2 (member)",
+    "Quote Author 3 (admin)",
   ];
 
   return (
@@ -41,11 +46,16 @@ export default function home() {
         <button className="joinButton" type="button">
           JOIN US
         </button>
-        <FounderStory />
-        <Carousel images={images} imageAlts={imageAlts} quotes={quotes} />
-        <HomeEvents />
-        <HomeQuote />
       </div>
+      <FounderStory />
+      <Carousel
+        images={images}
+        imageAlts={imageAlts}
+        quotes={quotes}
+        quoteSrc={quoteSrc}
+      />
+      <HomeEvents />
+      <HomeQuote />
     </div>
   );
 }

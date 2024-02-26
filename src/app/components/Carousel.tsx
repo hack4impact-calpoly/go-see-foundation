@@ -9,10 +9,12 @@ export default function Carousel({
   images,
   imageAlts,
   quotes,
+  quoteSrc,
 }: {
   images: Array<string>;
   imageAlts: Array<string>;
   quotes: Array<string>;
+  quoteSrc: Array<string>;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState("left");
@@ -64,7 +66,7 @@ export default function Carousel({
   const arrowVariants = {
     hover: {
       scale: 1.2,
-      backgroundColor: "#ff00008e",
+      backgroundColor: "#f6ff00",
     },
   };
 
@@ -86,23 +88,8 @@ export default function Carousel({
   return (
     <div className={styles.container}>
       <h2>Here's what we've been up to...</h2>
-      {/* <div className={styles.fullCarousel}> */}
-      <div className={styles.carousel}>
-        <div className={styles.carouselImage}>
-          <AnimatePresence>
-            <motion.img
-              key={currentIndex}
-              // src={require(images[currentIndex])}
-              src={require("../images/Group_Photo.jpeg")}
-              alt={imageAlts[currentIndex]}
-              className={styles.image}
-              initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
-              animate="visible"
-              exit="exit"
-              variants={slideVariants}
-            />
-          </AnimatePresence>
-
+      <div className={styles.fullCarousel}>
+        <div className={styles.carousel}>
           <div className={styles.slideDirection}>
             <motion.div
               className={styles.left}
@@ -110,29 +97,33 @@ export default function Carousel({
               variants={arrowVariants}
               whileHover="hover"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20"
-                width="20"
-                viewBox="0 96 960 960"
-              >
-                <path d="M400 976 0 576l400-400 56 57-343 343 343 343-56 57Z" />
-              </svg>
+              {"<"}
             </motion.div>
+          </div>
+
+          <div className={styles.carouselImage}>
+            <AnimatePresence>
+              <motion.img
+                key={currentIndex}
+                src={images[currentIndex]}
+                alt={imageAlts[currentIndex]}
+                className={styles.image}
+                initial={direction === "right" ? "hiddenRight" : "hiddenLeft"}
+                animate="visible"
+                exit="exit"
+                variants={slideVariants}
+              />
+            </AnimatePresence>
+          </div>
+
+          <div className={styles.slideDirection}>
             <motion.div
               className={styles.right}
               onClick={handleNext}
               variants={arrowVariants}
               whileHover="hover"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="20"
-                width="20"
-                viewBox="0 96 960 960"
-              >
-                <path d="m304 974-56-57 343-343-343-343 56-57 400 400-400 400Z" />
-              </svg>
+              {">"}
             </motion.div>
           </div>
         </div>
@@ -154,7 +145,8 @@ export default function Carousel({
         </div>
       </div>
       <div className={styles.quoteContainer}>
-        <p className={styles.quote}>{quotes[currentIndex]}</p>
+        <p className={styles.quote}>"{quotes[currentIndex]}"</p>
+        <p className={styles.quoteSrc}>- {quoteSrc[currentIndex]}</p>
       </div>
       {/* </div> */}
     </div>
