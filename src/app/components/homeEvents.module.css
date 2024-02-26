@@ -48,6 +48,7 @@
 
 .upcomingEventsCards {
   margin: auto 0;
+  /* display: block; */
 }
 
 .viewAllArticles {
@@ -71,8 +72,8 @@
 }
 
 .break2 {
-  width: 10em;
-  height: 100px;
+  display: flex;
+  flex: 0.15;
 
   background-color: #fbb135;
 }
@@ -119,6 +120,12 @@
   .viewAllArticles {
     margin-top: 4%;
     margin-bottom: 10%;
+  }
+
+  .break2 {
+    display: flex;
+    flex: 5;
+    height: 100px;
   }
 
   .allEventsButton {
