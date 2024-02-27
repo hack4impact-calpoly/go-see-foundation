@@ -7,7 +7,8 @@ import "./page.css";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
-import SeussQuote from "@components/SeussQuote";
+import HomeQuote from "@components/HomeQuote";
+import SeussQuote from "@components/seussQuote";
 
 export default function home() {
   const images = [
@@ -55,6 +56,7 @@ export default function home() {
         quoteSrc={quoteSrc}
       />
       <HomeEvents />
+      <HomeQuote />
       <SeussQuote />
     </div>
   );
