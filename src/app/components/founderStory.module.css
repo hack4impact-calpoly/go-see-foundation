@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   background-color: white;
-  width: 100vw;
+  width: 100%;
   height: fit-content;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -127,13 +127,12 @@
   .imageContainerIn {
     width: 100%;
     height: fit-content;
-    margin: auto;
     margin-top: 5%;
     margin-bottom: 5%;
+    margin-right: 0;
   }
 
   .imageIn {
-    margin: auto;
     min-width: 100%;
   }
 }

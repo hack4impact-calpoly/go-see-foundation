@@ -43,7 +43,7 @@
   margin: auto;
   display: flex;
   flex-direction: row;
-  padding: 0 2%;
+  /* padding: 0 2%; */
 
   /* background-color: lime; */
 }
@@ -55,8 +55,8 @@
   max-width: 70vw;
 
   margin: auto;
-  padding-left: 2em;
-  padding-right: 2em;
+  /* padding-left: 2em;
+  padding-right: 2em; */
 
   border-radius: 16px;
   /* background-color: navy; */
@@ -95,6 +95,14 @@
   color: #33363f;
 
   background-color: #fbb135;
+}
+
+.left {
+  margin-right: 0.25em;
+}
+
+.right {
+  margin-left: 0.25em;
 }
 
 .indicator {
@@ -171,6 +179,7 @@
   .carousel {
     height: 40vh;
     padding: 0;
+    padding-right: 0;
   }
 
   .indicator {
