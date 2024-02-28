@@ -9,12 +9,18 @@ export default function FounderStory() {
   const founderStory2 =
     "I’ve been dealing with vision loss for as long as I can remember and have had over 25 eye surgeries. I have been diagnosed with juvenile inflammatory arthritis, uveitis, glaucoma, cataracts, and my right eye is now a prosthetic. Throughout my vision journey, I have experienced the life changing uncertainty and challenges that come with losing your sight.";
 
-
   return (
-    <div className={styles.container2}>
-      <div className={styles.container}>
+    <div className={styles.container}>
+      <div className={styles.containerText}>
         <div className={styles.title}>The founder and her story</div>
-        <div className={styles.containerText}>
+        <div className={styles.imageContainerIn}>
+          <Image
+            className={styles.imageIn}
+            src={founderPhoto}
+            alt="founder photo"
+          />
+        </div>
+        <div className={styles.paragraphs}>
           <div className={styles.founderText}>{founderStory1}</div>
           <div className={styles.founderText}>{founderStory2}</div>
         </div>
@@ -22,8 +28,12 @@ export default function FounderStory() {
           <button className={styles.buttonStyle}>LEARN MORE</button>
         </div>
       </div>
-      <div className={styles.imageContainer}>
-        <Image src={founderPhoto} alt="founder photo" />
+      <div className={styles.imageContainerOut}>
+        <Image
+          className={styles.imageOut}
+          src={founderPhoto}
+          alt="founder photo"
+        />
       </div>
     </div>
   );
