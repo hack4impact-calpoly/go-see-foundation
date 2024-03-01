@@ -123,9 +123,9 @@
   }
 
   .break2 {
-    display: flex;
-    flex: 5;
-    height: 100px;
+    min-height: 0.25em;
+    width: 75%;
+    margin: 5% auto;
   }
 
   .allEventsButton {
