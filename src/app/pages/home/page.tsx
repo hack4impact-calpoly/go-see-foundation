@@ -4,14 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import groupImage from "../../images/Group_Photo.jpeg";
 import "./page.css";
-
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
-import HomeQuote from "@components/HomeQuote";
-import SeussQuote from "@components/seussQuote";
-import Donate from "@components/Donate";
-
+import SeussQuote from "@components/SeussQuote";
 
 export default function home() {
   const images = [
@@ -37,7 +33,8 @@ export default function home() {
         className="groupImage"
         src={groupImage}
         alt="Go See Foundation's Group Photo"
-
+        // width="500"
+        // height="500"
       ></Image>
       <div className="homedescript">
         <h1>GO See Foundation</h1>
@@ -50,7 +47,6 @@ export default function home() {
           JOIN US
         </button>
       </div>
-
       <FounderStory />
       <Carousel
         images={images}
@@ -59,11 +55,7 @@ export default function home() {
         quoteSrc={quoteSrc}
       />
       <HomeEvents />
-      <HomeQuote />
       <SeussQuote />
-
-      <Donate></Donate>
-
     </div>
   );
 }

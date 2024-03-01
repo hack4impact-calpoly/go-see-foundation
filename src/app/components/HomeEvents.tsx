@@ -49,6 +49,8 @@ export default function HomeEvents() {
     fetchEventData();
   }, []);
 
+  console.log(events);
+
   const handleViewAll = () => {
     // TODO: probably want to use {name} to navigate to a new page with the event details
     console.log("View All pressed");
@@ -85,12 +87,16 @@ export default function HomeEvents() {
         <div className={styles.upcomingEvents}>
           <h2 className={styles.title}>Upcoming Events</h2>
           <div className={styles.upcomingEventsCards}>
-            {events?.slice(0, 2).map((e: IEvent, index: number) => (
+            {events?.slice(0, 1).map((e: IEvent, index: number) => (
+              <UpcomingEventCard event={e} />
+            ))}
+            <div className={styles.break2}></div>
+            {events?.slice(1, 2).map((e: IEvent, index: number) => (
               <UpcomingEventCard event={e} />
             ))}
             {/* <UpcomingEventCard event={events[0]} />
-          <div className={styles.break2}></div>
-          <UpcomingEventCard event={events[1]} /> */}
+            <div className={styles.break2}></div>
+            <UpcomingEventCard event={events[1]} /> */}
           </div>
           <button className={styles.allEventsButton} onClick={handleAllEvents}>
             ALL EVENTS
