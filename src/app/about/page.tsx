@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./about.module.css";
 import founder from "../images/founder.png";
 import podcast from "../images/podcast.png";
+import spotify from "../images/spotify.svg";
 
 const AboutPage = () => {
   return (
@@ -46,14 +47,14 @@ const AboutPage = () => {
           </div>
           <p>
             Through the GO See Foundation blind and visually impaired adults on
-            theCentral Coast have enjoyed tandem kayaking, trail hikes, yoga,
+            the Central Coast have enjoyed tandem kayaking, trail hikes, yoga,
             birding by ear, zip-lining, and other tactile experiences. These
             activities are meant to engage our other senses in fun ways and
             forge a community where people with vision loss can support each
             other and experience new things.
           </p>
           <p>
-            The GO SeeFoundation relies on private donations to fund our
+            The GO See Foundation relies on private donations to fund our
             activities and volunteers for each of the events. If you would like
             to volunteer your time with the GO See Foundation we are always
             looking for sighted guides, drivers, and other volunteers. If you
@@ -88,7 +89,12 @@ const AboutPage = () => {
               Helping the blind and visually impaired thrive through stories and
               conversations with inspiring members of our community.
             </p>
-            <button className={styles.podcastButton}>Listen on Spotify</button>
+            <a href="https://podcasters.spotify.com/pod/show/go-see/episodes/GSP-003-Laurie-Mileur-e21gcre/a-a9jho7c">
+              <button className={styles.podcastButton}>
+                <Image className={styles.spotify} src={spotify} alt="spotify logo"/> {' '}
+                Listen on Spotify
+              </button>
+            </a>
           </div>
         </div>
       </div>
