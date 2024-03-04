@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 100%;
+  width: 100%;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+
+.quote,
+.author {
+  color: #fff;
+  text-align: center;
+  font-family: "Helvetica", sans-serif;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: 500;
+  line-height: 125%; /* 133.333% */
+  letter-spacing: 0.6px;
+  padding-left: 6%;
+  padding-right: 6%;
+  margin-bottom: 1em;
+}
+
+.author {
+  color: #fbb135;
+  font-style: normal;
+}
+
+@media only screen and (max-width: 800px) {
+  .quote,
+  .author {
+    font-size: 1.25em;
+  }
+}

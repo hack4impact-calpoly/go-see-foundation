@@ -29,7 +29,6 @@ export async function POST(req: NextRequest) {
 
     const salt = bcrypt.genSaltSync(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    console.log(hashedPassword);
     const newUser = new Users({
       username,
       password: hashedPassword,
@@ -39,8 +38,6 @@ export async function POST(req: NextRequest) {
       phoneNum,
       email,
     });
-    console.log(newUser);
-    console.log(hashedPassword);
     await newUser.save();
     return NextResponse.json("Success: Registration Complete", { status: 200 });
   } catch (err) {

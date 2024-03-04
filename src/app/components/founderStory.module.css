@@ -1,0 +1,138 @@
+.container {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: fit-content;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.containerText {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-evenly;
+  font-family: "Helvetica", sans-serif;
+  /* vertical-align: top; */
+  margin: auto;
+  margin-top: 0;
+  margin-left: 6%;
+}
+
+.title {
+  color: #1d2f5d;
+  font-size: 3.2em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  word-wrap: normal;
+
+  margin-bottom: 4%;
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+
+  gap: 2em;
+  margin-bottom: 4%;
+}
+
+.founderText {
+  font-size: 1.5em;
+  font-style: normal;
+  font-weight: 500;
+  color: #000;
+  letter-spacing: 0.24px;
+  line-height: 1.5em;
+}
+
+.buttonStyle {
+  display: flex;
+  font-size: 2em;
+  font-style: normal;
+  font-weight: 700;
+  color: #1d2f5d;
+  letter-spacing: 2.56px;
+
+  text-decoration: underline solid #bbcfff;
+  text-underline-offset: 0.5em;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.button:hover {
+  opacity: 0.3;
+}
+
+.imageContainerIn,
+.imageContainerOut {
+  margin-right: 6%;
+}
+
+.imageIn,
+.imageOut {
+  max-width: 35vw;
+  height: min-content;
+  object-fit: contain;
+}
+
+.imageContainerIn,
+.imageIn {
+  display: none;
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 800px) {
+  .container {
+    padding-top: 10%;
+    padding-bottom: 10%;
+  }
+
+  .containerText {
+    margin-right: 6%;
+  }
+
+  .title {
+    font-size: 1.75em;
+    /* margin-top: 5%; */
+    margin-bottom: 0;
+  }
+
+  .paragraphs {
+    width: 100%;
+  }
+
+  .founderText {
+    font-size: 1.25em;
+  }
+
+  .buttonStyle {
+    font-size: 1.5em;
+  }
+
+  .imageContainerIn,
+  .imageIn {
+    display: flex;
+    visibility: visible;
+  }
+
+  .imageContainerOut,
+  .imageOut {
+    display: none;
+    visibility: hidden;
+  }
+
+  .imageContainerIn {
+    width: 100%;
+    height: fit-content;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 0;
+  }
+
+  .imageIn {
+    min-width: 100%;
+  }
+}
