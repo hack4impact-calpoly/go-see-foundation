@@ -1,4 +1,5 @@
 import Navbar from "@components/Navbar";
+import Footer from "@components/Footer";
 import CreateAccount from "./pages/authentication/createAccount/page";
 
 export default function Home() {
