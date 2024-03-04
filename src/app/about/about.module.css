@@ -1,0 +1,111 @@
+.title {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.header {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.introWrapper {
+  display: flex;
+  justify-content: center;
+  background-color: white;
+}
+
+.introduction {
+  max-width: 50rem;
+  padding: 2rem 6rem;
+}
+
+.firstHalf {
+  display: flex;
+  max-width: 45rem;
+}
+
+.imageShadow {
+  background-color: #fbb135;
+  height: 22rem;
+  width: 17rem;
+  padding: 0rem;
+  margin-left: 3rem;
+}
+
+.founder {
+  position: relative;
+  top: -1rem;
+  left: -3rem;
+  margin: 2rem;
+  height: 22rem;
+  width: auto;
+}
+
+.video {
+  text-align: center;
+}
+
+.videoHeader {
+  color: white;
+}
+
+.podcast {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 55rem;
+  border-radius: 30px;
+  margin: 3rem auto;
+  padding-bottom: 3rem;
+}
+
+.podcastContent {
+  display: flex;
+}
+
+.imageBorder {
+  display: flex;
+  justify-content: center;
+  background-color: #fbb135;
+  border-radius: 30px;
+  padding: 0.3rem;
+  margin-left: 7rem;
+}
+
+.podcastImage {
+  vertical-align: center;
+  width: 15rem;
+  height: auto;
+  border-radius: 30px;
+}
+
+.podcastDescription {
+  margin-left: 3rem;
+  max-width: 23rem;
+  vertical-align: center;
+}
+
+.description {
+  color: #1d2f5d;
+  font-weight: 600;
+}
+
+.podcastButton {
+  background-color: #fbb135;
+  width: 16rem;
+  height: 3.5rem;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border: none;
+  /* display: flex;
+  justify-content: center; */
+}
+.spotify {
+  position: relative;
+  top: 0.25rem;
+}
