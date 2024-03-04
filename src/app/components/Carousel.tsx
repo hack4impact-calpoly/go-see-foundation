@@ -74,11 +74,6 @@ export default function Carousel({
     initial: {
       y: 0,
     },
-    animate: {
-      y: -10,
-      scale: 1.2,
-      transition: { type: "spring", stiffness: 1000, damping: "10" },
-    },
     hover: {
       scale: 1.1,
       transition: { duration: 0.2 },
@@ -97,7 +92,13 @@ export default function Carousel({
               variants={arrowVariants}
               whileHover="hover"
             >
-              {"<"}
+              <Image
+                className={styles.arrow}
+                src="/Expand_left.png"
+                alt="next arrow"
+                width="0"
+                height="0"
+              />
             </motion.div>
           </div>
 
@@ -123,7 +124,13 @@ export default function Carousel({
               variants={arrowVariants}
               whileHover="hover"
             >
-              {">"}
+              <Image
+                className={styles.arrow}
+                src="/Expand_right.png"
+                alt="previous arrow"
+                height="0"
+                width="0"
+              />
             </motion.div>
           </div>
         </div>
@@ -137,7 +144,6 @@ export default function Carousel({
               }`}
               onClick={() => handleDotClick(index)}
               initial="initial"
-              animate={currentIndex === index ? "animate" : ""}
               whileHover="hover"
               variants={dotsVariants}
             ></motion.div>
