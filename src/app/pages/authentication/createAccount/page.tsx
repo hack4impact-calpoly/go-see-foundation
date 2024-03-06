@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
+import connectDB from "../../../../helpers/db";
 import logo from "../../../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 
@@ -109,6 +110,26 @@ const CreateAccount = () => {
     // If successful, redirect to a different page
   };
 
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('/api/authentication/createaccount/route', { // Updated API endpoint
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(account),
+      });
+  
+      if (response.ok) {
+        console.log('Account created successfully!');
+        // Redirect or perform other actions upon successful account creation
+      } else {
+        console.error('Failed to create account');
+      }
+    } catch (error) {
+      console.error('Error creating account:', error);
+    }
+  };
   return (
     <div className={styles.createAccount}>
       <Image
@@ -228,7 +249,7 @@ const CreateAccount = () => {
               id="signup"
               type="submit"
               ref={signupButtonRef}
-              onKeyDown={handleButtonKeyPress}
+              onKeyDown={handleSubmit}
             >
               SIGN UP
             </button>
