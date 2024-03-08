@@ -4,14 +4,13 @@ import UserSchema from "@database/userSchema";
 
 type IParams = {
   params: {
-    email: string;
+    userID: string;
   };
 };
 
 export async function GET(req: NextRequest, { params }: IParams) {
   await connectDB();
-  const { email } = params;
-  console.log(email);
+  const email = params.userID;
 
   try {
     const event = await UserSchema.findOne({ email }).orFail();
