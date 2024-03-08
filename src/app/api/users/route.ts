@@ -27,25 +27,3 @@ export async function GET(req: NextRequest) {
     });
   }
 }
-
-// export async function getUsersByType(req: NextRequest) {
-//   await connectDB();
-
-//   try {
-//     const url = new URL(req.url);
-//     const userType = url.searchParams.get("userType");
-
-//     if (!userType) {
-//       return NextResponse.json("User type parameter is required", {
-//         status: 400,
-//       });
-//     }
-
-//     const users = await UserSchema.find({ userType });
-//     return NextResponse.json(users);
-//   } catch (err) {
-//     return NextResponse.json(`Users could not be found. Error: ${err}`, {
-//       status: 400,
-//     });
-//   }
-// }
