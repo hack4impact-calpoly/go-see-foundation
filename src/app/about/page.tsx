@@ -68,11 +68,11 @@ const AboutPage = () => {
           Watch an Interview with Allyson
         </h1>
         <div className={styles.video}>
-          <EmbedVideo videoId="0sjTI04kwUw" width={700} height={400} />
+          <EmbedVideo videoId="0sjTI04kwUw" width={900} height={500} />
         </div>
       </div>
       <div className={styles.podcast}>
-        <h1 className={styles.header}>
+        <h1 className={`${styles.header} ${styles.podcastHeader}`}>
           Listen to Our Podcast - Episode 3 out now!
         </h1>
         <div className={styles.podcastContent}>
@@ -91,7 +91,11 @@ const AboutPage = () => {
             </p>
             <a href="https://podcasters.spotify.com/pod/show/go-see/episodes/GSP-003-Laurie-Mileur-e21gcre/a-a9jho7c">
               <button className={styles.podcastButton}>
-                <Image className={styles.spotify} src={spotify} alt="spotify logo"/> {' '}
+                <Image
+                  className={styles.spotify}
+                  src={spotify}
+                  alt="spotify logo"
+                />{" "}
                 Listen on Spotify
               </button>
             </a>
