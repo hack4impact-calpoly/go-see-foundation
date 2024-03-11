@@ -42,11 +42,13 @@ const AboutPage = () => {
         <div className={styles.introduction}>
           <div className={styles.firstHalf}>
             <div className={styles.imageShadow}>
-              <Image
-                className={styles.founderImage}
-                src={founder}
-                alt="founder image"
-              />
+              <div className={styles.imageShadow2}>
+                <Image
+                  className={styles.founderImage}
+                  src={founder}
+                  alt="founder image"
+                />
+              </div>
             </div>
             <div className={styles.text}>
               <p>
