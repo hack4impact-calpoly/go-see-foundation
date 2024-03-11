@@ -125,14 +125,14 @@ const AboutPage = () => {
               conversations with inspiring members of our community.
             </p>
             <a href="https://podcasters.spotify.com/pod/show/go-see/episodes/GSP-003-Laurie-Mileur-e21gcre/a-a9jho7c">
-              {/* <button className={styles.podcastButton}>
+              <button className={styles.podcastButton}>
                 <Image
                   className={styles.spotify}
                   src={spotify}
                   alt="spotify logo"
                 />{" "}
                 Listen on Spotify
-              </button> */}
+              </button>
             </a>
           </div>
         </div>
