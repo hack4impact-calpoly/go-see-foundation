@@ -68,7 +68,7 @@ const AboutPage = () => {
           Watch an Interview with Allyson
         </h1>
         <div className={styles.video}>
-          <EmbedVideo videoId="0sjTI04kwUw" width={900} height={500} />
+          <EmbedVideo videoId="0sjTI04kwUw" width={1000} height={550} />
         </div>
       </div>
       <div className={styles.podcast}>
