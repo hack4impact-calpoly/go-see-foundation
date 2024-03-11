@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import EmbedVideo from "../components/VideoEmbed";
 import Image from "next/image";
 import styles from "./about.module.css";
@@ -8,12 +8,46 @@ import podcast from "../images/podcast.png";
 import spotify from "../images/spotify.svg";
 
 const AboutPage = () => {
+  const useScreenSize = () => {
+    const [screenSize, setScreenSize] = useState({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    });
+
+    useEffect(() => {
+      const handleResize = () => {
+        setScreenSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      // Clean up the event listener when the component unmounts
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+
+    return screenSize;
+  };
+
+  const screenSize = useScreenSize();
+
   return (
     <div className={styles.about}>
       <h1 className={styles.title}>Allyson Buerger - The Founder</h1>
       <div className={styles.introWrapper}>
         <div className={styles.introduction}>
           <div className={styles.firstHalf}>
+            <div className={styles.imageShadow}>
+              <Image
+                className={styles.founderImage}
+                src={founder}
+                alt="founder image"
+              />
+            </div>
             <div className={styles.text}>
               <p>
                 My name is Allyson Buerger and I created the GO See Foundation
@@ -36,13 +70,6 @@ const AboutPage = () => {
                 I believe that it is important to stay active and engaged with
                 the world around you and to GO like G.O. always did.
               </p>
-            </div>
-            <div className={styles.imageShadow}>
-              <Image
-                className={styles.founder}
-                src={founder}
-                alt="founder image"
-              />
             </div>
           </div>
           <p>
@@ -68,7 +95,13 @@ const AboutPage = () => {
           Watch an Interview with Allyson
         </h1>
         <div className={styles.video}>
-          <EmbedVideo videoId="0sjTI04kwUw" width={1000} height={550} />
+          <EmbedVideo
+            videoId="0sjTI04kwUw"
+            width={screenSize.width > 800 ? 1000 : 350}
+            height={screenSize.width > 800 ? 550 : 200}
+            // width={1000}
+            // height={550}
+          />
         </div>
       </div>
       <div className={styles.podcast}>
@@ -90,14 +123,14 @@ const AboutPage = () => {
               conversations with inspiring members of our community.
             </p>
             <a href="https://podcasters.spotify.com/pod/show/go-see/episodes/GSP-003-Laurie-Mileur-e21gcre/a-a9jho7c">
-              <button className={styles.podcastButton}>
+              {/* <button className={styles.podcastButton}>
                 <Image
                   className={styles.spotify}
                   src={spotify}
                   alt="spotify logo"
                 />{" "}
                 Listen on Spotify
-              </button>
+              </button> */}
             </a>
           </div>
         </div>
