@@ -112,7 +112,7 @@ const CreateAccount = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/authentication/createaccount/route', { // Updated API endpoint
+      const response = await fetch('/api/registration/route.ts', { // Updated API endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
