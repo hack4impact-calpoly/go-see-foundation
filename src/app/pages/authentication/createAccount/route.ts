@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import connectDB from '../../../../helpers/db';
 import UserSchema, {IUser} from '../../../../database/userSchema';
 
-connectDB(); // Make sure to connect to the database
+connectDB(); 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
