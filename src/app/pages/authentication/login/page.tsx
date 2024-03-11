@@ -32,7 +32,7 @@ export default function LoginPage() {
       loginData.email +
       "\nYour password is: " +
       loginData.password +
-      "\nYou checked 'Remeber Me': " +
+      "\nYou checked 'Remember Me': " +
       String(loginData.remember) +
       "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
     alert(message);
@@ -45,7 +45,8 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
-    const message = "Sign up pressed. You will now be redirected to the Create Account page.";
+    const message =
+      "Sign up pressed. You will now be redirected to the Create Account page.";
     alert(message);
     push("/pages/authentication/createAccount");
   }
@@ -96,23 +97,21 @@ export default function LoginPage() {
     }
   };
 
-
   const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Tab") {
       e.preventDefault();
       switch (e.currentTarget.id) {
         case "rememberMe":
-
           loginButtonRef?.current?.focus();
           break;
         case "login":
-          forgetPasswordRef?.current?.focus(); 
+          forgetPasswordRef?.current?.focus();
           break;
         case "forgotPassword":
           signUpRef?.current?.focus();
           break;
         case "signUp":
-          console.log("Hither")
+          console.log("Hither");
           emailInputRef?.current?.focus();
           break;
         default:
@@ -126,7 +125,7 @@ export default function LoginPage() {
       <div className="backgroundLogoContainer">
         <Image
           src={backgroundLogo}
-          alt="background logo for the Go See Foundation"
+          alt="" // background logo for the Go See Foundation -- don't want read for screenreader
           height="0"
           width="0"
           className="backgroundLogo"
@@ -200,19 +199,19 @@ export default function LoginPage() {
           className="loginButton"
           type="submit"
           ref={loginButtonRef}
-          onKeyDown={(e : any) => handleInputKeyPress(e)}
-          >
+          onKeyDown={(e: any) => handleInputKeyPress(e)}
+        >
           LOG IN
         </button>
 
         {/*TODO: change href to proper forget page*/}
-        <Link 
-          href="/" 
+        <Link
+          href="/"
           className="forgotPasswordLink"
           id="forgotPassword"
           ref={forgetPasswordRef}
-          onKeyDown={(e : any) => handleInputKeyPress(e)}
-          >
+          onKeyDown={(e: any) => handleInputKeyPress(e)}
+        >
           Forgot Password
         </Link>
 
@@ -222,11 +221,12 @@ export default function LoginPage() {
           <h2 className="signUpTitle">Not a Member yet?</h2>
           <button
             className="signUpButton"
-            type="button" 
+            type="button"
             onClick={handleSignUp}
             ref={signUpRef}
-            onKeyDown={(e : any) => handleInputKeyPress(e)}
-            id="signUp">
+            onKeyDown={(e: any) => handleInputKeyPress(e)}
+            id="signUp"
+          >
             SIGN UP
           </button>
           {/* change href when signup page made*/}

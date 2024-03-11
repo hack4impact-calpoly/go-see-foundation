@@ -1,10 +1,12 @@
 "use client";
 import React, { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import logo from "../../../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 
 const CreateAccount = () => {
+  const { push } = useRouter();
   const firstInputRef = useRef<HTMLInputElement>(null);
   const lastInputRef = useRef<HTMLInputElement>(null);
   const birthInputRef = useRef<HTMLInputElement>(null);
@@ -102,16 +104,41 @@ const CreateAccount = () => {
           break;
       }
     }
+    if (e.key === " Enter") {
+      e.preventDefault();
+      switch (e.currentTarget.id) {
+        case "signup":
+          handleCreateAccount();
+        case "login":
+          handleLogin();
+      }
+    }
   };
 
-  const handleCreateAccount = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // If successful, redirect to a different page
-  };
+  function handleCreateAccount(): void {
+    console.log("create account pressed");
+    const message =
+      "Create Account pressed. This will eventually create an account with your inputted information.";
+
+    /*TODO: need to check if all info is inputted, and give relevant alerts
+      if not inputted, also check if info is reight format
+      ex. date of birth (email gives relevant alerts like @ not being included)
+      */
+
+    alert(message);
+    // If successful, redirect to a different page -- home/log in?
+  }
+
+  function handleLogin(): void {
+    console.log("log up pressed");
+    const message =
+      "Login pressed. You will now be redirected to the Login page.";
+    alert(message);
+    push("/pages/authentication/login");
+  }
 
   return (
     <div className={styles.createAccount}>
-      
       <br></br>
       <h1 className={styles.title}>Sign in and join the Go See community!</h1>
       <div className={styles.container}>
@@ -129,7 +156,7 @@ const CreateAccount = () => {
               placeholder="First Name"
               required
               ref={firstInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <input
               className={styles.input}
@@ -138,7 +165,7 @@ const CreateAccount = () => {
               placeholder="Last Name"
               required
               ref={lastInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <input
               className={styles.input}
@@ -147,13 +174,13 @@ const CreateAccount = () => {
               placeholder="Date of Birth"
               required
               ref={birthInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <select
               className={styles.input}
               id="user"
               ref={userSelectRef}
-              onKeyDown={handleSelectKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             >
               <option value="select" disabled selected>
                 Select One
@@ -173,7 +200,7 @@ const CreateAccount = () => {
               placeholder="Email"
               required
               ref={emailInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <input
               className={styles.input}
@@ -183,7 +210,7 @@ const CreateAccount = () => {
               placeholder="Phone Number"
               required
               ref={phoneInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <input
               className={styles.input}
@@ -192,7 +219,7 @@ const CreateAccount = () => {
               placeholder="Password"
               required
               ref={passwordInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <input
               className={styles.input}
@@ -201,7 +228,7 @@ const CreateAccount = () => {
               placeholder="Repeat Password"
               required
               ref={repeatPasswordInputRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
           </div>
           <div className={styles.chkboxcontainer}>
@@ -210,7 +237,7 @@ const CreateAccount = () => {
               id="myCheckbox"
               name="myCheckbox"
               ref={checkboxRef}
-              onKeyDown={handleInputKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
             />
             <label className={styles.checkboxtext} htmlFor="myCheckbox">
               Sign me up for email notifications.
@@ -223,7 +250,8 @@ const CreateAccount = () => {
               id="signup"
               type="submit"
               ref={signupButtonRef}
-              onKeyDown={handleButtonKeyPress}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
+              onClick={handleCreateAccount}
             >
               SIGN UP
             </button>
@@ -232,7 +260,9 @@ const CreateAccount = () => {
             <p className={styles.accounttext}>Already have an account?</p>
             <button
               className={styles.login}
+              type="button"
               id="login"
+              onClick={handleLogin}
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
             >
