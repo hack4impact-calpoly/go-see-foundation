@@ -139,7 +139,7 @@ const CreateAccount = () => {
 
   return (
     <div className={styles.createAccount}>
-      <br></br>
+      <br role="presentation"></br>
       <h1 className={styles.title}>Sign in and join the Go See community!</h1>
       <div className={styles.container}>
         <form
@@ -190,7 +190,7 @@ const CreateAccount = () => {
               <option value="Partner/Donor">Partner/Donor</option>
             </select>
           </div>
-          <br></br>
+          <br aria-label=""></br>
           <h2 className={styles.heading}>Step 2: Account Info:</h2>
           <div className={styles.inputs}>
             <input
@@ -243,7 +243,7 @@ const CreateAccount = () => {
               Sign me up for email notifications.
             </label>
           </div>
-          <br></br>
+          <br aria-label=""></br>
           <div className={styles.buttons}>
             <button
               className={styles.signup}
@@ -255,7 +255,7 @@ const CreateAccount = () => {
             >
               SIGN UP
             </button>
-            <br></br>
+            <br aria-label=""></br>
             <div className={styles.break}></div>
             <p className={styles.accounttext}>Already have an account?</p>
             <button

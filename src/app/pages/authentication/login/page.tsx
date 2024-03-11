@@ -125,7 +125,7 @@ export default function LoginPage() {
       <div className="backgroundLogoContainer">
         <Image
           src={backgroundLogo}
-          alt="" // background logo for the Go See Foundation -- don't want read for screenreader
+          alt="" // decorative images should have null alt text (for screenreader)
           height="0"
           width="0"
           className="backgroundLogo"
@@ -139,7 +139,7 @@ export default function LoginPage() {
           <Image
             className="emailIcon"
             src={emailIcon}
-            alt="An email icon"
+            alt="" // decorative images should have null alt text
             width="30"
             height="30"
           />
@@ -160,7 +160,7 @@ export default function LoginPage() {
           <Image
             className="passwordIcon"
             src={passwordIcon}
-            alt="An email icon"
+            alt="" // decorative images should have null alt text
             width="30"
             height="30"
           />
