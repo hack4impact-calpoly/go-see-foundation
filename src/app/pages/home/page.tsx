@@ -7,7 +7,7 @@ import "./page.css";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
-import SeussQuote from "@components/SeussQuote";
+import SeussQuote from "@components/seussQuote";
 
 export default function home() {
   const images = [
