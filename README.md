@@ -4,14 +4,11 @@ An accessible website for the Go See Foundation to facilitate event postings, st
 
 ## Table of Contents
 
-- [Overview](#overview)
+
   - [Purpose](#purpose)
   - [Team](#team)
 - [Getting Started And Contributing](#getting-started-and-contributing)
 
-## Overview
-
-Over the course of 6 months, our team will build an accessible web application for the Go See Foundation to manage events, organize member contacts, and streamline the volunteer experience. 
 
 ### Purpose
 
