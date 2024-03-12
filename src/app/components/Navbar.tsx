@@ -21,7 +21,7 @@ export default function Navbar() {
         </div>
         <div className={styles.mainButtons}>
           <div className={styles.mainTop}>
-            <Link href="">
+            <Link href="/pages/donate">
               <button className={`${styles.button} ${styles.donate}`}>
                 DONATE
               </button>
@@ -47,7 +47,7 @@ export default function Navbar() {
       </div>
       <div className={styles.subbar}>
         <div className={styles.linkWrapper}>
-          <Link className={styles.link} href="/">
+          <Link className={styles.link} href="/pages/home">
             HOME
           </Link>
         </div>
