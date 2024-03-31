@@ -111,23 +111,27 @@ const CreateAccount = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("reached");
     try {
-      const response = await fetch('/api/registration/route.ts', { // Updated API endpoint
-        method: 'POST',
+      const response = await fetch("/api/registration/route.ts", {
+        // Updated API endpoint
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(account),
       });
-  
+
+      console.log(response);
+
       if (response.ok) {
-        console.log('Account created successfully!');
+        console.log("Account created successfully!");
         // Redirect or perform other actions upon successful account creation
       } else {
-        console.error('Failed to create account');
+        console.error("Failed to create account");
       }
     } catch (error) {
-      console.error('Error creating account:', error);
+      console.error("Error creating account:", error);
     }
   };
   return (
@@ -249,7 +253,7 @@ const CreateAccount = () => {
               id="signup"
               type="submit"
               ref={signupButtonRef}
-              onKeyDown={handleSubmit}
+              onClick={handleSubmit}
             >
               SIGN UP
             </button>
@@ -270,5 +274,4 @@ const CreateAccount = () => {
     </div>
   );
 };
-
 export default CreateAccount;
