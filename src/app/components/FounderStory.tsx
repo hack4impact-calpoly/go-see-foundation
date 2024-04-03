@@ -1,6 +1,7 @@
 import styles from "./founderStory.module.css";
 import founderPhoto from "../images/founderPhoto.png";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function FounderStory() {
   const founderStory1 =
@@ -24,9 +25,10 @@ export default function FounderStory() {
           <div className={styles.founderText}>{founderStory1}</div>
           <div className={styles.founderText}>{founderStory2}</div>
         </div>
-        <div className={styles.button}>
+        
+        <Link href="/about">
           <button className={styles.buttonStyle}>LEARN MORE</button>
-        </div>
+        </Link>
       </div>
       <div className={styles.imageContainerOut}>
         <Image
