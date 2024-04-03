@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "./login.css";
-import backgroundLogo from "../../../images/backgroundLogo.png";
-import emailIcon from "../../../images/emailIcon.png";
-import passwordIcon from "../../../images/passwordIcon.png";
+import backgroundLogo from "../images/backgroundLogo.png";
+import emailIcon from "../images/emailIcon.png";
+import passwordIcon from "../images/passwordIcon.png";
 import { sign } from "crypto";
 
 export default function LoginPage() {
@@ -47,7 +47,7 @@ export default function LoginPage() {
     console.log("sign up pressed");
     const message = "Sign up pressed. You will now be redirected to the Create Account page.";
     alert(message);
-    push("/pages/authentication/createAccount");
+    push("/createAccount");
   }
 
   const handleLoginChange = (
