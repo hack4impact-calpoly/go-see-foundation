@@ -4,6 +4,7 @@ import Image from "next/image";
 import connectDB from "../../../../helpers/db";
 import logo from "../../../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
+import { IUser } from "@database/userSchema";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -25,6 +26,7 @@ const CreateAccount = () => {
     email: "",
     user: "",
     password: "",
+    username: "",
   });
 
   const handleAccountChange = (e: React.FormEvent<HTMLFormElement>) => {
@@ -111,15 +113,26 @@ const CreateAccount = () => {
   };
 
   const handleSubmit = async () => {
-    console.log("reached");
+    const newUser: IUser = {
+      username: "place_holder",
+      password: account.password,
+      userType: account.user,
+      firstName: account.first,
+      lastName: account.last,
+      phoneNum: account.phone,
+      email: account.email,
+    };
+
+    newUser.username = newUser.firstName + " " + newUser.lastName;
+
     try {
-      const response = await fetch("/api/registration/route.ts", {
+      const response = await fetch("/api/registration/", {
         // Updated API endpoint
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(account),
+        body: JSON.stringify(newUser),
       });
 
       console.log(response);
@@ -134,6 +147,7 @@ const CreateAccount = () => {
       console.error("Error creating account:", error);
     }
   };
+
   return (
     <div className={styles.createAccount}>
       <Image
