@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import groupImage from ".//images/Group_Photo.jpeg";
+import Link from "next/link";
 import "./page.css";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
@@ -43,9 +44,11 @@ export default function home() {
           Our mission is to encourage, inspire and empower those going through
           vision loss to remain active and engaged with their world.
         </h3>
-        <button className="joinButton" type="button">
-          JOIN US
-        </button>
+        <Link href = "/createAccount">
+          <button className="joinButton" type="button">
+            JOIN US
+          </button>
+        </Link>
       </div>
       <FounderStory />
       <Carousel
