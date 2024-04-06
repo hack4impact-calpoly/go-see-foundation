@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Users, { IUser } from "@database/userSchema";
 const bcrypt = require("bcrypt"); 
 
-export async function GET(req: NextRequest) {
+export async function POST(req: NextRequest) {
     await connectDB();
     try{
         const {email, password} = await req.json()
@@ -15,7 +15,8 @@ export async function GET(req: NextRequest) {
         if (!passwordsMatch){
             return NextResponse.json("Failed: Login Failed", {status: 400})
         }
-        return NextResponse.json({email});
+        console.log(email)
+        return NextResponse.json("Success: Login Complete");
     }
     catch (err) {
         return NextResponse.json(`${err}`, { status: 400 });
