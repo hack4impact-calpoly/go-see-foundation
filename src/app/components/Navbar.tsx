@@ -21,19 +21,19 @@ export default function Navbar() {
         </div>
         <div className={styles.mainButtons}>
           <div className={styles.mainTop}>
-            <Link href="">
+            <Link href="/donate">
               <button className={`${styles.button} ${styles.donate}`}>
                 DONATE
               </button>
             </Link>
-            <Link href="/pages/authentication/login">
+            <Link href="/login">
               <button className={`${styles.button} ${styles.login}`}>
                 LOG IN
               </button>
             </Link>
           </div>
           <div className={styles.mainBottom}>
-            <Link href="/pages/authentication/createAccount">
+            <Link href="/createAccount">
               <button className={`${styles.button} ${styles.join}`}>
                 JOIN US
               </button>
