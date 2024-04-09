@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   await connectDB();
 
   try {
-    const blogs = await BlogSchema.find();
+    const blogs = await BlogSchema.find().orFail();
     console.log("looking for ALL blogs");
     console.log(blogs);
     // TODO: sort by order of date
