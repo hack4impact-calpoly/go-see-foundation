@@ -19,13 +19,11 @@ export async function POST(req: NextRequest) {
       return NextResponse.json("Failed: Login Failed", { status: 400 });
     }
 
-    // Login successful, create JSON web token
-    // TODO: add exp registered claim
-    const expiration_time_milli = (new Date().getTime()) / 1000;
-    const data = { signInTime: Date.now(), user };
+    // Login successful, create JSON web token, add expiration time and sign in time
+    const exp_time = new Date().getTime();
+    const exp_time_sec = Math.round(exp_time / 1000);
+    const data = { signInTime: Date.now(), exp: exp_time_sec, user };
     const token = jwt.sign(data, jwtSecretKey);
-    console.log(data);
-    console.log(token);
     return NextResponse.json({ message: "Success: Login Complete", token });
   } catch (err) {
     return NextResponse.json(`${err}`, { status: 400 });
