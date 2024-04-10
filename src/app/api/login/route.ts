@@ -8,9 +8,7 @@ export async function POST(req: NextRequest) {
   await connectDB();
   try {
     const { email, password } = await req.json();
-    // TODO: add JWT_SECRET
-    // const jwtSecretKey = process.env.JWT_SECRET;
-    const jwtSecretKey = "2182312c81187ab82bbe053df6b7aa55";
+    const jwtSecretKey = process.env.JWT_SECRET;
 
     if (!email || !password) {
       return NextResponse.json("Failed: Login Incomplete", { status: 400 });
@@ -23,6 +21,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Login successful, create JSON web token
+    // TODO: add exp registered claim
     const data = { signInTime: Date.now(), user };
     const token = jwt.sign(data, jwtSecretKey);
     console.log(data);
