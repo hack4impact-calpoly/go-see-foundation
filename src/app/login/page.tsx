@@ -24,7 +24,7 @@ export default function LoginPage() {
     remember: false,
   });
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>): void {
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>){
     event.preventDefault();
     console.log("login pressed");
     const message =
@@ -41,6 +41,38 @@ export default function LoginPage() {
     // if email exists, verify password --> if password match, next page
     //                                  --> if no match, send error message to user
     // if email does not exist --> send error message to user
+    
+    const email = loginData.email;
+    const password = loginData.password
+    try {
+      const response = await fetch("/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      if(response.ok){
+        alert("Successful Login!");
+      }
+      else{
+        const errorMessage = await response.json();
+        if(errorMessage == "Failed: Login Incomplete"){
+          alert("Incomplete Feilds");
+        }
+        else if(errorMessage == "Failed: Login Failed"){
+          alert("Incorrect Email or Password");
+        }
+        else{
+          alert("Login Error");
+        }
+      }
+    }
+    catch (error) {
+      console.error("Login Error", error);
+    }
+  
   }
 
   function handleSignUp(): void {

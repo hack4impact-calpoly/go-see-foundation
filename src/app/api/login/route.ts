@@ -10,7 +10,10 @@ export async function POST(req: NextRequest) {
         if (!email || !password) {
             return NextResponse.json("Failed: Login Incomplete", { status: 400 });
         }
-        const user = await Users.findOne({email: email}).orFail();
+        const user = await Users.findOne({email: email});
+        if (!user){
+            return NextResponse.json("Failed: Login Failed", { status: 400 })
+        }
         const passwordsMatch = bcrypt.compareSync(password, user.password);
         if (!passwordsMatch){
             return NextResponse.json("Failed: Login Failed", {status: 400})
