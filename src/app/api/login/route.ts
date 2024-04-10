@@ -14,8 +14,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json("Failed: Login Incomplete", { status: 400 });
     }
     const user = await Users.findOne({ email: email }).orFail();
-    // TODO: change passwords in Mongo to be encrypted versions
-    const passwordsMatch = true; //bcrypt.compareSync(password, user.password);
+    const passwordsMatch = bcrypt.compareSync(password, user.password);
     if (!passwordsMatch) {
       return NextResponse.json("Failed: Login Failed", { status: 400 });
     }
