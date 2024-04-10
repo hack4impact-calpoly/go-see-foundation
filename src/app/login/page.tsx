@@ -1,15 +1,23 @@
 "use client";
-import React, { MouseEventHandler, useState } from "react";
+import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import "./login.css";
-import backgroundLogo from "../../../images/backgroundLogo.png";
-import emailIcon from "../../../images/emailIcon.png";
-import passwordIcon from "../../../images/passwordIcon.png";
+import backgroundLogo from "../images/backgroundLogo.png";
+import emailIcon from "../images/emailIcon.png";
+import passwordIcon from "../images/passwordIcon.png";
+import { sign } from "crypto";
 
 export default function LoginPage() {
   const { push } = useRouter();
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const passwordInputRef = useRef<HTMLInputElement>(null);
+  const rememberMeInputRef = useRef<HTMLInputElement>(null);
+  const loginButtonRef = useRef<HTMLButtonElement>(null);
+  const forgetPasswordRef = useRef<HTMLAnchorElement>(null);
+  const signUpRef = useRef<HTMLButtonElement>(null);
+
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -37,10 +45,9 @@ export default function LoginPage() {
 
   function handleSignUp(): void {
     console.log("sign up pressed");
-    const message =
-      "Sign up pressed. You will now be redirected to the Create Account page.";
+    const message = "Sign up pressed. You will now be redirected to the Create Account page.";
     alert(message);
-    push("/pages/authentication/createAccount");
+    push("/createAccount");
   }
 
   const handleLoginChange = (
@@ -59,6 +66,59 @@ export default function LoginPage() {
       remember: !loginData.remember,
     }));
     console.log("Remember me set to: " + String(loginData.remember));
+  };
+
+  const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      switch (e.currentTarget.id) {
+        case "email":
+          passwordInputRef?.current?.focus();
+          break;
+        case "password":
+          rememberMeInputRef?.current?.focus();
+          break;
+        case "rememberMe":
+          loginButtonRef?.current?.focus();
+          break;
+        case "login":
+          forgetPasswordRef?.current?.focus();
+          break;
+        case "forgotPassword":
+          signUpRef?.current?.focus();
+          break;
+        case "signUp":
+          emailInputRef?.current?.focus();
+          break;
+        default:
+          return;
+      }
+    }
+  };
+
+
+  const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      switch (e.currentTarget.id) {
+        case "rememberMe":
+
+          loginButtonRef?.current?.focus();
+          break;
+        case "login":
+          forgetPasswordRef?.current?.focus(); 
+          break;
+        case "forgotPassword":
+          signUpRef?.current?.focus();
+          break;
+        case "signUp":
+          console.log("Hither")
+          emailInputRef?.current?.focus();
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   return (
@@ -92,6 +152,8 @@ export default function LoginPage() {
             placeholder="Email"
             value={loginData.email}
             onChange={handleLoginChange}
+            onKeyDown={(e) => handleInputKeyPress(e)}
+            ref={emailInputRef}
             required
           />
         </div>
@@ -113,6 +175,8 @@ export default function LoginPage() {
             placeholder="Password"
             value={loginData.password}
             onChange={handleLoginChange}
+            onKeyDown={(e) => handleInputKeyPress(e)}
+            ref={passwordInputRef}
             required
           />
         </div>
@@ -124,17 +188,31 @@ export default function LoginPage() {
               name="rememberMe"
               value={String(loginData.remember)}
               onClick={handleRememberMe}
+              ref={rememberMeInputRef}
+              onKeyDown={(e) => handleInputKeyPress(e)}
               className="inline"
             />
             Remember me?
           </label>
         </div>
-        <button className="loginButton" type="submit">
+        <button
+          id="login"
+          className="loginButton"
+          type="submit"
+          ref={loginButtonRef}
+          onKeyDown={(e : any) => handleInputKeyPress(e)}
+          >
           LOG IN
         </button>
 
         {/*TODO: change href to proper forget page*/}
-        <Link href="/" className="forgotPasswordLink">
+        <Link 
+          href="/" 
+          className="forgotPasswordLink"
+          id="forgotPassword"
+          ref={forgetPasswordRef}
+          onKeyDown={(e : any) => handleInputKeyPress(e)}
+          >
           Forgot Password
         </Link>
 
@@ -142,7 +220,13 @@ export default function LoginPage() {
 
         <div className="signUp">
           <h2 className="signUpTitle">Not a Member yet?</h2>
-          <button className="signUpButton" type="button" onClick={handleSignUp}>
+          <button
+            className="signUpButton"
+            type="button" 
+            onClick={handleSignUp}
+            ref={signUpRef}
+            onKeyDown={(e : any) => handleInputKeyPress(e)}
+            id="signUp">
             SIGN UP
           </button>
           {/* change href when signup page made*/}

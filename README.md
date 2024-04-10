@@ -1,17 +1,14 @@
-# Go See Foundation
+# Go See Foundation 👁
 
 An accessible website for the Go See Foundation to facilitate event postings, streamline volunteer operations, and manage member-volunteer-donor contacts.
 
 ## Table of Contents
 
-- [Overview](#overview)
+
   - [Purpose](#purpose)
   - [Team](#team)
 - [Getting Started And Contributing](#getting-started-and-contributing)
 
-## Overview
-
-Our project centers on developing a volunteer managment system with the challenge of incorpating a high level of accessibility.
 
 ### Purpose
 
@@ -23,8 +20,8 @@ Go See Foundation’s mission is to encourage, inspire and empower those experie
 The Go See Foundation team consists of 16 Cal Poly students. Over the course of about 9 months, we worked as a team to deploy this web application. The team members are listed below:
 
 - Britta Kleitsch - Product Manager
-- Billy Woodward - Designer
 - Garrett Reinhard - Designer
+- Jasmine Sayed - Designer
 - Marta Lukomska - Designer
 - Eduardo Huezo - Tech Lead
 - Ryan Agdassi - Tech Lead
