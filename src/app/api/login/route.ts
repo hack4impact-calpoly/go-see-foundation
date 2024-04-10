@@ -21,6 +21,7 @@ export async function POST(req: NextRequest) {
 
     // Login successful, create JSON web token
     // TODO: add exp registered claim
+    const expiration_time_milli = (new Date().getTime()) / 1000;
     const data = { signInTime: Date.now(), user };
     const token = jwt.sign(data, jwtSecretKey);
     console.log(data);
