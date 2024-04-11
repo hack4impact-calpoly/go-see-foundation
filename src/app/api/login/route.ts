@@ -20,9 +20,11 @@ export async function POST(req: NextRequest) {
     }
 
     // Login successful, create JSON web token, add expiration time and sign in time
-    const exp_time = new Date().getTime();
-    const exp_time_sec = Math.round(exp_time / 1000);
-    const data = { signInTime: Date.now(), exp: exp_time_sec, user };
+    const curr_time = new Date().getTime(); // get the current time in millisec
+    const curr_time_sec = Math.round(curr_time / 1000); // current time in seconds
+    const exp_time_sec = curr_time_sec + 1800; // exp time sec (current time + 30 mins)
+    const data = { signInTime: curr_time_sec, exp: exp_time_sec, user };
+    console.log(data);
     const token = jwt.sign(data, jwtSecretKey);
     return NextResponse.json({ message: "Success: Login Complete", token });
   } catch (err) {
