@@ -16,25 +16,28 @@ const AboutPage = () => {
           <div className={styles.firstHalf}>
             <div className={styles.text}>
               <p>
-                My name is Allyson Buerger and I created the GO See Foundation
-                with a mission to encourage, inspire, and empower those going
-                through vision loss to remain active and engaged with the world.
-                I’ve been dealing with vision loss for as long as I can remember
-                and have had over 25 eye surgeries. I have been diagnosed with
-                juvenile inflammatory arthritis, uveitis, glaucoma, cataracts,
-                and my right eye is now a prosthetic. Throughout my vision
-                journey, I have experienced the life changing uncertainty and
-                challenges that come with losing your sight.
+              My name is Allyson Buerger and I created the GO See 
+              Foundation with a mission to encourage, inspire, and 
+              empower those who are blind or visually impaired to 
+              remain active and engaged with the world. I’ve been 
+              dealing with vision loss for as long as I can remember and 
+              am now legally blind. I have had 29 eye surgeries, been 
+              diagnosed with juvenile inflammatory arthritis, uveitis, 
+              glaucoma, cataracts, and my right eye is now a prosthetic.
+              Throughout my vision journey, I have experienced the life 
+              changing uncertainty and challenges that come with losing
+              your sight.
               </p>
               <p>
-                My dad, Gary Owens who we all called G.O. was known for his
-                generous heart and boundless zest for life. His infectious
-                enthusiasm always encouraged my whole family and I to live our
-                lives to the fullest. The foundation is named “GO See” because
-                of my dad G.O. and what I learned from him about dealing with
-                life’s challenges, including my vision loss. Because of my dad,
-                I believe that it is important to stay active and engaged with
-                the world around you and to GO like G.O. always did.
+              My dad, Gary Owens who we all called G.O. was known 
+              for his generous heart and boundless zest for life. His 
+              infectious enthusiasm always encouraged my whole family
+              and I to live our lives to the fullest. The foundation is 
+              named “GO See” because of my dad G.O. and what I 
+              learned from him about dealing with life’s challenges, 
+              including my vision loss. Because of my dad, I believe that
+              it is important to stay active and engaged with the world 
+              around you and to GO like G.O. always did.
               </p>
             </div>
             <div className={styles.imageShadow}>
@@ -46,20 +49,25 @@ const AboutPage = () => {
             </div>
           </div>
           <p>
-            Through the GO See Foundation blind and visually impaired adults on
-            the Central Coast have enjoyed tandem kayaking, trail hikes, yoga,
-            birding by ear, zip-lining, and other tactile experiences. These
-            activities are meant to engage our other senses in fun ways and
-            forge a community where people with vision loss can support each
-            other and experience new things.
+          Through the GO See Foundation blind and visually 
+          impaired adults on the Central Coast have enjoyed
+          tandem kayaking, trail hikes, cooking lessons, birding by 
+          ear, zip-lining, and other tactile experiences. These 
+          activities are meant to tap into our other senses in fun 
+          ways and forge a community where people with vision loss
+          can support each other and experience new things.
           </p>
           <p>
-            The GO See Foundation relies on private donations to fund our
-            activities and volunteers for each of the events. If you would like
-            to volunteer your time with the GO See Foundation we are always
-            looking for sighted guides, drivers, and other volunteers. If you
-            would like to donate to support our mission, you can make a monetary
-            donation on our website.
+          The GO See Foundation relies on private donations to 
+          fund our activities and volunteers for each of
+          the events. If you would like to volunteer your time with the
+          GO See Foundation we are always looking for sighted 
+          guides, drivers, and other volunteers. If you would like to 
+          donate to support our mission, you can make a monetary 
+          donation on our website. If your business or company 
+          would like to support or host an event please reach out! 
+          Email: allyson@goseefoundation.org Phone: (805) 242-
+          4220.
           </p>
         </div>
       </div>
