@@ -8,6 +8,14 @@ export async function POST(req: NextRequest) {
   await connectDB();
   try {
     const { email, password } = await req.json();
+
+    if (!process.env.JWT_SECRET) {
+      console.error('JWT_SECRET environment variable is not defined.');
+      // jwt secrets is not defined
+      const errorMessage = "An error occurred. Please try again later."; // Custom error message
+      return NextResponse.json({ error: errorMessage }, { status: 400 });
+  }
+  
     const jwtSecretKey = process.env.JWT_SECRET;
 
     if (!email || !password) {
