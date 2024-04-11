@@ -36,11 +36,6 @@ export default function LoginPage() {
       String(loginData.remember) +
       "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
     alert(message);
-
-    // TODO: try to fetch the user from database using email
-    // if email exists, verify password --> if password match, next page
-    //                                  --> if no match, send error message to user
-    // if email does not exist --> send error message to user
     
     const email = loginData.email;
     const password = loginData.password;
