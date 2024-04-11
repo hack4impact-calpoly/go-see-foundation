@@ -43,7 +43,7 @@ export default function LoginPage() {
     // if email does not exist --> send error message to user
     
     const email = loginData.email;
-    const password = loginData.password
+    const password = loginData.password;
     try {
       const response = await fetch("/api/login/", {
         method: "POST",
@@ -53,11 +53,14 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
       
-      if(response.ok){
+      const responseData = await response.json();
+      if(response.ok && responseData.message == "Success: Login Complete"){
+        const token = responseData.token;
+        localStorage.setItem("jwtToken", token);
         alert("Successful Login!");
       }
       else{
-        const errorMessage = await response.json();
+        const errorMessage = responseData.message;
         if(errorMessage == "Failed: Login Incomplete"){
           alert("Incomplete Feilds");
         }
