@@ -48,12 +48,14 @@
     border-radius: 16px;
     border: 4px solid #1d2f5d;
     background: #fff;
+    color: #1D2F5D
   }
 
   .join {
     border-radius: 16px;
-    background: #bbcfff;
+    background: #FBB135;
     border: none;
+    color: #000000;
   }
 
   .menu {
@@ -131,18 +133,21 @@
     border-radius: 0.61538rem;
     border: 2.462px solid #1d2f5d;
     background: #fff;
+    color: #1D2F5D
   }
 
   .join {
     border-radius: 0.61538rem;
-    background: #bbcfff;
+    background: #FBB135;
     border: none;
+    color:#000000
   }
 
   .menu {
     border-radius: 9.846px;
     border: 2.462px solid #1d2f5d;
     background: #fff;
+    color: #1D2F5D;
   }
 
   .menu:focus {
