@@ -12,7 +12,7 @@ export type IUser = {
 
 //! Example user schema. Not guaranteed to work
 const UserSchema = new Schema<IUser>({
-  username: { type: String, required: true, unique: true },
+  username: { type: String, required: false, unique: false },
   password: { type: String, required: true },
   userType: { type: String, required: true },
   firstName: { type: String, required: true },

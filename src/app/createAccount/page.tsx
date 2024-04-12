@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
-import logo from "../../../images/GO-See-HLogo.fw_.png";
+import connectDB from "../../helpers/db";
+import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
-import Link from "next/link";
+import { IUser } from "@database/userSchema";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -25,6 +26,7 @@ const CreateAccount = () => {
     email: "",
     user: "",
     password: "",
+    username: "",
   });
 
   const handleAccountChange = (e: React.FormEvent<HTMLFormElement>) => {
@@ -110,9 +112,50 @@ const CreateAccount = () => {
     // If successful, redirect to a different page
   };
 
+  const handleSubmit = async () => {
+    const newUser: IUser = {
+      username: "place_holder",
+      password: account.password,
+      userType: account.user,
+      firstName: account.first,
+      lastName: account.last,
+      phoneNum: account.phone,
+      email: account.email,
+    };
+
+    newUser.username = newUser.firstName + " " + newUser.lastName;
+
+    try {
+      const response = await fetch("/api/registration/", {
+        // Updated API endpoint
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+
+      console.log(response);
+
+      if (response.ok) {
+        console.log("Account created successfully!");
+        // Redirect or perform other actions upon successful account creation
+      } else {
+        console.error("Failed to create account");
+      }
+    } catch (error) {
+      console.error("Error creating account:", error);
+    }
+  };
+
   return (
     <div className={styles.createAccount}>
-      
+      {/* <Image
+        src={logo}
+        alt="Go See Foundation's Logo"
+        width="360"
+        height="95"
+      /> */}
       <br></br>
       <h1 className={styles.title}>Sign in and join the Go See community!</h1>
       <div className={styles.container}>
@@ -224,15 +267,13 @@ const CreateAccount = () => {
               id="signup"
               type="submit"
               ref={signupButtonRef}
-              onKeyDown={handleButtonKeyPress}
+              onClick={handleSubmit}
             >
               SIGN UP
             </button>
             <br></br>
             <div className={styles.break}></div>
             <p className={styles.accounttext}>Already have an account?</p>
-            
-            
             <button
               className={styles.login}
               id="login"
@@ -247,5 +288,4 @@ const CreateAccount = () => {
     </div>
   );
 };
-
 export default CreateAccount;
