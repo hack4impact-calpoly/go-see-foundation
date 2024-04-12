@@ -7,6 +7,7 @@ import menu from "../images/menu.png";
 import styles from "./navbar.module.css";
 
 export default function Navbar() {
+
   return (
     <div className={styles.navbar}>
       <div className={styles.mainbar}>
@@ -65,8 +66,8 @@ export default function Navbar() {
           <Link className={styles.link} href="/about">
             ABOUT US
           </Link>
-        </div>
+        </div> 
       </div>
-    </div>
+    </div> 
   );
 }
