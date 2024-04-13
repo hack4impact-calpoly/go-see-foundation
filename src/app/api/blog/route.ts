@@ -5,17 +5,10 @@ import BlogSchema from "@database/blogSchema";
 
 export async function GET(req: NextRequest) {
   await connectDB();
-  console.log("inside blog");
 
   try {
-    console.log("trying");
     const blogs = await BlogSchema.find().orFail();
-    console.log("looking for ALL blogs");
-    console.log(blogs);
-    // TODO: sort by order of date
     blogs.sort((a, b) => b.date - a.date);
-    console.log("post sort...");
-    console.log(blogs);
     return NextResponse.json(blogs);
   } catch (err) {
     return NextResponse.json(`Blogs could not be found. Error: ${err}`, {
