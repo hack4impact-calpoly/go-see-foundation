@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
 import BlogSchema from "@database/blogSchema";
-// TODO: replace eventSchema with proper schema path
 
 export async function GET(req: NextRequest) {
   await connectDB();
