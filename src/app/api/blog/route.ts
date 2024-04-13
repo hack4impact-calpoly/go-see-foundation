@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
-import BlogSchema from "@database/eventSchema";
+import BlogSchema from "@database/blogSchema";
 // TODO: replace eventSchema with proper schema path
 
 export async function GET(req: NextRequest) {
   await connectDB();
+  console.log("inside blog");
 
   try {
+    console.log("trying");
     const blogs = await BlogSchema.find().orFail();
     console.log("looking for ALL blogs");
     console.log(blogs);
