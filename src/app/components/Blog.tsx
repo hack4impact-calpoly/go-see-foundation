@@ -24,11 +24,7 @@ export default function Blog() {
         </form>
       </div>
       <hr></hr>
-      <div className="blogs">
-        {bloglist.map((iblog) => (
-          <IndividualBlog key={iblog.id} blog={iblog}></IndividualBlog>
-        ))}{" "}
-      </div>
+      <div className="blogs"></div>
       <div className="pageselection">
         <h4 className="pagenumbers">1 2 3</h4>
         <button className="olderarticles">OLDER ARTICLES &gt;</button>
@@ -40,5 +36,5 @@ export default function Blog() {
 /*
         {bloglist.map((iblog) => (
           <IndividualBlog key={iblog.id} blog={iblog}></IndividualBlog>
-        ))}{" "}
+        ))}
         */
