@@ -1,15 +1,19 @@
 .adminComponent {
-    height: 75vh;
+    height: 90vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin: 100px;
+    background-image: url(/colorful.jpeg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .adminOptions {
-    width: 40%;
-    height: 100%;
+    width: 30%;
+    height: 75%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,9 +85,9 @@
 }
 
 .image {
-    height: 100%;
-    width: 40%;
     position: relative;
+    width: 30%;
+    height: 75%;
 }
 
 .adminImage {

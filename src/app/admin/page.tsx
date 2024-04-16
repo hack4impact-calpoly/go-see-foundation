@@ -38,27 +38,27 @@ export default function AdminPage() {
                     alt="Go See Foundation's Logo"
                 />
                 <div className={styles.buttons}>
-                    <Link className={styles.buttonLink} href="/edit">
+                    <Link className={styles.buttonLink} href="/admin/edit">
                         <button className={`${styles.button} ${styles.edit}`}>
                             Edit Website
                         </button>
                     </Link>
-                    <Link className={styles.buttonLink} href="/members">
+                    <Link className={styles.buttonLink} href="/admin/members">
                         <button className={`${styles.button} ${styles.members}`}>
                             Manage Members
                         </button>
                     </Link>
-                    <Link className={styles.buttonLink} href="/events">
+                    <Link className={styles.buttonLink} href="/admin/events">
                         <button className={`${styles.button} ${styles.events}`}>
                             Create/Edit Events
                         </button>
                     </Link>
-                    <Link className={styles.buttonLink} href="/email">
+                    <Link className={styles.buttonLink} href="/admin/email">
                         <button className={`${styles.button} ${styles.email}`}>
                             Email
                         </button>
                     </Link>
-                    <Link className={styles.buttonLink} href="/images">
+                    <Link className={styles.buttonLink} href="/admin/images">
                         <button className={`${styles.button} ${styles.images}`}>
                             Images
                         </button>
