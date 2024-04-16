@@ -1,0 +1,88 @@
+.emailArea {
+  height: 90vh;
+  display: grid;
+  background-image: url("/colorful.jpeg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  grid-template-columns: 1fr 2fr;
+}
+
+.scrollSide {
+  background-color: white;
+  border: 2px solid;
+  overflow-y: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: #1d2f5d white;
+}
+
+/* for the email form */
+.emailForm select {
+  font-size: 16pt;
+}
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  justify-content: space-between;
+  background-color: white;
+  height: auto;
+  margin: 5em;
+  border-radius: 16pt;
+  border: solid;
+}
+
+.messageArea {
+  height: 30%;
+  resize: none;
+  border-radius: 12pt;
+  padding: 1em;
+  font-size: 10pt;
+  border: solid;
+}
+
+.to_input,
+.subject_input {
+  border-radius: 10pt;
+  font-size: 10pt;
+  padding: 0.4em;
+  border: solid;
+}
+
+.formButtons {
+  border-radius: 10pt;
+  width: 15em;
+  font-size: 10pt;
+  padding: 0.5em;
+  margin: 0 auto;
+  background-color: #1d2f5d;
+  color: white;
+}
+.formButtons:hover {
+  background-color: grey;
+}
+
+.individualMessage label {
+  margin-left: 0.5em;
+}
+
+.emailPreview {
+  border: 1px solid black;
+  display: flex;
+}
+
+.emailPreview input {
+  margin-top: 1.8em;
+  margin-left: 1.5em;
+}
+
+.emailPreview .infoSide {
+  margin-left: 1em;
+}
+
+.scrollSide select {
+  width: 80%;
+  margin: 1em;
+  font-size: 14pt;
+}
