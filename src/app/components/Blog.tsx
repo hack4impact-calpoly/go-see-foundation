@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./Blog.module.css";
+import "./Blog.css";
 import IndividualBlog from "./IndividualBlog";
 
 export default function Blog() {
@@ -11,20 +11,24 @@ export default function Blog() {
 
   return (
     <div className="container">
-      <div className="header">
-        <h2>GO See Blog</h2>
-        <select>
-          <option disabled selected value="archives">
-            Archives
-          </option>
-        </select>
-        <form action="/search" method="GET">
-          <input type="search"></input>
-          <button type="submit">Search</button>
-        </form>
-      </div>
-      <hr></hr>
-      <div className="blogs"></div>
+      <span className="header">
+        <h2 className="title">GO See Blog</h2>
+        <div className="rightaligned">
+          <select>
+            <option disabled value="archives" placeholder="Archives">
+              Archives
+            </option>
+          </select>
+          <form action="/search" method="GET">
+            <input type="search"></input>
+            <button className="submit" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      </span>
+      <hr className="line" />
+      <div className="blogs"><IndividualBlog></IndividualBlog></div>
       <div className="pageselection">
         <h4 className="pagenumbers">1 2 3</h4>
         <button className="olderarticles">OLDER ARTICLES &gt;</button>
