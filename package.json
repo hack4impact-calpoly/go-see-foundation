@@ -10,6 +10,8 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.0",
+    "@stripe/stripe-js": "^3.3.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "emailjs": "^4.0.3",
@@ -22,7 +24,8 @@
     "node": "^21.6.2",
     "react": "^18",
     "react-dom": "^18",
-    "react-intersection-observer": "^9.8.1"
+    "react-intersection-observer": "^9.8.1",
+    "stripe": "^15.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",
