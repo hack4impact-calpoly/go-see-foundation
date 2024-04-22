@@ -1,37 +1,42 @@
 "use client";
 import Script from "next/script";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function DonateButtonComponent() {
-  useEffect(() => {
-    // Query the DOM for the button element
-    const buttonElement = document.querySelector("stripe-buy-button");
+  const [stripeLoaded, setStripeLoaded] = useState(false);
 
-    // Ensure the buttonElement is an HTMLElement
-    if (buttonElement instanceof HTMLElement) {
-      // Update the styles of the button element
-      //   buttonElement.style.color = "#1d2f5d";
-      //   buttonElement.style.fontWeight = "bold";
-      //   buttonElement.style.borderRadius = "4pt";
-      //   buttonElement.style.borderWidth = "0.2em";
-      //   buttonElement.style.borderColor = "#1d2f5d";
-      //   buttonElement.style.backgroundColor = "white";
-      //   buttonElement.style.fontSize = "20pt";
-      //   buttonElement.style.width = "100%";
-      //   buttonElement.style.height = "60px";
-      //   buttonElement.style.border = "2px solid #1d2f5d";
-      //   buttonElement.style.background = "#fff";
-      //   buttonElement.style.boxSizing = "border-box";
-    }
+  const public_key = process.env.NEXT_STRIPE_PUBLIC_KEY;
+  useEffect(() => {
+    const loadStripeScript = async () => {
+      try {
+        // Load the Stripe script dynamically
+        const stripeScript = document.createElement("script");
+        stripeScript.src = "https://js.stripe.com/v3/";
+        stripeScript.async = true;
+        stripeScript.onload = () => setStripeLoaded(true);
+        document.head.appendChild(stripeScript);
+      } catch (error) {
+        console.error("Error loading Stripe script:", error);
+      }
+    };
+
+    loadStripeScript();
   }, []);
 
+  if (!stripeLoaded) {
+    return <div style={{ textAlign: "center" }}>Loading Stripe...</div>;
+  }
+
+  // id and pk are fine to expose to clients
   return (
     <div style={{ textAlign: "center" }}>
       <Script async src="https://js.stripe.com/v3/buy-button.js" />
       {/* @ts-ignore */}
       <stripe-buy-button
-        buy-button-id={process.env.STRIPE_BUTTON_ID}
-        publishable-key={process.env.STRIPE_PUBLIC_KEY}
+        buy-button-id={"buy_btn_1P6LEpCGxfvlQEMzrvEj22jp"}
+        publishable-key={
+          "pk_test_51MI1s7CGxfvlQEMz92h8Ro1tCKbBTE5dnU8j460Ct8OAi2JwonIJuvhWKuu8vlnt29CQ3r3AxJf7x9KP0xg658mP00SbLGKLEF"
+        }
       />
     </div>
   );

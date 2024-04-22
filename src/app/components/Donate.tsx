@@ -80,12 +80,6 @@ export default function Donate() {
         ></Image>{" "}
         <div className="description">{desc}</div>
         <form className="donateForm" onSubmit={handleSubmit}>
-          <div className="personalInformation">
-            <p>Personal Information:</p>
-            <input type="text" placeholder="First Name" />
-            <input type="text" placeholder="Last Name" />
-            <input type="email" placeholder="Email Address" />
-          </div>
           <DonateButtonComponent />
           <button type="submit">DONATE</button>
         </form>
