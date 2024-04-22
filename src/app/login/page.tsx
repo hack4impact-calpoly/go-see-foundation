@@ -53,6 +53,7 @@ export default function LoginPage() {
         const token = responseData.token;
         localStorage.setItem("jwtToken", token);
         alert("Successful Login!");
+        push('/')
       }
       else{
         const errorMessage = responseData.message;

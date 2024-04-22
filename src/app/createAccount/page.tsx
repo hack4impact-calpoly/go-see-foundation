@@ -5,6 +5,7 @@ import connectDB from "../../helpers/db";
 import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 import { IUser } from "@database/userSchema";
+import { useRouter } from "next/navigation";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -18,6 +19,7 @@ const CreateAccount = () => {
   const checkboxRef = useRef<HTMLInputElement>(null);
   const signupButtonRef = useRef<HTMLButtonElement>(null);
   const loginButtonRef = useRef<HTMLButtonElement>(null);
+  const { push } = useRouter();
 
   const [account, setAccount] = useState({
     first: "",
@@ -107,9 +109,10 @@ const CreateAccount = () => {
     }
   };
 
-  const handleCreateAccount = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleCreateAccount = () => {
     // If successful, redirect to a different page
+    console.log("hi");
+    push("/");
   };
 
   const handleSubmit = async () => {
@@ -139,7 +142,7 @@ const CreateAccount = () => {
 
       if (response.ok) {
         console.log("Account created successfully!");
-        // Redirect or perform other actions upon successful account creation
+        handleCreateAccount();
       } else {
         console.error("Failed to create account");
       }
