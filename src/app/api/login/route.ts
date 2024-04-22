@@ -5,6 +5,7 @@ import jwt from "jsonwebtoken";
 const bcrypt = require("bcrypt");
 
 export async function POST(req: NextRequest) {
+  
   await connectDB();
   try {
     const { email, password } = await req.json();
