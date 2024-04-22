@@ -65,6 +65,7 @@ export default function AdminPageEmail() {
           className={styles.to_input}
           value={to_value}
           ref={toRef}
+          onChange={(e) => setTo(e.target.value)}
           required
         ></input>
         <label htmlFor="subject">Subject:</label>
@@ -73,6 +74,7 @@ export default function AdminPageEmail() {
           className={styles.subject_input}
           value={subject}
           ref={subjectRef}
+          onChange={(e) => setSubject(e.target.value)}
           required
         ></input>
         <textarea
@@ -80,6 +82,7 @@ export default function AdminPageEmail() {
           placeholder="Text"
           value={message}
           ref={messageRef}
+          onChange={(e) => setMessage(e.target.value)}
           required
         ></textarea>
         <button className={styles.formButtons} type="submit">
