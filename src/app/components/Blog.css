@@ -17,13 +17,13 @@
 
 .header {
   display: flex;
+  align-items: center; /* Center items vertically */
   justify-content: space-between;
-  align-items: center;
 }
 
 .rightaligned {
-  justify-content: flex-end;
-  margin-left: auto;
+  display: flex; /* Change to flex */
+  align-items: center;
 }
 
 .header select,
@@ -41,7 +41,8 @@
 
 .header select {
   border-radius: 6px;
-  margin-right: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .submit {
@@ -84,4 +85,22 @@
 .pagenumbers,
 .olderarticles {
   margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Change to column layout on smaller screens */
+    align-items: flex-start; /* Align items to the start of the container */
+  }
+
+  .rightaligned {
+    margin-top: 10px; /* Add margin to separate from the title */
+  }
+
+  .header select,
+  .header input[type="search"],
+  .submit {
+    width: 100%; /* Make input elements full width */
+    margin: 10px 0; /* Add spacing between elements */
+  }
 }
