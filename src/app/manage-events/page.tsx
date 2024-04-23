@@ -9,6 +9,7 @@ const ManageEventsPage = () => {
   const startTimeInputRef = useRef<HTMLInputElement>(null);
   const endTimeInputRef = useRef<HTMLInputElement>(null);
   const eventDescriptionInputRef = useRef<HTMLInputElement>(null);
+  const createEventButtonRef = useRef<HTMLInputElement>(null);
 
   const handleEventChange = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("form changed");
@@ -20,6 +21,10 @@ const ManageEventsPage = () => {
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     console.log("input key pressed");
+  };
+
+  const handleCreateEventSubmit = () => {
+    console.log("submit button pressed");
   };
 
   return (
@@ -93,6 +98,15 @@ const ManageEventsPage = () => {
             ref={eventDescriptionInputRef}
             onKeyDown={handleInputKeyPress}
           />
+          <button
+            className={styles.createEventButton}
+            id="createEventButton"
+            type="submit"
+            ref={createEventButtonRef}
+            onClick={handleCreateEventSubmit}
+          >
+            Create New Event
+          </button>
         </form>
       </div>
     </div>
