@@ -44,7 +44,7 @@ export default function home() {
           Our mission is to encourage, inspire and empower those going through
           vision loss to remain active and engaged with their world.
         </h3>
-        <Link href = "/createAccount">
+        <Link href="/createAccount">
           <button className="joinButton" type="button">
             JOIN US
           </button>

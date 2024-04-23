@@ -24,7 +24,7 @@ export default function LoginPage() {
     remember: false,
   });
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>): void {
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>){
     event.preventDefault();
     console.log("login pressed");
     const message =
@@ -36,11 +36,42 @@ export default function LoginPage() {
       String(loginData.remember) +
       "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
     alert(message);
-
-    // TODO: try to fetch the user from database using email
-    // if email exists, verify password --> if password match, next page
-    //                                  --> if no match, send error message to user
-    // if email does not exist --> send error message to user
+    
+    const email = loginData.email;
+    const password = loginData.password;
+    try {
+      const response = await fetch("/api/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      
+      const responseData = await response.json();
+      if(response.ok && responseData.message == "Success: Login Complete"){
+        const token = responseData.token;
+        localStorage.setItem("jwtToken", token);
+        alert("Successful Login!");
+        push('/')
+      }
+      else{
+        const errorMessage = responseData.message;
+        if(errorMessage == "Failed: Login Incomplete"){
+          alert("Incomplete Feilds");
+        }
+        else if(errorMessage == "Failed: Login Failed"){
+          alert("Incorrect Email or Password");
+        }
+        else{
+          alert("Login Error");
+        }
+      }
+    }
+    catch (error) {
+      console.error("Login Error", error);
+    }
+  
   }
 
   function handleSignUp(): void {
