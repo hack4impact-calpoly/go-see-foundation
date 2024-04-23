@@ -46,13 +46,13 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
 
     const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
     let token;
-    try{
+    try {
       token = await new jose.SignJWT({ payload: data }) // details to  encode in the token
       .setProtectedHeader({ alg: 'HS256' }) // algorithm
       .setIssuedAt()
       //.setIssuer(process.env.JWT_ISSUER) // issuer
       //.setAudience(process.env.JWT_AUDIENCE) // audience
-      .setExpirationTime(10000) // token expiration time, e.g., "1 day"
+      .setExpirationTime('2h') // token expiration time, e.g., "1 day"
       .sign(secretKey); // secretKey generated from previous step
       console.log("token: ", token);
     }
@@ -60,8 +60,11 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
       console.log("error", err);
     }
     
+    // if(cookies().has('Auth_Sessionnew')){
+    //   cookies().delete('Auth_Sessionnew');
+    // }
 
-    cookies().set('Auth_Session', token, {
+    cookies().set('Auth_Sessionx', token, {
       sameSite: 'strict',
       httpOnly: true,
       // secure: true, # Uncomment this line when using HTTPS
