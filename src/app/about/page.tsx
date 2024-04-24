@@ -9,12 +9,18 @@ import spotify from "../images/spotify.svg";
 
 const AboutPage = () => {
   const useScreenSize = () => {
+    const isClient = typeof window === 'object'; // Check if window is defined
     const [screenSize, setScreenSize] = useState({
-      width: window.innerWidth,
-      height: window.innerHeight,
+      width: isClient ? window.innerWidth : 0, // initial width based on client or 0
+      height: isClient ? window.innerHeight : 0, // initial height based on client or 0
     });
 
     useEffect(() => {
+
+      if (!isClient) {
+        return; // If not in the client environment, do nothing
+      }
+
       const handleResize = () => {
         setScreenSize({
           width: window.innerWidth,
@@ -28,7 +34,7 @@ const AboutPage = () => {
       return () => {
         window.removeEventListener("resize", handleResize);
       };
-    }, []);
+    }, [isClient]);
 
     return screenSize;
   };
