@@ -27,7 +27,7 @@ export default function AdminPage() {
                             Manage Members
                         </button>
                     </Link>
-                    <Link className={styles.buttonLink} href="/admin/events">
+                    <Link className={styles.buttonLink} href="/admin/manage-events">
                         <button className={`${styles.button} ${styles.events}`}>
                             Create/Edit Events
                         </button>
