@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IEvent } from "@database/blogSchema";
+import Image from "next/image";
 import "./individualBlog.css";
 
 const IndividualBlog = ({ event }: { event: IEvent }) => {

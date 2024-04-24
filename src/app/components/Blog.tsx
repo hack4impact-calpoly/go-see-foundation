@@ -55,11 +55,9 @@ export default function Blog() {
       <span className="header">
         <h2 className="title">GO See Blog</h2>
         <div className="rightaligned">
-          <select>
-            <option disabled value="archives" placeholder="Archives">
-              Archives
-            </option>
-          </select>
+        <select defaultValue="archives">
+        <option value="archives">Archives</option>
+      </select>
           <form action="/search" method="GET">
             <input type="search"></input>
             <button className="submit" type="submit">
@@ -72,7 +70,7 @@ export default function Blog() {
       {/* <div className="blogs"><IndividualBlog></IndividualBlog></div> */}
       <div className="blogs">
         {events?.slice(0, 3).map((e: IEvent, index: number) => (
-          <IndividualBlog event={e} />
+          <IndividualBlog key={index} event={e} />
         ))}
       </div>
       <div className="pageselection">
