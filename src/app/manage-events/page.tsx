@@ -214,7 +214,6 @@ const ManageEventsPage = () => {
                   {events[index].name}
                 </option>
               ))}
-              {/* TODO: map all events pulled */}
             </select>
           )}
           <input
