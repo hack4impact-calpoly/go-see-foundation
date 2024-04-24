@@ -83,7 +83,6 @@ const ManageEventsPage = () => {
         const newDescription = `Start Time: ${formData["startTime"]}\nEnd Time: ${formData["endTime"]}\n\n${formData["description"]}`;
         formData["eventID"] = formData.name; // temporary, eventID same as name
         formData["picture"] = "/Group_Photo.jpeg"; // temporary, need to add picture input
-        formData["description"] = newDescription;
         const response = await fetch("/api/events/", {
           method: "POST",
           headers: {
@@ -92,7 +91,7 @@ const ManageEventsPage = () => {
           body: JSON.stringify({
             picture: formData["picture"],
             alt: formData["alt"],
-            description: formData["description"],
+            description: newDescription,
             date: formData["date"],
             name: formData["name"],
             eventID: formData["eventID"],
