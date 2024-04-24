@@ -218,7 +218,7 @@ const ManageEventsPage = () => {
               className={styles.selectEvent}
               id="firstInput"
               name="name"
-              required // TODO: figure out ref here
+              required
               onKeyDown={handleInputKeyPress}
             >
               <option value="">Select Event...</option>
