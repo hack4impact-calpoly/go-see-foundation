@@ -1,7 +1,8 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./manage-events.module.css";
 import { useRouter } from "next/navigation";
+import { IEvent } from "@database/eventSchema";
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
@@ -14,7 +15,16 @@ const ManageEventsPage = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const { push } = useRouter();
 
+  // TODO:
+  // 1) formData does not match eventSchema
+  // 2) do i use POST to update event?
+  // 3) Date and Time inputs do not have placeholder
+  // 4) Centering weird for Date and Time when blank
+  // 5) do i need to add media queries?
+  // 6) ref for select
+
   const [activeForm, setActiveForm] = useState(0);
+  const [events, setEvents] = useState<Array<IEvent>>([]);
   const [formData, setFormData] = useState({
     name: "",
     eventID: "",
@@ -25,6 +35,41 @@ const ManageEventsPage = () => {
     // missing from schema: picture, alt, eventID
     // not included in schema: startTime, endTime
   });
+
+  const fetchAllEvents = async () => {
+    try {
+      const res = await fetch("/api/events", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch events");
+      }
+
+      const res_j = await res.json();
+      return res_j;
+    } catch (err: unknown) {
+      console.error(`Error: ${err}`);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    const fetchEventData = async () => {
+      try {
+        let data = await fetchAllEvents();
+        data = data.sort(
+          (a: IEvent, b: IEvent) =>
+            new Date(b.date).getTime() - new Date(a.date).getTime()
+        );
+        setEvents(data);
+      } catch (error: unknown) {
+        console.error(`Error: ${error}`);
+      }
+    };
+
+    fetchEventData();
+  }, []);
 
   const handleEventChange = (
     event: React.ChangeEvent<HTMLFormElement>
@@ -58,7 +103,7 @@ const ManageEventsPage = () => {
         alert("Error: " + errorMessage);
       }
     } catch (error) {
-      console.error("Create New Event Error", error);
+      console.error(`Create New Event Error: ${error}`);
     }
   };
 
@@ -164,7 +209,11 @@ const ManageEventsPage = () => {
               onKeyDown={handleInputKeyPress}
             >
               <option value="">Select Event...</option>
-              <option value="event1">Event1</option>
+              {events.map((_: any, index: number) => (
+                <option value={String(events[index].eventID)}>
+                  {events[index].name}
+                </option>
+              ))}
               {/* TODO: map all events pulled */}
             </select>
           )}
