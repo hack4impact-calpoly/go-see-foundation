@@ -1,0 +1,109 @@
+.container {
+  height: fit-content;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/colorful.jpeg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.eventManager {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 20px;
+}
+
+.topButtons {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+}
+
+.newEventButton,
+.updateEventButton {
+  width: 50%;
+  justify-content: center;
+  font-family: "Helvetica", sans-serif;
+  font-size: 20px;
+  /* border: none; */
+}
+
+.eventForm {
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  width: 60%;
+  height: max-content;
+
+  margin-bottom: 5%;
+
+  border-color: orange;
+  border-width: 3px;
+  /* background-color: purple; */
+}
+
+.eventForm input,
+.eventForm textarea {
+  display: flex;
+  margin-bottom: 5%;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 7.5px 10px 7.5px 10px;
+  border: 1px solid;
+}
+
+.inputTimes {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.inputTimes .input {
+  width: 40%;
+}
+
+.descriptionInput {
+  display: flex;
+  height: 20vh;
+}
+
+.createEventButton {
+  width: 100%;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  font-family: "Helvetica", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  border-radius: 40px;
+  background-color: #1d2f5d;
+  color: white;
+  border: none;
+}
+
+.createEventButton:hover {
+  background-color: white;
+  color: #1d2f5d;
+}
+
+.container button:hover {
+  cursor: pointer;
+}

@@ -4,12 +4,14 @@ import styles from "./manage-events.module.css";
 import Link from "next/link";
 
 const ManageEventsPage = () => {
+  const newEventButtonRef = useRef<HTMLButtonElement>(null);
+  const updateEventButtonRef = useRef<HTMLButtonElement>(null);
   const titleInputRef = useRef<HTMLInputElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
   const startTimeInputRef = useRef<HTMLInputElement>(null);
   const endTimeInputRef = useRef<HTMLInputElement>(null);
-  const eventDescriptionInputRef = useRef<HTMLInputElement>(null);
-  const createEventButtonRef = useRef<HTMLInputElement>(null);
+  const eventDescriptionInputRef = useRef<HTMLTextAreaElement>(null);
+  const createEventButtonRef = useRef<HTMLButtonElement>(null);
 
   const handleEventChange = (e: React.FormEvent<HTMLFormElement>) => {
     console.log("form changed");
@@ -19,8 +21,44 @@ const ManageEventsPage = () => {
     console.log("form submitted");
   };
 
-  const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleInputKeyPress = (
+    e:
+      | React.KeyboardEvent<HTMLInputElement>
+      | React.KeyboardEvent<HTMLTextAreaElement>
+      | React.KeyboardEvent<HTMLButtonElement>
+  ) => {
     console.log("input key pressed");
+    if (e.key === "Tab") {
+      e.preventDefault();
+      switch (e.currentTarget.id) {
+        case "newEventButton":
+          updateEventButtonRef?.current?.focus();
+          break;
+        case "updateEventButton":
+          titleInputRef?.current?.focus();
+          break;
+        case "title":
+          dateInputRef?.current?.focus();
+          break;
+        case "date":
+          startTimeInputRef?.current?.focus();
+          break;
+        case "startTime":
+          endTimeInputRef?.current?.focus();
+          break;
+        case "endTime":
+          eventDescriptionInputRef?.current?.focus();
+          break;
+        case "eventDescription":
+          createEventButtonRef?.current?.focus();
+          break;
+        case "createEventButton":
+          newEventButtonRef?.current?.focus(); // Loop back to the first input field
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   const handleCreateEventSubmit = () => {
@@ -35,6 +73,7 @@ const ManageEventsPage = () => {
             className={styles.newEventButton}
             id="newEventButton"
             type="button"
+            ref={newEventButtonRef}
           >
             New Event
           </button>
@@ -42,6 +81,7 @@ const ManageEventsPage = () => {
             className={styles.updateEventButton}
             id="updateEventButton"
             type="button"
+            ref={updateEventButtonRef}
           >
             Update Event
           </button>
@@ -89,15 +129,14 @@ const ManageEventsPage = () => {
               onKeyDown={handleInputKeyPress}
             />
           </div>
-          <input
-            className={styles.input}
-            type="text"
+          <textarea
+            className={styles.descriptionInput}
             id="eventDescription"
             placeholder="Event Description"
             required
             ref={eventDescriptionInputRef}
             onKeyDown={handleInputKeyPress}
-          />
+          ></textarea>
           <button
             className={styles.createEventButton}
             id="createEventButton"
