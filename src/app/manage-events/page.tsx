@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
 import styles from "./manage-events.module.css";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const ManageEventsPage = () => {
