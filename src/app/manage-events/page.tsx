@@ -17,11 +17,16 @@ const ManageEventsPage = () => {
 
   // TODO:
   // 1) formData does not match eventSchema
+  // - add alt field under description, use filler for picture rn
   // 2) do i use POST to update event?
+  // - 
   // 3) Date and Time inputs do not have placeholder
+  // - add to description
   // 4) Centering weird for Date and Time when blank
-  // 5) do i need to add media queries?
+  // - that's okay
   // 6) ref for select
+  // 7) folder location
+  // - move to admin
 
   const [activeForm, setActiveForm] = useState(0);
   const [events, setEvents] = useState<Array<IEvent>>([]);
