@@ -32,30 +32,13 @@ export default async function middleware(req: NextRequest) {
         return;
     }
 
+    console.log('role: ', usertype);
     if(usertype != 'admin' && isProtectedRoute){
         console.log("user trying to access admin route")
+        
         return NextResponse.redirect(new URL('/', req.nextUrl))
     }
-
-    if(usertype == 'admin' && isProtectedRoute){
-        return NextResponse.redirect(new URL(path, req.nextUrl))
-
-    }
-
-//   // 5. Redirect to /login if the user is not authenticated
-//   if (isProtectedRoute && !session?.userId) {
-//     return NextResponse.redirect(new URL('/login', req.nextUrl))
-//   }
- 
-//   // 6. Redirect to /dashboard if the user is authenticated
-//   if (
-//     isPublicRoute &&
-//     session?.userId &&
-//     !req.nextUrl.pathname.startsWith('/dashboard')
-//   ) {
-//     return NextResponse.redirect(new URL('/dashboard', req.nextUrl))
-//   }
- 
+     
   return NextResponse.next()
 }
  
