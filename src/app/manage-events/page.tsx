@@ -6,13 +6,14 @@ import Link from "next/link";
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
   const updateEventButtonRef = useRef<HTMLButtonElement>(null);
-  const titleInputRef = useRef<HTMLInputElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
   const startTimeInputRef = useRef<HTMLInputElement>(null);
   const endTimeInputRef = useRef<HTMLInputElement>(null);
   const eventDescriptionInputRef = useRef<HTMLTextAreaElement>(null);
-  const createEventButtonRef = useRef<HTMLButtonElement>(null);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
 
+  const [activeForm, setActiveForm] = useState(0);
   const [eventData, setEventData] = useState({
     name: "",
     eventID: "",
@@ -41,7 +42,10 @@ const ManageEventsPage = () => {
 
   const handleInputKeyPress = (
     e: React.KeyboardEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+      | HTMLInputElement
+      | HTMLTextAreaElement
+      | HTMLButtonElement
+      | HTMLSelectElement
     >
   ) => {
     console.log("input key pressed");
@@ -52,7 +56,7 @@ const ManageEventsPage = () => {
           updateEventButtonRef?.current?.focus();
           break;
         case "updateEventButton":
-          titleInputRef?.current?.focus();
+          firstInputRef?.current?.focus();
           break;
         case "title":
           dateInputRef?.current?.focus();
@@ -67,7 +71,7 @@ const ManageEventsPage = () => {
           eventDescriptionInputRef?.current?.focus();
           break;
         case "eventDescription":
-          createEventButtonRef?.current?.focus();
+          submitButtonRef?.current?.focus();
           break;
         case "createEventButton":
           newEventButtonRef?.current?.focus(); // Loop back to the first input field
@@ -78,8 +82,20 @@ const ManageEventsPage = () => {
     }
   };
 
+  const handleNewEventForm = () => {
+    setActiveForm(0);
+  };
+
+  const handleUpdateEventForm = () => {
+    setActiveForm(1);
+  };
+
   const handleCreateEventSubmit = () => {
     console.log("submit button pressed");
+  };
+
+  const handleUpdateEventSubmit = () => {
+    console.log("update button pressed");
   };
 
   return (
@@ -87,18 +103,24 @@ const ManageEventsPage = () => {
       <div className={styles.eventManager}>
         <div className={styles.topButtons}>
           <button
-            className={styles.newEventButton}
+            className={`${styles.newEventButton} ${
+              activeForm === 0 ? styles.activeForm : ""
+            }`}
             id="newEventButton"
             type="button"
             ref={newEventButtonRef}
+            onClick={handleNewEventForm}
           >
             New Event
           </button>
           <button
-            className={styles.updateEventButton}
+            className={`${styles.updateEventButton} ${
+              activeForm === 1 ? styles.activeForm : ""
+            }`}
             id="updateEventButton"
             type="button"
             ref={updateEventButtonRef}
+            onClick={handleUpdateEventForm}
           >
             Update Event
           </button>
@@ -108,15 +130,28 @@ const ManageEventsPage = () => {
           onChange={handleEventChange}
           onSubmit={handleNewEvent}
         >
-          <input
-            className={styles.input}
-            type="text"
-            id="title"
-            placeholder="Title"
-            required
-            ref={titleInputRef}
-            onKeyDown={handleInputKeyPress}
-          />
+          {activeForm === 0 ? (
+            <input
+              className={styles.input}
+              type="text"
+              id="firstInput"
+              placeholder="Title"
+              required
+              ref={firstInputRef}
+              onKeyDown={handleInputKeyPress}
+            />
+          ) : (
+            <select
+              className={styles.selectEvent}
+              id="firstInput"
+              required // TODO: figure out ref here
+              onKeyDown={handleInputKeyPress}
+            >
+              <option value="">Select Event...</option>
+              <option value="event1">Event1</option>
+              {/* TODO: map all events pulled */}
+            </select>
+          )}
           <input
             className={styles.input}
             type="date"
@@ -156,12 +191,16 @@ const ManageEventsPage = () => {
           ></textarea>
           <button
             className={styles.createEventButton}
-            id="createEventButton"
+            id="submitButton"
             type="submit"
-            ref={createEventButtonRef}
-            onClick={handleCreateEventSubmit}
+            ref={submitButtonRef}
+            onClick={
+              activeForm === 0
+                ? handleCreateEventSubmit
+                : handleUpdateEventSubmit
+            }
           >
-            Create New Event
+            {activeForm === 0 ? "Create New Event" : "Update Event"}
           </button>
         </form>
       </div>
