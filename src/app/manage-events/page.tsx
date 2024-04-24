@@ -14,7 +14,7 @@ const ManageEventsPage = () => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
 
   const [activeForm, setActiveForm] = useState(0);
-  const [eventData, setEventData] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     eventID: "",
     date: null,
@@ -29,14 +29,13 @@ const ManageEventsPage = () => {
     event: React.ChangeEvent<HTMLFormElement>
   ): void => {
     const { name, value } = event.target;
-    console.log("form changed");
-    setEventData((prevEventData) => ({
-      ...prevEventData,
+    setFormData((prevFormData) => ({
+      ...prevFormData,
       [name]: value,
     }));
   };
 
-  const handleNewEvent = () => {
+  const handleSubmit = () => {
     console.log("form submitted");
   };
 
@@ -90,14 +89,6 @@ const ManageEventsPage = () => {
     setActiveForm(1);
   };
 
-  const handleCreateEventSubmit = () => {
-    console.log("submit button pressed");
-  };
-
-  const handleUpdateEventSubmit = () => {
-    console.log("update button pressed");
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.eventManager}>
@@ -128,13 +119,14 @@ const ManageEventsPage = () => {
         <form
           className={styles.eventForm}
           onChange={handleEventChange}
-          onSubmit={handleNewEvent}
+          onSubmit={handleSubmit}
         >
           {activeForm === 0 ? (
             <input
               className={styles.input}
               type="text"
               id="firstInput"
+              name="name"
               placeholder="Title"
               required
               ref={firstInputRef}
@@ -156,6 +148,7 @@ const ManageEventsPage = () => {
             className={styles.input}
             type="date"
             id="date"
+            name="date"
             placeholder="Date"
             required
             ref={dateInputRef}
@@ -166,6 +159,7 @@ const ManageEventsPage = () => {
               className={styles.input}
               type="time"
               id="startTime"
+              name="startTime"
               placeholder="Start Time"
               required
               ref={startTimeInputRef}
@@ -175,6 +169,7 @@ const ManageEventsPage = () => {
               className={styles.input}
               type="time"
               id="endTime"
+              name="endTime"
               placeholder="End Time"
               required
               ref={endTimeInputRef}
@@ -184,6 +179,7 @@ const ManageEventsPage = () => {
           <textarea
             className={styles.descriptionInput}
             id="eventDescription"
+            name="eventDescription"
             placeholder="Event Description"
             required
             ref={eventDescriptionInputRef}
@@ -194,11 +190,6 @@ const ManageEventsPage = () => {
             id="submitButton"
             type="submit"
             ref={submitButtonRef}
-            onClick={
-              activeForm === 0
-                ? handleCreateEventSubmit
-                : handleUpdateEventSubmit
-            }
           >
             {activeForm === 0 ? "Create New Event" : "Update Event"}
           </button>
