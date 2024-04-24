@@ -2,6 +2,7 @@
 import React, { useState, useRef } from "react";
 import styles from "./manage-events.module.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
@@ -12,6 +13,7 @@ const ManageEventsPage = () => {
   const endTimeInputRef = useRef<HTMLInputElement>(null);
   const eventDescriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const submitButtonRef = useRef<HTMLButtonElement>(null);
+  const { push } = useRouter();
 
   const [activeForm, setActiveForm] = useState(0);
   const [formData, setFormData] = useState({
@@ -35,8 +37,30 @@ const ManageEventsPage = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    console.log("form submitted");
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // posting event
+    try {
+      const response = await fetch("/api/events/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const responseData = await response.json();
+      if (response.ok && responseData.message == "Success: Event uploaded") {
+        alert("New Event Created!");
+        push("/admin");
+      } else {
+        const errorMessage = responseData.message;
+        alert("Error: " + errorMessage);
+      }
+    } catch (error) {
+      console.error("Create New Event Error", error);
+    }
   };
 
   const handleInputKeyPress = (
@@ -136,6 +160,7 @@ const ManageEventsPage = () => {
             <select
               className={styles.selectEvent}
               id="firstInput"
+              name="name"
               required // TODO: figure out ref here
               onKeyDown={handleInputKeyPress}
             >
