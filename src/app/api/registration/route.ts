@@ -4,6 +4,8 @@ import Users, { IUser } from "@database/userSchema";
 const bcrypt = require("bcrypt");
 
 export async function POST(req: NextRequest) {
+
+  console.log("creating account!!!!!!!!!!")
   await connectDB();
   try {
     const {
@@ -45,6 +47,7 @@ export async function POST(req: NextRequest) {
     await newUser.save();
     return NextResponse.json("Success: Registration Complete", { status: 200 });
   } catch (err) {
+    console.log("err: ", err);
     return NextResponse.json(`${err}`, { status: 400 });
   }
 }

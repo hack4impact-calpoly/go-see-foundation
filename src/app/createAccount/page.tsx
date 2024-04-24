@@ -116,6 +116,7 @@ const CreateAccount = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
       password: account.password,
@@ -129,6 +130,7 @@ const CreateAccount = () => {
     newUser.username = newUser.firstName + " " + newUser.lastName;
 
     try {
+      console.log("fetching");
       const response = await fetch("/api/registration/", {
         // Updated API endpoint
         method: "POST",
@@ -218,6 +220,7 @@ const CreateAccount = () => {
               type="email"
               id="email"
               placeholder="Email"
+              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
               required
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
