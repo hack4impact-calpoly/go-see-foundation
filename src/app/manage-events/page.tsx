@@ -13,8 +13,26 @@ const ManageEventsPage = () => {
   const eventDescriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const createEventButtonRef = useRef<HTMLButtonElement>(null);
 
-  const handleEventChange = (e: React.FormEvent<HTMLFormElement>) => {
+  const [eventData, setEventData] = useState({
+    name: "",
+    eventID: "",
+    date: null,
+    startTime: null,
+    endTime: null,
+    description: "",
+    // missing from schema: picture, alt, eventID
+    // not included in schema: startTime, endTime
+  });
+
+  const handleEventChange = (
+    event: React.ChangeEvent<HTMLFormElement>
+  ): void => {
+    const { name, value } = event.target;
     console.log("form changed");
+    setEventData((prevEventData) => ({
+      ...prevEventData,
+      [name]: value,
+    }));
   };
 
   const handleNewEvent = () => {
@@ -22,10 +40,9 @@ const ManageEventsPage = () => {
   };
 
   const handleInputKeyPress = (
-    e:
-      | React.KeyboardEvent<HTMLInputElement>
-      | React.KeyboardEvent<HTMLTextAreaElement>
-      | React.KeyboardEvent<HTMLButtonElement>
+    e: React.KeyboardEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLButtonElement
+    >
   ) => {
     console.log("input key pressed");
     if (e.key === "Tab") {
