@@ -52,6 +52,12 @@ export default function LoginPage() {
       if (response.ok && responseData.message == "Success: Login Complete") {
         alert("Successful Login!");
         push("/");
+      } else if (
+        response.ok &&
+        responseData.message == "Admin Success: Login Complete"
+      ) {
+        alert("Successful Login!");
+        push("/admin");
       } else {
         const errorMessage = responseData.message;
         if (errorMessage == "Failed: Login Incomplete") {

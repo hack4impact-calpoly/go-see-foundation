@@ -31,7 +31,7 @@ export async function getSession(req: any){
     } catch (error) {
 
         // ideally this should sign them out / update that componenet and let them know to resign in 
-        cookies().delete('Auth_Session')
+        //cookies().delete('Auth_Session')
         // If verification fails (e.g., invalid signature or expired token), an error will be thrown
         console.log('Error verifying token:', error);
         return null; // Return null or handle the error appropriately

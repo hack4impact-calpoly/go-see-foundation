@@ -6,13 +6,6 @@ import {getSession} from "services/auth/cookietoUsertype"
 
 export async function GET(req: NextRequest) {
   await connectDB();
-  // makes route exclusive to admin
-  let usertype;
-  usertype = await getSession(req);
-
-  if (usertype != 'admin'){
-    return NextResponse.json(`Forbidden Action`, {  status: 400, });
-  }
 
   try {
     const events = await EventSchema.find();
@@ -26,6 +19,14 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   await connectDB();
+
+  // makes route exclusive to admin
+  let usertype;
+  usertype = await getSession(req);
+  
+  if (usertype != 'admin'){
+    return NextResponse.json(`Forbidden Action`, {  status: 400, });
+  }
 
   try {
     const { picture, alt, description, date, name, eventID }: IEvent =

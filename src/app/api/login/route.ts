@@ -63,7 +63,14 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
       // secure: true, # Uncomment this line when using HTTPS
     });
 
-    return NextResponse.json({ message: "Success: Login Complete", token });
+    console.log("type:", user.userType);
+
+    if(user.userType == 'admin'){
+      return NextResponse.json({ message: "Admin Success: Login Complete" });
+    }
+
+    //return NextResponse.redirect(new URL('/', req.nextUrl))
+    return NextResponse.json({ message: "Success: Login Complete" });
   } catch (err) {
     return NextResponse.json(`${err}`, { status: 400 });
   }
