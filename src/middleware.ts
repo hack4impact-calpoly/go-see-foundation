@@ -17,14 +17,16 @@ export default async function middleware(req: NextRequest) {
     let jwt;
     let usertype;
     try{
-        cookie = req.cookies.get('Auth_Sessionx');
+        cookie = req.cookies.get('Auth_Session');
         if(cookie){
             jwt = cookie.value
             usertype = await getSession(jwt);
         }
 
         if(usertype != null){
-            console.log("auth cookie was valid!")
+            console.log("auth cookie was valid!");
+        } else {
+            console.log("invalid / null cookie");
         }
 
     } catch{
@@ -38,7 +40,7 @@ export default async function middleware(req: NextRequest) {
         
         return NextResponse.redirect(new URL('/', req.nextUrl))
     }
-     
+
   return NextResponse.next()
 }
  

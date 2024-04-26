@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 import Users, { IUser } from "@database/userSchema";
 import { cookies } from 'next/headers'
 import type {NextApiRequest, NextApiResponse} from 'next'
-import jwt from "jsonwebtoken";
 const bcrypt = require("bcrypt");
 const jose = require('jose')
 
@@ -41,8 +40,6 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
     const curr_time_sec = Math.round(curr_time / 1000); // current time in seconds
     const exp_time_sec = curr_time_sec + 1800; // exp time sec (current time + 30 mins)
     const data = { signInTime: curr_time_sec, exp: exp_time_sec, user };
-    //const token = jwt.sign(data, jwtSecretKey);
-
 
     const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
     let token;
@@ -60,11 +57,7 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
       console.log("error", err);
     }
     
-    // if(cookies().has('Auth_Sessionnew')){
-    //   cookies().delete('Auth_Sessionnew');
-    // }
-
-    cookies().set('Auth_Sessionx', token, {
+    cookies().set('Auth_Session', token, {
       sameSite: 'strict',
       httpOnly: true,
       // secure: true, # Uncomment this line when using HTTPS
