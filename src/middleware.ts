@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import {getSession} from "./services/auth/session-cookie"
+import {getSession} from "./services/auth/cookietoUsertype"
 
 // 1. Specify protected and public routes
 const protectedRoutes = ['/admin']
@@ -12,27 +12,9 @@ export default async function middleware(req: NextRequest) {
     const isPublicRoute = publicRoutes.includes(path)
 
     console.log("path", path)
-
-    let cookie;
-    let jwt;
     let usertype;
-    try{
-        cookie = req.cookies.get('Auth_Session');
-        if(cookie){
-            jwt = cookie.value
-            usertype = await getSession(jwt);
-        }
 
-        if(usertype != null){
-            console.log("auth cookie was valid!");
-        } else {
-            console.log("invalid / null cookie");
-        }
-
-    } catch{
-        console.log("error with auth cookie");
-        return;
-    }
+    usertype = await getSession(req);
 
     console.log('role: ', usertype);
     if(usertype != 'admin' && isProtectedRoute){

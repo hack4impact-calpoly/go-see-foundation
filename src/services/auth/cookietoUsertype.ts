@@ -6,7 +6,24 @@ const jwtConfig = {
   }
   
 
-export async function getSession(token: any){
+export async function getSession(req: any){
+    let cookie;
+    let token;
+
+    try{
+        cookie = req.cookies.get('Auth_Session');
+        if(cookie){
+            token = cookie.value
+        } else{
+            console.log("cookie is undefined: ", cookie);
+        }
+
+    } catch{
+        console.log("error with auth cookie");
+        return;
+    }
+
+
     try {
         const { payload, protectedHeader } = await jose.jwtVerify(token, jwtConfig.secret); // decrypt the token
         return payload.payload.user.userType;

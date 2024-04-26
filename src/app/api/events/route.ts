@@ -1,39 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
 import EventSchema, { IEvent } from "@database/eventSchema";
-import {getSession} from "services/auth/session-cookie"
+import {getSession} from "services/auth/cookietoUsertype"
 
 
 export async function GET(req: NextRequest) {
   await connectDB();
-
-
-  let cookie;
-  let jwt;
+  // makes route exclusive to admin
   let usertype;
-  try{
-      cookie = req.cookies.get('Auth_Session');
-      if(cookie){
-          jwt = cookie.value
-          usertype = await getSession(jwt);
-      }
-
-      if(usertype != null){
-          console.log("auth cookie was valid!");
-      } else {
-          console.log("invalid / null cookie");
-      }
-
-  } catch{
-      console.log("error with auth cookie");
-      return;
-  }
-
-  console.log("usertype: ", usertype)
+  usertype = await getSession(req);
 
   if (usertype != 'admin'){
-    return NextResponse.json(`Forbidden Action`, {  status: 400,
-    });
+    return NextResponse.json(`Forbidden Action`, {  status: 400, });
   }
 
   try {
