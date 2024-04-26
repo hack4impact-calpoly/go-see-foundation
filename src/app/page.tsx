@@ -9,8 +9,15 @@ import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
 import SeussQuote from "@components/seussQuote";
+import ImageUploadButton from "@components/UploadImage";
+
 
 export default function home() {
+  const handleFileChange = (files: FileList | null) => {
+    
+  };
+
+
   const images = [
     "/Group_Photo.jpeg",
     "/backgroundLogo.png",
@@ -27,6 +34,7 @@ export default function home() {
     "Quote Author 2 (member)",
     "Quote Author 3 (admin)",
   ];
+
 
   return (
     <div className="home">
@@ -59,6 +67,9 @@ export default function home() {
       />
       <HomeEvents />
       <SeussQuote />
+      
+      <ImageUploadButton onChange={handleFileChange}/>      
+
     </div>
   );
 }
