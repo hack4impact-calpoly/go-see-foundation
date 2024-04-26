@@ -57,7 +57,7 @@ export default function HomeEvents() {
     const message =
       "View All pressed. You will now be redirected to a page with all past events, news, and articles.";
     alert(message);
-    push("/pages/authentication/login");
+    push("/blog");
   };
 
   const handleAllEvents = () => {
@@ -66,7 +66,7 @@ export default function HomeEvents() {
     const message =
       "All Events pressed. You will now be redirected to a page with all upcoming.";
     alert(message);
-    push("/pages/authentication/createAccount");
+    push("/events");
   };
 
   return (
@@ -75,9 +75,9 @@ export default function HomeEvents() {
         <div className={styles.pastEvents}>
           <h2 className={styles.title}>News and Past Events</h2>
           <div className={styles.pastEventsCards}>
-            {events?.slice(0, 3).map((e: IEvent, index: number) => (
-              <PastEventCard event={e} />
-            ))}
+          {events?.slice(0, 3).map((e: IEvent, index: number) => (
+            <PastEventCard key={index} event={e} />
+          ))}
           </div>
           <button className={styles.viewAllArticles} onClick={handleViewAll}>
             VIEW ALL ARTICLES
@@ -87,12 +87,12 @@ export default function HomeEvents() {
         <div className={styles.upcomingEvents}>
           <h2 className={styles.title}>Upcoming Events</h2>
           <div className={styles.upcomingEventsCards}>
-            {events?.slice(0, 1).map((e: IEvent, index: number) => (
-              <UpcomingEventCard event={e} />
-            ))}
+          {events?.slice(0, 1).map((e: IEvent, index: number) => (
+            <UpcomingEventCard key={e.eventID.toString()} event={e} />
+          ))}
             <div className={styles.break2}></div>
             {events?.slice(1, 2).map((e: IEvent, index: number) => (
-              <UpcomingEventCard event={e} />
+              <UpcomingEventCard key={e.eventID.toString()} event={e} />
             ))}
             {/* <UpcomingEventCard event={events[0]} />
             <div className={styles.break2}></div>

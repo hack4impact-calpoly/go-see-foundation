@@ -1,0 +1,37 @@
+.blog {
+  color: #1d2f5d;
+  text-align: left;
+  font-family: "Helvetica Neue", Helvetica;
+  font-weight: bold;
+}
+
+.blogcategory {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.blogtitle {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.blogauthor {
+  font-weight: bold;
+}
+
+.blogimage {
+  max-width: 100%;
+}
+
+.blogcontent {
+  font-size: 16px;
+  line-height: 130%;
+  font-weight: 500px;
+  color: #000;
+}
+
+.yellowblogdiv {
+  width: 50%;
+  color: solid #fbb135;
+  border: 6px solid #fbb135;
+}

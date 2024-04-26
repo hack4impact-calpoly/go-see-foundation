@@ -73,7 +73,7 @@
 
 .imageIn,
 .imageOut {
-  max-width: 35vw;
+  max-width: 20vw;
   height: min-content;
   object-fit: contain;
 }

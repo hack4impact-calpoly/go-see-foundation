@@ -1,8 +1,10 @@
-"use client"
+"use client";
 import { useState } from "react";
 import "./Donate.css";
-import donateImage from "../images/donateImage.png"
+import donateImage from "../images/donateImage.png";
 import Image from "next/image";
+import DonateButtonComponent from "./donateButton";
+import Script from "next/script";
 
 export default function Donate() {
   // holds the user selections
@@ -78,49 +80,7 @@ export default function Donate() {
         ></Image>{" "}
         <div className="description">{desc}</div>
         <form className="donateForm" onSubmit={handleSubmit}>
-          <div className="donateAmount">
-            <p>Donation Amount:</p>
-            <div className="amntButtonDiv">
-              <button className="amountButton selected" onClick={amountOnClick}>
-                $25
-              </button>
-              <button className="amountButton" onClick={amountOnClick}>
-                $50
-              </button>
-              <button className="amountButton" onClick={amountOnClick}>
-                $100
-              </button>
-            </div>
-            <div className="amntButtonDiv">
-              <button className="amountButton" onClick={amountOnClick}>
-                $250
-              </button>
-              <button className="amountButton" onClick={amountOnClick}>
-                $500
-              </button>
-              <input
-                type="number"
-                className="amountButton"
-                min={0}
-                onChange={amountInput}
-                placeholder="$"
-              ></input>
-            </div>
-          </div>
-          <div className="donateFrequency">
-            <p>Donation Frequency:</p>
-            <select onChange={(e) => setTime(e.target.value)}>
-              <option value="Once">One-Time</option>
-              <option value="Monthly">Monthly</option>
-              <option value="Monthly">Annualy</option>
-            </select>
-          </div>
-          <div className="personalInformation">
-            <p>Personal Information:</p>
-            <input type="text" placeholder="First Name" />
-            <input type="text" placeholder="Last Name" />
-            <input type="email" placeholder="Email Address" />
-          </div>
+          <DonateButtonComponent />
           <button type="submit">DONATE</button>
         </form>
       </div>

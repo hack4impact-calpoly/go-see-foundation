@@ -8,12 +8,7 @@ export default function PastEventCard({ event }: { event: IEvent }) {
   const { push } = useRouter();
 
   const handleLearnMore = () => {
-    // TODO: probably want to use {name} to navigate to a new page with the event details
-    console.log("Learn More pressed");
-    const message =
-      "Learn More pressed. You will now be redirected to a page containing details about this event.";
-    alert(message);
-    push("/pages/authentication/login");
+    push("/blog");
   };
 
   return (
