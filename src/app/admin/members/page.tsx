@@ -101,7 +101,7 @@ export default function manageMembers() {
 
     async function backendUserDelete(user_id: String){
         const response = await fetch(`api/users/${user_id}`, {
-            method: "POST",
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
