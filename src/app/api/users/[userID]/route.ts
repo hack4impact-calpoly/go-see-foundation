@@ -22,13 +22,12 @@ export async function GET(req: NextRequest, { params }: IParams) {
   }
 }
 
-export async function DELETE(req: NextRequest){
+export async function DELETE(req: NextRequest, { params }: IParams){
   await connectDB();
-  const user_id = await req.json();
-  console.log(user_id)
+  const email = params.userID;
   try{
-    const user = await UserSchema.findByIdAndDelete(user_id).orFail();
-    return NextResponse.json(user, {status: 204});
+    const user = await UserSchema.deleteOne({email: email}).orFail();
+    return NextResponse.json(user, {status: 200});
   }
   catch(err){
     return NextResponse.json(`Error Deleting User: ${err}`, {

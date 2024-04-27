@@ -48,9 +48,9 @@ export default function manageMembers() {
                     <td>No History</td>
                     <td>{row.email}</td>
                     <td>
-                        <button onClick={() => props.deleteUser(index)}>
-                            Delete
-                        </button>
+                    <button onClick={() => props.deleteUser(index)} style={{ cursor: 'pointer' }}>
+                        Delete
+                    </button>
                     </td>
                 </tr>
             );
@@ -63,20 +63,25 @@ export default function manageMembers() {
     }
 
     async function fetchUsers(){
-        const fetchedUsers = await fetch("api/users");
-        const jsonData = await fetchedUsers.json();
-        return jsonData;
+        const fetchedUsers = await fetch("/api/users", {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!fetchedUsers.ok) {
+            throw new Error("Failed to fetch users");
+        }
+        const userData = await fetchedUsers.json();
+        return userData;
     }
 
     useEffect(() => {
         const fetchUserData = async () => {
             try{
-                const newData = await fetchUsers();
-                setUsers(newData);
-                alert(users)
+                const userData = await fetchUsers();
+                setUsers(userData);
             }
             catch (error: unknown){
-                alert(error)
                 console.log(error);
             }
         }
@@ -85,11 +90,11 @@ export default function manageMembers() {
     }, []);
 
     async function deleteUserByID(index: number){
-        const userToDelete = users[index]
+        const userToDelete: IUser = users[index]
         backendUserDelete(userToDelete)
             .then((response) => {
-                if (response.status == 204){
-                    const updatedUsers = users.filter((user) => user != userToDelete);
+                if (response.status == 200){
+                    const updatedUsers = users.filter((user: IUser) => user.email != userToDelete.email);
                     setUsers(updatedUsers);
                 }
                 else{
@@ -99,13 +104,13 @@ export default function manageMembers() {
             .catch((error) => {console.log(error)});
     }
 
-    async function backendUserDelete(user_id: String){
-        const response = await fetch(`api/users/${user_id}`, {
+    async function backendUserDelete(userToDelete: IUser){
+        const email = userToDelete.email;
+        const response = await fetch(`/api/users/${email}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
-            },
-            body: JSON.stringify({user_id})
+            }
         })
         return response;
     }

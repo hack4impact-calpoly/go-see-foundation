@@ -14,8 +14,6 @@ export async function GET(req: NextRequest) {
       // default behavior: no userType specified, so get ALL users
       const users = await UserSchema.find();
       console.log("looking for ALL users");
-      console.log(users);
-      alert("Hello 1")
       return NextResponse.json(users);
     } else {
       // specified userType found, only get those users
