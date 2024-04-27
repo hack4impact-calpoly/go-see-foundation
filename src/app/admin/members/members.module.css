@@ -1,0 +1,58 @@
+.container {
+    height: 80vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-color: #1D2F5D */
+    background-image: url(/colorful.jpeg);
+}
+
+.table {
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    border: 2px solid #1D2F5D;
+}
+
+.tableheader {
+    background-color: #1D2F5D;
+    color: white;
+}
+
+.tableheader th {
+    border: none;
+    padding: 15px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px
+}
+
+.tablebody {
+    background-color: white;
+}
+
+.tablebody td {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+}
+
+.deletebutton {
+    background-color: white;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+

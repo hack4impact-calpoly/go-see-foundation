@@ -1,6 +1,7 @@
 "use client";
 import { IUser } from "@database/userSchema";
 import React, {useState, useEffect} from "react";
+import styles from './members.module.css'
 
 export default function manageMembers() {
     const [users, setUsers] = useState([])
@@ -24,7 +25,7 @@ export default function manageMembers() {
     
     function TableHeader(){
         return(
-            <thead>
+            <thead className={styles.tableheader}>
                 <tr>
                     <th>Name</th>
                     <th>Age</th>
@@ -48,15 +49,15 @@ export default function manageMembers() {
                     <td>No History</td>
                     <td>{row.email}</td>
                     <td>
-                    <button onClick={() => props.deleteUser(index)} style={{ cursor: 'pointer' }}>
-                        Delete
+                    <button onClick={() => props.deleteUser(index)} className="deletebutton" style={{ cursor: 'pointer' }}>
+                        <img src="/delete.png" alt="Delete" style={{ width: '30px', height: '30px' }} />
                     </button>
                     </td>
                 </tr>
             );
         });
         return(
-            <tbody>
+            <tbody className={styles.tablebody}>
                 {userRows}
             </tbody>
         );
@@ -116,11 +117,13 @@ export default function manageMembers() {
     }
 
     return(
-        <div>
-            <Table 
-                userData={users}
-                deleteUser={deleteUserByID}
-            />
+        <div className={styles.container}>
+            <div className={styles.table}>
+                <Table 
+                    userData={users}
+                    deleteUser={deleteUserByID}
+                />
+            </div>
         </div>
     )
 
