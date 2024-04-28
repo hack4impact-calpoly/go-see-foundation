@@ -80,7 +80,7 @@ const ManageEventsPage = () => {
     // Create New Event, POST
     if (activeForm === 0) {
       try {
-        const newDescription = `Start Time: ${formData["startTime"]}\nEnd Time: ${formData["endTime"]}\n\n${formData["description"]}`;
+        const newDescription = `Date: ${formData["date"]}\n\nStart Time: ${formData["startTime"]}\nEnd Time: ${formData["endTime"]}\n\n${formData["description"]}`;
         formData["eventID"] = formData.name; // temporary, eventID same as name
         formData["picture"] = "/Group_Photo.jpeg"; // temporary, need to add picture input
         const response = await fetch("/api/events/", {
