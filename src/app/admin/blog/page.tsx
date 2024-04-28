@@ -149,8 +149,6 @@ const BlogPage = () => {
     // Deleting Blog, DELETE
     else {
       try {
-        console.log("deleting...");
-        console.log(blogs[selectedBlogIndex].blogID);
         const response = await fetch(
           `/api/blog/${blogs[selectedBlogIndex].blogID}`,
           {
@@ -164,7 +162,6 @@ const BlogPage = () => {
 
         const responseData = await response.json();
         if (response.ok && responseData.message == "Success: Blog deleted") {
-          console.log(responseData.message);
           alert(`"${blogs[selectedBlogIndex].name}" deleted`);
           window.location.reload();
           window.scrollTo(0, 0);
