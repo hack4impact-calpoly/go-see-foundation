@@ -2,12 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
 import BlogSchema, { IEvent } from "@database/blogSchema";
 
-type IParams = {
-  params: {
-    blogID: string;
-  };
-};
-
 export async function GET(req: NextRequest) {
   await connectDB();
 
@@ -49,17 +43,5 @@ export async function POST(req: NextRequest) {
     });
   } catch (err) {
     return NextResponse.json(`${err}`, { status: 400 });
-  }
-}
-
-export async function DELETE(req: NextRequest, { params }: IParams) {
-  await connectDB();
-  const { blogID } = params;
-
-  try {
-    await BlogSchema.deleteOne({ blogID }).orFail();
-    return NextResponse.json(`Success: Blog deleted`, { status: 200 });
-  } catch (err) {
-    return NextResponse.json(`Event not found. Error: ${err}`, { status: 400 });
   }
 }

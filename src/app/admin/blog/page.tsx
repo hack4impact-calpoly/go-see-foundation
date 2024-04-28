@@ -18,6 +18,7 @@ const BlogPage = () => {
 
   const [activeForm, setActiveForm] = useState(0);
   const [blogs, setBlogs] = useState<Array<IEvent>>([]);
+  const [selectedBlogIndex, setSelectedBlogIndex] = useState(-1);
   const [imageDataURL, setImageDataURL] = useState("");
   const [formData, setFormData] = useState({
     picture: "",
@@ -149,21 +150,27 @@ const BlogPage = () => {
     else {
       try {
         console.log("deleting...");
-        const response = await fetch("/api/blog/", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/JSON",
-          },
-          body: JSON.stringify({ blogID: formData["blogID"] }),
-        });
+        console.log(blogs[selectedBlogIndex].blogID);
+        const response = await fetch(
+          `/api/blog/${blogs[selectedBlogIndex].blogID}`,
+          {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/JSON",
+            },
+            body: JSON.stringify({ blogID: blogs[selectedBlogIndex].blogID }),
+          }
+        );
 
         const responseData = await response.json();
         if (response.ok && responseData.message == "Success: Blog deleted") {
           console.log(responseData.message);
+          alert(`"${blogs[selectedBlogIndex].name}" deleted`);
+          window.location.reload();
+          window.scrollTo(0, 0);
         } else {
           console.error(`Error deleting blog: ${responseData.message}`);
         }
-        // TODO: figure out what request to do here
       } catch (err) {
         console.error("Error deleting blog:", err);
       }
@@ -173,6 +180,7 @@ const BlogPage = () => {
   const handleFormSwitch = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (event.currentTarget.id === "newBlogButton") {
       setActiveForm(0);
+      setSelectedBlogIndex(-1);
     } else {
       setActiveForm(1);
     }
@@ -208,6 +216,24 @@ const BlogPage = () => {
     } else {
       console.log("canceled image selection");
     }
+  };
+
+  const handleBlogSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedBlogIndex(Number(event.target.value));
+    // TODO: load all info for inputs
+  };
+
+  // formats a Date object to YYYY-MM-DD for the date input element
+  const formatDate = (date: Date) => {
+    const d = new Date(date);
+    let month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
   };
 
   return (
@@ -261,12 +287,11 @@ const BlogPage = () => {
               name="name"
               required
               onKeyDown={handleInputKeyPress}
+              onChange={handleBlogSelection}
             >
               <option value="">Select Blog...</option>
-              {blogs.map((_: any, index: number) => (
-                <option value={String(blogs[index].blogID)}>
-                  {`Name: ${blogs[index].name}`}
-                </option>
+              {blogs.map((blog: IEvent, index: number) => (
+                <option value={index}>{`Name: ${blog.name}`}</option>
               ))}
             </select>
           )}
@@ -275,21 +300,34 @@ const BlogPage = () => {
             type="text"
             id="authorInput"
             name="author"
-            value={formData["author"]}
+            value={
+              selectedBlogIndex === -1
+                ? formData["author"]
+                : blogs[selectedBlogIndex].author
+            }
             placeholder="Author"
             required
             ref={authorInputRef}
             onKeyDown={handleInputKeyPress}
+            disabled={selectedBlogIndex === -1 ? false : true}
           />
           <input
             className={styles.input}
             type="date"
             id="date"
             name="date"
+            value={
+              selectedBlogIndex === -1
+                ? formData["date"]
+                  ? formatDate(formData["date"])
+                  : ""
+                : formatDate(blogs[selectedBlogIndex].date)
+            }
             placeholder="Date"
             required
             ref={dateInputRef}
             onKeyDown={handleInputKeyPress}
+            disabled={selectedBlogIndex === -1 ? false : true}
           />
           <input
             className={styles.input}
@@ -303,27 +341,38 @@ const BlogPage = () => {
             ref={pictureInputRef}
             onKeyDown={handleInputKeyPress}
             onChange={handleFileInput}
+            disabled={selectedBlogIndex === -1 ? false : true}
           />
           <input
             className={styles.input}
             type="text"
             id="altTextInput"
             name="alt"
-            value={formData["alt"]}
+            value={
+              selectedBlogIndex === -1
+                ? formData["alt"]
+                : blogs[selectedBlogIndex].alt
+            }
             placeholder="Alternative Text for Image"
             required
             ref={altTextInputRef}
             onKeyDown={handleInputKeyPress}
+            disabled={selectedBlogIndex === -1 ? false : true}
           />
           <textarea
             className={styles.descriptionInput}
             id="blogDescription"
             name="description"
             placeholder="Blog Description"
-            value={formData["description"]}
+            value={
+              selectedBlogIndex === -1
+                ? formData["description"]
+                : String(blogs[selectedBlogIndex].description)
+            }
             required
             ref={blogDescriptionInputRef}
             onKeyDown={handleInputKeyPress}
+            disabled={selectedBlogIndex === -1 ? false : true}
           ></textarea>
           <button
             className={styles.createBlogButton}
