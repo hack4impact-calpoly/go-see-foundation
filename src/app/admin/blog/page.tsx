@@ -286,7 +286,7 @@ const BlogPage = () => {
               onKeyDown={handleInputKeyPress}
               onChange={handleBlogSelection}
             >
-              <option value="">Select Blog...</option>
+              <option value="-1">Select Blog...</option>
               {blogs.map((blog: IEvent, index: number) => (
                 <option value={index}>{`Name: ${blog.name}`}</option>
               ))}
