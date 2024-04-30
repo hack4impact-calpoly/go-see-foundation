@@ -6,7 +6,6 @@ export type IResource = {
     alt: string;
     title: string;
     url: string;
-
 };
 
 const resourceSchema = new Schema<IResource>({
