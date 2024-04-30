@@ -13,11 +13,6 @@ import ImageUploadButton from "@components/UploadImage";
 
 
 export default function home() {
-  const handleFileChange = (files: FileList | null) => {
-    
-  };
-
-
   const images = [
     "/Group_Photo.jpeg",
     "/backgroundLogo.png",
@@ -68,8 +63,7 @@ export default function home() {
       <HomeEvents />
       <SeussQuote />
       
-      <ImageUploadButton onChange={handleFileChange}/>      
-
+      <ImageUploadButton />      
     </div>
   );
 }

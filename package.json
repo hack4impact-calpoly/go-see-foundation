@@ -10,12 +10,16 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.556.0",
+    "@aws-sdk/client-s3": "^3.565.0",
     "@aws-sdk/s3-presigned-post": "^3.556.0",
+    "@aws-sdk/s3-request-presigner": "^3.563.0",
+    "@types/dotenv": "^8.2.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "emailjs": "^4.0.3",
     "emailjs-com": "^3.2.0",
+    "env": "^0.0.2",
     "framer-motion": "^11.0.6",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.8",
