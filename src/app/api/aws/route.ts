@@ -53,11 +53,10 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileName = await uploadFileToS3(buffer, file.name);
-
-    return NextResponse.json({ success : true, fileName});
+    const s3ObjectURL = "https://temp-bucket-h4i.s3.us-east-2.amazonaws.com/myFolder/" + fileName;
+    return NextResponse.json({ success : true, s3ObjectURL});
 
   } catch (error : any) {
     return NextResponse.json({error});
   }
-
 }
