@@ -62,8 +62,8 @@ export default function ResourcePage() {
         className={styles.supportersPicture}
         src={"/supporters.png"}
         alt="The Go See Foundation's Supporters!"
-        width="500"
-        height="500"
+        width="2513" // original image dimensions
+        height="1285"
       />{" "}
     </div>
   );

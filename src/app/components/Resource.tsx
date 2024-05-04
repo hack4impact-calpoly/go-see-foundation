@@ -15,8 +15,8 @@ export default function Resource({ resource }: { resource: IResource }) {
           className={styles.picture}
           src={picture}
           alt={alt}
-          width="500"
-          height="500"
+          width="1000"
+          height="1000"
         />{" "}
       </Link>
       <div className={styles.text}>
