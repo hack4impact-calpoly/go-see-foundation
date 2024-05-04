@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Resource({ resource }: { resource: IResource }) {
   const { picture, alt, title, url } = resource;
   const { push } = useRouter();
+  console.log("resource created");
   return (
     <div className={styles.container}>
       <Link className={styles.pictureLink} href={url}>
@@ -19,9 +20,11 @@ export default function Resource({ resource }: { resource: IResource }) {
         />{" "}
       </Link>
       <div className={styles.text}>
-        <Link className={styles.titleLink} href={url}>
-          <p className={styles.title}>{title}</p>{" "}
-        </Link>
+        <p className={styles.title}>
+          <Link className={styles.titleLink} href={url}>
+            {title}
+          </Link>
+        </p>{" "}
       </div>
     </div>
   );

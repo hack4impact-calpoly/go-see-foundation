@@ -1,46 +1,38 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./resources.module.css";
-import Resource from "@components/Resource";
+import ResourceRow from "@components/ResourceRow";
 import { IResource } from "@database/resourceSchema";
+import Image from "next/image";
 
 export default function ResourcePage() {
-  const [resources, setResources] = useState<Array<IResource>>([]);
-  const resources2D: Array<Array<IResource>> = [];
+  const [resources2D, setResources2D] = useState<Array<Array<IResource>>>([]);
 
   useEffect(() => {
     const fetchResourceData = async () => {
       try {
         const data = await fetchAllResources();
-        setResources(data);
+
+        let tempResources2D: Array<Array<IResource>> = [];
+        let row: Array<IResource> = [];
+        for (let i = 0; i < data.length; i++) {
+          if (row.length === 3) {
+            tempResources2D.push(row);
+            row = [];
+          }
+          row.push(data[i]);
+        }
+        if (row.length !== 0) {
+          tempResources2D.push(row);
+        }
+        setResources2D(tempResources2D);
       } catch (err: unknown) {
         console.error(`Resources could not be fetched. Error: ${err}`);
       }
     };
 
-    console.log("fetching");
-
     fetchResourceData();
   }, []);
-
-  useEffect(() => {
-    const splitResources = () => {
-      let row: Array<IResource> = [];
-      for (let i = 0; i < resources.length; i++) {
-        if (row.length === 3) {
-          resources2D.append(row);
-          row = [];
-        }
-        row.append(resources[i]);
-      }
-      if (row.length !== 0) {
-        resources2D.append(row);
-      }
-      console.log(resources2D);
-    };
-
-    splitResources();
-  }, [resources]); // occurs after all resources fetched and set to 'resources'
 
   const fetchAllResources = async () => {
     try {
@@ -61,9 +53,18 @@ export default function ResourcePage() {
 
   return (
     <div className={styles.container}>
-      {resources?.map((single_resource: IResource, index: number) => (
-        <Resource key={index} resource={single_resource} />
+      <h2 className={styles.sectionHeader}>Resources</h2>
+      {resources2D?.map((row: Array<IResource>, index: number) => (
+        <ResourceRow key={index} resources={row} />
       ))}
+      <h2 className={styles.sectionHeader}>Supporters</h2>
+      <Image
+        className={styles.supportersPicture}
+        src={"/supporters.png"}
+        alt="The Go See Foundation's Supporters!"
+        width="500"
+        height="500"
+      />{" "}
     </div>
   );
 }
