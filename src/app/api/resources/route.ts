@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
 
   try {
     const resources = await ResourceSchema.find().orFail();
-    resources.sort((a, b) => b.title - a.title);
+    resources.sort((a, b) => a.title.localeCompare(b.title));
     return NextResponse.json(resources);
   } catch (err) {
     return NextResponse.json({
