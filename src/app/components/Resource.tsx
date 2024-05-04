@@ -2,11 +2,9 @@ import { IResource } from "@database/resourceSchema";
 import styles from "./resource.module.css";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 export default function Resource({ resource }: { resource: IResource }) {
   const { picture, alt, title, url } = resource;
-  const { push } = useRouter();
   console.log("resource created");
   return (
     <div className={styles.container}>
