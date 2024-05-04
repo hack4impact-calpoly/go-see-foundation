@@ -6,6 +6,7 @@ import { IResource } from "@database/resourceSchema";
 
 export default function ResourcePage() {
   const [resources, setResources] = useState<Array<IResource>>([]);
+  const resources2D: Array<Array<IResource>> = [];
 
   useEffect(() => {
     const fetchResourceData = async () => {
@@ -17,8 +18,29 @@ export default function ResourcePage() {
       }
     };
 
+    console.log("fetching");
+
     fetchResourceData();
   }, []);
+
+  useEffect(() => {
+    const splitResources = () => {
+      let row: Array<IResource> = [];
+      for (let i = 0; i < resources.length; i++) {
+        if (row.length === 3) {
+          resources2D.append(row);
+          row = [];
+        }
+        row.append(resources[i]);
+      }
+      if (row.length !== 0) {
+        resources2D.append(row);
+      }
+      console.log(resources2D);
+    };
+
+    splitResources();
+  }, [resources]); // occurs after all resources fetched and set to 'resources'
 
   const fetchAllResources = async () => {
     try {
@@ -39,7 +61,7 @@ export default function ResourcePage() {
 
   return (
     <div className={styles.container}>
-      {resources.map((single_resource: IResource, index: number) => (
+      {resources?.map((single_resource: IResource, index: number) => (
         <Resource key={index} resource={single_resource} />
       ))}
     </div>
