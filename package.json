@@ -10,6 +10,7 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.3.3",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "emailjs": "^4.0.3",

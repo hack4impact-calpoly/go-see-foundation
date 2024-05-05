@@ -1,64 +1,128 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./admin.module.css";
-import emailjs from 'emailjs-com';
-
+import { IUser } from "@database/userSchema";
+import emailjs from "@emailjs/browser";
 
 export default function AdminPage() {
-    const toRef = useRef<HTMLInputElement>(null);
-    const fromRef = useRef<HTMLInputElement>(null);
-    const messageRef = useRef<HTMLTextAreaElement>(null);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [individualEmail, setIndividualEmail] = useState("");
+  const [emailText, setEmailText] = useState("");
 
-    const handleSend = async (event: React.FormEvent<HTMLFormElement>) =>{
-        event.preventDefault();
+  const handleSelectChange = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setSelectedOption(e.target.value);
+  };
 
-        try {
-            const emailParams = {
-                to_name: toRef.current?.value, 
-                from_name: fromRef.current?.value,
-                message: messageRef.current?.value,
-            };
-        
-            await emailjs.send('service_9qu0p52', 'template_99zsbe8', emailParams, "Zw5OFi0OEo2qOzWRb");
-            alert("Email sent successfully.");
-        } catch (error) {
-            console.error(error);
-        }
+  const getUsers = async () => {
+    try {
+      const userList = await fetch(`/api/users?userType=${selectedOption}`);
+      if (!userList.ok) {
+        throw new Error("Failed to fetch user list");
+      }
+      const userListData = await userList.json();
+      return userListData;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  };
+
+  const sendEmails = async () => {
+    if (selectedOption == "Individual") {
+      const params = {
+        to_email: individualEmail,
+        message: emailText,
+      };
+      emailjs
+        .send("service_cppo4i7", "template_izma6p8", params, {
+          publicKey: "GKeCNmE1q3H0bTjJE",
+        })
+        .then((response) => {
+          console.log("Email sent successfully!", response);
+        })
+        .catch((error) => {
+          console.error("Error sending email:", error);
+        });
+    } else {
+      const userList = await getUsers();
+      userList.map((user: IUser) => {
+        console.log(user.email);
+        const params = {
+          to_email: user.email,
+          message: emailText,
+        };
+
+        emailjs
+          .send("service_cppo4i7", "template_izma6p8", params, {
+            publicKey: "GKeCNmE1q3H0bTjJE",
+          })
+          .then((response) => {
+            console.log("Email sent successfully!", response);
+          })
+          .catch((error) => {
+            console.error("Error sending email:", error);
+          });
+      });
     }
 
-    return(
-        <div>
-            <form className={styles.createForm} onSubmit={handleSend}>
-                <h2 className="formTitle">Send an Email</h2>
-                <div className="inputs">
-                    <input
-                        className="toInput"
-                        type="text"
-                        id="to"
-                        placeholder="To:"
-                        ref={toRef}
-                        required
-                    />
-                    <input
-                        className="fromInput"
-                        type="text"
-                        id="from"
-                        placeholder="From:"
-                        ref={fromRef}
-                        required
-                    />
-                    <textarea
-                        className="messageInput"
-                        id="message"
-                        placeholder="Type a message"
-                        ref={messageRef}
-                        required
-                    />
-                </div>
-                <button className="sendButton" type="submit">
-                    Send
-                </button>
-            </form>
-        </div>
-    )
+    setEmailText("")
+    setIndividualEmail("")
+  };
+
+  const handleIndividualEmailChange = (e: any) => {
+    const value = e.target.value;
+    setIndividualEmail(value);
+  };
+
+  const handleEmailTextChange = (e: any) => {
+    const value = e.target.value;
+    setEmailText(value);
+  };
+
+
+  return (
+    <>
+      <div>
+        <label htmlFor="dropdown">Select your role:</label>
+        <select
+          id="dropdown"
+          value={selectedOption}
+          onChange={handleSelectChange}
+        >
+          <option value="">Select...</option>
+          <option value="Member">Member</option>
+          <option value="Volunteer">Volunteer</option>
+          <option value="Partner/Donor">Partner/Donor</option>
+          <option value="Individual">Individual</option>
+        </select>
+      </div>
+      <div>
+        <input
+          placeholder="Enter email text here!"
+          type="text"
+          onChange={handleEmailTextChange}
+          value={emailText}
+        />
+      </div>
+      <div>
+        <button onClick={sendEmails}>Send Email!</button>
+      </div>
+      <div>
+        {selectedOption == "Individual" ? (
+          <input
+            placeholder="enter email"
+            type="text"
+            onChange={handleIndividualEmailChange}
+            value={individualEmail}
+          />
+        ) : (
+          <div></div>
+        )}
+      </div>
+    </>
+  );
 }
+
+
