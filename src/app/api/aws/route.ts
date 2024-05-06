@@ -3,6 +3,7 @@ dotenv.config();
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
 import { S3Client, S3ClientConfig, PutObjectCommand } from "@aws-sdk/client-s3";
+import awsObjectUrl from "@database/awsObjectUrlSchema";
 
 const region = process.env.NEXT_PUBLIC_AWS_S3_REGION;
 const accessKeyId = process.env.NEXT_PUBLIC_AWS_S3_ACCESS_KEY_ID;
@@ -39,10 +40,12 @@ async function uploadFileToS3(file : any, fileName: String) {
   }
   const command = new PutObjectCommand(params);
   await s3Client.send(command);
+
   return fileName;
 }
 
 export async function POST(req: NextRequest) {
+  await connectDB();
   try {
     const formData = await req.formData();
     const file = formData.get("file");
@@ -53,7 +56,10 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileName = await uploadFileToS3(buffer, file.name);
+    console.log("riht heer ")
     const s3ObjectURL = "https://temp-bucket-h4i.s3.us-east-2.amazonaws.com/myFolder/" + fileName;
+    await awsObjectUrl.create({ objectUrl: s3ObjectURL });
+
     return NextResponse.json({ success : true, s3ObjectURL});
 
   } catch (error : any) {
