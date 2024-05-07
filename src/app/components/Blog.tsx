@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Blog.css";
 import IndividualBlog from "./IndividualBlog";
 import { IEvent } from "@database/blogSchema";
 
 export default function Blog() {
-  // holds the user selections
-  // const [{ id, title, category, author, date, picture, altpicture, content }] = bloglist;
-
-  // in the below code, blogs is a list of all blogs fetched from the database
-  // IndividualBlog is another component meant to display a single blog
   const [events, setEvents] = useState<Array<IEvent>>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredEvents, setFilteredEvents] = useState<Array<IEvent>>([]);
 
   const fetchAllBlogs = async () => {
     try {
@@ -33,15 +30,12 @@ export default function Blog() {
     const fetchBlogData = async () => {
       try {
         let data = await fetchAllBlogs();
-        console.log(typeof data[0].date);
-        console.log(data[0].date);
-        console.log(new Date(data[0].date) > new Date(data[1].date));
         data = data.sort(
           (a: IEvent, b: IEvent) =>
             new Date(b.date).getTime() - new Date(a.date).getTime()
         );
-        console.log(data);
         setEvents(data);
+        setFilteredEvents(data); // Initialize filteredEvents with all events
       } catch (err) {
         console.error(err);
       }
@@ -50,16 +44,34 @@ export default function Blog() {
     fetchBlogData();
   }, []);
 
+  const handleSearchInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+
+    // Filter events based on the search query
+    const filtered = events.filter((event) =>
+      event.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredEvents(filtered);
+  };
+
   return (
     <div className="container">
       <span className="header">
         <h2 className="title">GO See Blog</h2>
         <div className="rightaligned">
-        <select defaultValue="archives">
-        <option value="archives">Archives</option>
-      </select>
-          <form action="/search" method="GET">
-            <input type="search"></input>
+          <select defaultValue="archives">
+            <option value="archives">Archives</option>
+          </select>
+          <form onSubmit={(e) => e.preventDefault()}>
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={handleSearchInputChange}
+              placeholder="Search..."
+            />
             <button className="submit" type="submit">
               Search
             </button>
@@ -67,9 +79,8 @@ export default function Blog() {
         </div>
       </span>
       <hr className="line" />
-      {/* <div className="blogs"><IndividualBlog></IndividualBlog></div> */}
       <div className="blogs">
-        {events?.slice(0, 3).map((e: IEvent, index: number) => (
+        {filteredEvents.slice(0, 3).map((e: IEvent, index: number) => (
           <IndividualBlog key={index} event={e} />
         ))}
       </div>
@@ -80,9 +91,3 @@ export default function Blog() {
     </div>
   );
 }
-
-/*
-        {bloglist.map((iblog) => (
-          <IndividualBlog key={iblog.id} blog={iblog}></IndividualBlog>
-        ))}
-        */
