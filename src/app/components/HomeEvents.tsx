@@ -4,15 +4,35 @@ import styles from "./homeEvents.module.css";
 import PastEventCard from "./PastEventCard";
 import UpcomingEventCard from "./UpcomingEventCard";
 import { IEvent } from "@database/eventSchema";
+import { IEvent as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
+  const [blogs, setBlogs] = useState<Array<BlogEvent>>([]);
   const { push } = useRouter();
+
+  const fetchAllBlogs = async () => {
+    try {
+      const res = await fetch("/api/blog", {
+        cache: "no-store",
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch Blogs");
+      }
+
+      const res_j = await res.json();
+      return res_j;
+    } catch (err: unknown) {
+      console.error(`Error: ${err}`);
+      return null;
+    }
+  };
 
   const fetchAllEvents = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/events", {
+      const res = await fetch("/api/events", {
         cache: "no-store",
       });
 
@@ -32,24 +52,28 @@ export default function HomeEvents() {
     const fetchEventData = async () => {
       try {
         let data = await fetchAllEvents();
-        console.log(typeof data[0].date);
-        console.log(data[0].date);
-        console.log(new Date(data[0].date) > new Date(data[1].date));
         data = data.sort(
           (a: IEvent, b: IEvent) =>
             new Date(b.date).getTime() - new Date(a.date).getTime()
         );
-        console.log(data);
         setEvents(data);
       } catch (err) {
         console.error(err);
       }
     };
 
+    const fetchBlogData = async () => {
+      try {
+        const data = await fetchAllBlogs();
+        setBlogs(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchBlogData();
     fetchEventData();
   }, []);
-
-  console.log(events);
 
   const handleViewAll = () => {
     // TODO: probably want to use {name} to navigate to a new page with the event details
@@ -57,7 +81,7 @@ export default function HomeEvents() {
     const message =
       "View All pressed. You will now be redirected to a page with all past events, news, and articles.";
     alert(message);
-    push("/pages/authentication/login");
+    push("/blog");
   };
 
   const handleAllEvents = () => {
@@ -66,7 +90,7 @@ export default function HomeEvents() {
     const message =
       "All Events pressed. You will now be redirected to a page with all upcoming.";
     alert(message);
-    push("/pages/authentication/createAccount");
+    push("/events");
   };
 
   return (
@@ -75,8 +99,8 @@ export default function HomeEvents() {
         <div className={styles.pastEvents}>
           <h2 className={styles.title}>News and Past Events</h2>
           <div className={styles.pastEventsCards}>
-            {events?.slice(0, 3).map((e: IEvent, index: number) => (
-              <PastEventCard event={e} />
+            {blogs?.slice(0, 3).map((blog: BlogEvent, index: number) => (
+              <PastEventCard key={index} blog={blog} />
             ))}
           </div>
           <button className={styles.viewAllArticles} onClick={handleViewAll}>
@@ -88,11 +112,11 @@ export default function HomeEvents() {
           <h2 className={styles.title}>Upcoming Events</h2>
           <div className={styles.upcomingEventsCards}>
             {events?.slice(0, 1).map((e: IEvent, index: number) => (
-              <UpcomingEventCard event={e} />
+              <UpcomingEventCard key={e.eventID.toString()} event={e} />
             ))}
             <div className={styles.break2}></div>
             {events?.slice(1, 2).map((e: IEvent, index: number) => (
-              <UpcomingEventCard event={e} />
+              <UpcomingEventCard key={e.eventID.toString()} event={e} />
             ))}
             {/* <UpcomingEventCard event={events[0]} />
             <div className={styles.break2}></div>

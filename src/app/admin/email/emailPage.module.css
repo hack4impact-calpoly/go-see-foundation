@@ -1,0 +1,63 @@
+.emailArea {
+  height: 90vh;
+  display: grid;
+  background-image: url("/colorful.jpeg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* for the email form */
+.emailForm select {
+  font-size: 16pt;
+}
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  justify-content: space-between;
+  background-color: white;
+  height: auto;
+  margin: 5em 20%;
+  border-radius: 16pt;
+  border: solid;
+}
+
+.messageArea {
+  height: 30%;
+  resize: none;
+  border-radius: 12pt;
+  padding: 1em;
+  font-size: 10pt;
+  border: solid;
+}
+
+.to_input,
+.subject_input {
+  border-radius: 10pt;
+  font-size: 10pt;
+  padding: 0.4em;
+  border: solid;
+}
+
+.formButtons {
+  border-radius: 10pt;
+  width: 50%;
+  font-size: 10pt;
+  padding: 0.5em;
+  margin: 0 auto;
+  background-color: #1d2f5d;
+  color: white;
+}
+.formButtons:hover {
+  background-color: grey;
+}
+
+.individualMessage label {
+  margin-left: 0.5em;
+}
+
+.emailPreview .infoSide {
+  margin-left: 1em;
+}
