@@ -1,5 +1,5 @@
 .container {
-  display: flex;
+  display: block;
   flex-direction: column;
   justify-content: center;
   width: 32%;
@@ -32,6 +32,12 @@
   flex: 1;
   text-align: center;
   margin: auto;
+  margin-top: 3%;
+  height: fit-content;
+  align-content: center;
+  justify-content: center;
+
+  /* background-color: yellow; */
 }
 
 .title {
@@ -40,6 +46,7 @@
   font-weight: bold;
   color: #1d2f5d;
   font-size: 2em;
+  margin: auto;
 }
 
 .titleLink {
