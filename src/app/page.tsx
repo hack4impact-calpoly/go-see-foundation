@@ -63,7 +63,6 @@ export default function home() {
       <HomeEvents />
       <SeussQuote />
       
-      <ImageUploadButton />      
     </div>
   );
 }
