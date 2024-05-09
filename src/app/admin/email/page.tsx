@@ -9,20 +9,15 @@ export default function AdminPageEmail() {
   const [to_value, setTo] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [scrollDropValue, setScrollDrop] = useState("Inbox");
-
-  const toRef = useRef<HTMLInputElement>(null);
-  const subjectRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
 
   const handleSend = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
       const emailParams = {
-        to_name: toRef.current?.value,
-        subject: subjectRef.current?.value,
-        message: messageRef.current?.value,
+        to_name: to_value,
+        subject: subject,
+        message: message,
       };
 
       await emailjs.send(
@@ -64,7 +59,6 @@ export default function AdminPageEmail() {
           type="text"
           className={styles.to_input}
           value={to_value}
-          ref={toRef}
           onChange={(e) => setTo(e.target.value)}
           required
         ></input>
@@ -73,7 +67,6 @@ export default function AdminPageEmail() {
           type="text"
           className={styles.subject_input}
           value={subject}
-          ref={subjectRef}
           onChange={(e) => setSubject(e.target.value)}
           required
         ></input>
@@ -81,7 +74,6 @@ export default function AdminPageEmail() {
           className={styles.messageArea}
           placeholder="Text"
           value={message}
-          ref={messageRef}
           onChange={(e) => setMessage(e.target.value)}
           required
         ></textarea>
