@@ -13,7 +13,7 @@ export default function manageMembers() {
     
     function Table(props: TableProps){
         return(
-            <table>
+            <table className={styles.table2}>
                 <TableHeader/>
                 <TableBody 
                     userData={props.userData} 
@@ -28,11 +28,11 @@ export default function manageMembers() {
             <thead className={styles.tableheader}>
                 <tr>
                     <th>Name</th>
-                    <th>Age</th>
                     <th>Phone Number</th>
                     <th>Role</th>
                     <th>History</th>
-                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
         );
@@ -43,14 +43,13 @@ export default function manageMembers() {
             return(
                 <tr key={index}>
                     <td>{row.firstName} {row.lastName}</td>
-                    <td>No Age</td>
                     <td>{row.phoneNum}</td>
                     <td>{row.userType}</td>
                     <td>No History</td>
                     <td>{row.email}</td>
                     <td>
                     <button onClick={() => props.deleteUser(index)} className="deletebutton" style={{ cursor: 'pointer' }}>
-                        <img src="/delete.png" alt="Delete" style={{ width: '30px', height: '30px' }} />
+                        <img src="/delete.jpg" alt="Delete" style={{ width: '30px', height: '30px' }} />
                     </button>
                     </td>
                 </tr>
