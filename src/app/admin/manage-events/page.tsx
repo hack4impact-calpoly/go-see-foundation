@@ -18,6 +18,7 @@ const ManageEventsPage = () => {
 
   const [activeForm, setActiveForm] = useState(0);
   const [events, setEvents] = useState<Array<IEvent>>([]);
+  const [selectedEventIndex, setSelectedEventIndex] = useState(-1);
   const [formData, setFormData] = useState({
     picture: "",
     alt: "",
@@ -72,6 +73,7 @@ const ManageEventsPage = () => {
       ...prevFormData,
       [name]: value,
     }));
+    console.log(formData["startTime"]);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -80,7 +82,7 @@ const ManageEventsPage = () => {
     // Create New Event, POST
     if (activeForm === 0) {
       try {
-        const newDescription = `Start Time: ${formData["startTime"]}\nEnd Time: ${formData["endTime"]}\n\n${formData["description"]}`;
+        const newDescription = `Date: ${formData["date"]}\nStart Time: ${formData["startTime"]}\nEnd Time: ${formData["endTime"]}\n\n${formData["description"]}`;
         formData["eventID"] = formData.name; // temporary, eventID same as name
         formData["picture"] = "/Group_Photo.jpeg"; // temporary, need to add picture input
         const response = await fetch("/api/events/", {
@@ -160,12 +162,41 @@ const ManageEventsPage = () => {
     }
   };
 
-  const handleNewEventForm = () => {
-    setActiveForm(0);
+  const handleFormSwitch = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (event.currentTarget.id === "newEventButton") {
+      setActiveForm(0);
+      setSelectedEventIndex(-1);
+    } else {
+      setActiveForm(1);
+    }
+    setFormData({
+      picture: "",
+      alt: "",
+      description: "",
+      date: null,
+      name: "",
+      eventID: "",
+      startTime: null,
+      endTime: null,
+    });
   };
 
-  const handleUpdateEventForm = () => {
-    setActiveForm(1);
+  const handleEventSelection = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSelectedEventIndex(Number(event.target.value));
+  };
+
+  const formatDate = (date: Date) => {
+    const d = new Date(date);
+    let month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
   };
 
   return (
@@ -179,7 +210,7 @@ const ManageEventsPage = () => {
             id="newEventButton"
             type="button"
             ref={newEventButtonRef}
-            onClick={handleNewEventForm}
+            onClick={handleFormSwitch}
           >
             New Event
           </button>
@@ -190,7 +221,7 @@ const ManageEventsPage = () => {
             id="updateEventButton"
             type="button"
             ref={updateEventButtonRef}
-            onClick={handleUpdateEventForm}
+            onClick={handleFormSwitch}
           >
             Update Event
           </button>
@@ -219,12 +250,11 @@ const ManageEventsPage = () => {
               name="name"
               required
               onKeyDown={handleInputKeyPress}
+              onChange={handleEventSelection}
             >
-              <option value="">Select Event...</option>
-              {events.map((_: any, index: number) => (
-                <option value={String(events[index].eventID)}>
-                  {events[index].name}
-                </option>
+              <option value="-1">Select Event...</option>
+              {events.map((blog: IEvent, index: number) => (
+                <option value={index}>{blog.name}</option>
               ))}
             </select>
           )}
@@ -233,10 +263,18 @@ const ManageEventsPage = () => {
             type="date"
             id="date"
             name="date"
+            value={
+              selectedEventIndex === -1
+                ? formData["date"]
+                  ? formatDate(formData["date"])
+                  : ""
+                : formatDate(events[selectedEventIndex].date)
+            }
             placeholder="Date"
             required
             ref={dateInputRef}
             onKeyDown={handleInputKeyPress}
+            disabled={selectedEventIndex === -1 ? false : true}
           />
           <div className={styles.inputTimes}>
             <input
@@ -248,6 +286,7 @@ const ManageEventsPage = () => {
               required
               ref={startTimeInputRef}
               onKeyDown={handleInputKeyPress}
+              disabled={selectedEventIndex === -1 ? false : true}
             />
             <input
               className={styles.input}
@@ -258,6 +297,7 @@ const ManageEventsPage = () => {
               required
               ref={endTimeInputRef}
               onKeyDown={handleInputKeyPress}
+              disabled={selectedEventIndex === -1 ? false : true}
             />
           </div>
           <textarea
@@ -265,10 +305,15 @@ const ManageEventsPage = () => {
             id="eventDescription"
             name="description"
             placeholder="Event Description"
-            value={formData["description"]}
+            value={
+              selectedEventIndex === -1
+                ? formData["description"]
+                : String(events[selectedEventIndex].description)
+            }
             required
             ref={eventDescriptionInputRef}
             onKeyDown={handleInputKeyPress}
+            disabled={selectedEventIndex === -1 ? false : true}
           ></textarea>
           {activeForm === 0 ? (
             <input
