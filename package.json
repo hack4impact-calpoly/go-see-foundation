@@ -10,13 +10,26 @@
     "lint:fix": "next lint --fix"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "@aws-sdk/client-s3": "^3.569.0",
+    "@aws-sdk/s3-presigned-post": "^3.556.0",
+    "@aws-sdk/s3-request-presigner": "^3.563.0",
+    "@types/dotenv": "^8.2.0",
+=======
     "@stripe/react-stripe-js": "^2.7.0",
     "@stripe/stripe-js": "^3.3.0",
+>>>>>>> 3ad7cba314d8857873392b55d04ad3984a521705
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
     "emailjs": "^4.0.3",
     "emailjs-com": "^3.2.0",
+<<<<<<< HEAD
+    "env": "^0.0.2",
+    "framer-motion": "^11.0.6",
+=======
     "framer-motion": "^11.0.28",
+>>>>>>> 3ad7cba314d8857873392b55d04ad3984a521705
     "jsonwebtoken": "^9.0.2",
     "micro": "^10.0.1",
     "mongoose": "^7.6.8",
@@ -26,8 +39,12 @@
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.8.1",
+<<<<<<< HEAD
+    "wouter": "^3.1.2"
+=======
     "sharp": "^0.33.3",
     "stripe": "^15.3.0"
+>>>>>>> 3ad7cba314d8857873392b55d04ad3984a521705
   },
   "devDependencies": {
     "@types/jsonwebtoken": "^9.0.6",
