@@ -1,95 +1,82 @@
 "use client";
 import { IDonation } from "@database/donationSchema";
-import React, {useState, useEffect} from "react";
-import styles from './donations.module.css'
+import React, { useState, useEffect } from "react";
+import styles from "./donations.module.css";
 
 export default function manageMembers() {
-    const [users, setUsers] = useState([])
+  const [donations, setDonations] = useState([]);
 
-    interface TableProps {
-        userData: IDonation[];
+  interface TableProps {
+    donationData: IDonation[];
+  }
+
+  function Table(props: TableProps) {
+    return (
+      <table className={styles.table2}>
+        <TableHeader />
+        <TableBody donationData={props.donationData} />
+      </table>
+    );
+  }
+
+  function TableHeader() {
+    return (
+      <thead className={styles.tableheader}>
+        <tr>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+    );
+  }
+
+  function TableBody(props: TableProps) {
+    const userRows = props.donationData.map((row, index) => {
+      return (
+        <tr key={index}>
+          <td>{row.firstName + " " + row.lastName}</td>
+          <td>{row.phoneNum}</td>
+          <td>{row.email}</td>
+          <td>{"$" + row.amount}</td>
+        </tr>
+      );
+    });
+    return <tbody className={styles.tablebody}>{userRows}</tbody>;
+  }
+
+  async function fetchDonations() {
+    const fetchedDonations = await fetch("/api/donations", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (!fetchedDonations.ok) {
+      throw new Error("Failed to fetch donations");
     }
-    
-    function Table(props: TableProps){
-        return(
-            <table className={styles.table2}>
-                <TableHeader/>
-                <TableBody 
-                    userData={props.userData} 
-                />
-            </table>
-        );
-    }
-    
-    function TableHeader(){
-        return(
-            <thead className={styles.tableheader}>
-                <tr>
-                    <th>Name</th>
-                    <th>Phone Number</th>
-                    <th>Role</th>
-                    <th>History</th>
-                    <th>Email</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-        );
-    }
+    const donationData = await fetchedDonations.json();
+    return donationData;
+  }
 
-    function TableBody(props: TableProps){
-        const userRows = props.userData.map((row: IDonation, index) => {
-            return(
-                <tr key={index}>
-                    <td>{row.amount}</td>
-                    <td>{row.email}</td>
-                </tr>
-            );
-        });
-        return(
-            <tbody className={styles.tablebody}>
-                {userRows}
-            </tbody>
-        );
-    }
+  useEffect(() => {
+    const fetchDonationData = async () => {
+      try {
+        const userData = await fetchDonations();
+        setDonations(userData);
+      } catch (error: unknown) {
+        console.log(error);
+      }
+    };
 
-    async function fetchDonations(){
-        const fetchedUsers = await fetch("/api/stripe", {
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-        if (!fetchedUsers.ok) {
-            throw new Error("Failed to fetch donations");
-        }
-        const userData = await fetchedUsers.json();
-        return userData;
-    }
+    fetchDonationData();
+  }, []);
 
-    useEffect(() => {
-        const fetchDonationHistory = async () => {
-            try{
-                const userData = await fetchDonations();
-                setUsers(userData);
-            }
-            catch (error: unknown){
-                console.log(error);
-            }
-        }
-
-        fetchDonationHistory();
-    }, []);
-
-
-
-
-    return(
-        <div className={styles.container}>
-            <div className={styles.table}>
-                <Table 
-                    userData={users}
-                />
-            </div>
-        </div>
-    )
-
+  return (
+    <div className={styles.container}>
+      <div className={styles.table}>
+        <Table donationData={donations} />
+      </div>
+    </div>
+  );
 }
