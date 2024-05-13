@@ -9,6 +9,8 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 // potential additions
 // adding logging to how often a user creates an attempt to pay the site
 export async function POST(req: Request, res: NextApiResponse){
+
+  console.log("saving donation")
   const headersList = headers();
   const stripeSignature = headersList.get('stripe-signature');
   console.log('Stripe Signature:', stripeSignature);
@@ -38,16 +40,38 @@ export async function POST(req: Request, res: NextApiResponse){
     switch (event) {
       case 'charge.succeeded':
         const paymentIntent = parsed_req.data.object;
-        // const user = await Users.findOne({ email: paymentIntent.receipt_email }).orFail();
-        
-        const newDonation = new Donation({
-          amount : paymentIntent.amount/100, //payments are stored in cents; converts to dollars
-          email : paymentIntent.receipt_email,
-          date : new Date()
-        });
 
-        await newDonation.save();
-        console.log(newDonation);
+        try{
+          const user = await Users.findOne({ email: paymentIntent.receipt_email.toLowerCase() }).orFail();
+          const { firstName, lastName, phoneNum } = user;          
+
+          const newDonation = new Donation({
+            amount: paymentIntent.amount / 100, // Payments are stored in cents; converts to dollars
+            email: paymentIntent.receipt_email.toLowerCase(),
+            date: new Date(),
+            firstName,
+            lastName,
+            phoneNum,
+          });
+
+          await newDonation.save();
+          console.log(newDonation);
+        }
+
+        catch{
+          const newDonation = new Donation({
+            amount : paymentIntent.amount/100, //payments are stored in cents; converts to dollars
+            email : paymentIntent.receipt_email.toLowerCase(),
+            date : new Date(),
+            firstName: "NOT PROVIDED",
+            lastName: " ",
+            phoneNum: "NOT PROVIDED",
+          });
+
+          await newDonation.save();
+          console.log(newDonation);
+        }
+        
         break;
 
       default:

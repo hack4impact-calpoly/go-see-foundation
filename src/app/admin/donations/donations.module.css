@@ -1,0 +1,88 @@
+.container {
+    height: 80vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    /* background-color: #1D2F5D */
+    background-image: url(/colorful.jpeg);
+}
+
+/* Table Structure Styling */
+
+.table {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid #1D2F5D;
+}
+
+.table2{
+    border-collapse: collapse;
+}
+
+
+/* Table Header Styling */
+.tableheader {
+    background-color: #1D2F5D;
+    color: white;
+}
+
+.tableheader th {
+    padding: 10px 15px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+}
+
+.tableheader th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.tableheader th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.tablebody {
+    background-color: white;
+}
+
+.tablebody tr:hover{
+    background-color: rgb(210, 210, 245);
+}
+
+
+
+/* Table Body Styling */
+.tablebody td {
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    font-family: "DM Sans", sans-serif;
+    font-size: 20px;
+}
+
+.tablebody tr:last-child td:first-child {
+    border-bottom-left-radius: 15px;
+}
+
+.tablebody tr:last-child td:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+.deletebutton {
+    background-color: white;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
