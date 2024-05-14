@@ -2,14 +2,16 @@
 import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import "./forgotPassword.css";
+
+import { redirect, useRouter } from "next/navigation";
 import backgroundLogo from "../images/backgroundLogo.png";
 import emailIcon from "../images/emailIcon.png";
 import passwordIcon from "../images/passwordIcon.png";
+import styles from "./forgotPassword.module.css";
 
 export default function ForgotPassword() {
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const loginButtonRef = useRef<HTMLButtonElement>(null);
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -39,32 +41,32 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="loginPage">
-      <div className="backgroundLogoContainer">
+    <div className={styles.loginPage}>
+      <div className={styles.backgroundLogoContainer}>
         <Image
           src={backgroundLogo}
           alt="background logo for the Go See Foundation"
           height="0"
           width="0"
-          className="backgroundLogo"
+          className={styles.backgroundLogo}
           priority={true}
         />
       </div>
-      <h1 className="Title">Welcome back to your account!</h1>
-      <form className="FormBody">
-        <h2 className="fTitle">Forgot Password</h2>
-        <h3 className="fontSubtitle">
+      <h1 className={styles.Title}>Welcome back to your account!</h1>
+      <form className={styles.FormBody}>
+        <h2 className={styles.fTitle}>Forgot Password</h2>
+        <h3 className={styles.fontSubtitle}>
           Please enter your email to reset your password
         </h3>
 
-        <div className="emailBody">
-          <p className="emailText">Your Email</p>
-          <div className="inputWrapper">
+        <div className={styles.emailBody}>
+          <p className={styles.emailText}>Your Email</p>
+          <div className={styles.inputWrapper}>
             <input
               type="text"
               id="email"
               name="email"
-              placeholder="Email"
+              placeholder="name@email.com"
               value={loginData.email}
               onChange={handleLoginChange}
               onKeyDown={(e) => handleInputKeyPress(e)}
@@ -73,23 +75,27 @@ export default function ForgotPassword() {
             />
           </div>
 
-          <button
-            id="login"
-            className="loginButtonFP"
-            type="submit"
-            onKeyDown={(e: any) => handleInputKeyPress(e)}
-          >
-            SEND
-          </button>
+          <Link href={`forgotPassword/emailSent`}>
+            <button
+              id="login"
+              className={styles.loginButtonFP}
+              type="submit"
+              ref={loginButtonRef}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
+            >
+              SEND
+            </button>
+          </Link>
 
-          <button
-            id="login"
-            className="BacktoLoginButton"
-            type="submit"
-            onKeyDown={(e: any) => handleInputKeyPress(e)}
-          >
-            Back to Login
-          </button>
+          <Link href={"/login"}>
+            <button
+              id="login"
+              className={styles.BacktoLoginButton}
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
+            >
+              Back to Login
+            </button>
+          </Link>
         </div>
       </form>
     </div>

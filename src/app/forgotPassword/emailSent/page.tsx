@@ -13,6 +13,10 @@ export default function EmailSent() {
     email: "",
   });
 
+  //   const handleEmailSend(){
+
+  //   }
+
   const handleLoginChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
@@ -44,7 +48,7 @@ export default function EmailSent() {
           alt="background logo for the Go See Foundation"
           height="0"
           width="0"
-          className="backgroundLogo"
+          className={styles.backgroundLogo}
           priority={true}
         />
       </div>
@@ -68,14 +72,16 @@ export default function EmailSent() {
             RESEND EMAIL
           </button>
 
-          <button
-            id="login"
-            className={styles.BacktoLoginButton}
-            type="submit"
-            onKeyDown={(e: any) => handleInputKeyPress(e)}
-          >
-            Back to Login
-          </button>
+          <Link href={"/login"}>
+            <button
+              id="login"
+              className={styles.BacktoLoginButton}
+              type="submit"
+              onKeyDown={(e: any) => handleInputKeyPress(e)}
+            >
+              Back to Login
+            </button>
+          </Link>
         </div>
       </form>
     </div>
