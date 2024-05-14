@@ -10,6 +10,7 @@ export type IEventSignUp = {
   needSightedGuide: boolean;
   attendedEventBefore: boolean;
   comments: string;
+  eventName: string;
 
 };
 
@@ -22,7 +23,7 @@ const eventSignUpSchema = new Schema<IEventSignUp>({
     needSightedGuide: { type: Boolean, required: true },
     attendedEventBefore: { type: Boolean, required: true },
     comments: { type: String, required: true },
-
+    eventName: { type: String, required: true },
 });
 
 const EventSignUp =
