@@ -3,12 +3,10 @@ import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import "./forgotPassword.css";
-import backgroundLogo from "../images/backgroundLogo.png";
-import emailIcon from "../images/emailIcon.png";
-import passwordIcon from "../images/passwordIcon.png";
+import styles from "./emailSent.module.css";
+import backgroundLogo from "../../images/backgroundLogo.png";
 
-export default function ForgotPassword() {
+export default function EmailSent() {
   const emailInputRef = useRef<HTMLInputElement>(null);
 
   const [loginData, setLoginData] = useState({
@@ -39,8 +37,8 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="loginPage">
-      <div className="backgroundLogoContainer">
+    <div className={styles.loginPage}>
+      <div className={styles.backgroundLogoContainer}>
         <Image
           src={backgroundLogo}
           alt="background logo for the Go See Foundation"
@@ -50,41 +48,29 @@ export default function ForgotPassword() {
           priority={true}
         />
       </div>
-      <h1 className="Title">Welcome back to your account!</h1>
-      <form className="FormBody">
-        <h2 className="fTitle">Forgot Password</h2>
-        <h3 className="fontSubtitle">
-          Please enter your email to reset your password
+      <h1 className={styles.Title}>Welcome back to your account!</h1>
+      <form className={styles.FormBody}>
+        <h2 className={styles.fTitle}>Check your email</h2>
+        <h3 className={styles.fontSubtitle}>
+          We have sent an email with a password reset to your email!
+        </h3>
+        <h3 className={styles.fontSubtitle}>
+          Didn't get an email? Check spam or promotion folder.
         </h3>
 
-        <div className="emailBody">
-          <p className="emailText">Your Email</p>
-          <div className="inputWrapper">
-            <input
-              type="text"
-              id="email"
-              name="email"
-              placeholder="Email"
-              value={loginData.email}
-              onChange={handleLoginChange}
-              onKeyDown={(e) => handleInputKeyPress(e)}
-              ref={emailInputRef}
-              required
-            />
-          </div>
-
+        <div className={styles.emailBody}>
           <button
             id="login"
-            className="loginButtonFP"
+            className={styles.loginButtonFP}
             type="submit"
             onKeyDown={(e: any) => handleInputKeyPress(e)}
           >
-            SEND
+            RESEND EMAIL
           </button>
 
           <button
             id="login"
-            className="BacktoLoginButton"
+            className={styles.BacktoLoginButton}
             type="submit"
             onKeyDown={(e: any) => handleInputKeyPress(e)}
           >
