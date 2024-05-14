@@ -5,17 +5,22 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "./emailSent.module.css";
 import backgroundLogo from "../../images/backgroundLogo.png";
+import { style } from "motion";
 
-export default function EmailSent() {
+export default function EmailSent(context: any) {
+  //console.log("here: ", decodeURIComponent(context.params.email));
+
+  const email = decodeURIComponent(context.params.email);
+
   const emailInputRef = useRef<HTMLInputElement>(null);
-
   const [loginData, setLoginData] = useState({
     email: "",
   });
 
-  //   const handleEmailSend(){
-
-  //   }
+  //use this to make any api calls that are need in password verification
+  const onClickEmail = () => {
+    console.log(loginData);
+  };
 
   const handleLoginChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -56,8 +61,9 @@ export default function EmailSent() {
       <form className={styles.FormBody}>
         <h2 className={styles.fTitle}>Check your email</h2>
         <h3 className={styles.fontSubtitle}>
-          We have sent an email with a password reset to your email!
+          We have sent an email with a password reset to your email
         </h3>
+        <h3 className={styles.emailText}>{email}</h3>
         <h3 className={styles.fontSubtitle}>
           Didn't get an email? Check spam or promotion folder.
         </h3>
@@ -67,6 +73,7 @@ export default function EmailSent() {
             id="login"
             className={styles.loginButtonFP}
             type="submit"
+            onClick={onClickEmail}
             onKeyDown={(e: any) => handleInputKeyPress(e)}
           >
             RESEND EMAIL

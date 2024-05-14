@@ -3,7 +3,7 @@ import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { redirect, useRouter } from "next/navigation";
+import { redirect, useRouter, permanentRedirect } from "next/navigation";
 import backgroundLogo from "../images/backgroundLogo.png";
 import emailIcon from "../images/emailIcon.png";
 import passwordIcon from "../images/passwordIcon.png";
@@ -38,6 +38,11 @@ export default function ForgotPassword() {
           return;
       }
     }
+  };
+
+  //use this to make any api calls that are need in password verification
+  const onClickEmail = () => {
+    console.log(loginData);
   };
 
   return (
@@ -75,9 +80,18 @@ export default function ForgotPassword() {
             />
           </div>
 
-          <Link href={`forgotPassword/emailSent`}>
+          <Link
+            href={{
+              pathname: `/forgotPassword/[email]`,
+              query: {
+                id: loginData.email, // pass the id
+              },
+            }}
+            as={`/forgotPassword/${loginData.email}`}
+          >
             <button
               id="login"
+              onClick={onClickEmail}
               className={styles.loginButtonFP}
               type="submit"
               ref={loginButtonRef}
