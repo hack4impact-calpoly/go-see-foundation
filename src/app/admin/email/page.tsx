@@ -1,109 +1,128 @@
 "use client";
-import React, { useState, useRef } from "react";
-import styles from "./emailPage.module.css";
-import emailjs from "emailjs-com";
+import React, { useState, useRef, useEffect } from "react";
+import styles from "./admin.module.css";
+import { IUser } from "@database/userSchema";
+import emailjs from "@emailjs/browser";
 
-export default function AdminPageEmail() {
-  const [group, setGroup] = useState("Test1");
-  const [individualMessage, setIndividualMessage] = useState(false);
-  const [to_value, setTo] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [scrollDropValue, setScrollDrop] = useState("Inbox");
+export default function AdminPage() {
+  const [selectedOption, setSelectedOption] = useState("");
+  const [individualEmail, setIndividualEmail] = useState("");
+  const [emailText, setEmailText] = useState("");
 
-  const toRef = useRef<HTMLInputElement>(null);
-  const subjectRef = useRef<HTMLInputElement>(null);
-  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const handleSelectChange = (e: {
+    target: { value: React.SetStateAction<string> };
+  }) => {
+    setSelectedOption(e.target.value);
+  };
 
-  const handleSend = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const getUsers = async () => {
     try {
-      const emailParams = {
-        to_name: toRef.current?.value,
-        subject: subjectRef.current?.value,
-        message: messageRef.current?.value,
-      };
-
-      await emailjs.send(
-        "service_9qu0p52",
-        "template_99zsbe8",
-        emailParams,
-        "Zw5OFi0OEo2qOzWRb"
-      );
-      alert("Email sent successfully.");
-
-      setTo("");
-      setSubject("");
-      setMessage("");
+      const userList = await fetch(`/api/users?userType=${selectedOption}`);
+      if (!userList.ok) {
+        throw new Error("Failed to fetch user list");
+      }
+      const userListData = await userList.json();
+      return userListData;
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      return null;
     }
   };
 
+  const sendEmails = async () => {
+    if (selectedOption == "Individual") {
+      const params = {
+        to_email: individualEmail,
+        message: emailText,
+      };
+      emailjs
+        .send("service_cppo4i7", "template_izma6p8", params, {
+          publicKey: "GKeCNmE1q3H0bTjJE",
+        })
+        .then((response) => {
+          console.log("Email sent successfully!", response);
+        })
+        .catch((error) => {
+          console.error("Error sending email:", error);
+        });
+    } else {
+      const userList = await getUsers();
+      userList.map((user: IUser) => {
+        console.log(user.email);
+        const params = {
+          to_email: user.email,
+          message: emailText,
+        };
+
+        emailjs
+          .send("service_cppo4i7", "template_izma6p8", params, {
+            publicKey: "GKeCNmE1q3H0bTjJE",
+          })
+          .then((response) => {
+            console.log("Email sent successfully!", response);
+          })
+          .catch((error) => {
+            console.error("Error sending email:", error);
+          });
+      });
+    }
+
+    setEmailText("")
+    setIndividualEmail("")
+  };
+
+  const handleIndividualEmailChange = (e: any) => {
+    const value = e.target.value;
+    setIndividualEmail(value);
+  };
+
+  const handleEmailTextChange = (e: any) => {
+    const value = e.target.value;
+    setEmailText(value);
+  };
+
+
   return (
-    <div className={styles.emailArea}>
-      <form className={styles.emailForm} onSubmit={handleSend}>
-        <label htmlFor="group">Select Group:</label>
+    <>
+      <div>
+        <label htmlFor="dropdown">Select your role:</label>
         <select
-          className={styles.groupDropdown}
-          onChange={(e) => setGroup(e.target.value)}
+          id="dropdown"
+          value={selectedOption}
+          onChange={handleSelectChange}
         >
-          <option>Test1</option>
-          <option>test2</option>
+          <option value="">Select...</option>
+          <option value="Member">Member</option>
+          <option value="Volunteer">Volunteer</option>
+          <option value="Partner/Donor">Partner/Donor</option>
+          <option value="Individual">Individual</option>
         </select>
-        <div className={styles.individualMessage}>
+      </div>
+      <div>
+        <input
+          placeholder="Enter email text here!"
+          type="text"
+          onChange={handleEmailTextChange}
+          value={emailText}
+        />
+      </div>
+      <div>
+        <button onClick={sendEmails}>Send Email!</button>
+      </div>
+      <div>
+        {selectedOption == "Individual" ? (
           <input
-            type="checkbox"
-            onChange={(e) => setIndividualMessage(e.target.checked)}
+            placeholder="enter email"
+            type="text"
+            onChange={handleIndividualEmailChange}
+            value={individualEmail}
           />
-          <label htmlFor="individualMessage">send an individual message</label>
-        </div>
-        <label htmlFor="to">To:</label>
-        <input
-          type="text"
-          className={styles.to_input}
-          value={to_value}
-          ref={toRef}
-          onChange={(e) => setTo(e.target.value)}
-          required
-        ></input>
-        <label htmlFor="subject">Subject:</label>
-        <input
-          type="text"
-          className={styles.subject_input}
-          value={subject}
-          ref={subjectRef}
-          onChange={(e) => setSubject(e.target.value)}
-          required
-        ></input>
-        <textarea
-          className={styles.messageArea}
-          placeholder="Text"
-          value={message}
-          ref={messageRef}
-          onChange={(e) => setMessage(e.target.value)}
-          required
-        ></textarea>
-        <button className={styles.formButtons} type="submit">
-          Send
-        </button>
-        <button className={styles.formButtons}>Cancel</button>
-      </form>
-    </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+    </>
   );
 }
 
-function EmailPreview() {
-  return (
-    <div className={styles.emailPreview}>
-      <input type="checkbox"></input>
-      <div className={styles.infoSide}>
-        <p>MM/DD/YYYY</p>
-        <p>From, To</p>
-        <p>Subject</p>
-        <p>Text</p>
-      </div>
-    </div>
-  );
-}
+

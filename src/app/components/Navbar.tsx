@@ -7,9 +7,11 @@ import menu from "../images/menu.png";
 import styles from "./navbar.module.css";
 
 export default function Navbar() {
-
   return (
     <div className={styles.navbar}>
+      <a href="#main" className="skip-to-main-content-link">
+        Skip to end of navbar
+      </a>
       <div className={styles.mainbar}>
         <div className={styles.image}>
           <Image
@@ -53,21 +55,16 @@ export default function Navbar() {
           </Link>
         </div>
         <div className={styles.linkWrapper}>
-          <Link className={styles.link} href="/">
-            GET INVOLVED
-          </Link>
-        </div>
-        <div className={styles.linkWrapper}>
-          <Link className={styles.link} href="/">
+          <Link className={styles.link} href="/resources">
             RESOURCES
           </Link>
         </div>
         <div className={styles.linkWrapper}>
-          <Link className={styles.link} href="/about">
+          <Link className={styles.link} href="/about" id="about-us">
             ABOUT US
           </Link>
-        </div> 
+        </div>
       </div>
-    </div> 
+    </div>
   );
 }

@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+
+  background-color: white;
+}
+
+.sectionHeader {
+  background-color: #1d2f5d;
+  padding: 2.5% 0;
+
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 3em;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.supportersPicture {
+  width: 90%;
+  height: auto;
+  margin: auto;
+}

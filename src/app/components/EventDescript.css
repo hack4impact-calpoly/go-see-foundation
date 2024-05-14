@@ -1,0 +1,111 @@
+.event {
+    
+    width: 80%; 
+    max-width: 1300px; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 0 auto;
+
+    margin-top: -10px;
+    position: relative;
+  }
+
+ .eventTitle h1
+ {
+    text-align: center;
+    color: #1D2F5D;
+    font-size: 45px;
+    font-weight: 550;
+    font-family: 'Helvetica Neue', sans-serif;
+ }
+
+ .details {
+    background-color: #1D2F5D;
+    width: 98%; 
+    max-width: 1100px; 
+    padding: 20px; 
+    border-radius: 10px; 
+    margin: 0 auto;
+    display: flex;
+    font-weight: 30px;
+    height: 50px;
+ }
+
+ .details > div {
+    flex: 1; 
+    margin: 0 10px; 
+    color: white; 
+}
+
+.calendar h3{
+    margin-left: 50px;
+    margin-top: -30px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.clock h3 {
+    margin-left: 48px;
+    margin-top: -30px;
+    font-weight: 400;
+    font-size: 20px;
+
+}
+
+.dollar h3 {
+    margin-left: 48px;
+    margin-top: -30px;
+    font-weight: 400;
+    font-size: 20px;
+
+}
+
+.pin h3 {
+    margin-left: 48px;
+    margin-top: -35px;
+    font-weight: 400;
+    font-size: 20px;
+
+}
+
+.descript h2{
+    margin-top: 45px;
+    margin-left: 0px;
+    font-size: 33px;
+    font-weight: 530;
+}
+
+.about h2
+{
+    margin-top: -60px;
+    margin-left: 290px;
+    margin-right: -20px;
+    font-weight: 450;
+}
+
+.accomodations h2
+{
+    margin-top: 35px;
+    margin-left: 0px;
+    font-size: 33px;
+    font-weight: 530;
+}
+
+.types {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: -70px;
+    margin-left: 280px;
+    margin-right: 0vh;
+}
+
+
+.types h2 {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    font-weight: 400;
+}
