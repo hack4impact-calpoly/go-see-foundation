@@ -55,7 +55,7 @@ export default function Navbar() {
           </Link>
         </div>
         <div className={styles.linkWrapper}>
-          <Link className={styles.link} href="#events">
+          <Link className={styles.link} href="/#events">
             GET INVOLVED
           </Link>
         </div>
