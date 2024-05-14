@@ -8,7 +8,8 @@ import Register from "@components/Register";
 import "./eventSignup.css";
 
 
-export default function eventsSignup() {   
+export default function eventsSignup() {
+     
   return (
     <div>
 
