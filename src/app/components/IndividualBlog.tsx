@@ -8,7 +8,7 @@ const IndividualBlog = ({ event }: { event: IEvent }) => {
   const { picture, alt, description, date, name, blogID, author } = event;
 
   return (
-    <div className="blog">
+    <div className="blog" tabIndex={0}>
       <h3 className="blogcategory">Event/Update</h3>
       <h2 className="blogtitle">{name}</h2>
       <h4 className="blogauthor">
