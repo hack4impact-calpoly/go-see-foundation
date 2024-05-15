@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useRef, FormEventHandler } from "react";
 import styles from "./register.module.css";
+import { useRouter } from "next/router";
 
 export default function Register() {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -16,15 +17,12 @@ export default function Register() {
     comment: "",
   });
 
-  async function handleRegister(
-    e:
-      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-      | FormEventHandler<HTMLFormElement>
-  ) {
-    e.preventDefault(); // Prevent default form submission behavior
+  async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
 
-    console.log("pressed register!: ", registerData);
-
+    const comments = registerData.comment;
+    const email = registerData.email.toLowerCase();
+    const eventName = "The Battle Axe Experience";
     let attendedEventBefore;
     let needSightedGuide;
 
@@ -39,10 +37,6 @@ export default function Register() {
     } else {
       needSightedGuide = true;
     }
-
-    const comments = registerData.comment;
-    const email = registerData.email;
-    const eventName = "The Battle Axe Experience";
 
     try {
       const response = await fetch("/api/eventSignUp/", {
@@ -63,9 +57,15 @@ export default function Register() {
 
       if (responseData.status === 200) {
         alert("Successful Event Sign Up!");
-      } else {
+        const router = useRouter();
+      } else if (
+        responseData.status === 400 &&
+        responseData.message === "No matching email found"
+      ) {
         console.log(responseData.status);
-        alert("Error Signing up for event");
+        alert(
+          "No matching email found\nPlease Create an account and try again"
+        );
       }
     } catch (error) {
       console.log("Event Sign Up Error", error);
@@ -84,15 +84,6 @@ export default function Register() {
     }));
   };
 
-  //   const handleCheckboxes = (): void => {
-  //     const { name, value } = e.target;
-  //     setRegisterData((prevRegisterData) => ({
-  //       ...prevRegisterData,
-  //       remember: !registerData.remember,
-  //     }));
-  //     console.log("Remember me set to: " + String(loginData.remember));
-  //   };
-
   return (
     <div className={styles.register}>
       <h1 className={styles.title}>Register for Event</h1>
@@ -103,7 +94,7 @@ export default function Register() {
             type="text"
             name="email"
             id="email"
-            placeholder="email@gmail.com"
+            placeholder="name@email.com"
             required
             onChange={(e) => handleLoginChange(e)}
             ref={emailRef}
@@ -118,6 +109,7 @@ export default function Register() {
                 type="radio"
                 name="sightedGuide"
                 value="yes"
+                required
                 onChange={(e) => handleLoginChange(e)}
                 ref={sightedGuideRef}
               />
@@ -129,6 +121,7 @@ export default function Register() {
                 type="radio"
                 name="sightedGuide"
                 value="no"
+                required
                 onChange={(e) => handleLoginChange(e)}
                 ref={sightedGuideRef}
               />

@@ -40,6 +40,11 @@ export async function POST(req: NextRequest) {
 
   } catch {
     console.log("Error fetching data for email")
+    return NextResponse.json({
+        message: "No matching email found",
+        status: 400,
+      });
+
   }
 
 }
