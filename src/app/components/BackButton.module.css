@@ -1,0 +1,23 @@
+.backButtonContainer {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  margin-top: 20px; /* Add some top margin for spacing */
+  width: 100%; /* Set width to 100% */
+}
+
+.backButton {
+  padding: 15px 30px; /* Increase padding for larger button */
+  background-color: #1d2f5d; /* Change background color */
+  color: white; /* Change text color */
+  font-size: 18px; /* Increase font size */
+  font-weight: bold;
+  text-decoration: none;
+  border: 2px solid white; /* Change border color to white */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.backButton:hover {
+  background-color: rgb(9, 12, 63); /* Darken background color on hover */
+}

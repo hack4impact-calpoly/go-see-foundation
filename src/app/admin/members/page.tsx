@@ -2,6 +2,7 @@
 import { IUser } from "@database/userSchema";
 import React, {useState, useEffect} from "react";
 import styles from './members.module.css'
+import BackButton from '../../components/backButton';
 
 export default function manageMembers() {
     const [users, setUsers] = useState([])
@@ -116,14 +117,16 @@ export default function manageMembers() {
     }
 
     return(
-        <div className={styles.container}>
-            <div className={styles.table}>
-                <Table 
-                    userData={users}
-                    deleteUser={deleteUserByID}
-                />
+        <div><BackButton/> 
+            <div className={styles.container}>
+                <div className={styles.table}>
+                    <Table 
+                        userData={users}
+                        deleteUser={deleteUserByID}
+                    />
+                </div>
             </div>
-        </div>
+        </div> 
     )
 
 }

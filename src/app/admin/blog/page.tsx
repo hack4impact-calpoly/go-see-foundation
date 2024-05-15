@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./blog.module.css";
 import { useRouter } from "next/navigation";
 import { IEvent } from "@database/blogSchema";
+import BackButton from '../../components/backButton';
 
 const BlogPage = () => {
   const newBlogButtonRef = useRef<HTMLButtonElement>(null);
@@ -234,6 +235,7 @@ const BlogPage = () => {
   };
 
   return (
+    <div> <BackButton/>
     <div className={styles.container}>
       <div className={styles.blogManager}>
         <div className={styles.topButtons}>
@@ -381,6 +383,7 @@ const BlogPage = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

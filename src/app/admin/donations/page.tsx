@@ -2,6 +2,7 @@
 import { IDonation } from "@database/donationSchema";
 import React, { useState, useEffect } from "react";
 import styles from "./donations.module.css";
+import BackButton from '../../components/backButton';
 
 export default function manageMembers() {
   const [donations, setDonations] = useState([]);
@@ -73,9 +74,11 @@ export default function manageMembers() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.table}>
-        <Table donationData={donations} />
+    <div> <BackButton />
+      <div className={styles.container}>
+        <div className={styles.table}>
+          <Table donationData={donations} />
+        </div>
       </div>
     </div>
   );
