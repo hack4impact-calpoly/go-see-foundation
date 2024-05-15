@@ -5,14 +5,10 @@ import Users from "@database/userSchema";
 
 export async function POST(req: NextRequest) {
   await connectDB();
-  try {
-    const data = await req.json()
-    const email = data.email
-    const needSightedGuide = data.needSightedGuide
-    const attendedEventBefore = data.attendedEventBefore
-    const comments = data.comments
-    const eventName = data.eventName
+  console.log("HERE\N\N\N\N\N\N\N\N\N");
 
+  try {
+    const { email, needSightedGuide,attendedEventBefore, comments,  eventName } = await req.json();
     const user = await Users.findOne({ email}).orFail();
 
     try{
@@ -30,8 +26,9 @@ export async function POST(req: NextRequest) {
         eventName: eventName
     });
 
-    console.log(newEventSignUp);
     await newEventSignUp.save();
+    console.log(newEventSignUp);
+
     return NextResponse.json({
       message: "Success: EventSignUp uploaded",
       status: 200,
