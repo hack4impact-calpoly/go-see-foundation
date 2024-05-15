@@ -33,20 +33,19 @@
     height: 90%;
 }
 
-.nameInputs {
+.emailInputs {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: left;
     justify-content: center;
     width: 100%;
     height: 25%;
-    padding-top: 7%;
-    padding-bottom: 5%;
+    padding-top: 4%;
 }
 
-.firstName {
-    width: 45%;
-    height: 100%;
+.email {
+    width: 93%;
+    height: 80%;
     border: 2px solid;
     border-radius: 10px; 
     font-size: 3vh;

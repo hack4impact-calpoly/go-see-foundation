@@ -1,38 +1,47 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, FormEventHandler } from "react";
 import styles from "./register.module.css";
 
 export default function Register() {
-  const firstNameRef = useRef<HTMLInputElement>(null);
-  const lastNameRef = useRef<HTMLInputElement>(null);
-  const attendeeTypeRef = useRef<HTMLSelectElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
   const sightedGuideRef = useRef<HTMLInputElement>(null);
   const haveGoneRef = useRef<HTMLInputElement>(null);
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const registerButtonRef = useRef<HTMLButtonElement>(null);
 
   const [registerData, setRegisterData] = useState({
-    firstName: "",
-    lastName: "",
-    atendeeType: "",
-    yesSightedGuide: false,
-    noSightedGuide: false,
-    yesHaveGone: false,
-    noHaveGone: false,
+    email: "",
+    haveGone: "",
+    sightedGuide: "",
     comment: "",
   });
 
   async function handleRegister(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e:
+      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+      | FormEventHandler<HTMLFormElement>
   ) {
     e.preventDefault(); // Prevent default form submission behavior
 
     console.log("pressed register!: ", registerData);
 
-    const needSightedGuide = false;
-    const attendedEventBefore = false;
-    const comments = "xd";
-    const email = "eduardohuezo831@gmail.com";
+    let attendedEventBefore;
+    let needSightedGuide;
+
+    if (registerData.haveGone === "no") {
+      attendedEventBefore = false;
+    } else {
+      attendedEventBefore = true;
+    }
+
+    if (registerData.sightedGuide === "no") {
+      needSightedGuide = false;
+    } else {
+      needSightedGuide = true;
+    }
+
+    const comments = registerData.comment;
+    const email = registerData.email;
     const eventName = "The Battle Axe Experience";
 
     try {
@@ -63,10 +72,12 @@ export default function Register() {
     }
   }
 
-  const handleInputChange = (
+  const handleLoginChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
+    console.log("changing");
     const { name, value } = e.target;
+    console.log(name);
     setRegisterData((prevRegisterData) => ({
       ...prevRegisterData,
       [name]: value,
@@ -86,32 +97,18 @@ export default function Register() {
     <div className={styles.register}>
       <h1 className={styles.title}>Register for Event</h1>
       <form className={styles.registerInputs} onSubmit={handleRegister}>
-        <div className={styles.nameInputs}>
+        <div className={styles.emailInputs}>
           <input
-            className={styles.firstName}
+            className={styles.email}
             type="text"
-            id="first"
-            placeholder="First Name"
+            name="email"
+            id="email"
+            placeholder="email@gmail.com"
             required
-            ref={firstNameRef}
-          />
-          <input
-            className={styles.lastName}
-            type="text"
-            id="last"
-            placeholder="Last Name"
-            required
-            ref={lastNameRef}
+            onChange={(e) => handleLoginChange(e)}
+            ref={emailRef}
           />
         </div>
-        <select className={styles.user} id="user" ref={attendeeTypeRef}>
-          <option value="select" disabled selected>
-            Select One
-          </option>
-          <option value="Member">Member</option>
-          <option value="Volunteer">Volunteer</option>
-          <option value="Partner/Donor">Partner/Donor</option>
-        </select>
         <div className={styles.questions}>
           <p className={styles.question}>Do you need a sighted guide?</p>
           <div className={styles.options}>
@@ -121,6 +118,7 @@ export default function Register() {
                 type="radio"
                 name="sightedGuide"
                 value="yes"
+                onChange={(e) => handleLoginChange(e)}
                 ref={sightedGuideRef}
               />
               Yes
@@ -131,6 +129,7 @@ export default function Register() {
                 type="radio"
                 name="sightedGuide"
                 value="no"
+                onChange={(e) => handleLoginChange(e)}
                 ref={sightedGuideRef}
               />
               No
@@ -144,7 +143,8 @@ export default function Register() {
               <input
                 className={styles.radio}
                 type="radio"
-                name="haveGoneRef"
+                name="haveGone"
+                onChange={(e) => handleLoginChange(e)}
                 value="yes"
                 ref={haveGoneRef}
               />
@@ -154,7 +154,8 @@ export default function Register() {
               <input
                 className={styles.radio}
                 type="radio"
-                name="haveGoneRef"
+                name="haveGone"
+                onChange={(e) => handleLoginChange(e)}
                 value="no"
                 ref={haveGoneRef}
               />
@@ -168,7 +169,9 @@ export default function Register() {
         <textarea
           className={styles.comment}
           id="comment"
+          name="comment"
           placeholder="Write comment"
+          onChange={(e) => handleLoginChange(e)}
           ref={commentRef}
         />
         <button
