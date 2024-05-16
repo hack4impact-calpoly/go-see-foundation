@@ -23,7 +23,8 @@
 
   .bodyCard{
 
-    width: 90%
+    width: 90%;
+    color:white;
   }
 
   .body{
@@ -55,5 +56,27 @@
 }
 
 .noMembers{
-  
+
+  background-color: gray;
+  width:auto;
+
+}
+
+.noMembers {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  margin-bottom:40px;
+}
+
+.nomemberText{
+  width: 90%;
+  color:black;
+  font-weight:700px;
+  font-size: 30px;
+  padding-top:20px;
+  padding-bottom:20px;
 }

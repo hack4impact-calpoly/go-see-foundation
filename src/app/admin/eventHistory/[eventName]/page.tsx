@@ -72,8 +72,10 @@ export default function eventName(context: any) {
             </div>
           ))
         ) : (
-          <div className={styles.eventHistory}>
-            <div className={styles.bodyCard}>No Members Found.</div>
+          <div className={styles.noMembers}>
+            <h1 className={styles.nomemberText}>
+              No Members Have Signed Up for this Event.
+            </h1>
           </div>
         )}
       </div>
