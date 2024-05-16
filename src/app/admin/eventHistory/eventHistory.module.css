@@ -28,6 +28,7 @@
   }
 
   .eventItem{
+    justify-content: start;
 
     background-color: white;
     margin-bottom: 10px;
@@ -37,5 +38,5 @@
 
 
   .eventsBody{
-    
+
   }

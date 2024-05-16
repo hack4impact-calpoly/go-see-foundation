@@ -11,17 +11,49 @@
     color: white;
     font-weight: 700;
     font-size: 40px;
-
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 
   .memberCard{
+    text-align: left;
+    width:fit-content;
 
-    color: whit;
-    margin-bottom: 50px;
+  }
 
+  .bodyCard{
 
+    width: 90%
   }
 
   .body{
-    
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
   }
+
+  .textCard{
+    margin: 0px;
+    padding-right: 20px;
+    font-weight: 500;
+    color: #1D2F5D;
+    font-size: 24px;
+
+  }
+  
+  .dropdownImg{
+
+    color:black;
+    margin-left: auto; 
+  }
+
+  .dropdownImg img {
+    padding-left: 10px;
+}
+
+.noMembers{
+  
+}
