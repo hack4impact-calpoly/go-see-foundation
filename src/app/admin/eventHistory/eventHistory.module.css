@@ -1,0 +1,41 @@
+
+
+.formBody{
+
+    background-color: rgba(255, 255, 255, 0.95);
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    width: 80%;
+    margin: 0%;
+    border-radius: 20px;
+    margin-top: 80px;
+}
+
+.eventHistory {
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .eventTitle{
+    font-weight: 700;
+    
+  }
+
+  .eventItem{
+
+    background-color: white;
+    margin-bottom: 10px;
+
+
+  }
+
+
+  .eventsBody{
+    
+  }
