@@ -45,19 +45,20 @@ export default function EventHistory() {
         <div className={styles.eventsBody}>
           {events &&
             events.map((event, index) => (
-              <Link
-                href={{
-                  pathname: `/admin/eventHistory/[eventName]`,
-                  query: {
-                    id: event.name, // pass the id
-                  },
-                }}
-                as={`/forgotPassword/${event.name}`}
-              >
-                <div key={index} className={styles.eventItem}>
-                  <h2>{event.name}</h2> <p>edit event</p> <p>view Signees</p>
-                </div>
-              </Link>
+              <div key={index} className={styles.eventItem}>
+                <h2>{event.name}</h2> <p>edit event</p>
+                <Link
+                  href={{
+                    pathname: `/admin/eventHistory/[eventName]`,
+                    query: {
+                      id: event.name, // pass the id
+                    },
+                  }}
+                  as={`/admin/eventHistory/${event.name}`}
+                >
+                  view Signees
+                </Link>
+              </div>
             ))}
         </div>
       </div>
