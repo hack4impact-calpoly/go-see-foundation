@@ -8,6 +8,8 @@ import Register from "@components/Register";
 import "./eventSignup.css";
 
 export default function eventsSignup() {
+
+  
   return (
     <div>
       <div className="outer-container">

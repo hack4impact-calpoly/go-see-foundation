@@ -12,14 +12,10 @@ type IParams = {
 
 export async function GET(req: NextRequest, { params }: IParams) {
     await connectDB();
-
     const { eventName } = params
 
-
-    // console.log(eventName)
     try {
         const attenders = await EventSignUp.find({eventName: eventName}).orFail();
-        // console.log("attenders: ", attenders)
         return NextResponse.json(attenders);
     } catch {
       console.log("Error fetching data for Event")
