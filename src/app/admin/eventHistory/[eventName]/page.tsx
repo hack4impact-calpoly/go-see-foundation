@@ -1,7 +1,9 @@
 "use client";
 import emailIcon from "../../../images/emailIcon.png";
 import expandDown from "../../../images/Expand_down-2.png";
+import backButton from "../../../images/backButton.png";
 
+import Link from "next/link";
 import Image from "next/image";
 import styles from "./eventName.module.css";
 import { useEffect, useState } from "react";
@@ -43,7 +45,19 @@ export default function eventName(context: any) {
   return (
     <div className={styles.eventHistory}>
       <div className={styles.bodyCard}>
-        <div className={styles.eventTitle}>{eventName}</div>
+        <div className={styles.titleBody}>
+          <Link href={{ pathname: `/admin/eventHistory/` }}>
+            <Image
+              className={styles.backButton}
+              src={backButton}
+              alt="background logo for the Go See Foundation"
+              height="29"
+              width="14.5"
+              priority={true}
+            />
+          </Link>
+          <h1 className={styles.eventTitle}>{eventName}</h1>
+        </div>
 
         {members && members.length > 0 ? (
           members.map((mem, index) => (
