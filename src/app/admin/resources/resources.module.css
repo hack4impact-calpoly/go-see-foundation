@@ -1,0 +1,89 @@
+.container {
+  height: fit-content;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-image: url(/colorful.jpeg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.resourceManager {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 20px;
+}
+
+.topButtons {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+}
+
+/* CSS for all tab buttons, right now there's only 1 */
+.newResourceButton {
+  width: 50%;
+  padding: 2% 0;
+  justify-content: center;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  color: white;
+  background-color: #1d2f5d;
+  border: none;
+  border-radius: 16px;
+}
+
+.resourceForm {
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  width: 60%;
+  height: max-content;
+  margin-bottom: 5%;
+}
+
+.resourceForm input {
+  display: flex;
+  margin-bottom: 5%;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  border-radius: 16px;
+  padding: 7.5px 10px 7.5px 10px;
+  border: 1px solid;
+}
+
+.createResourceButton {
+  width: 100%;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  font-family: "Helvetica", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 40px;
+  background-color: #1d2f5d;
+  color: white;
+  border: none;
+}
+
+.createResourceButton:hover {
+  background-color: #1d2f5d90;
+}
+
+.container button:hover {
+  cursor: pointer;
+}
