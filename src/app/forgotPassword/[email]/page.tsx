@@ -19,19 +19,21 @@ export default function EmailSent(context: any) {
   });
 
   //use this to make any api calls that are need in password verification
-  const onClickEmail = async(e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickEmail = async(e: any) => {
     try{
       const response = await fetch('/api/forgot-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email: loginData.email }),
+        body: JSON.stringify({ email: email }),
       });
       if (response.ok) {
-        const emailText = `Link to reset password`;
+        const responseBody = await response.json();
+        const resetLink = `http://localhost:3000/reset-password?token=${responseBody.token}`;
+        const emailText = `Link to reset password: ${resetLink}`;
         const params = {
-            to_email: loginData.email,
+            to_email: email,
             message: emailText,
           };
 
@@ -49,6 +51,7 @@ export default function EmailSent(context: any) {
       }
     }
     catch(error){
+      alert(error)
       console.error('Error:', error);
     }
   };

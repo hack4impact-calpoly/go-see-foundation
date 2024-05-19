@@ -42,7 +42,7 @@ export default function ForgotPassword() {
   };
 
   //use this to make any api calls that are need in password verification
-  const onClickEmail = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  const onClickEmail = async(e: any) => {
     try{
       const response = await fetch('/api/forgot-password', {
         method: 'POST',
@@ -52,7 +52,9 @@ export default function ForgotPassword() {
         body: JSON.stringify({ email: loginData.email }),
       });
       if (response.ok) {
-        const emailText = `Link to reset password`;
+        const responseBody = await response.json();
+        const resetLink = `http://localhost:3000/reset-password?token=${responseBody.token}`;
+        const emailText = `Link to reset password: ${resetLink}`;
         const params = {
             to_email: loginData.email,
             message: emailText,

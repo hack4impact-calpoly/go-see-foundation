@@ -19,13 +19,13 @@ export async function POST(req: NextRequest) {
         } catch (error) {
             return NextResponse.json("Failed: Email Not Found", { status: 404 });
         }
+        // ResetTokens.collection.dropIndex('email_1');
         
         const token = crypto.randomBytes(64).toString('hex');
         const hashed_token = createHash('sha256').update(token).digest('hex');
 
         const currentDate = new Date();
-        const expiration_date = currentDate.setDate(currentDate.getDate() + 30);
-
+        const expiration_date = new Date(currentDate.setDate(currentDate.getDate() + 30));
         const newResetToken = new ResetTokens({
             email: email,
             token: hashed_token,
@@ -33,7 +33,10 @@ export async function POST(req: NextRequest) {
         })
 
         await newResetToken.save();
-        return NextResponse.json(`Success: Reset Token Created`);
+        return NextResponse.json({
+            message: 'Success: Reset Token Created',
+            token: token
+        });
 
     }
     catch(err){

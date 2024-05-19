@@ -7,9 +7,9 @@ export type IResetToken = {
 }
 
 const ResetTokenSchema = new Schema<IResetToken>({
-    email: { type: String, required: false, unique: true},
-    token: { type: String, required: true },
-    expirationDate: {type: Date},
+    email: { type: String, required: true, unique: false},
+    token: { type: String, required: true},
+    expirationDate: {type: Date, required: true},
 });
 
 const ResetTokens = mongoose.models["resettokens"] || mongoose.model("resettokens", ResetTokenSchema);
