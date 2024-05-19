@@ -2,6 +2,7 @@
 import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import emailjs from "@emailjs/browser";
 
 import { redirect, useRouter, permanentRedirect } from "next/navigation";
 import backgroundLogo from "../images/backgroundLogo.png";
@@ -41,8 +42,38 @@ export default function ForgotPassword() {
   };
 
   //use this to make any api calls that are need in password verification
-  const onClickEmail = () => {
-    console.log(loginData);
+  const onClickEmail = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    try{
+      const response = await fetch('/api/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: loginData.email }),
+      });
+      if (response.ok) {
+        const emailText = `Link to reset password`;
+        const params = {
+            to_email: loginData.email,
+            message: emailText,
+          };
+
+        emailjs
+            .send("service_cppo4i7", "template_izma6p8", params, {publicKey: "GKeCNmE1q3H0bTjJE"})
+            .then((response) => {
+                console.log("Email sent successfully!", response);
+            })
+            .catch((error) => {
+                console.error("Error sending email:", error);
+            });
+      }
+      else{
+        console.error('Error:', response.statusText);
+      }
+    }
+    catch(error){
+      console.error('Error:', error);
+    }
   };
 
   return (

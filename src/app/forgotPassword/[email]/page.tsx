@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from "./emailSent.module.css";
 import backgroundLogo from "../../images/backgroundLogo.png";
 import { style } from "motion";
+import emailjs from "@emailjs/browser";
 
 export default function EmailSent(context: any) {
   //console.log("here: ", decodeURIComponent(context.params.email));
@@ -18,8 +19,38 @@ export default function EmailSent(context: any) {
   });
 
   //use this to make any api calls that are need in password verification
-  const onClickEmail = () => {
-    console.log(loginData);
+  const onClickEmail = async(e: React.MouseEvent<HTMLButtonElement>) => {
+    try{
+      const response = await fetch('/api/forgot-password', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: loginData.email }),
+      });
+      if (response.ok) {
+        const emailText = `Link to reset password`;
+        const params = {
+            to_email: loginData.email,
+            message: emailText,
+          };
+
+        emailjs
+            .send("service_cppo4i7", "template_izma6p8", params, {publicKey: "GKeCNmE1q3H0bTjJE"})
+            .then((response) => {
+                console.log("Email sent successfully!", response);
+            })
+            .catch((error) => {
+                console.error("Error sending email:", error);
+            });
+      }
+      else{
+        console.error('Error:', response.statusText);
+      }
+    }
+    catch(error){
+      console.error('Error:', error);
+    }
   };
 
   const handleLoginChange = (

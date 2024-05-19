@@ -2,6 +2,7 @@ import connectDB from "@database/db";
 import { NextRequest, NextResponse } from "next/server";
 import Users from "@database/userSchema";
 import ResetTokens from "@database/resetTokenSchema";
+import emailjs from "@emailjs/browser";
 const crypto = require('crypto');
 const { createHash } = require('crypto');
 
@@ -30,9 +31,9 @@ export async function POST(req: NextRequest) {
             token: hashed_token,
             expirationDate: expiration_date
         })
-        
+
         await newResetToken.save();
-        return NextResponse.json(`Success: Email Found \n${email} \n${token} \n${hashed_token} ${expiration_date} `);
+        return NextResponse.json(`Success: Reset Token Created`);
 
     }
     catch(err){
