@@ -24,7 +24,11 @@
     align-items: center;
     background-color: white;
     border-radius: 15px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
     border: 2px solid #1D2F5D;
+    max-height: 80vh;
+    overflow-y: scroll;
 }
 
 .table2{
@@ -48,9 +52,9 @@
     border-top-left-radius: 10px;
 }
 
-.tableheader th:last-child {
+/* .tableheader th:last-child {
     border-top-right-radius: 10px;
-}
+} */
 
 .tablebody {
     background-color: white;
