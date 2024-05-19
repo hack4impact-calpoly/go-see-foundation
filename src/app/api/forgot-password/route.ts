@@ -1,28 +1,39 @@
 import connectDB from "@database/db";
 import { NextRequest, NextResponse } from "next/server";
-import Users, { IUser } from "@database/userSchema";
-const bcrypt = require("bcrypt"); 
+import Users from "@database/userSchema";
+import ResetTokens from "@database/resetTokenSchema";
+const crypto = require('crypto');
+const { createHash } = require('crypto');
 
 export async function POST(req: NextRequest) {
     await connectDB();
     try{
-        const {email, new_password} = await req.json();
+        const {email} = await req.json();
         if (!email){
             return NextResponse.json("Failed: Email Required", { status: 400 });
         }
 
-        let user;
         try {
-            user = await Users.findOne({ email: email }).orFail();
+            await Users.findOne({ email: email }).orFail();
         } catch (error) {
             return NextResponse.json("Failed: Email Not Found", { status: 404 });
         }
+        
+        const token = crypto.randomBytes(64).toString('hex');
+        const hashed_token = createHash('sha256').update(token).digest('hex');
 
-        const salt = bcrypt.genSaltSync(10);
-        const hashed_password = await bcrypt.hash(new_password, salt);
-        user.password = hashed_password;
-        await user.save();
-        return NextResponse.json("Success: Password Updated");
+        const currentDate = new Date();
+        const expiration_date = currentDate.setDate(currentDate.getDate() + 30);
+
+        const newResetToken = new ResetTokens({
+            email: email,
+            token: hashed_token,
+            expirationDate: expiration_date
+        })
+        
+        await newResetToken.save();
+        return NextResponse.json(`Success: Email Found \n${email} \n${token} \n${hashed_token} ${expiration_date} `);
+
     }
     catch(err){
         return NextResponse.json(`${err}`, { status: 400 });
