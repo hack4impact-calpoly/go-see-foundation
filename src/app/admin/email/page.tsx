@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import styles from "./admin.module.css";
+import React, { useState } from "react";
+import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
 
@@ -30,7 +30,7 @@ export default function AdminPage() {
   };
 
   const sendEmails = async () => {
-    if (selectedOption == "Individual") {
+    if (selectedOption === "Individual") {
       const params = {
         to_email: individualEmail,
         message: emailText,
@@ -67,8 +67,8 @@ export default function AdminPage() {
       });
     }
 
-    setEmailText("")
-    setIndividualEmail("")
+    setEmailText("");
+    setIndividualEmail("");
   };
 
   const handleIndividualEmailChange = (e: any) => {
@@ -81,10 +81,9 @@ export default function AdminPage() {
     setEmailText(value);
   };
 
-
   return (
-    <>
-      <div>
+    <div className={styles.emailArea}>
+      <div className={styles.emailForm}>
         <label htmlFor="dropdown">Select your role:</label>
         <select
           id="dropdown"
@@ -97,32 +96,26 @@ export default function AdminPage() {
           <option value="Partner/Donor">Partner/Donor</option>
           <option value="Individual">Individual</option>
         </select>
-      </div>
-      <div>
         <input
+          className={styles.messageArea}
           placeholder="Enter email text here!"
           type="text"
           onChange={handleEmailTextChange}
           value={emailText}
         />
-      </div>
-      <div>
-        <button onClick={sendEmails}>Send Email!</button>
-      </div>
-      <div>
-        {selectedOption == "Individual" ? (
+        <button className={styles.formButtons} onClick={sendEmails}>
+          Send Email!
+        </button>
+        {selectedOption === "Individual" && (
           <input
+            className={styles.to_input}
             placeholder="enter email"
             type="text"
             onChange={handleIndividualEmailChange}
             value={individualEmail}
           />
-        ) : (
-          <div></div>
         )}
       </div>
-    </>
+    </div>
   );
 }
-
-
