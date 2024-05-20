@@ -6,6 +6,8 @@ import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 import { IUser } from "@database/userSchema";
 import { useRouter } from "next/navigation";
+import { NumericFormat } from "react-number-format";
+import { PatternFormat } from "react-number-format";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -49,7 +51,6 @@ const CreateAccount = () => {
       }
     }
   };
-  
 
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab") {
@@ -131,7 +132,9 @@ const CreateAccount = () => {
     newUser.username = newUser.firstName + " " + newUser.lastName;
 
     try {
+      console.log("newUser", newUser);
       console.log("fetching");
+
       const response = await fetch("/api/registration/", {
         // Updated API endpoint
         method: "POST",
@@ -190,6 +193,7 @@ const CreateAccount = () => {
               ref={lastInputRef}
               onKeyDown={handleInputKeyPress}
             />
+
             <input
               className={styles.input}
               type="text"
@@ -226,6 +230,17 @@ const CreateAccount = () => {
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
             />
+            {/* <PatternFormat
+              className={styles.input}
+              type="tel"
+              format="+1 (###) ###-####"
+              id="phone"
+              mask="_"
+              required
+              //ref={phoneInputRef}
+              onKeyDown={handleInputKeyPress}
+              placeholder="Phone Number"
+            /> */}
             <input
               className={styles.input}
               type="tel"
