@@ -29,6 +29,8 @@
     "motion": "^10.17.0",
     "next": "^14.1.0",
     "node": "^21.6.2",
+    "nopt": "^7.2.1",
+    "npmlog": "^7.0.1",
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.8.1",

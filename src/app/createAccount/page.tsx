@@ -6,7 +6,6 @@ import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 import { IUser } from "@database/userSchema";
 import { useRouter } from "next/navigation";
-import { NumericFormat } from "react-number-format";
 import { PatternFormat } from "react-number-format";
 
 const CreateAccount = () => {
@@ -194,7 +193,7 @@ const CreateAccount = () => {
               onKeyDown={handleInputKeyPress}
             />
 
-            <input
+            {/* <input
               className={styles.input}
               type="text"
               id="birth"
@@ -202,6 +201,17 @@ const CreateAccount = () => {
               required
               ref={birthInputRef}
               onKeyDown={handleInputKeyPress}
+            /> */}
+
+            <PatternFormat
+              className={styles.input}
+              type="text"
+              format="##/##/####"
+              id="birth"
+              mask="_"
+              required
+              onKeyDown={handleInputKeyPress}
+              placeholder="Date of Birth"
             />
             <select
               className={styles.input}
@@ -225,23 +235,23 @@ const CreateAccount = () => {
               type="email"
               id="email"
               placeholder="Email"
-              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
+              // pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
               required
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
             />
-            {/* <PatternFormat
+            <PatternFormat
               className={styles.input}
               type="tel"
               format="+1 (###) ###-####"
               id="phone"
               mask="_"
               required
-              //ref={phoneInputRef}
+              // ref={phoneInputRef}
               onKeyDown={handleInputKeyPress}
               placeholder="Phone Number"
-            /> */}
-            <input
+            />
+            {/* <input
               className={styles.input}
               type="tel"
               id="phone"
@@ -250,7 +260,7 @@ const CreateAccount = () => {
               required
               ref={phoneInputRef}
               onKeyDown={handleInputKeyPress}
-            />
+            /> */}
             <input
               className={styles.input}
               type="password"
