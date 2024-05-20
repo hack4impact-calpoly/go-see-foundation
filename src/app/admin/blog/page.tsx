@@ -281,18 +281,18 @@ const BlogPage = () => {
             />
           ) : (
             <select
-              className={styles.selectBlog}
-              id="firstInput"
-              name="name"
-              required
-              onKeyDown={handleInputKeyPress}
-              onChange={handleBlogSelection}
-            >
-              <option value="-1">Select Blog...</option>
-              {blogs.map((blog: IEvent, index: number) => (
-                <option value={index}>{`Name: ${blog.name}`}</option>
-              ))}
-            </select>
+            className={styles.selectBlog}
+            id="firstInput"
+            name="name"
+            required
+            onKeyDown={handleInputKeyPress}
+            onChange={handleBlogSelection}
+          >
+            <option value="-1">Select Blog...</option>
+            {blogs.map((blog: IEvent, index: number) => (
+              <option key={index} value={index}>{`Name: ${blog.name}`}</option>
+            ))}
+          </select>
           )}
           <input
             className={styles.input}

@@ -248,18 +248,19 @@ const ManageEventsPage = () => {
               />
             ) : (
               <select
-                className={styles.selectEvent}
-                id="firstInput"
-                name="name"
-                required
-                onKeyDown={handleInputKeyPress}
-                onChange={handleEventSelection}
-              >
-                <option value="-1">Select Event...</option>
-                {events.map((blog: IEvent, index: number) => (
-                  <option value={index}>{blog.name}</option>
-                ))}
-              </select>
+              className={styles.selectEvent}
+              id="firstInput"
+              name="name"
+              required
+              onKeyDown={handleInputKeyPress}
+              onChange={handleEventSelection}
+            >
+              <option value="-1">Select Event...</option>
+              {events.map((event: IEvent, index: number) => (
+                <option key={index} value={index}>{event.name}</option>
+              ))}
+            </select>
+
             )}
             <input
               className={styles.input}

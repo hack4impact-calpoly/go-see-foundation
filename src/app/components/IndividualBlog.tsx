@@ -24,19 +24,3 @@ const IndividualBlog = ({ event }: { event: IEvent }) => {
 
 export default IndividualBlog;
 
-/*const IndividualBlog = ({ blog }) => {
-  const [localBlog, setLocalBlog] = useState(blog);
-*/
-
-/*    <div className='blog'>
-<h3 className='blogcategory'>{localBlog.category}</h3>
-<h2 className="blogtitle">{localBlog.title}</h2>
-<h4 className="blogauthor">
-  by {localBlog.author} | {localBlog.date}
-</h4>
-<img src={localBlog.image} alt={localBlog.altpicture} className='blogimage'></img>
-<p className='blogcontent'>{localBlog.content}</p>
-<br></br>
-<hr className="yellowblogdiv"></hr>
-</div>
-); */
