@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
+import BackButton from '../../components/backButton';
 
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -82,39 +83,41 @@ export default function AdminPage() {
   };
 
   return (
-    <div className={styles.emailArea}>
-      <div className={styles.emailForm}>
-        <label htmlFor="dropdown">Select your role:</label>
-        <select
-          id="dropdown"
-          value={selectedOption}
-          onChange={handleSelectChange}
-        >
-          <option value="">Select...</option>
-          <option value="Member">Member</option>
-          <option value="Volunteer">Volunteer</option>
-          <option value="Partner/Donor">Partner/Donor</option>
-          <option value="Individual">Individual</option>
-        </select>
-        <input
-          className={styles.messageArea}
-          placeholder="Enter email text here!"
-          type="text"
-          onChange={handleEmailTextChange}
-          value={emailText}
-        />
-        <button className={styles.formButtons} onClick={sendEmails}>
-          Send Email!
-        </button>
-        {selectedOption === "Individual" && (
+    <div> <BackButton />
+      <div className={styles.emailArea}>
+        <div className={styles.emailForm}>
+          <label htmlFor="dropdown">Select your role:</label>
+          <select
+            id="dropdown"
+            value={selectedOption}
+            onChange={handleSelectChange}
+          >
+            <option value="">Select...</option>
+            <option value="Member">Member</option>
+            <option value="Volunteer">Volunteer</option>
+            <option value="Partner/Donor">Partner/Donor</option>
+            <option value="Individual">Individual</option>
+          </select>
           <input
-            className={styles.to_input}
-            placeholder="enter email"
+            className={styles.messageArea}
+            placeholder="Enter email text here!"
             type="text"
-            onChange={handleIndividualEmailChange}
-            value={individualEmail}
+            onChange={handleEmailTextChange}
+            value={emailText}
           />
-        )}
+          <button className={styles.formButtons} onClick={sendEmails}>
+            Send Email!
+          </button>
+          {selectedOption === "Individual" && (
+            <input
+              className={styles.to_input}
+              placeholder="enter email"
+              type="text"
+              onChange={handleIndividualEmailChange}
+              value={individualEmail}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
