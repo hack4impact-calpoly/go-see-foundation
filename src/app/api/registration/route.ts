@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 
 export async function POST(req: NextRequest) {
 
-  console.log("creating account!!!!!!!!!!")
   await connectDB();
   try {
     const {
