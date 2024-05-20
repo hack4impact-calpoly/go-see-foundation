@@ -3,6 +3,7 @@ import { IUser } from "@database/userSchema";
 import React, {useState, useEffect} from "react";
 import styles from './members.module.css'
 import BackButton from '../../components/backButton';
+import Image from 'next/image';
 
 export default function manageMembers() {
     const [users, setUsers] = useState([])
@@ -50,7 +51,13 @@ export default function manageMembers() {
                     <td>{row.email}</td>
                     <td>
                     <button onClick={() => props.deleteUser(index)} className="deletebutton" style={{ cursor: 'pointer' }}>
-                        <img src="/delete.jpg" alt="Delete" style={{ width: '30px', height: '30px' }} />
+                    <Image
+                        src="/delete.jpg" 
+                        alt="Delete" 
+                        width={30} 
+                        height={30}   
+                        style={{ width: '30px', height: '30px' }}
+                     />
                     </button>
                     </td>
                 </tr>
