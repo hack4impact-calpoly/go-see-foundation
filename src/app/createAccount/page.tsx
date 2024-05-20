@@ -116,7 +116,8 @@ const CreateAccount = () => {
     push("/");
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
@@ -158,19 +159,13 @@ const CreateAccount = () => {
 
   return (
     <div className={styles.createAccount}>
-      {/* <Image
-        src={logo}
-        alt="Go See Foundation's Logo"
-        width="360"
-        height="95"
-      /> */}
       <br></br>
       <h1 className={styles.title}>Sign in and join the Go See community!</h1>
       <div className={styles.container}>
         <form
           className={styles.createForm}
           onChange={handleAccountChange}
-          onSubmit={handleCreateAccount}
+          onSubmit={handleSubmit}
         >
           <h2 className={styles.heading}>Step 1: Personal Info:</h2>
           <div className={styles.inputs}>
@@ -192,17 +187,6 @@ const CreateAccount = () => {
               ref={lastInputRef}
               onKeyDown={handleInputKeyPress}
             />
-
-            {/* <input
-              className={styles.input}
-              type="text"
-              id="birth"
-              placeholder="Date of Birth"
-              required
-              ref={birthInputRef}
-              onKeyDown={handleInputKeyPress}
-            /> */}
-
             <PatternFormat
               className={styles.input}
               type="text"
@@ -235,7 +219,6 @@ const CreateAccount = () => {
               type="email"
               id="email"
               placeholder="Email"
-              // pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
               required
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
@@ -247,20 +230,10 @@ const CreateAccount = () => {
               id="phone"
               mask="_"
               required
-              // ref={phoneInputRef}
               onKeyDown={handleInputKeyPress}
               placeholder="Phone Number"
             />
-            {/* <input
-              className={styles.input}
-              type="tel"
-              id="phone"
-              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
-              placeholder="Phone Number"
-              required
-              ref={phoneInputRef}
-              onKeyDown={handleInputKeyPress}
-            /> */}
+
             <input
               className={styles.input}
               type="password"
@@ -299,7 +272,6 @@ const CreateAccount = () => {
               id="signup"
               type="submit"
               ref={signupButtonRef}
-              onClick={handleSubmit}
             >
               SIGN UP
             </button>
