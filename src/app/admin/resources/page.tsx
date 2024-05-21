@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./resources.module.css";
 import { useRouter } from "next/navigation";
-import BackButton from "../../components/backButton";
+import BackButton from "../../components/BackButton";
 
 const ResourcePage = () => {
   const newResourceButtonRef = useRef<HTMLButtonElement>(null);

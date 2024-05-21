@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
-import BackButton from '../../components/backButton';
+import BackButton from '../../components/BackButton';
 
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");

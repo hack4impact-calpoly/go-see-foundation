@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./eventHistory.module.css";
+import BackButton from '../../components/BackButton';
 
 export default function EventHistory() {
   let [events, setEvents] = useState<any[]>([]);
@@ -38,6 +39,7 @@ export default function EventHistory() {
   }, []);
 
   return (
+    <div> <BackButton/>
     <div className={styles.eventHistory}>
       <div className={styles.formBody}>
         <h1 className={styles.eventTitle}>Events</h1>
@@ -65,6 +67,7 @@ export default function EventHistory() {
             ))}
         </div>
       </div>
+    </div>
     </div>
   );
 }

@@ -27,6 +27,11 @@ export default function AdminPage() {
               View Donations
             </button>
           </Link>
+          <Link className={styles.buttonLink} href="/admin/eventHistory">
+            <button className={`${styles.button} ${styles.events}`}>
+              View Event Signups
+            </button>
+          </Link>
           <Link className={styles.buttonLink} href="/admin/manage-events">
             <button className={`${styles.button} ${styles.events}`}>
               Create/Edit Events
@@ -43,11 +48,7 @@ export default function AdminPage() {
               Email
             </button>
           </Link>
-          <Link className={styles.buttonLink} href="/admin/images">
-            <button className={`${styles.button} ${styles.images}`}>
-              Images
-            </button>
-          </Link>
+          
         </div>
       </div>
       <div className={styles.image}>
