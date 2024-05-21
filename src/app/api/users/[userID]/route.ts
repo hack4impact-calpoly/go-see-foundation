@@ -32,3 +32,17 @@ export async function GET(req: NextRequest, { params }: IParams) {
     });
   }
 }
+
+export async function DELETE(req: NextRequest, { params }: IParams){
+  await connectDB();
+  const email = params.userID;
+  try{
+    const user = await UserSchema.deleteOne({email: email}).orFail();
+    return NextResponse.json(user, {status: 200});
+  }
+  catch(err){
+    return NextResponse.json(`Error Deleting User: ${err}`, {
+      status: 500,
+    });
+  }
+}

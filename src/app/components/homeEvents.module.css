@@ -7,6 +7,14 @@
   background-color: white;
 }
 
+.container {
+  width: 100%;
+  height: fit-content;
+  font-size: 100%;
+  background-color: white;
+  margin-bottom: 2rem; /* Adjust the margin-bottom as needed */
+}
+
 .offset {
   margin-left: 3%;
   margin-right: 3%;

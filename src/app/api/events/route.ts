@@ -3,7 +3,6 @@ import connectDB from "@database/db";
 import EventSchema, { IEvent } from "@database/eventSchema";
 import {getSession} from "services/auth/cookietoUsertype"
 
-
 export async function GET(req: NextRequest) {
   await connectDB();
 
@@ -45,7 +44,10 @@ export async function POST(req: NextRequest) {
     });
     console.log(newEvent);
     await newEvent.save();
-    return NextResponse.json("Success: Event uploaded", { status: 200 });
+    return NextResponse.json({
+      message: "Success: Event uploaded",
+      status: 200,
+    });
   } catch (err) {
     return NextResponse.json(`${err}`, { status: 400 });
   }
