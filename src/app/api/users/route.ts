@@ -1,9 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
 import UserSchema from "@database/userSchema";
+import { getSession } from "services/auth/cookietoUsertype";
 
 export async function GET(req: NextRequest) {
   await connectDB();
+
+  // makes route exclusive to admin
+  let usertype;
+    usertype = await getSession(req);
+  
+    if (usertype != 'admin'){
+      return NextResponse.json(`Forbidden Action`, {  status: 400,
+      });
+    }
 
   try {
     const url = new URL(req.url);

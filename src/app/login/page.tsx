@@ -24,7 +24,7 @@ export default function LoginPage() {
     remember: false,
   });
 
-  async function handleLogin(event: React.FormEvent<HTMLFormElement>){
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     console.log("login pressed");
     const message =
@@ -36,7 +36,7 @@ export default function LoginPage() {
       String(loginData.remember) +
       "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
     alert(message);
-    
+
     const email = loginData.email;
     const password = loginData.password;
     try {
@@ -47,36 +47,36 @@ export default function LoginPage() {
         },
         body: JSON.stringify({ email, password }),
       });
-      
+
       const responseData = await response.json();
-      if(response.ok && responseData.message == "Success: Login Complete"){
-        const token = responseData.token;
-        localStorage.setItem("jwtToken", token);
+      if (response.ok && responseData.message == "Success: Login Complete") {
         alert("Successful Login!");
-        push('/')
-      }
-      else{
+        push("/");
+      } else if (
+        response.ok &&
+        responseData.message == "Admin Success: Login Complete"
+      ) {
+        alert("Successful Login!");
+        push("/admin");
+      } else {
         const errorMessage = responseData.message;
-        if(errorMessage == "Failed: Login Incomplete"){
+        if (errorMessage == "Failed: Login Incomplete") {
           alert("Incomplete Feilds");
-        }
-        else if(errorMessage == "Failed: Login Failed"){
+        } else if (errorMessage == "Failed: Login Failed") {
           alert("Incorrect Email or Password");
-        }
-        else{
+        } else {
           alert("Login Error");
         }
       }
-    }
-    catch (error) {
+    } catch (error) {
       console.error("Login Error", error);
     }
-  
   }
 
   function handleSignUp(): void {
     console.log("sign up pressed");
-    const message = "Sign up pressed. You will now be redirected to the Create Account page.";
+    const message =
+      "Sign up pressed. You will now be redirected to the Create Account page.";
     alert(message);
     push("/createAccount");
   }
@@ -127,23 +127,21 @@ export default function LoginPage() {
     }
   };
 
-
   const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
     if (e.key === "Tab") {
       e.preventDefault();
       switch (e.currentTarget.id) {
         case "rememberMe":
-
           loginButtonRef?.current?.focus();
           break;
         case "login":
-          forgetPasswordRef?.current?.focus(); 
+          forgetPasswordRef?.current?.focus();
           break;
         case "forgotPassword":
           signUpRef?.current?.focus();
           break;
         case "signUp":
-          console.log("Hither")
+          console.log("Hither");
           emailInputRef?.current?.focus();
           break;
         default:
@@ -231,19 +229,20 @@ export default function LoginPage() {
           className="loginButton"
           type="submit"
           ref={loginButtonRef}
-          onKeyDown={(e : any) => handleInputKeyPress(e)}
-          >
+          onKeyDown={(e: any) => handleInputKeyPress(e)}
+        >
           LOG IN
         </button>
 
         {/*TODO: change href to proper forget page*/}
+
         <Link 
           href="/forgotPassword" 
           className="forgotPasswordLink"
           id="forgotPassword"
           ref={forgetPasswordRef}
-          onKeyDown={(e : any) => handleInputKeyPress(e)}
-          >
+          onKeyDown={(e: any) => handleInputKeyPress(e)}
+        >
           Forgot Password
         </Link>
 
@@ -253,11 +252,12 @@ export default function LoginPage() {
           <h2 className="signUpTitle">Not a Member yet?</h2>
           <button
             className="signUpButton"
-            type="button" 
+            type="button"
             onClick={handleSignUp}
             ref={signUpRef}
-            onKeyDown={(e : any) => handleInputKeyPress(e)}
-            id="signUp">
+            onKeyDown={(e: any) => handleInputKeyPress(e)}
+            id="signUp"
+          >
             SIGN UP
           </button>
           {/* change href when signup page made*/}
