@@ -1,36 +1,53 @@
 .emailArea {
   height: 90vh;
   display: grid;
-  background-image: url("/colorful.jpeg");
+  /* background-image: url("/colorful.jpeg");
   -webkit-background-size: cover;
   -moz-background-size: cover;
-  -o-background-size: cover;
+  -o-background-size: cover; */
+  background: #1d2f5d;
   background-size: cover;
 }
 
 /* for the email form */
 .emailForm select {
   font-size: 16pt;
+  margin-bottom:16px;
+}
+
+.group{
+  margin-bottom:8px;
+  color: #706F6F;
+  font-weight: 500;
+  font-size:26px
+
 }
 .emailForm {
   display: flex;
   flex-direction: column;
   padding: 2em;
-  justify-content: space-between;
   background-color: white;
   height: auto;
   margin: 5em 20%;
   border-radius: 16pt;
   border: solid;
+  justify-content: start;
+  width:auto;
 }
 
 .messageArea {
-  height: 30%;
-  resize: none;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 65%;
   border-radius: 12pt;
   padding: 1em;
   font-size: 10pt;
   border: solid;
+  border-width: 1.5pt;
+  border-color: #706F6F;
+  margin-bottom: 18px;
+
 }
 
 .to_input,
@@ -39,16 +56,25 @@
   font-size: 10pt;
   padding: 0.4em;
   border: solid;
+  border-color: #706F6F;
+  margin-bottom: 10px;
+  border-width: 1.5pt;
+  height:40px;
+  color:black;
+  font-weight: 500;
+  font-size:20px;
 }
 
 .formButtons {
   border-radius: 10pt;
-  width: 50%;
-  font-size: 10pt;
+  width: 40%;
+  height: 70px;
+  font-size: 20pt;
   padding: 0.5em;
   margin: 0 auto;
   background-color: #1d2f5d;
   color: white;
+  font-weight: 500;
 }
 .formButtons:hover {
   background-color: grey;
