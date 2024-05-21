@@ -94,6 +94,7 @@ export default function AdminPage() {
             id="dropdown"
             value={selectedOption}
             onChange={handleSelectChange}
+            className={styles.selectStyle}
           >
             <option value="">Select...</option>
             <option value="Member">Member</option>
@@ -110,10 +111,9 @@ export default function AdminPage() {
               value={individualEmail}
             />
           )}
-          <input
+          <textarea
             className={styles.messageArea}
             placeholder="Enter email text here!"
-            type="text"
             onChange={handleEmailTextChange}
             value={emailText}
           />

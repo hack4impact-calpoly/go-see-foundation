@@ -36,18 +36,18 @@
 }
 
 .messageArea {
-  display:flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  margin-top:10px;
   height: 65%;
+  resize: none;
   border-radius: 12pt;
-  padding: 1em;
+  padding: .5em;
   font-size: 10pt;
   border: solid;
   border-width: 1.5pt;
-  border-color: #706F6F;
-  margin-bottom: 18px;
-
+  border-color: #706F6F;  margin-bottom:2%;
+  font-weight: 500;
+  font-size:26px;
+  color:black;
 }
 
 .to_input,
@@ -63,6 +63,23 @@
   color:black;
   font-weight: 500;
   font-size:20px;
+}
+
+.selectStyle{
+  appearance: none; /* Remove default styling */
+  border-radius: 10pt;
+  font-size: 10pt;
+  padding: 0.2em;
+  border: solid;
+  border-color: #706F6F;
+  margin-bottom: 10px;
+  border-width: 1.5pt;
+  height:40px;
+  color:black;
+  font-weight: 500;
+  font-size:20px;
+
+
 }
 
 .formButtons {
