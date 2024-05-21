@@ -65,8 +65,9 @@ export default function EmailSent(context: any) {
         </h3>
         <h3 className={styles.emailText}>{email}</h3>
         <h3 className={styles.fontSubtitle}>
-          Didn't get an email? Check spam or promotion folder.
+            Didn&apos;t get an email? Check spam or promotion folder.
         </h3>
+
 
         <div className={styles.emailBody}>
           <button

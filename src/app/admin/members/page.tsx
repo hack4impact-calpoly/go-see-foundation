@@ -5,7 +5,7 @@ import styles from './members.module.css'
 import BackButton from '../../components/backButton';
 import Image from 'next/image';
 
-export default function manageMembers() {
+export default function ManageMembers() {
     const [users, setUsers] = useState([])
 
     interface TableProps {
