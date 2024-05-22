@@ -2,10 +2,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./eventHistory.module.css";
-import BackButton from '../../components/BackButton';
+import BackButton from "../../components/BackButton";
 
 export default function EventHistory() {
   let [events, setEvents] = useState<any[]>([]);
+  const moment = require("moment");
 
   const fetchAllEvents = async () => {
     try {
@@ -39,35 +40,39 @@ export default function EventHistory() {
   }, []);
 
   return (
-    <div> <BackButton/>
-    <div className={styles.eventHistory}>
-      <div className={styles.formBody}>
-        <h1 className={styles.eventTitle}>Events</h1>
+    <div>
+      <BackButton />
+      <div className={styles.eventHistory}>
+        <div className={styles.formBody}>
+          <h1 className={styles.eventTitle}>Events</h1>
 
-        <div className={styles.eventsBody}>
-          {events &&
-            events.map((event, index) => (
-              <div key={index} className={styles.eventItem}>
-                <h2>{event.name}</h2>
-                <div className={styles.options}>
-                  <p className={styles.textOptions}>edit event</p>
-                  <Link
-                    href={{
-                      pathname: `/admin/eventHistory/[eventName]`,
-                      query: {
-                        id: event.name, // pass the id
-                      },
-                    }}
-                    as={`/admin/eventHistory/${event.name}`}
-                  >
-                    view Signees
-                  </Link>
+          <div className={styles.eventsBody}>
+            {events &&
+              events.map((event, index) => (
+                <div key={index} className={styles.eventItem}>
+                  <h1>{event.name}</h1>
+                  <h2> {event.date}</h2>
+                  <h3> {event.description}</h3>
+
+                  <div className={styles.options}>
+                    <p className={styles.textOptions}>edit event</p>
+                    <Link
+                      href={{
+                        pathname: `/admin/eventHistory/[eventName]`,
+                        query: {
+                          id: event.name, // pass the id
+                        },
+                      }}
+                      as={`/admin/eventHistory/${event.name}`}
+                    >
+                      view Signees
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }
