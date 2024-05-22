@@ -41,10 +41,14 @@ export default function Navbar() {
                 JOIN US
               </button>
             </Link>
+            <Link href = "/">
             <button className={`${styles.button} ${styles.menu}`}>
-              MENU
+              HOME
               <Image src={menu} alt="menu icon" width="20" height="15" />
             </button>
+            </Link>
+
+            
           </div>
         </div>
       </div>

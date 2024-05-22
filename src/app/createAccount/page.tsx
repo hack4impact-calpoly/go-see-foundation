@@ -7,6 +7,7 @@ import styles from "./createAccount.module.css";
 import { IUser } from "@database/userSchema";
 import { useRouter } from "next/navigation";
 import { PatternFormat } from "react-number-format";
+import Link from "next/link";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -253,18 +254,7 @@ const CreateAccount = () => {
               onKeyDown={handleInputKeyPress}
             />
           </div>
-          <div className={styles.chkboxcontainer}>
-            <input
-              type="checkbox"
-              id="myCheckbox"
-              name="myCheckbox"
-              ref={checkboxRef}
-              onKeyDown={handleInputKeyPress}
-            />
-            <label className={styles.checkboxtext} htmlFor="myCheckbox">
-              Sign me up for email notifications.
-            </label>
-          </div>
+         
           <br></br>
           <div className={styles.buttons}>
             <button
@@ -278,13 +268,14 @@ const CreateAccount = () => {
             <br></br>
             <div className={styles.break}></div>
             <p className={styles.accounttext}>Already have an account?</p>
+            
             <button
               className={styles.login}
               id="login"
-              ref={loginButtonRef}
-              onKeyDown={handleButtonKeyPress}
             >
-              LOG IN
+              <Link href="/login" >
+                LOG IN
+              </Link>
             </button>
           </div>
         </form>

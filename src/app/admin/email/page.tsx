@@ -5,6 +5,7 @@ import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
 import BackButton from "../../components/backButton";
 import { useSearchParams } from "next/navigation";
+import BackButton from '../../components/BackButton';
 
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");

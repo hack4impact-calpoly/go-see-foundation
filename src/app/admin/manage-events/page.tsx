@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./manage-events.module.css";
 import { useRouter } from "next/navigation";
 import { IEvent } from "@database/eventSchema";
-import BackButton from '../../components/backButton';
+import BackButton from '../../components/BackButton';
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);

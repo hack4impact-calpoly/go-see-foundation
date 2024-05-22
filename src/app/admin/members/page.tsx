@@ -2,7 +2,7 @@
 import { IUser } from "@database/userSchema";
 import React, {useState, useEffect} from "react";
 import styles from './members.module.css'
-import BackButton from '../../components/backButton';
+import BackButton from '../../components/BackButton';
 import Image from 'next/image';
 
 export default function ManageMembers() {

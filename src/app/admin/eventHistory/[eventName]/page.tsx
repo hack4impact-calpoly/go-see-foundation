@@ -2,7 +2,7 @@
 import emailIcon from "../../../images/emailIcon.png";
 import expandDown from "../../../images/Expand_down-2.png";
 import backButton from "../../../images/backButton.png";
-
+import BackButton from '../../../components/BackButton';
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./eventName.module.css";
@@ -52,29 +52,30 @@ export default function eventName(context: any) {
   }, []);
 
   return (
-    <div className={styles.eventHistory}>
-      <div className={styles.bodyCard}>
-        <div className={styles.titleBody}>
-          <Link href={{ pathname: `/admin/eventHistory/` }}>
-            <Image
-              className={styles.backButton}
-              src={backButton}
-              alt="background logo for the Go See Foundation"
-              height="29"
-              width="14.5"
-              priority={true}
-            />
-          </Link>
-          <h1 className={styles.eventTitle}>{eventName}</h1>
-        </div>
+    <div> <BackButton/>
+      <div className={styles.eventHistory}>
+        <div className={styles.bodyCard}>
+          <div className={styles.titleBody}>
+            <Link href={{ pathname: `/admin/eventHistory/` }}>
+              <Image
+                className={styles.backButton}
+                src={backButton}
+                alt="background logo for the Go See Foundation"
+                height="29"
+                width="14.5"
+                priority={true}
+              />
+            </Link>
+            <h1 className={styles.eventTitle}>{eventName}</h1>
+          </div>
 
-        {members && members.length > 0 ? (
-          members.map((mem, index) => (
-            <div key={index} className={styles.body}>
-              <p className={styles.textCard}>
-                {mem.firstName + " " + mem.lastName + " (" + mem.userType + ")"}
-              </p>
-              <p className={styles.textCard}>{mem.phoneNum}</p>
+          {members && members.length > 0 ? (
+            members.map((mem, index) => (
+              <div key={index} className={styles.body}>
+                <p className={styles.textCard}>
+                  {mem.firstName + " " + mem.lastName + " (" + mem.userType + ")"}
+                </p>
+                <p className={styles.textCard}>{mem.phoneNum}</p>
 
               <div className={styles.dropdownImg}>
                 <Link
@@ -86,6 +87,7 @@ export default function eventName(context: any) {
                   }}
                   as={`/admin/email?email=${mem.email}`}
                 >
+
                   <Image
                     src={emailIcon}
                     alt="background logo for the Go See Foundation"
@@ -102,16 +104,17 @@ export default function eventName(context: any) {
                   width="30"
                   priority={true}
                 />
+
               </div>
+            ))
+          ) : (
+            <div className={styles.noMembers}>
+              <h1 className={styles.nomemberText}>
+                No Members Have Signed Up for this Event.
+              </h1>
             </div>
-          ))
-        ) : (
-          <div className={styles.noMembers}>
-            <h1 className={styles.nomemberText}>
-              No Members Have Signed Up for this Event.
-            </h1>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
