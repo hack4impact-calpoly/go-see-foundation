@@ -274,6 +274,13 @@ const CreateAccount = () => {
               type="submit"
               ref={signupButtonRef}
               onClick={handleSubmit}
+              tabIndex={0}
+              onFocus={(e: any) => {
+                e.target.style.color = "#bbcfff";
+              }}
+              onBlur={(e: any) => {
+                e.target.style.color = "";
+              }}
             >
               SIGN UP
             </button>
@@ -285,6 +292,9 @@ const CreateAccount = () => {
               id="login"
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
+              tabIndex={0}
+              onFocus={(e: any) => (e.target.style.color = "white")}
+              onBlur={(e: any) => (e.target.style.color = "")}
             >
               LOG IN
             </button>
