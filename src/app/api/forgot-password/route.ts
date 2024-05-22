@@ -36,10 +36,11 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({
             message: 'Success: Reset Token Created',
             token: token
-        });
+        }, {status: 201});
 
     }
     catch(err){
+        console.log("Big Fail")
         return NextResponse.json(`${err}`, { status: 400 });
     }
 }

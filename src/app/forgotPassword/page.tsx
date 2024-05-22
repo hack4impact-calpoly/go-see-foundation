@@ -42,40 +42,36 @@ export default function ForgotPassword() {
   };
 
   //use this to make any api calls that are need in password verification
-  const onClickEmail = async(e: any) => {
-    try{
-      const response = await fetch('/api/forgot-password', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email: loginData.email }),
-      });
+  const onClickEmail = (e: any) => {
+    fetch('/api/forgot-password', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email: loginData.email }),
+    })
+    .then(response => {
       if (response.ok) {
-        const responseBody = await response.json();
-        const resetLink = `http://localhost:3000/reset-password?token=${responseBody.token}`;
-        const emailText = `Link to reset password: ${resetLink}`;
-        const params = {
-            to_email: loginData.email,
-            message: emailText,
-          };
-
-        emailjs
-            .send("service_cppo4i7", "template_izma6p8", params, {publicKey: "GKeCNmE1q3H0bTjJE"})
-            .then((response) => {
-                console.log("Email sent successfully!", response);
-            })
-            .catch((error) => {
-                console.error("Error sending email:", error);
-            });
+        return response.json();
+      } else {
+        throw new Error('Error: ' + response.statusText);
       }
-      else{
-        console.error('Error:', response.statusText);
-      }
-    }
-    catch(error){
-      console.error('Error:', error);
-    }
+    })
+    .then(responseBody => {
+      const resetLink = `http://localhost:3000/reset-password?token=${responseBody.token}`;
+      const emailText = `Link to reset password: ${resetLink}`;
+      const params = {
+        to_email: loginData.email,
+        message: emailText,
+      };
+      return emailjs.send("service_cppo4i7", "template_izma6p8", params, {publicKey: "GKeCNmE1q3H0bTjJE"});
+    })
+    .then(response => {
+      console.log("Email sent successfully!", response);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+    });
   };
 
   return (
