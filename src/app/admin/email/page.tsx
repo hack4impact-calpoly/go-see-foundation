@@ -1,14 +1,24 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
 import BackButton from "../../components/backButton";
+import { useSearchParams } from "next/navigation";
 
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");
   const [individualEmail, setIndividualEmail] = useState("");
   const [emailText, setEmailText] = useState("");
+  const searchParams = useSearchParams();
+  let email = searchParams.get("email");
+
+  useEffect(() => {
+    if (email) {
+      setSelectedOption("Individual");
+      setIndividualEmail(email);
+    }
+  }, []);
 
   const handleSelectChange = (e: {
     target: { value: React.SetStateAction<string> };
