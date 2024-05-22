@@ -19,6 +19,8 @@ export default function EventHistory() {
       }
 
       const res_j = await res.json();
+
+      console.log("res_j:", res_j);
       return res_j;
     } catch (err: unknown) {
       console.error(`Error: ${err}`);
@@ -51,21 +53,28 @@ export default function EventHistory() {
               events.map((event, index) => (
                 <div key={index} className={styles.eventItem}>
                   <h1>{event.name}</h1>
-                  <h2> {event.date}</h2>
-                  <h3> {event.description}</h3>
+                  <h2>
+                    {event.location}
+                    {"     "}
+                    {moment(event.date).format("MMM Do YYYY")} {event.startTime}{" "}
+                    - {event.endTime}
+                  </h2>
+                  <div className={styles.eventDescription}>
+                    {event.description}
+                  </div>
 
                   <div className={styles.options}>
-                    <p className={styles.textOptions}>edit event</p>
                     <Link
+                      className={styles.eventSignup}
                       href={{
                         pathname: `/admin/eventHistory/[eventName]`,
                         query: {
-                          id: event.name, // pass the id
+                          id: event.name,
                         },
                       }}
                       as={`/admin/eventHistory/${event.name}`}
                     >
-                      view Signees
+                      View Attendance
                     </Link>
                   </div>
                 </div>
