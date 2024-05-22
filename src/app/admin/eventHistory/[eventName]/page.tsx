@@ -6,12 +6,21 @@ import backButton from "../../../images/backButton.png";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./eventName.module.css";
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function eventName(context: any) {
   let [members, setMembers] = useState<any[]>([]);
-
   const eventName = decodeURIComponent(context.params.eventName);
+
+  const handleRedirect = (email: string) => {
+    console.log("email:", email);
+    const router = useRouter();
+    router.push({
+      pathname: "/admin/email",
+      query: { email: email },
+    });
+  };
 
   async function fetchallMembers() {
     try {
@@ -68,13 +77,24 @@ export default function eventName(context: any) {
               <p className={styles.textCard}>{mem.phoneNum}</p>
 
               <div className={styles.dropdownImg}>
-                <Image
-                  src={emailIcon}
-                  alt="background logo for the Go See Foundation"
-                  height="30"
-                  width="30"
-                  priority={true}
-                />
+                <Link
+                  href={{
+                    pathname: "/admin/email",
+                    query: {
+                      email: mem.email, // pass the email as a query parameter
+                    },
+                  }}
+                  as={`/admin/email?email=${mem.email}`}
+                >
+                  <Image
+                    src={emailIcon}
+                    alt="background logo for the Go See Foundation"
+                    height="30"
+                    width="30"
+                    priority={true}
+                  />
+                </Link>
+
                 <Image
                   src={expandDown}
                   alt="background logo for the Go See Foundation"
