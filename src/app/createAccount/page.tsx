@@ -262,7 +262,6 @@ const CreateAccount = () => {
               id="signup"
               type="submit"
               ref={signupButtonRef}
-              onClick={handleSubmit}
             >
               SIGN UP
             </button>
