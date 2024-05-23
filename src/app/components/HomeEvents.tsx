@@ -97,7 +97,7 @@ export default function HomeEvents() {
     <div className={styles.container}>
       <div className={styles.offset}>
         <div className={styles.pastEvents} tabIndex={0}>
-          <h2 className={styles.title}>News and Past Events</h2>
+          <h2 className={styles.title}>Blog</h2>
           <div className={styles.pastEventsCards}>
             {blogs?.slice(0, 3).map((blog: BlogEvent, index: number) => (
               <PastEventCard key={index} blog={blog} />
@@ -108,7 +108,7 @@ export default function HomeEvents() {
           </button>
         </div>
         <div className={styles.break}></div>
-        <div className={styles.upcomingEvents} tabIndex={0}>
+        <div className={styles.upcomingEvents}>
           <h2 className={styles.title}>Upcoming Events</h2>
           <div className={styles.upcomingEventsCards}>
             {events?.slice(0, 1).map((e: IEvent, index: number) => (

@@ -6,6 +6,8 @@ import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 import { IUser } from "@database/userSchema";
 import { useRouter } from "next/navigation";
+import { PatternFormat } from "react-number-format";
+import Link from "next/link";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -115,7 +117,8 @@ const CreateAccount = () => {
     push("/");
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
@@ -130,7 +133,9 @@ const CreateAccount = () => {
     newUser.username = newUser.firstName + " " + newUser.lastName;
 
     try {
+      console.log("newUser", newUser);
       console.log("fetching");
+
       const response = await fetch("/api/registration/", {
         // Updated API endpoint
         method: "POST",
@@ -155,19 +160,13 @@ const CreateAccount = () => {
 
   return (
     <div className={styles.createAccount}>
-      {/* <Image
-        src={logo}
-        alt="Go See Foundation's Logo"
-        width="360"
-        height="95"
-      /> */}
       <br></br>
       <h1 className={styles.title}>Sign in and join the Go See community!</h1>
       <div className={styles.container}>
         <form
           className={styles.createForm}
           onChange={handleAccountChange}
-          onSubmit={handleCreateAccount}
+          onSubmit={handleSubmit}
         >
           <h2 className={styles.heading}>Step 1: Personal Info:</h2>
           <div className={styles.inputs}>
@@ -189,14 +188,15 @@ const CreateAccount = () => {
               ref={lastInputRef}
               onKeyDown={handleInputKeyPress}
             />
-            <input
+            <PatternFormat
               className={styles.input}
               type="text"
+              format="##/##/####"
               id="birth"
-              placeholder="Date of Birth"
+              mask="_"
               required
-              ref={birthInputRef}
               onKeyDown={handleInputKeyPress}
+              placeholder="Date of Birth"
             />
             <select
               className={styles.input}
@@ -220,21 +220,21 @@ const CreateAccount = () => {
               type="email"
               id="email"
               placeholder="Email"
-              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
               required
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
             />
-            <input
+            <PatternFormat
               className={styles.input}
               type="tel"
+              format="+1 (###) ###-####"
               id="phone"
-              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
-              placeholder="Phone Number"
+              mask="_"
               required
-              ref={phoneInputRef}
               onKeyDown={handleInputKeyPress}
+              placeholder="Phone Number"
             />
+
             <input
               className={styles.input}
               type="password"
@@ -254,18 +254,7 @@ const CreateAccount = () => {
               onKeyDown={handleInputKeyPress}
             />
           </div>
-          <div className={styles.chkboxcontainer}>
-            <input
-              type="checkbox"
-              id="myCheckbox"
-              name="myCheckbox"
-              ref={checkboxRef}
-              onKeyDown={handleInputKeyPress}
-            />
-            <label className={styles.checkboxtext} htmlFor="myCheckbox">
-              Sign me up for email notifications.
-            </label>
-          </div>
+         
           <br></br>
           <div className={styles.buttons}>
             <button
@@ -274,29 +263,22 @@ const CreateAccount = () => {
               type="submit"
               ref={signupButtonRef}
               onClick={handleSubmit}
-              tabIndex={0}
-              onFocus={(e: any) => {
-                e.target.style.color = "#bbcfff";
-              }}
-              onBlur={(e: any) => {
-                e.target.style.color = "";
-              }}
             >
               SIGN UP
             </button>
             <br></br>
             <div className={styles.break}></div>
             <p className={styles.accounttext}>Already have an account?</p>
+            
             <button
               className={styles.login}
               id="login"
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
-              tabIndex={0}
-              onFocus={(e: any) => (e.target.style.color = "white")}
-              onBlur={(e: any) => (e.target.style.color = "")}
             >
-              LOG IN
+              <Link href="/login" >
+                LOG IN
+              </Link>
             </button>
           </div>
         </form>

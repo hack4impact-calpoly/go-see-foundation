@@ -1,11 +1,13 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import { useRouter } from 'next/router';
 import Image from "next/image";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
 import SeussQuote from "@components/seussQuote";
-import "./page.css";
+import Link from 'next/link';
+import "./page.css"; 
 
 export default function Home() {
   const navbarRef = useRef<HTMLDivElement>(null);
@@ -38,9 +40,11 @@ export default function Home() {
           Our mission is to encourage, inspire, and empower those going through
           vision loss to remain active and engaged with their world.
         </h3>
-        <button className="joinButton" type="button">
-          JOIN US
-        </button>
+        <Link href="/createAccount">
+          <button className="joinButton" type="button">
+            JOIN US
+          </button>
+        </Link>
       </div>
 
       <div

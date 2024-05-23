@@ -1,11 +1,16 @@
 import connectDB from "@database/db";
 import { NextRequest, NextResponse } from "next/server";
 import Users, { IUser } from "@database/userSchema";
-import jwt from "jsonwebtoken";
+import { cookies } from 'next/headers'
+import type {NextApiRequest, NextApiResponse} from 'next'
 const bcrypt = require("bcrypt");
+const jose = require('jose')
 
-export async function POST(req: NextRequest) {
-  
+// library for generating symmetric key for jwt
+const { createSecretKey } = require('crypto');
+
+export async function POST(req: NextRequest, res: NextApiResponse<{ message: string }>) {
+
   await connectDB();
   try {
     const { email, password } = await req.json();
@@ -35,8 +40,37 @@ export async function POST(req: NextRequest) {
     const curr_time_sec = Math.round(curr_time / 1000); // current time in seconds
     const exp_time_sec = curr_time_sec + 1800; // exp time sec (current time + 30 mins)
     const data = { signInTime: curr_time_sec, exp: exp_time_sec, user };
-    const token = jwt.sign(data, jwtSecretKey);
-    return NextResponse.json({ message: "Success: Login Complete", token });
+
+    const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
+    let token;
+    try {
+      token = await new jose.SignJWT({ payload: data }) // details to  encode in the token
+      .setProtectedHeader({ alg: 'HS256' }) // algorithm
+      .setIssuedAt()
+      //.setIssuer(process.env.JWT_ISSUER) // issuer
+      //.setAudience(process.env.JWT_AUDIENCE) // audience
+      .setExpirationTime('2h') // token expiration time, e.g., "1 day"
+      .sign(secretKey); // secretKey generated from previous step
+      console.log("token: ", token);
+    }
+    catch(err){
+      console.log("error", err);
+    }
+    
+    cookies().set('Auth_Session', token, {
+      sameSite: 'strict',
+      httpOnly: true,
+      // secure: true, # Uncomment this line when using HTTPS
+    });
+
+    console.log("type:", user.userType);
+
+    if(user.userType == 'admin'){
+      return NextResponse.json({ message: "Admin Success: Login Complete" });
+    }
+
+    //return NextResponse.redirect(new URL('/', req.nextUrl))
+    return NextResponse.json({ message: "Success: Login Complete" });
   } catch (err) {
     return NextResponse.json(`${err}`, { status: 400 });
   }

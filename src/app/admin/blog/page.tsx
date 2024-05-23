@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./blog.module.css";
 import { useRouter } from "next/navigation";
 import { IEvent } from "@database/blogSchema";
+import BackButton from '../../components/BackButton';
 
 const BlogPage = () => {
   const newBlogButtonRef = useRef<HTMLButtonElement>(null);
@@ -234,6 +235,7 @@ const BlogPage = () => {
   };
 
   return (
+    <div> <BackButton/>
     <div className={styles.container}>
       <div className={styles.blogManager}>
         <div className={styles.topButtons}>
@@ -279,18 +281,18 @@ const BlogPage = () => {
             />
           ) : (
             <select
-              className={styles.selectBlog}
-              id="firstInput"
-              name="name"
-              required
-              onKeyDown={handleInputKeyPress}
-              onChange={handleBlogSelection}
-            >
-              <option value="-1">Select Blog...</option>
-              {blogs.map((blog: IEvent, index: number) => (
-                <option value={index}>{`Name: ${blog.name}`}</option>
-              ))}
-            </select>
+            className={styles.selectBlog}
+            id="firstInput"
+            name="name"
+            required
+            onKeyDown={handleInputKeyPress}
+            onChange={handleBlogSelection}
+          >
+            <option value="-1">Select Blog...</option>
+            {blogs.map((blog: IEvent, index: number) => (
+              <option key={index} value={index}>{`Name: ${blog.name}`}</option>
+            ))}
+          </select>
           )}
           <input
             className={styles.input}
@@ -381,6 +383,7 @@ const BlogPage = () => {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

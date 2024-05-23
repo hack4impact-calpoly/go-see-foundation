@@ -1,13 +1,24 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
-import styles from "./admin.module.css";
+import React, { useState, useEffect } from "react";
+import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
+import { useSearchParams } from "next/navigation";
+import BackButton from "../../components/BackButton";
 
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");
   const [individualEmail, setIndividualEmail] = useState("");
   const [emailText, setEmailText] = useState("");
+  const searchParams = useSearchParams();
+  let email = searchParams.get("email");
+
+  useEffect(() => {
+    if (email) {
+      setSelectedOption("Individual");
+      setIndividualEmail(email);
+    }
+  }, []);
 
   const handleSelectChange = (e: {
     target: { value: React.SetStateAction<string> };
@@ -30,7 +41,7 @@ export default function AdminPage() {
   };
 
   const sendEmails = async () => {
-    if (selectedOption == "Individual") {
+    if (selectedOption === "Individual") {
       const params = {
         to_email: individualEmail,
         message: emailText,
@@ -67,8 +78,8 @@ export default function AdminPage() {
       });
     }
 
-    setEmailText("")
-    setIndividualEmail("")
+    setEmailText("");
+    setIndividualEmail("");
   };
 
   const handleIndividualEmailChange = (e: any) => {
@@ -81,48 +92,46 @@ export default function AdminPage() {
     setEmailText(value);
   };
 
-
   return (
-    <>
-      <div>
-        <label htmlFor="dropdown">Select your role:</label>
-        <select
-          id="dropdown"
-          value={selectedOption}
-          onChange={handleSelectChange}
-        >
-          <option value="">Select...</option>
-          <option value="Member">Member</option>
-          <option value="Volunteer">Volunteer</option>
-          <option value="Partner/Donor">Partner/Donor</option>
-          <option value="Individual">Individual</option>
-        </select>
-      </div>
-      <div>
-        <input
-          placeholder="Enter email text here!"
-          type="text"
-          onChange={handleEmailTextChange}
-          value={emailText}
-        />
-      </div>
-      <div>
-        <button onClick={sendEmails}>Send Email!</button>
-      </div>
-      <div>
-        {selectedOption == "Individual" ? (
-          <input
-            placeholder="enter email"
-            type="text"
-            onChange={handleIndividualEmailChange}
-            value={individualEmail}
+    <div>
+      <BackButton />
+      <div className={styles.emailArea}>
+        <div className={styles.emailForm}>
+          <label htmlFor="dropdown" className={styles.group}>
+            Select Group:
+          </label>
+          <select
+            id="dropdown"
+            value={selectedOption}
+            onChange={handleSelectChange}
+            className={styles.selectStyle}
+          >
+            <option value="">Select...</option>
+            <option value="Member">Member</option>
+            <option value="Volunteer">Volunteer</option>
+            <option value="Partner/Donor">Partner/Donor</option>
+            <option value="Individual">Individual</option>
+          </select>
+          {selectedOption === "Individual" && (
+            <input
+              className={styles.to_input}
+              placeholder="Enter Email"
+              type="text"
+              onChange={handleIndividualEmailChange}
+              value={individualEmail}
+            />
+          )}
+          <textarea
+            className={styles.messageArea}
+            placeholder="Enter email text here!"
+            onChange={handleEmailTextChange}
+            value={emailText}
           />
-        ) : (
-          <div></div>
-        )}
+          <button className={styles.formButtons} onClick={sendEmails}>
+            Send Email!
+          </button>
+        </div>
       </div>
-    </>
+    </div>
   );
 }
-
-

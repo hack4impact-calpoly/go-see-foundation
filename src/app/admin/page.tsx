@@ -17,14 +17,19 @@ export default function AdminPage() {
           alt="Go See Foundation's Logo"
         />
         <div className={styles.buttons}>
-          <Link className={styles.buttonLink} href="/admin/edit">
-            <button className={`${styles.button} ${styles.edit}`}>
-              Edit Website
-            </button>
-          </Link>
           <Link className={styles.buttonLink} href="/admin/members">
             <button className={`${styles.button} ${styles.members}`}>
               Manage Members
+            </button>
+          </Link>
+          <Link className={styles.buttonLink} href="/admin/donations">
+            <button className={`${styles.button} ${styles.members}`}>
+              View Donations
+            </button>
+          </Link>
+          <Link className={styles.buttonLink} href="/admin/eventHistory">
+            <button className={`${styles.button} ${styles.events}`}>
+              View Event Signups
             </button>
           </Link>
           <Link className={styles.buttonLink} href="/admin/manage-events">
@@ -32,21 +37,18 @@ export default function AdminPage() {
               Create/Edit Events
             </button>
           </Link>
-          <Link className={styles.buttonLink} href="/admin/donations">
+          <Link className={styles.buttonLink} href="/admin/blog">
             <button className={`${styles.button} ${styles.events}`}>
-              View Donations
+              Create/Edit Blogs
             </button>
           </Link>
+          
           <Link className={styles.buttonLink} href="/admin/email">
             <button className={`${styles.button} ${styles.email}`}>
               Email
             </button>
           </Link>
-          <Link className={styles.buttonLink} href="/admin/images">
-            <button className={`${styles.button} ${styles.images}`}>
-              Images
-            </button>
-          </Link>
+          
         </div>
       </div>
       <div className={styles.image}>

@@ -1,8 +1,10 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+
 import styles from "./manage-events.module.css";
 import { useRouter } from "next/navigation";
 import { IEvent } from "@database/eventSchema";
+import BackButton from '../../components/BackButton';
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
@@ -200,51 +202,52 @@ const ManageEventsPage = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.eventManager}>
-        <div className={styles.topButtons}>
-          <button
-            className={`${styles.newEventButton} ${
-              activeForm === 0 ? styles.activeForm : ""
-            }`}
-            id="newEventButton"
-            type="button"
-            ref={newEventButtonRef}
-            onClick={handleFormSwitch}
+    <div> <BackButton />
+      <div className={styles.container}>
+        <div className={styles.eventManager}>
+          <div className={styles.topButtons}>
+            <button
+              className={`${styles.newEventButton} ${
+                activeForm === 0 ? styles.activeForm : ""
+              }`}
+              id="newEventButton"
+              type="button"
+              ref={newEventButtonRef}
+              onClick={handleFormSwitch}
+            >
+              New Event
+            </button>
+            <button
+              className={`${styles.updateEventButton} ${
+                activeForm === 1 ? styles.activeForm : ""
+              }`}
+              id="updateEventButton"
+              type="button"
+              ref={updateEventButtonRef}
+              onClick={handleFormSwitch}
+            >
+              Update Event
+            </button>
+          </div>
+          <form
+            className={styles.eventForm}
+            onChange={handleEventChange}
+            onSubmit={handleSubmit}
           >
-            New Event
-          </button>
-          <button
-            className={`${styles.updateEventButton} ${
-              activeForm === 1 ? styles.activeForm : ""
-            }`}
-            id="updateEventButton"
-            type="button"
-            ref={updateEventButtonRef}
-            onClick={handleFormSwitch}
-          >
-            Update Event
-          </button>
-        </div>
-        <form
-          className={styles.eventForm}
-          onChange={handleEventChange}
-          onSubmit={handleSubmit}
-        >
-          {activeForm === 0 ? (
-            <input
-              className={styles.input}
-              type="text"
-              id="firstInput"
-              name="name"
-              placeholder="Title"
-              value={formData["name"]}
-              required
-              ref={firstInputRef}
-              onKeyDown={handleInputKeyPress}
-            />
-          ) : (
-            <select
+            {activeForm === 0 ? (
+              <input
+                className={styles.input}
+                type="text"
+                id="firstInput"
+                name="name"
+                placeholder="Title"
+                value={formData["name"]}
+                required
+                ref={firstInputRef}
+                onKeyDown={handleInputKeyPress}
+              />
+            ) : (
+              <select
               className={styles.selectEvent}
               id="firstInput"
               name="name"
@@ -253,92 +256,94 @@ const ManageEventsPage = () => {
               onChange={handleEventSelection}
             >
               <option value="-1">Select Event...</option>
-              {events.map((blog: IEvent, index: number) => (
-                <option value={index}>{blog.name}</option>
+              {events.map((event: IEvent, index: number) => (
+                <option key={index} value={index}>{event.name}</option>
               ))}
             </select>
-          )}
-          <input
-            className={styles.input}
-            type="date"
-            id="date"
-            name="date"
-            value={
-              selectedEventIndex === -1
-                ? formData["date"]
-                  ? formatDate(formData["date"])
-                  : ""
-                : formatDate(events[selectedEventIndex].date)
-            }
-            placeholder="Date"
-            required
-            ref={dateInputRef}
-            onKeyDown={handleInputKeyPress}
-            disabled={selectedEventIndex === -1 ? false : true}
-          />
-          <div className={styles.inputTimes}>
+
+            )}
             <input
               className={styles.input}
-              type="time"
-              id="startTime"
-              name="startTime"
-              placeholder="Start Time"
+              type="date"
+              id="date"
+              name="date"
+              value={
+                selectedEventIndex === -1
+                  ? formData["date"]
+                    ? formatDate(formData["date"])
+                    : ""
+                  : formatDate(events[selectedEventIndex].date)
+              }
+              placeholder="Date"
               required
-              ref={startTimeInputRef}
+              ref={dateInputRef}
               onKeyDown={handleInputKeyPress}
               disabled={selectedEventIndex === -1 ? false : true}
             />
-            <input
-              className={styles.input}
-              type="time"
-              id="endTime"
-              name="endTime"
-              placeholder="End Time"
+            <div className={styles.inputTimes}>
+              <input
+                className={styles.input}
+                type="time"
+                id="startTime"
+                name="startTime"
+                placeholder="Start Time"
+                required
+                ref={startTimeInputRef}
+                onKeyDown={handleInputKeyPress}
+                disabled={selectedEventIndex === -1 ? false : true}
+              />
+              <input
+                className={styles.input}
+                type="time"
+                id="endTime"
+                name="endTime"
+                placeholder="End Time"
+                required
+                ref={endTimeInputRef}
+                onKeyDown={handleInputKeyPress}
+                disabled={selectedEventIndex === -1 ? false : true}
+              />
+            </div>
+            <textarea
+              className={styles.descriptionInput}
+              id="eventDescription"
+              name="description"
+              placeholder="Event Description"
+              value={
+                selectedEventIndex === -1
+                  ? formData["description"]
+                  : String(events[selectedEventIndex].description)
+              }
               required
-              ref={endTimeInputRef}
+              ref={eventDescriptionInputRef}
               onKeyDown={handleInputKeyPress}
               disabled={selectedEventIndex === -1 ? false : true}
-            />
-          </div>
-          <textarea
-            className={styles.descriptionInput}
-            id="eventDescription"
-            name="description"
-            placeholder="Event Description"
-            value={
-              selectedEventIndex === -1
-                ? formData["description"]
-                : String(events[selectedEventIndex].description)
-            }
-            required
-            ref={eventDescriptionInputRef}
-            onKeyDown={handleInputKeyPress}
-            disabled={selectedEventIndex === -1 ? false : true}
-          ></textarea>
-          {activeForm === 0 ? (
-            <input
-              className={styles.input}
-              type="text"
-              id="altTextInput"
-              name="alt"
-              placeholder="Alternative Text for Image"
-              value={formData["alt"]}
-              required
-              ref={altTextInputRef}
-              onKeyDown={handleInputKeyPress}
-            />
-          ) : (
-            ""
-          )}
-          <button
-            className={styles.createEventButton}
-            id="submitButton"
-            type="submit"
-            ref={submitButtonRef}
-          >
-            {activeForm === 0 ? "Create New Event" : "Update Event"}
-          </button>
-        </form>
+            ></textarea>
+            {activeForm === 0 ? (
+              <input
+                className={styles.input}
+                type="text"
+                id="altTextInput"
+                name="alt"
+                placeholder="Alternative Text for Image"
+                value={formData["alt"]}
+                required
+                ref={altTextInputRef}
+                onKeyDown={handleInputKeyPress}
+              />
+            ) : (
+              ""
+            )}
+            <button
+              className={styles.createEventButton}
+              id="submitButton"
+              type="submit"
+              ref={submitButtonRef}
+            >
+              {activeForm === 0 ? "Create New Event" : "Update Event"}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

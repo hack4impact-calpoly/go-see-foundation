@@ -9,7 +9,7 @@ import styles from "./navbar.module.css";
 export default function Navbar() {
   return (
     <div className={styles.navbar}>
-      <a href="#about-us" className="skip-to-main-content-link">
+      <a href="#main" className="skip-to-main-content-link">
         Skip to end of navbar
       </a>
       <div className={styles.mainbar}>
@@ -41,10 +41,14 @@ export default function Navbar() {
                 JOIN US
               </button>
             </Link>
+            <Link href = "/">
             <button className={`${styles.button} ${styles.menu}`}>
-              MENU
+              HOME
               <Image src={menu} alt="menu icon" width="20" height="15" />
             </button>
+            </Link>
+
+            
           </div>
         </div>
       </div>
@@ -52,11 +56,6 @@ export default function Navbar() {
         <div className={styles.linkWrapper}>
           <Link className={styles.link} href="/">
             HOME
-          </Link>
-        </div>
-        <div className={styles.linkWrapper}>
-          <Link className={styles.link} href="#events">
-            GET INVOLVED
           </Link>
         </div>
         <div className={styles.linkWrapper}>
