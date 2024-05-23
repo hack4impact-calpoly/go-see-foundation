@@ -96,8 +96,8 @@ export default function HomeEvents() {
   return (
     <div className={styles.container}>
       <div className={styles.offset}>
-        <div className={styles.pastEvents}>
-          <h2 className={styles.title}>News and Past Events</h2>
+        <div className={styles.pastEvents} tabIndex={0}>
+          <h2 className={styles.title}>Blog</h2>
           <div className={styles.pastEventsCards}>
             {blogs?.slice(0, 3).map((blog: BlogEvent, index: number) => (
               <PastEventCard key={index} blog={blog} />

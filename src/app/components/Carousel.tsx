@@ -81,7 +81,7 @@ export default function Carousel({
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} tabIndex={0}>
       <h2>Here&apos;s what we&apos;ve been up to...</h2>
       <div className={styles.fullCarousel}>
         <div className={styles.carousel}>
@@ -151,7 +151,7 @@ export default function Carousel({
         </div>
       </div>
       <div className={styles.quoteContainer}>
-      <p className={styles.quote}>&quot;{quotes[currentIndex]}&quot;</p>
+        <p className={styles.quote}>&quot;{quotes[currentIndex]}&quot;</p>
         <p className={styles.quoteSrc}>- {quoteSrc[currentIndex]}</p>
       </div>
       {/* </div> */}

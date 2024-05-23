@@ -272,6 +272,8 @@ const CreateAccount = () => {
             <button
               className={styles.login}
               id="login"
+              ref={loginButtonRef}
+              onKeyDown={handleButtonKeyPress}
             >
               <Link href="/login" >
                 LOG IN

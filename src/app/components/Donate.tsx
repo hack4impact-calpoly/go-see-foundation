@@ -71,14 +71,16 @@ export default function Donate() {
 
   return (
     <div>
-      <h1>Your Donation will help us GO See More!</h1>
-      <div className="donateComponent">
+      <h1 tabIndex={0}>Your Donation will help us GO See More!</h1>
+      <div className="donateComponent" tabIndex={0}>
         <Image
           className="donateImage"
           src={donateImage}
           alt="A photo of GO Foundation members and a dog"
         ></Image>{" "}
-        <div className="description">{desc}</div>
+        <div className="description" tabIndex={0}>
+          {desc}
+        </div>
         <form className="donateForm" onSubmit={handleSubmit}>
           <DonateButtonComponent />
           <button type="submit">DONATE</button>

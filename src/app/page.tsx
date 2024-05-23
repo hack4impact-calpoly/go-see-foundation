@@ -10,7 +10,7 @@ import Link from 'next/link';
 import "./page.css"; 
 
 export default function Home() {
-  const navbarRef = useRef<HTMLDivElement>(null); 
+  const navbarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (navbarRef.current) {
@@ -34,7 +34,7 @@ export default function Home() {
         height={500}
       />
 
-      <div className="homedescript">
+      <div className="homedescript" tabIndex={0}>
         <h1>GO See Foundation</h1>
         <h3>
           Our mission is to encourage, inspire, and empower those going through
@@ -50,9 +50,9 @@ export default function Home() {
       <div
         className="navbar"
         ref={navbarRef}
-        tabIndex={-1} 
-        onKeyDown={handleNavbarKeyPress} 
-        style={{ display: "none" }} 
+        tabIndex={-1}
+        onKeyDown={handleNavbarKeyPress}
+        style={{ display: "none" }}
       >
         <h2>This is the Navbar</h2>
         <ul>
@@ -83,8 +83,6 @@ export default function Home() {
       />
       <HomeEvents />
       <SeussQuote />
-      
     </div>
   );
 }
-

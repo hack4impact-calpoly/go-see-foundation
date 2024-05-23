@@ -57,13 +57,16 @@ export default function ResourcePage() {
       {resources2D?.map((row: Array<IResource>, index: number) => (
         <ResourceRow key={index} resources={row} />
       ))}
-      <h2 className={styles.sectionHeader}>Supporters</h2>
+      <h2 className={styles.sectionHeader} tabIndex={0}>
+        Supporters
+      </h2>
       <Image
         className={styles.supportersPicture}
         src={"/supporters.png"}
         alt="The Go See Foundation's Supporters!"
         width="2513" // original image dimensions
         height="1285"
+        tabIndex={0}
       />{" "}
     </div>
   );

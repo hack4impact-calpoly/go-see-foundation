@@ -12,7 +12,7 @@ export default function FounderStory() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.containerText}>
+      <div className={styles.containerText} tabIndex={0}>
         <div className={styles.title}>The founder and her story</div>
         <div className={styles.imageContainerIn}>
           <Image
@@ -25,7 +25,7 @@ export default function FounderStory() {
           <div className={styles.founderText}>{founderStory1}</div>
           {/* <div className={styles.founderText}>{founderStory2}</div> */}
         </div>
-        
+
         <Link href="/about">
           <button className={styles.buttonStyle}>LEARN MORE</button>
         </Link>
