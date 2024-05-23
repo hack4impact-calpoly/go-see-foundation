@@ -35,19 +35,11 @@ export default function Footer() {
           width="390"
           height="300"
         ></Image>
-        <div className="address">
-          GO See Foundation
-          <br />
-          1234 This Street
-          <br />
-          San Luis Obispo, CA 93405
-          <br />
-        </div>
+       
         <br />
         <div className="contact">
-          Phone: 123-456-789 <br />
-          Fax: 123-456-789 <br />
-          Email: GOsee@email.com
+          (805) 242-4220 <br />
+          allyson@goseefoundation.org
         </div>
       </div>
       <div className="copyright">
