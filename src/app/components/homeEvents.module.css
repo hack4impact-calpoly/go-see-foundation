@@ -60,16 +60,26 @@
 }
 
 .viewAllArticles {
-  width: fit-content;
-  margin: 1% auto 1% auto;
+  display: inline-block; /* Ensure it only takes up the necessary space */
+  padding: 15px 30px; /* Increase padding for a larger button */
+  margin: 1% auto; /* Simplify margin */
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 1.4em;
+  font-size: 1.6em; /* Increase font size */
   font-weight: bold;
   color: #1d2f5d;
-  border: none;
-  border-bottom: 3px solid #bbcfff;
-
+  border: 2px solid #1d2f5d; /* Add a solid border for clarity */
+  border-radius: 5px; /* Add some rounding for a more modern look */
   background-color: white;
+  text-align: center; /* Center text */
+  text-decoration: none; /* Remove underline for the link */
+  cursor: pointer; /* Show pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.viewAllArticles:hover {
+  background-color: #1d2f5d; /* Change background color on hover */
+  color: white; /* Change text color on hover */
+  border-color: #bbcfff; /* Change border color on hover */
 }
 
 .break {
@@ -102,6 +112,28 @@
   border-radius: 16px;
   background-color: #fbb135;
 }
+
+
+.divider {
+  border-bottom: 3px solid #F0C30F; /* Yellow underline */
+  margin: 20px 0; /* Adjust margin as needed */
+}
+
+.blogSection {
+  display: flex;
+  align-items: center;
+}
+
+.viewBlogsLink {
+  flex: 1;
+  /* Styles for the VIEW BLOGS link */
+}
+
+/* Apply these styles to the container that holds the picture */
+
+
+
+
 
 @media only screen and (max-width: 800px) {
   .container {

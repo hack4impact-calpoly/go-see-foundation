@@ -6,6 +6,9 @@ import UpcomingEventCard from "./UpcomingEventCard";
 import { IEvent } from "@database/eventSchema";
 import { IEvent as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import groupPhoto from "../images/Group_Photo.jpeg"
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -97,15 +100,7 @@ export default function HomeEvents() {
     <div className={styles.container}>
       <div className={styles.offset}>
         <div className={styles.pastEvents} tabIndex={0}>
-          <h2 className={styles.title}>Blog</h2>
-          <div className={styles.pastEventsCards}>
-            {blogs?.slice(0, 3).map((blog: BlogEvent, index: number) => (
-              <PastEventCard key={index} blog={blog} />
-            ))}
-          </div>
-          <button className={styles.viewAllArticles} onClick={handleViewAll}>
-            VIEW ALL ARTICLES
-          </button>
+          
         </div>
         <div className={styles.break}></div>
         <div className={styles.upcomingEvents}>
@@ -123,8 +118,24 @@ export default function HomeEvents() {
             <UpcomingEventCard event={events[1]} /> */}
           </div>
           <button className={styles.allEventsButton} onClick={handleAllEvents}>
-            ALL EVENTS
+            VIEW ALL EVENTS
           </button>
+        </div>
+        {/* <Link href="/blog" className={styles.viewAllArticles}>
+          VIEW ALL ARTICLES
+        </Link> */}
+          <div className={styles.divider}></div> {/* Yellow underline */}
+        <div className={styles.blogSection}>
+        
+        <h2 className={styles.title}>Blog</h2>
+        <div className={styles.viewBlogsLink}>
+            {/* View Blogs link on the right */}
+            <Link href="/blog" className={styles.viewAllArticles}>
+              VIEW ALL ARTICLES
+            </Link>
+          
+          
+          </div>
         </div>
       </div>
     </div>
