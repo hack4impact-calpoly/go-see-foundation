@@ -8,7 +8,7 @@ import { IEvent as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import groupPhoto from "../images/Group_Photo.jpeg"
+import blogIcon from "../images/blog.png"
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -127,12 +127,13 @@ export default function HomeEvents() {
           <div className={styles.divider}></div> {/* Yellow underline */}
         <div className={styles.blogSection}>
         
-        <h2 className={styles.title}>Blog</h2>
+        
         <div className={styles.viewBlogsLink}>
             {/* View Blogs link on the right */}
             <Link href="/blog" className={styles.viewAllArticles}>
               VIEW ALL ARTICLES
             </Link>
+          
           
           
           </div>
