@@ -12,7 +12,7 @@
   height: fit-content;
   font-size: 100%;
   background-color: white;
-  margin-bottom: 2rem; /* Adjust the margin-bottom as needed */
+  margin-bottom: 2rem; 
 }
 
 .offset {
@@ -22,13 +22,12 @@
 
 .title {
   padding-top: 0.5%;
-  margin: 1.5% 0;
+  margin: 0.01% 0;
   font-family: "Helvetica Neue", sans-serif;
   font-size: 2.4em;
-  font-weight: bold;
+  font-weight: 700;
   color: #1d2f5d;
 
-  /* background-color: green; */
 }
 
 .upcomingEvents .title {
@@ -49,37 +48,34 @@
   flex-direction: row;
   margin: auto;
   justify-content: space-between;
-  /* gap: 1%; */
-
-  /* background-color: yellow; */
 }
 
 .upcomingEventsCards {
   margin: auto 0;
-  /* display: block; */
+
 }
 
 .viewAllArticles {
-  display: inline-block; /* Ensure it only takes up the necessary space */
-  padding: 15px 30px; /* Increase padding for a larger button */
-  margin: 1% auto; /* Simplify margin */
+  display: inline-block; 
+  padding: 15px 30px;
+  margin: 1% auto; 
   font-family: "Helvetica Neue", sans-serif;
-  font-size: 1.6em; /* Increase font size */
+  font-size: 1.9em; 
   font-weight: bold;
-  color: #1d2f5d;
-  border: 2px solid #1d2f5d; /* Add a solid border for clarity */
-  border-radius: 5px; /* Add some rounding for a more modern look */
-  background-color: white;
-  text-align: center; /* Center text */
-  text-decoration: none; /* Remove underline for the link */
-  cursor: pointer; /* Show pointer cursor on hover */
-  transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition for hover effects */
+  color: white;
+  border: 2px solid white; 
+  border-radius: 5px; 
+  background-color: #1d2f5d;
+  text-align: center; 
+  text-decoration: none; 
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s; 
 }
 
 .viewAllArticles:hover {
-  background-color: #1d2f5d; /* Change background color on hover */
-  color: white; /* Change text color on hover */
-  border-color: #bbcfff; /* Change border color on hover */
+  background-color: white; 
+  color: #1d2f5d;
+  border-color: #bbcfff;
 }
 
 .break {
@@ -115,8 +111,8 @@
 
 
 .divider {
-  border-bottom: 10px solid #F0C30F; /* Yellow underline */
-  margin: 20px 0; /* Adjust margin as needed */
+  border-bottom: 10px solid #F0C30F;
+  margin: 20px 0;
 }
 
 .blogSection {
@@ -126,10 +122,8 @@
 
 .viewBlogsLink {
   flex: 1;
-  /* Styles for the VIEW BLOGS link */
 }
 
-/* Apply these styles to the container that holds the picture */
 
 
 

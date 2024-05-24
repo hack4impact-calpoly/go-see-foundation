@@ -113,29 +113,19 @@ export default function HomeEvents() {
             {events?.slice(1, 2).map((e: IEvent, index: number) => (
               <UpcomingEventCard key={e.eventID.toString()} event={e} />
             ))}
-            {/* <UpcomingEventCard event={events[0]} />
-            <div className={styles.break2}></div>
-            <UpcomingEventCard event={events[1]} /> */}
+           
           </div>
           <button className={styles.allEventsButton} onClick={handleAllEvents}>
             VIEW ALL EVENTS
           </button>
         </div>
-        {/* <Link href="/blog" className={styles.viewAllArticles}>
-          VIEW ALL ARTICLES
-        </Link> */}
-          <div className={styles.divider}></div> {/* Yellow underline */}
+        <div className={styles.divider}></div>
         <div className={styles.blogSection}>
-        
-        
         <div className={styles.viewBlogsLink}>
-            {/* View Blogs link on the right */}
-            <Link href="/blog" className={styles.viewAllArticles}>
-              VIEW ALL ARTICLES
-            </Link>
-          
-          
-          
+              <Link href="/blog" className={styles.viewAllArticles}>
+                VIEW ALL BLOGS
+              </Link>
+            <h3 className={styles.title}>Check out our Blog for the latest events and news! </h3>
           </div>
         </div>
       </div>
