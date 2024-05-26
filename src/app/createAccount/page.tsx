@@ -21,6 +21,14 @@ const CreateAccount = () => {
   const checkboxRef = useRef<HTMLInputElement>(null);
   const signupButtonRef = useRef<HTMLButtonElement>(null);
   const loginButtonRef = useRef<HTMLButtonElement>(null);
+
+  // states for fields
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [userType, setUserType] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   const { push } = useRouter();
 
   const [account, setAccount] = useState({
@@ -117,6 +125,36 @@ const CreateAccount = () => {
     push("/");
   };
 
+  // check the current states
+  const handleStates = () => {
+    return;
+  };
+
+  const handlePasswordChange = (e: any) => {
+    console.log(e.target.value)
+    setPassword(e.target.value);
+  };
+
+  const handleRepeatPasswordChange = (e: any) => {
+    console.log(e.target.value);
+    setRepeatPassword(e.target.value);
+  };
+
+  const handleEmailChange = (e: any) => {
+    console.log(e.target.value);
+    setEmail(e.target.value);
+  };
+
+  const handleAccountTypeChange = (e: any) => {
+    console.log(e.target.value);
+    setUserType(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e: any) => {
+    console.log(e.target.value);
+    setPhoneNumber(e.target.value);
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log("in handle");
@@ -203,6 +241,8 @@ const CreateAccount = () => {
               id="user"
               ref={userSelectRef}
               onKeyDown={handleSelectKeyPress}
+              value={userType}
+              onChange={handleAccountTypeChange}
             >
               <option value="select" disabled selected>
                 Select One
@@ -223,6 +263,7 @@ const CreateAccount = () => {
               required
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
+              onChange={handleEmailChange}
             />
             <PatternFormat
               className={styles.input}
@@ -233,8 +274,8 @@ const CreateAccount = () => {
               required
               onKeyDown={handleInputKeyPress}
               placeholder="Phone Number"
+              onChange={handlePhoneNumberChange}
             />
-
             <input
               className={styles.input}
               type="password"
@@ -243,6 +284,7 @@ const CreateAccount = () => {
               required
               ref={passwordInputRef}
               onKeyDown={handleInputKeyPress}
+              onChange={handlePasswordChange}
             />
             <input
               className={styles.input}
@@ -252,9 +294,9 @@ const CreateAccount = () => {
               required
               ref={repeatPasswordInputRef}
               onKeyDown={handleInputKeyPress}
+              onChange={handleRepeatPasswordChange}
             />
           </div>
-         
           <br></br>
           <div className={styles.buttons}>
             <button
@@ -268,16 +310,13 @@ const CreateAccount = () => {
             <br></br>
             <div className={styles.break}></div>
             <p className={styles.accounttext}>Already have an account?</p>
-            
             <button
               className={styles.login}
               id="login"
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
             >
-              <Link href="/login" >
-                LOG IN
-              </Link>
+              <Link href="/login">LOG IN</Link>
             </button>
           </div>
         </form>
