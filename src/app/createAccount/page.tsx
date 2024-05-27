@@ -155,8 +155,29 @@ const CreateAccount = () => {
     setPhoneNumber(e.target.value);
   };
 
+  const passwordsMatch = (password: string, repeatPassword: string): boolean => {
+    return password === repeatPassword;
+  };
+  
+  const isPhoneFilled = (phoneNumber: string): boolean => {
+    return phoneNumber.trim() !== "";
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+  
+    // Check if passwords match
+    if (!passwordsMatch(password, repeatPassword)) {
+      console.error("Passwords do not match");
+      return;
+    }
+  
+    // Check if phone number is filled
+    if (!isPhoneFilled(phoneNumber)) {
+      console.error("Phone number is required");
+      return;
+    }
+  
     console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
@@ -167,13 +188,13 @@ const CreateAccount = () => {
       phoneNum: account.phone,
       email: account.email,
     };
-
+  
     newUser.username = newUser.firstName + " " + newUser.lastName;
-
+  
     try {
       console.log("newUser", newUser);
       console.log("fetching");
-
+  
       const response = await fetch("/api/registration/", {
         // Updated API endpoint
         method: "POST",
@@ -182,9 +203,9 @@ const CreateAccount = () => {
         },
         body: JSON.stringify(newUser),
       });
-
+  
       console.log(response);
-
+  
       if (response.ok) {
         console.log("Account created successfully!");
         handleCreateAccount();
