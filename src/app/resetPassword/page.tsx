@@ -1,11 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+"use client";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import styles from "./resetPassword.module.css";
 import backgroundLogo from "../images/backgroundLogo.png";
-import revealIcon from "../images/revealIcon.png";
-import hideIcon from "../images/hideIcon.png";
+import revealedIcon from "../images/revealedIcon.png";
+import hiddenIcon from "../images/hiddenIcon.png";
 
 export default function ResetPasswordPage() {
   const newPasswordRef = useRef<HTMLInputElement>(null);
@@ -62,15 +63,6 @@ export default function ResetPasswordPage() {
     }
   };
 
-  useEffect(() => {
-    if (showNewPassword) {
-      // TODO: change hidden password characters
-    }
-    if (showRepeatPassword) {
-      // TODO: change hidden password characters
-    }
-  }, [showNewPassword, showRepeatPassword]);
-
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Tab") {
       e.preventDefault();
@@ -119,19 +111,21 @@ export default function ResetPasswordPage() {
         </h3>
 
         <div className={styles.inputWrapper}>
-          <label htmlFor="newPassword" className={styles.newPasswordLabel}>
-            <input
-              type="password"
-              id="newPassword"
-              name="newPassword"
-              placeholder="Type your new password"
-              value={resetData.newPassword}
-              onChange={handleFormChange}
-              onKeyDown={(e) => handleInputKeyPress(e)}
-              ref={newPasswordRef}
-              required
-            />
-          </label>
+          <label
+            htmlFor="newPassword"
+            className={styles.newPasswordLabel}
+          ></label>
+          <input
+            type={showNewPassword ? "text" : "password"}
+            id="newPassword"
+            name="newPassword"
+            placeholder="Type your new password"
+            value={resetData.newPassword}
+            onChange={handleFormChange}
+            onKeyDown={(e) => handleInputKeyPress(e)}
+            ref={newPasswordRef}
+            required
+          />
           <button
             id="newRevealButton"
             className={styles.revealButton}
@@ -139,10 +133,10 @@ export default function ResetPasswordPage() {
           >
             <Image
               className={styles.revealIcon}
-              src={showNewPassword ? revealIcon : hideIcon}
+              src={showNewPassword ? revealedIcon : hiddenIcon}
               alt="Reveal new password"
-              width="30"
-              height="30"
+              width="512"
+              height="512"
             />
           </button>
         </div>
@@ -150,30 +144,29 @@ export default function ResetPasswordPage() {
           <label
             htmlFor="repeatPassword"
             className={styles.repeatPasswordLabel}
-          >
-            <input
-              type="password"
-              id="repeatPassword"
-              name="repeatPassword"
-              placeholder="Confirm your password"
-              value={resetData.repeatPassword}
-              onChange={handleFormChange}
-              onKeyDown={(e) => handleInputKeyPress(e)}
-              ref={repeatPasswordRef}
-              required
-            />
-          </label>
+          ></label>
+          <input
+            type={showRepeatPassword ? "text" : "password"}
+            id="repeatPassword"
+            name="repeatPassword"
+            placeholder="Confirm your password"
+            value={resetData.repeatPassword}
+            onChange={handleFormChange}
+            onKeyDown={(e) => handleInputKeyPress(e)}
+            ref={repeatPasswordRef}
+            required
+          />
           <button
             id="repeatRevealButton"
-            className={styles.revealButon}
+            className={styles.revealButton}
             onClick={handleReveal}
           >
             <Image
               className={styles.revealIcon}
-              src={showRepeatPassword ? revealIcon : hideIcon}
+              src={showRepeatPassword ? revealedIcon : hiddenIcon}
               alt="Reveal new password"
-              width="30"
-              height="30"
+              width="512"
+              height="512"
             />
           </button>
         </div>
