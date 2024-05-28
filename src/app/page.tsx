@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Image from "next/image";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
 import SeussQuote from "@components/seussQuote";
-import Link from 'next/link';
-import "./page.css"; 
+import Link from "next/link";
+import "./page.css";
+import threeBridges from "./Three_Bridges_Hike.png";
 
 export default function Home() {
   const navbarRef = useRef<HTMLDivElement>(null);
@@ -66,19 +67,28 @@ export default function Home() {
       <Carousel
         images={[
           "/Group_Photo.jpeg",
-          "/backgroundLogo.png",
-          "/GO-See-HLogo.fw_.png",
+          "/Park.jpg",
+          "/Three_Bridges_Hike.png",
+          "Pismo_Beach_Hike.jpg",
+          "Kayaking.jpg",
+          "/Ziplining.jpg",
         ]}
-        imageAlts={["a group photo", "a menu", "the go see logo"]}
+        imageAlts={["a group photo", "three bridges hike", "the go see logo"]}
         quotes={[
           "Practicing Yoga has always been a challenge for me, but doing it with my GO SEE friends has been so much fun!!",
-          "We need a Dr. Seuss quote here",
-          "Third quote testing the buttons",
+          "I am still on a HIGH from camp, I thought I better let you know how GRATEFUL I am",
+          "Beautiful Hike at Three Bridges Oak Preserve with Delta Gamma and Delta Upsilon",
+          "Beautiful Beach Walk at Pismo Beach",
+          "Amazing Kayaking Tour in Morro Bay",
+          "Fun Day of Ziplining at Santa Margarita Adventures",
         ]}
         quoteSrc={[
           "Mark Jonas (member)",
-          "Quote Author 2 (member)",
-          "Quote Author 3 (admin)",
+          "Robin Schneider",
+          "Quote Author",
+          "Quote Author",
+          "Quote Author",
+          "Quote Author",
         ]}
       />
       <HomeEvents />
