@@ -110,11 +110,10 @@ export default function ResetPasswordPage() {
           Choose a new password for your account.
         </h3>
 
+        <label htmlFor="newPassword" className={styles.newPasswordLabel}>
+          New Password
+        </label>
         <div className={styles.inputWrapper}>
-          <label
-            htmlFor="newPassword"
-            className={styles.newPasswordLabel}
-          ></label>
           <input
             type={showNewPassword ? "text" : "password"}
             id="newPassword"
@@ -140,11 +139,10 @@ export default function ResetPasswordPage() {
             />
           </button>
         </div>
+        <label htmlFor="repeatPassword" className={styles.repeatPasswordLabel}>
+          Repeat Password
+        </label>
         <div className={styles.inputWrapper}>
-          <label
-            htmlFor="repeatPassword"
-            className={styles.repeatPasswordLabel}
-          ></label>
           <input
             type={showRepeatPassword ? "text" : "password"}
             id="repeatPassword"
