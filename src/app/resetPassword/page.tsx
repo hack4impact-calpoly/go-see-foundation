@@ -10,9 +10,9 @@ import hiddenIcon from "../images/hiddenIcon.png";
 
 export default function ResetPasswordPage() {
   const newPasswordRef = useRef<HTMLInputElement>(null);
-  const revealNewPasswordRef = useRef<HTMLInputElement>(null);
+  const revealNewPasswordRef = useRef<HTMLButtonElement>(null);
   const repeatPasswordRef = useRef<HTMLInputElement>(null);
-  const revealRepeatPasswordRef = useRef<HTMLInputElement>(null);
+  const revealRepeatPasswordRef = useRef<HTMLButtonElement>(null);
   const resetButtonRef = useRef<HTMLButtonElement>(null);
   const backButtonRef = useRef<HTMLAnchorElement>(null);
   const { push } = useRouter();
@@ -70,13 +70,13 @@ export default function ResetPasswordPage() {
         case "newPassword":
           revealNewPasswordRef?.current?.focus();
           break;
-        case "revealNewPassword":
+        case "newRevealButton":
           repeatPasswordRef?.current?.focus();
           break;
         case "repeatPassword":
           revealRepeatPasswordRef?.current?.focus();
           break;
-        case "revealRepeatPassword":
+        case "repeatRevealButton":
           resetButtonRef?.current?.focus();
           break;
         case "resetButton":
@@ -129,6 +129,7 @@ export default function ResetPasswordPage() {
             id="newRevealButton"
             className={styles.revealButton}
             onClick={handleReveal}
+            ref={revealNewPasswordRef}
           >
             <Image
               className={styles.revealIcon}
@@ -158,6 +159,7 @@ export default function ResetPasswordPage() {
             id="repeatRevealButton"
             className={styles.revealButton}
             onClick={handleReveal}
+            ref={revealRepeatPasswordRef}
           >
             <Image
               className={styles.revealIcon}
@@ -172,7 +174,7 @@ export default function ResetPasswordPage() {
           <p className={styles.errorMessage}>Passwords do not match</p>
         ) : null}
         <button
-          id="reset"
+          id="resetButton"
           className={`${styles.resetButton} ${
             showError ? styles.inactive : ""
           }`}
