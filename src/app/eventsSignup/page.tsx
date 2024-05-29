@@ -11,12 +11,11 @@ export default function eventsSignup() {
   return (
     <div>
       <div className="outer-container">
-        <div>
+        <div className="eventPicture">
           <Image
             src={kayak}
             alt="Kayaking Group Photo"
-            width="1640"
-            height="550"
+            layout="responsive"
           />
         </div>
         <div className="component">
