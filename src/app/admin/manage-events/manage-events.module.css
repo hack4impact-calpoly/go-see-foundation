@@ -6,11 +6,11 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-image: url(/colorful.jpeg);
+  /* background-image: url(/colorful.jpeg);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover; */
   
 }
 
@@ -42,10 +42,11 @@
   padding: 2% 0;
   justify-content: center;
   font-family: "Helvetica", sans-serif;
-  font-size: 16px;
+  font-size: 26px;
   color: white;
   background-color: #1d2f5d75;
   border: none;
+  font-weight: 700;
 }
 
 .newEventButton {
