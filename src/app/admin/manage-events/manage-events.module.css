@@ -57,6 +57,8 @@
 .updateEventButton {
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
+    color: white;
+
 }
 
 .newEventButton:not(.active):hover,
@@ -111,8 +113,8 @@
   padding-top: 0.75em;
   padding-bottom: 0.75em;
   font-family: "Helvetica", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 32px;
+  font-weight: 700;
   border-radius: 40px;
   background-color: #1d2f5d;
   color: white;

@@ -2,9 +2,9 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import styles from "./manage-events.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IEvent } from "@database/eventSchema";
-import BackButton from '../../components/BackButton';
+import BackButton from "../../components/BackButton";
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
@@ -17,6 +17,20 @@ const ManageEventsPage = () => {
   const altTextInputRef = useRef<HTMLInputElement>(null);
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const { push } = useRouter();
+  const searchParams = useSearchParams();
+  let event = searchParams.get("eventName");
+
+  useEffect(() => {
+    if (event) {
+      if (updateEventButtonRef) {
+        // Trigger the click event
+        const button = document.getElementById("updateEventButton");
+        if (button) {
+          button.click();
+        }
+      }
+    }
+  }, []);
 
   const [activeForm, setActiveForm] = useState(0);
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -202,7 +216,9 @@ const ManageEventsPage = () => {
   };
 
   return (
-    <div> <BackButton />
+    <div>
+      {" "}
+      <BackButton />
       <div className={styles.container}>
         <div className={styles.eventManager}>
           <div className={styles.topButtons}>
@@ -248,19 +264,20 @@ const ManageEventsPage = () => {
               />
             ) : (
               <select
-              className={styles.selectEvent}
-              id="firstInput"
-              name="name"
-              required
-              onKeyDown={handleInputKeyPress}
-              onChange={handleEventSelection}
-            >
-              <option value="-1">Select Event...</option>
-              {events.map((event: IEvent, index: number) => (
-                <option key={index} value={index}>{event.name}</option>
-              ))}
-            </select>
-
+                className={styles.selectEvent}
+                id="firstInput"
+                name="name"
+                required
+                onKeyDown={handleInputKeyPress}
+                onChange={handleEventSelection}
+              >
+                <option value="-1">Select Event...</option>
+                {events.map((event: IEvent, index: number) => (
+                  <option key={index} value={index}>
+                    {event.name}
+                  </option>
+                ))}
+              </select>
             )}
             <input
               className={styles.input}

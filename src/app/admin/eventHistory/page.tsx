@@ -66,12 +66,12 @@ export default function EventHistory() {
                     <Link
                       className={styles.editEvent}
                       href={{
-                        pathname: `/admin/manage-events`,
+                        pathname: "/admin/manage-events",
                         query: {
-                          id: event.name,
+                          eventName: event.name, // pass the email as a query parameter
                         },
                       }}
-                      as={`/admin/manage-events`}
+                      as={`/admin/manage-events?eventName=${event.name}`}
                     >
                       Edit Event
                     </Link>
