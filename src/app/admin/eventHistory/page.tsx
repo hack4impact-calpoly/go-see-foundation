@@ -62,8 +62,19 @@ export default function EventHistory() {
                   <div className={styles.eventDescription}>
                     {event.description}
                   </div>
-
                   <div className={styles.options}>
+                    <Link
+                      className={styles.editEvent}
+                      href={{
+                        pathname: "/admin/manage-events",
+                        query: {
+                          eventName: event.name, // pass the email as a query parameter
+                        },
+                      }}
+                      as={`/admin/manage-events?eventName=${event.name}`}
+                    >
+                      Edit Event
+                    </Link>
                     <Link
                       className={styles.eventSignup}
                       href={{

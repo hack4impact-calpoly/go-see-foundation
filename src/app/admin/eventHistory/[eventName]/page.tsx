@@ -59,13 +59,27 @@ export default function eventName(context: any) {
             <Image
               className={styles.backButton}
               src={backButton}
-              alt="background logo for the Go See Foundation"
+              alt="return to previous page"
               height="29"
               width="14.5"
               priority={true}
             />
           </Link>
           <h1 className={styles.eventTitle}>{eventName}</h1>
+          <Link
+            className={styles.emailAllButton}
+            href={{
+              pathname: "/admin/email",
+              query: {
+                eventName: eventName, // pass the email as a query parameter
+              },
+            }}
+            as={`/admin/email?eventName=${eventName}`}
+          >
+            Email All
+          </Link>
+
+          {/* <button className={styles.emailAllButton}>Email All</button> */}
         </div>
 
         {members && members.length > 0 ? (

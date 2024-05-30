@@ -102,6 +102,26 @@
     font-weight: 600;
     color: white;
     margin-top:10px;
+    margin-left:30px;
+    
+  }
+
+  .editEvent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FBB135;
+    appearance: none; /* Remove default styling */
+    width: 35%;
+    height: 40px;
+    text-decoration: none; /* Remove underline */
+    margin-bottom: 15px;
+    border-radius: 16px;
+    font-family: "Helvetica", sans-serif;
+    font-size: 22pt;
+    font-weight: 600;
+    color: black;
+    margin-top:10px;
     
   }
 
