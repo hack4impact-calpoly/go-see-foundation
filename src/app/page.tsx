@@ -67,28 +67,22 @@ export default function Home() {
       <Carousel
         images={[
           "/Group_Photo.jpeg",
-          "/Park.jpg",
           "/Three_Bridges_Hike.png",
           "Pismo_Beach_Hike.jpg",
           "Kayaking.jpg",
           "/Ziplining.jpg",
+          "/Garden_Tour.jpg",
+          "/Bike.jpg",
         ]}
         imageAlts={["a group photo", "three bridges hike", "the go see logo"]}
         quotes={[
           "Practicing Yoga has always been a challenge for me, but doing it with my GO SEE friends has been so much fun!!",
-          "I am still on a HIGH from camp, I thought I better let you know how GRATEFUL I am",
           "Beautiful Hike at Three Bridges Oak Preserve with Delta Gamma and Delta Upsilon",
           "Beautiful Beach Walk at Pismo Beach",
           "Amazing Kayaking Tour in Morro Bay",
           "Fun Day of Ziplining at Santa Margarita Adventures",
-        ]}
-        quoteSrc={[
-          "Mark Jonas (member)",
-          "Robin Schneider",
-          "Quote Author",
-          "Quote Author",
-          "Quote Author",
-          "Quote Author",
+          "Visit & Tour of the Beautiful SLO Botanical Gardens",
+          "Cal Poly EyeCycle Ride",
         ]}
       />
       <HomeEvents />
