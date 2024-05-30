@@ -1,32 +1,28 @@
 .event {
-    
-    width: 80%; 
-    max-width: 1300px; 
+    width: 64vw; 
     padding: 20px; 
     border-radius: 10px; 
     margin: 0 auto;
-
     margin-top: -10px;
     position: relative;
-  }
+}
 
- .eventTitle h1
- {
+ .eventTitle h1 {
     text-align: center;
     color: #1D2F5D;
-    font-size: 45px;
+    font-size: 6vh;
     font-weight: 550;
     font-family: 'Helvetica Neue', sans-serif;
+    margin-bottom: 50px;
  }
 
  .details {
     background-color: #1D2F5D;
-    max-width: 1100px; 
     padding: 20px; 
     border-radius: 10px; 
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     font-weight: 30px;
     height: 40%;
  }
@@ -65,28 +61,32 @@
     margin-top: -35px;
     font-weight: 400;
     font-size: 20px;
-
 }
 
-.descript h2{
+.description {
+    display: flex;
+    flex-direction: row;
     margin-top: 45px;
-    margin-left: 0px;
+}
+
+.descript h2 {
     font-size: 33px;
     font-weight: 530;
+    margin-right: 50px;
 }
 
-.about h2
-{
-    margin-top: -60px;
-    margin-left: 290px;
-    margin-right: -20px;
+.about h2 {
     font-weight: 450;
+    margin-top: 32px;
 }
 
-.accomodations h2
-{
-    margin-top: 35px;
-    margin-left: 0px;
+.accomodations {
+    display: flex;
+    flex-direction: row;
+}
+
+.accomod h2 {
+    margin-right: 50px;
     font-size: 33px;
     font-weight: 530;
 }
@@ -94,9 +94,7 @@
 .types {
     display: flex;
     flex-wrap: wrap;
-    margin-top: -70px;
-    margin-left: 280px;
-    margin-right: 0vh;
+    margin-top: 25px;
 }
 
 

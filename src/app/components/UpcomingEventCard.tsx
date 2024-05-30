@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 export default function UpcomingEventCard({ event }: { event: IEvent }) {
-  const { picture, alt, description, date, name } = event;
+  const { picture, alt, date, name } = event;
   const { push } = useRouter();
 
   const handleSignUp = () => {
@@ -14,7 +14,7 @@ export default function UpcomingEventCard({ event }: { event: IEvent }) {
     const message =
       "Sign Up for Event pressed. You will now be redirected to an event sign up page.";
     alert(message);
-    push("/pages/authentication/createAccount");
+    push(`/eventsSignup/${event.name}`);
   };
 
   return (
