@@ -9,12 +9,10 @@ export default function Carousel({
   images,
   imageAlts,
   quotes,
-  quoteSrc,
 }: {
   images: Array<string>;
   imageAlts: Array<string>;
   quotes: Array<string>;
-  quoteSrc: Array<string>;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState("left");
@@ -152,7 +150,6 @@ export default function Carousel({
       </div>
       <div className={styles.quoteContainer}>
         <p className={styles.quote}>&quot;{quotes[currentIndex]}&quot;</p>
-        <p className={styles.quoteSrc}>- {quoteSrc[currentIndex]}</p>
       </div>
       {/* </div> */}
     </div>
