@@ -28,9 +28,10 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const { picture, alt, description, date, name, eventID }: IEvent =
+    const { picture, alt, description, date, name, eventID, location, startTime, endTime }: IEvent =
       await req.json();
     if (!(picture && alt && description && date && name && eventID)) {
+      console.log("invalid event!")
       return NextResponse.json("Failed: Invalid Event", { status: 400 });
     }
 
@@ -41,6 +42,9 @@ export async function POST(req: NextRequest) {
       date,
       name,
       eventID,
+      startTime,
+      endTime, 
+      location
     });
     console.log(newEvent);
     await newEvent.save();
