@@ -40,12 +40,30 @@ const ManageEventsPage = () => {
   const AutoClickButton = () => {
     if (eventName) {
       if (updateEventButtonRef) {
-        // Trigger the click event
         const button = document.getElementById("updateEventButton");
         if (button) {
           setActiveForm(1);
           button.click();
-          console.log("event nAME: ", eventName);
+          console.log("Event Name:", eventName);
+        }
+        const eventIndex = events.findIndex(
+          (event) => event.name === eventName
+        );
+
+        if (eventIndex !== -1) {
+          // Set the selected value of the dropdown
+          const selectElement = document.getElementById(
+            "firstInput"
+          ) as HTMLSelectElement;
+          if (selectElement) {
+            selectElement.value = eventName;
+
+            // Manually trigger the onChange event
+            const event = new Event("change", { bubbles: true });
+            selectElement.dispatchEvent(event);
+          }
+
+          // Trigger the click event on the button
         }
       }
     }
@@ -100,7 +118,7 @@ const ManageEventsPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Create New Event, POST
+    // Create New Event, POSTf
     if (activeForm === 0) {
       try {
         console.log("trying to submit new event");
@@ -113,7 +131,7 @@ const ManageEventsPage = () => {
           },
           body: JSON.stringify({
             picture: formData["picture"],
-            alt: formData["alt"],
+            alt: "filler data",
             description: formData["description"],
             date: formData["date"],
             name: formData["name"],
@@ -340,7 +358,7 @@ const ManageEventsPage = () => {
             <div className={styles.inputTimes}>
               <input
                 className={styles.input}
-                type="time"
+                type="text"
                 id="startTime"
                 name="startTime"
                 placeholder="Start Time"
@@ -377,7 +395,7 @@ const ManageEventsPage = () => {
               /> */}
               <input
                 className={styles.input}
-                type="time"
+                type="text"
                 id="endTime"
                 name="endTime"
                 placeholder="End Time"
@@ -402,7 +420,7 @@ const ManageEventsPage = () => {
               onKeyDown={handleInputKeyPress}
               disabled={selectedEventIndex === -1 ? false : true}
             ></textarea>
-            {activeForm === 0 ? (
+            {/* {activeForm === 0 ? (
               <input
                 className={styles.input}
                 type="text"
@@ -416,7 +434,7 @@ const ManageEventsPage = () => {
               />
             ) : (
               ""
-            )}
+            )} */}
             <button
               className={styles.createEventButton}
               id="submitButton"
