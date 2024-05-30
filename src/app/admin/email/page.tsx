@@ -9,14 +9,22 @@ import BackButton from "../../components/BackButton";
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");
   const [individualEmail, setIndividualEmail] = useState("");
+  const [isEventOptionDisabled, setIsEventOptionDisabled] = useState(true);
   const [emailText, setEmailText] = useState("");
   const searchParams = useSearchParams();
   let email = searchParams.get("email");
+  let eventName = searchParams.get("eventName");
 
   useEffect(() => {
     if (email) {
       setSelectedOption("Individual");
       setIndividualEmail(email);
+    }
+    if (eventName) {
+      setIsEventOptionDisabled(false);
+
+      setSelectedOption("Event");
+      setIndividualEmail(eventName);
     }
   }, []);
 
@@ -111,8 +119,11 @@ export default function AdminPage() {
             <option value="Volunteer">Volunteer</option>
             <option value="Partner/Donor">Partner/Donor</option>
             <option value="Individual">Individual</option>
+            <option value="Event" disabled={isEventOptionDisabled}>
+              Event
+            </option>
           </select>
-          {selectedOption === "Individual" && (
+          {(selectedOption === "Individual" || selectedOption === "Event") && (
             <input
               className={styles.to_input}
               placeholder="Enter Email"

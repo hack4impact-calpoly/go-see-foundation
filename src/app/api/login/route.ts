@@ -11,6 +11,7 @@ const { createSecretKey } = require('crypto');
 
 export async function POST(req: NextRequest, res: NextApiResponse<{ message: string }>) {
 
+  console.log("in login api route")
   await connectDB();
   try {
     const { email, password } = await req.json();
@@ -56,6 +57,8 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
     catch(err){
       console.log("error", err);
     }
+
+    console.log("worked")
     
     cookies().set('Auth_Session', token, {
       sameSite: 'strict',

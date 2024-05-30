@@ -2,14 +2,16 @@
 import React, { useState, useRef, useEffect } from "react";
 
 import styles from "./manage-events.module.css";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { IEvent } from "@database/eventSchema";
-import BackButton from '../../components/BackButton';
+import BackButton from "../../components/BackButton";
+import { PatternFormat } from "react-number-format";
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
   const updateEventButtonRef = useRef<HTMLButtonElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
+  const locationInputRef = useRef<HTMLTextAreaElement>(null);
   const dateInputRef = useRef<HTMLInputElement>(null);
   const startTimeInputRef = useRef<HTMLInputElement>(null);
   const endTimeInputRef = useRef<HTMLInputElement>(null);
@@ -17,6 +19,8 @@ const ManageEventsPage = () => {
   const altTextInputRef = useRef<HTMLInputElement>(null);
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const { push } = useRouter();
+  const searchParams = useSearchParams();
+  let eventName = searchParams.get("eventName");
 
   const [activeForm, setActiveForm] = useState(0);
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -30,7 +34,40 @@ const ManageEventsPage = () => {
     eventID: "",
     startTime: null,
     endTime: null,
+    location: "",
   });
+
+  const AutoClickButton = () => {
+    if (eventName) {
+      if (updateEventButtonRef) {
+        const button = document.getElementById("updateEventButton");
+        if (button) {
+          setActiveForm(1);
+          button.click();
+          console.log("Event Name:", eventName);
+        }
+        const eventIndex = events.findIndex(
+          (event) => event.name === eventName
+        );
+
+        if (eventIndex !== -1) {
+          // Set the selected value of the dropdown
+          const selectElement = document.getElementById(
+            "firstInput"
+          ) as HTMLSelectElement;
+          if (selectElement) {
+            selectElement.value = eventName;
+
+            // Manually trigger the onChange event
+            const event = new Event("change", { bubbles: true });
+            selectElement.dispatchEvent(event);
+          }
+
+          // Trigger the click event on the button
+        }
+      }
+    }
+  };
 
   const fetchAllEvents = async () => {
     try {
@@ -53,6 +90,7 @@ const ManageEventsPage = () => {
   useEffect(() => {
     const fetchEventData = async () => {
       try {
+        AutoClickButton();
         let data = await fetchAllEvents();
         data = data.sort(
           (a: IEvent, b: IEvent) =>
@@ -75,16 +113,15 @@ const ManageEventsPage = () => {
       ...prevFormData,
       [name]: value,
     }));
-    console.log(formData["startTime"]);
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Create New Event, POST
+    // Create New Event, POSTf
     if (activeForm === 0) {
       try {
-        const newDescription = `Date: ${formData["date"]}\nStart Time: ${formData["startTime"]}\nEnd Time: ${formData["endTime"]}\n\n${formData["description"]}`;
+        console.log("trying to submit new event");
         formData["eventID"] = formData.name; // temporary, eventID same as name
         formData["picture"] = "/Group_Photo.jpeg"; // temporary, need to add picture input
         const response = await fetch("/api/events/", {
@@ -94,18 +131,21 @@ const ManageEventsPage = () => {
           },
           body: JSON.stringify({
             picture: formData["picture"],
-            alt: formData["alt"],
-            description: newDescription,
+            alt: "filler data",
+            description: formData["description"],
             date: formData["date"],
             name: formData["name"],
             eventID: formData["eventID"],
+            location: formData["location"],
+            startTime: formData["startTime"],
+            endTime: formData["endTime"],
           }),
         });
 
         const responseData = await response.json();
         if (response.ok && responseData.message == "Success: Event uploaded") {
           alert("New Event Created!");
-          // push("/admin");
+          push("/admin");
         } else {
           const errorMessage = responseData.message;
           alert("Error: " + errorMessage);
@@ -138,6 +178,9 @@ const ManageEventsPage = () => {
           firstInputRef?.current?.focus();
           break;
         case "firstInput":
+          locationInputRef?.current?.focus();
+          break;
+        case "location":
           dateInputRef?.current?.focus();
           break;
         case "date":
@@ -180,6 +223,7 @@ const ManageEventsPage = () => {
       eventID: "",
       startTime: null,
       endTime: null,
+      location: "",
     });
   };
 
@@ -202,7 +246,9 @@ const ManageEventsPage = () => {
   };
 
   return (
-    <div> <BackButton />
+    <div>
+      {" "}
+      <BackButton />
       <div className={styles.container}>
         <div className={styles.eventManager}>
           <div className={styles.topButtons}>
@@ -248,21 +294,37 @@ const ManageEventsPage = () => {
               />
             ) : (
               <select
-              className={styles.selectEvent}
-              id="firstInput"
-              name="name"
-              required
-              onKeyDown={handleInputKeyPress}
-              onChange={handleEventSelection}
-            >
-              <option value="-1">Select Event...</option>
-              {events.map((event: IEvent, index: number) => (
-                <option key={index} value={index}>{event.name}</option>
-              ))}
-            </select>
-
+                className={styles.selectEvent}
+                id="firstInput"
+                name="name"
+                required
+                onKeyDown={handleInputKeyPress}
+                onChange={handleEventSelection}
+              >
+                <option value="-1">Select Event...</option>
+                {events.map((event: IEvent, index: number) => (
+                  <option key={index} value={index}>
+                    {event.name}
+                  </option>
+                ))}
+              </select>
             )}
-            <input
+            <textarea
+              className={styles.descriptionInput}
+              id="location"
+              name="location"
+              placeholder="Location"
+              value={
+                selectedEventIndex === -1
+                  ? formData["location"]
+                  : String(events[selectedEventIndex].location)
+              }
+              required
+              ref={locationInputRef}
+              onKeyDown={handleInputKeyPress}
+              disabled={selectedEventIndex === -1 ? false : true}
+            />
+            {/* <input
               className={styles.input}
               type="date"
               id="date"
@@ -279,11 +341,24 @@ const ManageEventsPage = () => {
               ref={dateInputRef}
               onKeyDown={handleInputKeyPress}
               disabled={selectedEventIndex === -1 ? false : true}
+            /> */}
+            <PatternFormat
+              className={styles.input}
+              type="text"
+              format="##/##/####"
+              id="date"
+              name="date"
+              mask="_"
+              required
+              getInputRef={dateInputRef}
+              onKeyDown={handleInputKeyPress}
+              placeholder="Date (MM/DD/YYYY)"
+              disabled={selectedEventIndex === -1 ? false : true}
             />
             <div className={styles.inputTimes}>
               <input
                 className={styles.input}
-                type="time"
+                type="text"
                 id="startTime"
                 name="startTime"
                 placeholder="Start Time"
@@ -292,9 +367,35 @@ const ManageEventsPage = () => {
                 onKeyDown={handleInputKeyPress}
                 disabled={selectedEventIndex === -1 ? false : true}
               />
+              {/* <PatternFormat
+                className={styles.input}
+                type="text"
+                format="##:## ##"
+                id="startTime"
+                name="startTime"
+                mask="_"
+                required
+                getInputRef={startTimeInputRef}
+                onKeyDown={handleInputKeyPress}
+                placeholder="12:30 pm"
+                disabled={selectedEventIndex === -1 ? false : true}
+              />
+              <PatternFormat
+                className={styles.input}
+                type="text"
+                format="12:30 pm"
+                id="endTime"
+                name="endTime"
+                mask="_"
+                required
+                getInputRef={endTimeInputRef}
+                onKeyDown={handleInputKeyPress}
+                placeholder="2:30 pm"
+                disabled={selectedEventIndex === -1 ? false : true}
+              /> */}
               <input
                 className={styles.input}
-                type="time"
+                type="text"
                 id="endTime"
                 name="endTime"
                 placeholder="End Time"
@@ -319,7 +420,7 @@ const ManageEventsPage = () => {
               onKeyDown={handleInputKeyPress}
               disabled={selectedEventIndex === -1 ? false : true}
             ></textarea>
-            {activeForm === 0 ? (
+            {/* {activeForm === 0 ? (
               <input
                 className={styles.input}
                 type="text"
@@ -333,7 +434,7 @@ const ManageEventsPage = () => {
               />
             ) : (
               ""
-            )}
+            )} */}
             <button
               className={styles.createEventButton}
               id="submitButton"
