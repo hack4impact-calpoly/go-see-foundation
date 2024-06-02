@@ -35,7 +35,7 @@ export default function LoginPage() {
       "\nYou checked 'Remeber Me': " +
       String(loginData.remember) +
       "\n\nThis will eventually navigate you to the landing page, now signed in, but for now you will remain here.";
-    alert(message);
+    //alert(message);
 
     const email = loginData.email;
     const password = loginData.password;

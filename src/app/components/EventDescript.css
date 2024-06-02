@@ -1,10 +1,11 @@
 .event {
     width: 64vw; 
-    padding: 20px; 
+    padding: 10px; 
     border-radius: 10px; 
     margin: 0 auto;
     margin-top: -10px;
     position: relative;
+    /* padding-bottom:0px; */
 }
 
  .eventTitle h1 {
@@ -25,6 +26,7 @@
     flex-wrap: wrap;
     font-weight: 30px;
     height: 40%;
+    padding-bottom:10px;
  }
 
  .details > div {
@@ -66,7 +68,7 @@
 .description {
     display: flex;
     flex-direction: row;
-    margin-top: 45px;
+    margin-top: 35px;
 }
 
 .descript h2 {

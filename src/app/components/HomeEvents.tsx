@@ -8,7 +8,7 @@ import { IEvent as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import blogIcon from "../images/blog.png"
+import blogIcon from "../images/blog.png";
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -99,9 +99,7 @@ export default function HomeEvents() {
   return (
     <div className={styles.container}>
       <div className={styles.offset}>
-        <div className={styles.pastEvents} tabIndex={0}>
-          
-        </div>
+        <div className={styles.pastEvents} tabIndex={0}></div>
         <div className={styles.break}></div>
         <div className={styles.upcomingEvents}>
           <h2 className={styles.title}>Upcoming Events</h2>
@@ -113,7 +111,6 @@ export default function HomeEvents() {
             {events?.slice(1, 2).map((e: IEvent, index: number) => (
               <UpcomingEventCard key={e.eventID.toString()} event={e} />
             ))}
-           
           </div>
           <button className={styles.allEventsButton} onClick={handleAllEvents}>
             VIEW ALL EVENTS
@@ -121,11 +118,13 @@ export default function HomeEvents() {
         </div>
         <div className={styles.divider}></div>
         <div className={styles.blogSection}>
-        <div className={styles.viewBlogsLink}>
-              <Link href="/blog" className={styles.viewAllArticles}>
-                VIEW ALL BLOGS
-              </Link>
-            <h3 className={styles.title}>Check out our Blog for the latest events and news! </h3>
+          <div className={styles.viewBlogsLink}>
+            <h3 className={styles.title}>
+              Check out our Blog for the latest events and news!{" "}
+            </h3>
+            <Link href="/blog" className={styles.viewAllArticles}>
+              VIEW ALL BLOGS
+            </Link>
           </div>
         </div>
       </div>

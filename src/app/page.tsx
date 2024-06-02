@@ -31,7 +31,7 @@ export default function Home() {
         className="groupImage"
         src="/Group_Photo.jpeg"
         alt="Go See Foundation's Group Photo"
-        width={500}
+        width={800}
         height={500}
       />
 
