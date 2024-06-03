@@ -50,8 +50,8 @@ export default function LoginPage() {
 
       const responseData = await response.json();
       if (response.ok && responseData.message == "Success: Login Complete") {
-        const token = responseData.token;
-        localStorage.setItem("jwtToken", token);
+        // const token = responseData.token;
+        // localStorage.setItem("jwtToken", token);
         alert("Successful Login!");
         push("/");
       } else {

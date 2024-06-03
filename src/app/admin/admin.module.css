@@ -23,6 +23,10 @@
   border-bottom-left-radius: 20px;
 }
 
+.adminOptions .button:hover{
+  background:#BBCFFF;
+}
+
 .buttons {
   width: 80%;
   height: 70%;
