@@ -80,11 +80,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Send emails by user type (volunteers, members, partners/donors, or individual). (/src/app/admin/email)
 - View donation history. (/src/app/admin/donations)
 - View event history, including signees + relevant information. (/src/app/admin/eventHistory)
+
 **User Authentication**
 - Create account (/src/app/createAccount)
 - Login to account (/src/app/login)
 - Forgot password (/src/app//forgotPassword)
 - Reset password (/src/app/resetPassword)
+
 **Navigation & Other Features**
 - Learn Go See's Story (src/app//about)
 - Donate to Go See Foundation (/src/app/donate)
