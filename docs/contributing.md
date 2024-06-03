@@ -33,8 +33,12 @@ When interacting with Git/GitHub, feel free to use the command line, VSCode exte
 
 You will need a proper **.env** file. Add all required environment variables here.
 
-- MONGO_URI=mongodb+srv://go-see:3SLgnXBMpIDyAZGT@cluster0.ejakrjb.mongodb.net/GoSee?retryWrites=true&w=majority
-- [More TBD ... ]
+- MONGO_URI: MongoDB connection string.
+- JWT_SECRET: Stores the secret key used for signing JSON Web Tokens (JWTs).
+- NEXT_STRIPE_PUBLIC_KEY: Donations; stores public key associated with Stripe account; used on the client side.
+- STRIPE_BUTTON_ID: Donations; stores an identifier for a specific Stripe payment button or element within your application.
+- STRIPE_SECRET_KEY: Donations; stores secret key associated with Stripe account; used on the server-side to authenticate requests to Stripe's APIs.
+- STRIPE_WEBHOOK_SECRET: Donations; a secret key used for securing webhook endpoints that receive notifications from Stripe.
 
 ## Running Code
 
