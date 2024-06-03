@@ -10,6 +10,8 @@ Welcome to the getting started page! Here is all you need to know to get this re
 - [Project Structure](#project-structure)
 - [Design](#design)
 - [Key Features](#key-features)
+- [API endpoints](#api-endpoints)
+- [Services Used](#services-used)
 
 ## Setup for all Developers
 
@@ -93,6 +95,30 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - View blog page, including search button (/src/app/blog)
 - View resources and supporters of Go See Foundation (/src/app/resources)
 - Sign up for an upcoming event (/src/app/eventSignup)
+
+## API Endpoints
+
+- /aws: Uploading files to Amazon S3 and storing the file URLs in a database
+- /blog: Create and Fetch Blogs.
+- /blog/[blogID]: Delete Blogs.
+- /donations: Fetching Donations.
+- /events: Exclusive admin priviledge; Create new event, Fetch events.
+- /events[eventName]: Exclusive admin priviledge; Fetch individual event, Delete Events.
+- /eventSignUp: Creates a new event signee in database with signup details.
+- /eventSignUp/[eventName]: Fetching individual event.
+- /forgot-password: Conditional depending on database info (ie, checks whether email exists).
+- /login: Authenticates user by verifying their email and password. If the credentials are correct, it generates a JSON Web Token (JWT) for the session, sets an HTTP-only cookie with the JWT, and responds with a success message.
+- /registration: Allows new users to register by providing their details. It validates the input, hashes the password for security, and stores the user information in the database. If any required fields are missing or if an error occurs, it returns an appropriate error message.
+- /resources: Creating new resource, fetching all resources.
+- /stripe: Handling stripe-related donation.
+- /user/[userID]: Exclusive admin priviledge; fetching and deleting an individual user.
+- /user: Exclusive admin priviledge; fetching all users (including fetching by user type).
+
+## Services Used
+
+- **Next.js**: We used Next.js to lessen the overhead of deploying a separate back-end. It provided tooling that would otherwise have been installed seperately (built-in routing, serverless functions, middleware, etc.)
+- **MongoDB**: MongoDB offers high performance, low-latency performance, and real-time analysis. It supports a flexible data model that can handle a variety of data formats, including structured and unstructured data. 
+- **AWS Services**: S3 for image storage.
 
 ## Learn More about Next.js
 
