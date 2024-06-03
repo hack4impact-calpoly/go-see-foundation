@@ -9,7 +9,8 @@ import groupPhoto from "../images/admin/group.png";
 
 export default function AdminPage() {
   return (
-    <div className={styles.adminComponent}>
+    <div className="pageContainer">
+    <div className={styles.contentArea}>
       <div className={styles.adminOptions}>
         <Image
           src={logo}
@@ -42,6 +43,12 @@ export default function AdminPage() {
               Create/Edit Blogs
             </button>
           </Link>
+
+          <Link className={styles.buttonLink} href="/admin/resources">
+            <button className={`${styles.button} ${styles.events}`}>
+              Create/Edit Resources
+            </button>
+          </Link>
           
           <Link className={styles.buttonLink} href="/admin/email">
             <button className={`${styles.button} ${styles.email}`}>
@@ -59,6 +66,7 @@ export default function AdminPage() {
         />
         <div className={styles.overlay}></div>
       </div>
+    </div>
     </div>
   );
 }
