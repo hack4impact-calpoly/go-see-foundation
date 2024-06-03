@@ -28,3 +28,30 @@ When interacting with Git/GitHub, feel free to use the command line, VSCode exte
 4. Link your PR to the corresponding **Issue**
 5. Request a reviewer to check your code
 6. Once approved, your code is ready to be merged in 🎉
+
+## Environment Variables
+
+You will need a proper **.env** file. Add all required environment variables here.
+
+- MONGO_URI=mongodb+srv://go-see:3SLgnXBMpIDyAZGT@cluster0.ejakrjb.mongodb.net/GoSee?retryWrites=true&w=majority
+- [More TBD ... ]
+
+## Running Code
+
+- **npm run dev** for a local test.
+
+## Deployment
+
+Stay tuned. 👀 
+
+## Known Bugs + Limitations
+
+TBD
+
+## Future enhancements 
+
+TBD
+
+## Contact Information
+
+TBD
