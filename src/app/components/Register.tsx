@@ -19,9 +19,24 @@ export default function Register() {
 
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    let emailInputs;
+
+    try {
+      const response = await fetch("/api/signedInUser/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      emailInputs = await response.json();
+    } catch {
+      alert("Please Sign In to Proceed");
+    }
 
     const comments = registerData.comment;
-    const email = registerData.email.toLowerCase();
+    const email = emailInputs.email;
+    console.log("email: ", email);
     const eventName = "The Battle Axe Experience";
     let attendedEventBefore;
     let needSightedGuide;
@@ -88,7 +103,7 @@ export default function Register() {
     <div className={styles.register}>
       <h1 className={styles.title}>Register for Event</h1>
       <form className={styles.registerInputs} onSubmit={handleRegister}>
-        <div className={styles.emailInputs}>
+        {/* <div className={styles.emailInputs}>
           <input
             className={styles.email}
             type="text"
@@ -99,7 +114,7 @@ export default function Register() {
             onChange={(e) => handleLoginChange(e)}
             ref={emailRef}
           />
-        </div>
+        </div> */}
         <div className={styles.questions}>
           <p className={styles.question}>Do you need a sighted guide?</p>
           <div className={styles.options}>
