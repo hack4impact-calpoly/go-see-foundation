@@ -5,6 +5,7 @@ import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
 import { useSearchParams } from "next/navigation";
 import BackButton from "../../components/BackButton";
+import { IEventSignUp } from "@database/eventSignUpSchema";
 
 export default function AdminPage() {
   const [selectedOption, setSelectedOption] = useState("");
@@ -36,12 +37,22 @@ export default function AdminPage() {
 
   const getUsers = async () => {
     try {
-      const userList = await fetch(`/api/users?userType=${selectedOption}`);
-      if (!userList.ok) {
-        throw new Error("Failed to fetch user list");
+      let userList;
+      if (selectedOption == "Event") {
+        let data = await fetch("/api/eventSignUp/" + eventName, {
+          method: "GET",
+        });
+        const userList = await data.json();
+        return userList;
+      } else {
+        const userList = await fetch(`/api/users?userType=${selectedOption}`);
+        const userListData = await userList.json();
+
+        if (!userList.ok) {
+          throw new Error("Failed to fetch user list");
+        }
+        return userListData;
       }
-      const userListData = await userList.json();
-      return userListData;
     } catch (error) {
       console.log(error);
       return null;
@@ -66,24 +77,46 @@ export default function AdminPage() {
         });
     } else {
       const userList = await getUsers();
-      userList.map((user: IUser) => {
-        console.log(user.email);
-        const params = {
-          to_email: user.email,
-          message: emailText,
-        };
 
-        emailjs
-          .send("service_cppo4i7", "template_izma6p8", params, {
-            publicKey: "GKeCNmE1q3H0bTjJE",
-          })
-          .then((response) => {
-            console.log("Email sent successfully!", response);
-          })
-          .catch((error) => {
-            console.error("Error sending email:", error);
-          });
-      });
+      if (selectedOption != "Event") {
+        userList.map((user: IUser) => {
+          console.log(user.email);
+          const params = {
+            to_email: user.email,
+            message: emailText,
+          };
+
+          emailjs
+            .send("service_cppo4i7", "template_izma6p8", params, {
+              publicKey: "GKeCNmE1q3H0bTjJE",
+            })
+            .then((response) => {
+              console.log("Email sent successfully!", response);
+            })
+            .catch((error) => {
+              console.error("Error sending email:", error);
+            });
+        });
+      } else {
+        userList.map((user: IEventSignUp) => {
+          console.log(user.email);
+          const params = {
+            to_email: user.email,
+            message: emailText,
+          };
+
+          emailjs
+            .send("service_cppo4i7", "template_izma6p8", params, {
+              publicKey: "GKeCNmE1q3H0bTjJE",
+            })
+            .then((response) => {
+              console.log("Email sent successfully!", response);
+            })
+            .catch((error) => {
+              console.error("Error sending email:", error);
+            });
+        });
+      }
     }
 
     setEmailText("");
