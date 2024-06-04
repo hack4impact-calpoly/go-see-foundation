@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import styles from "./eventHistory.module.css";
 import BackButton from "../../components/BackButton";
 import pin from "../../images/pin-icon.png";
-import Image from "next/image";
 
 export default function EventHistory() {
   let [events, setEvents] = useState<any[]>([]);
@@ -59,6 +58,7 @@ export default function EventHistory() {
 
                   <h2>{event.location}</h2>
                   <h2>
+                    {/* <Image src={pin} alt="Pin" width="35" height="35" /> */}
                     {moment(event.date).format("MMM Do YYYY")} {"     "}
                     {event.startTime} - {event.endTime}
                   </h2>
@@ -71,24 +71,24 @@ export default function EventHistory() {
                     <Link
                       className={styles.editEvent}
                       href={{
-                        pathname: "/admin/manage-events",
+                        pathname: "/admin",
                         query: {
                           eventName: event.name, // pass the email as a query parameter
                         },
                       }}
-                      as={`/admin/manage-events?eventName=${event.name}`}
+                      as={`/admin/eventHistory/editEvent?eventName=${event.name}`}
                     >
                       Edit Event
                     </Link>
                     <Link
                       className={styles.eventSignup}
                       href={{
-                        pathname: `/admin/eventHistory/[eventName]`,
+                        pathname: "/admin",
                         query: {
-                          id: event.name,
+                          eventName: event.name, // pass the email as a query parameter
                         },
                       }}
-                      as={`/admin/eventHistory/${event.name}`}
+                      as={`/admin/eventHistory/event?eventName=${event.name}`}
                     >
                       View Attendance
                     </Link>

@@ -40,3 +40,6 @@ export async function DELETE(req: NextRequest, { params }: IParams) {
     return NextResponse.json(`Event ${eventName} not found. Error: ${err}`, { status: 400 });
   }
 }
+
+
+

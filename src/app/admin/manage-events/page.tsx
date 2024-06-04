@@ -314,15 +314,15 @@ const ManageEventsPage = () => {
               id="location"
               name="location"
               placeholder="Location"
-              value={
-                selectedEventIndex === -1
-                  ? formData["location"]
-                  : String(events[selectedEventIndex].location)
-              }
+              // value={
+              //   selectedEventIndex === -1
+              //     ? formData["location"]
+              //     : String(events[selectedEventIndex].location)
+              // }
               required
               ref={locationInputRef}
               onKeyDown={handleInputKeyPress}
-              disabled={selectedEventIndex === -1 ? false : true}
+              // disabled={selectedEventIndex === -1 ? false : true}
             />
             {/* <input
               className={styles.input}
@@ -353,7 +353,7 @@ const ManageEventsPage = () => {
               getInputRef={dateInputRef}
               onKeyDown={handleInputKeyPress}
               placeholder="Date (MM/DD/YYYY)"
-              disabled={selectedEventIndex === -1 ? false : true}
+              // disabled={selectedEventIndex === -1 ? false : true}
             />
             <div className={styles.inputTimes}>
               <input
@@ -365,7 +365,7 @@ const ManageEventsPage = () => {
                 required
                 ref={startTimeInputRef}
                 onKeyDown={handleInputKeyPress}
-                disabled={selectedEventIndex === -1 ? false : true}
+                // disabled={selectedEventIndex === -1 ? false : true}
               />
               {/* <PatternFormat
                 className={styles.input}
@@ -402,7 +402,7 @@ const ManageEventsPage = () => {
                 required
                 ref={endTimeInputRef}
                 onKeyDown={handleInputKeyPress}
-                disabled={selectedEventIndex === -1 ? false : true}
+                // disabled={selectedEventIndex === -1 ? false : true}
               />
             </div>
             <textarea

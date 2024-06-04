@@ -8,10 +8,16 @@ import Image from "next/image";
 import styles from "./eventName.module.css";
 import { MouseEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
+
 
 export default function eventName(context: any) {
   let [members, setMembers] = useState<any[]>([]);
-  const eventName = decodeURIComponent(context.params.eventName);
+  const searchParams = useSearchParams();
+
+  let eventName = searchParams.get("eventName");
+
+  // const eventName = decodeURIComponent(context.params.eventName);
 
   const handleRedirect = (email: string) => {
     console.log("email:", email);
