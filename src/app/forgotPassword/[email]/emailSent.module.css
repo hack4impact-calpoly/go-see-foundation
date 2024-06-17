@@ -1,172 +1,167 @@
 .loginPage {
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
 
-  .backgroundLogoContainer {
-    display: flex;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    z-index: -2;
-    margin-top: 20px;
-  
-    /* debugging */
-    /* background-color: yellow; */
-  }
+.backgroundLogoContainer {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  margin-top: 20px;
 
-  .backgroundLogo {
-    position: fixed;
-    z-index: -1;
-    width: 100%;
-    top: 5vh;
-    left: 0;
-    height: 90%;
-    object-fit: contain;
-    justify-self: center;
-    align-self: center;
-    opacity: 25%;
-  }
+  /* debugging */
+  /* background-color: yellow; */
+}
 
+.backgroundLogo {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  top: 5vh;
+  left: 0;
+  height: 90%;
+  object-fit: contain;
+  justify-self: center;
+  align-self: center;
+  opacity: 25%;
+}
 
-  .Title {
-    width: 50vw;
-    padding: 10px;
-    padding-bottom: 0px;
-    line-height: 1.6;
-    font-family: "Helvetica", sans-serif;
-    font-size: 36pt;
-    color: white;
+.Title {
+  width: 50vw;
+  padding: 10px;
+  padding-bottom: 0px;
+  line-height: 1.6;
+  font-family: "Helvetica", sans-serif;
+  font-size: 36pt;
+  color: white;
+}
 
-  }
+.FormBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin: 0%;
+  padding: 0px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+}
 
-  .FormBody {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 60vw;
-    margin: 0%;
-    padding:0px;
-    border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-
-  .fTitle{
-    color:#1D2F5D;
-    font-size: 40px;
-    font-family: 'Inter', sans-serif;
-    margin-top: 25px;
-    margin-bottom: 0px;
-   /* height: 48px;
+.fTitle {
+  color: #1d2f5d;
+  font-size: 40px;
+  font-family: "Inter", sans-serif;
+  margin-top: 25px;
+  margin-bottom: 0px;
+  /* height: 48px;
    width: 329px; */
-    margin-left: 5px;
-    font-weight: 700;
-    line-height: 48.41px;
-    margin-left: 0px;
+  margin-left: 5px;
+  font-weight: 700;
+  line-height: 48.41px;
+  margin-left: 0px;
+}
 
-  }
+.fontSubtitle {
+  color: black;
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  font-family: "Helvetica", sans-serif;
+  font-weight: 500;
+  margin-left: 0px;
+  margin-bottom: 20px;
+}
 
-  .fontSubtitle{
-    color:black;
-    font-size: 26px;
-    margin-top: 10px;
-    margin-bottom: 0px;
-    font-family: "Helvetica", sans-serif;
-    font-weight: 500;
-    margin-left: 0px;
-    margin-bottom: 20px;
+.emailText {
+  font-weight: 500;
+  margin-bottom: 9px;
+  font-family: "Helvetica", sans-serif;
+  font-size: 24px;
+}
 
-  }
+.inputWrapper {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 2%;
+  border-radius: 16px;
+  border: 2pt solid black; /*width style color*/
+  background-color: white;
+}
 
-  .emailText{
-    font-weight: 500;
-    margin-bottom:9px;
-    font-family: "Helvetica", sans-serif;
-    font-size: 24px;
-  }
+.BacktoLoginButton {
+  width: 100%;
+  /* padding: 15px 0; */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  /* margin: 10px; */
+  margin-bottom: 45px;
+  border-radius: 16px;
+  border: none; /* Remove the default button border */
+  outline: none; /* Remove the focus outline */
+  box-shadow: none;
+  font-family: "Helvetica", sans-serif;
+  font-size: 22pt;
+  font-weight: 600;
+  color: white;
+  background-color: #bbcfff;
+  z-index: 2;
+  font-weight: 700;
+  color: black;
+}
 
-  .inputWrapper {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 2%;
-    border-radius: 16px;
-    border: 2pt solid black; /*width style color*/
-    background-color: white;
-  }
+.inputWrapper input {
+  flex: 1;
+  height: 100%;
+  padding: 1.2vh 0;
+  margin: 0 1vw;
+  font-family: "Helvetica", sans-serif;
+  font-size: 18pt;
+  color: black;
+  border: none;
+}
 
-  .BacktoLoginButton{
-    width: 100%;
-    /* padding: 15px 0; */
-    padding-top: 15px;
-    padding-bottom: 15px;
-    /* margin: 10px; */
-    margin-bottom: 45px;
-    border-radius: 16px;
-    border: none; /* Remove the default button border */
-    outline: none; /* Remove the focus outline */
-    box-shadow: none;
-    font-family: "Helvetica", sans-serif;
-    font-size: 22pt;
-    font-weight: 600;
-    color: white;
-    background-color: #BBCFFF;
-    z-index: 2;
-    font-weight: 700;
-    color:black;
-  }
+.loginButtonFP {
+  width: 100%;
+  /* padding: 15px 0; */
+  padding-top: 15px;
+  padding-bottom: 15px;
 
-  .inputWrapper input {
-    flex: 1;
-    height: 100%;
-    padding: 1.2vh 0;
-    margin: 0 1vw;
-    font-family: "Helvetica", sans-serif;
-    font-size: 18pt;
-    color: black;
-    border: none;
-  
-  }
+  /* margin: 10px; */
+  margin-bottom: 20px;
+  border-radius: 16px;
+  border: none; /* Remove the default button border */
+  outline: none; /* Remove the focus outline */
+  box-shadow: none;
+  font-family: "Helvetica", sans-serif;
+  font-size: 22pt;
+  font-weight: 600;
+  color: white;
+  background-color: #1d2f5d;
+  z-index: 2;
+  font-weight: 700;
+}
 
-  .loginButtonFP {
-    width: 100%;
-    /* padding: 15px 0; */
-    padding-top: 15px;
-    padding-bottom: 15px;
+.emailBody {
+  text-align: left;
+  width: 80%;
+  padding-right: 10px;
+  margin-bottom: 10px;
+}
 
-    /* margin: 10px; */
-    margin-bottom: 20px;
-    border-radius: 16px;
-    border: none; /* Remove the default button border */
-    outline: none; /* Remove the focus outline */
-    box-shadow: none;
-    font-family: "Helvetica", sans-serif;
-    font-size: 22pt;
-    font-weight: 600;
-    color: white;
-    background-color: #1D2F5D;
-    z-index: 2;
-    font-weight: 700;
-
-  }
-
-  .emailBody{
-    text-align: left;
-    width: 80%;
-    padding-right: 10px;
-    margin-bottom: 10px;
-
-  }
-
-  .emailText{
-    color:black;
-    font-size: 26px;
-    margin-top: 0px;
-    margin-bottom: 50px;
-    font-family: "Helvetica", sans-serif;
-    font-weight: 500;
-    margin-left: 0px;
-  }
+.emailText {
+  color: black;
+  font-size: 26px;
+  margin-top: 0px;
+  margin-bottom: 50px;
+  font-family: "Helvetica", sans-serif;
+  font-weight: 500;
+  margin-left: 0px;
+  width: 100%;
+  overflow-wrap: break-word;
+}
