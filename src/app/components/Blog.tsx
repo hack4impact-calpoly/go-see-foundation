@@ -53,14 +53,14 @@ export default function Blog() {
     setSearchQuery(query);
 
     // Filter events based on the search query
-    const filtered = events.filter((event) =>
-      event.name.toLowerCase().includes(query.toLowerCase())
+    const filtered = events.filter((blog) =>
+      blog.name.toLowerCase().includes(query.toLowerCase())
     );
     setFilteredEvents(filtered);
   };
 
   const handleArchivesClick = () => {
-    push("/blog/archives");
+    push("/blog/archive");
   };
 
   return (
@@ -93,7 +93,7 @@ export default function Blog() {
       </div>
       <div className="pageselection">
         <button className="olderarticles"  onClick={handleArchivesClick}>
-          Archived Blogs
+          Archived Blogs {'>'}
         </button>
       </div>
     </div>
