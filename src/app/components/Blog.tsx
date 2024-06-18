@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Blog.css";
 import IndividualBlog from "./IndividualBlog";
 import { IEvent } from "@database/blogSchema";
+import { useRouter } from "next/navigation";
 
 export default function Blog() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredEvents, setFilteredEvents] = useState<Array<IEvent>>([]);
+  const { push } = useRouter();
 
   const fetchAllBlogs = async () => {
     try {
@@ -57,14 +59,18 @@ export default function Blog() {
     setFilteredEvents(filtered);
   };
 
+  const handleArchivesClick = () => {
+    push("/blog/archives");
+  };
+
   return (
     <div className="container">
       <span className="header">
         <h2 className="title">GO See Blog</h2>
         <div className="rightaligned">
-          <select defaultValue="archives">
-            <option value="archives">Archives</option>
-          </select>
+          <button className="olderarticles" onClick={handleArchivesClick}>
+            Archived Blogs
+          </button>
           <form onSubmit={(e) => e.preventDefault()}>
             <input
               type="search"
@@ -78,6 +84,7 @@ export default function Blog() {
           </form>
         </div>
       </span>
+    
       <hr className="line" />
       <div className="blogs">
         {filteredEvents.slice(0, 3).map((e: IEvent, index: number) => (
@@ -85,8 +92,9 @@ export default function Blog() {
         ))}
       </div>
       <div className="pageselection">
-        <h4 className="pagenumbers">1 2 3</h4>
-        <button className="olderarticles">OLDER ARTICLES &gt;</button>
+        <button className="olderarticles"  onClick={handleArchivesClick}>
+          Archived Blogs
+        </button>
       </div>
     </div>
   );
