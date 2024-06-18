@@ -4,7 +4,7 @@ import styles from "./homeEvents.module.css";
 import PastEventCard from "./PastEventCard";
 import UpcomingEventCard from "./UpcomingEventCard";
 import { IEvent } from "@database/eventSchema";
-import { IEvent as BlogEvent } from "@database/blogSchema";
+import { IBlog as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";

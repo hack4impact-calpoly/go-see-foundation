@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./Blog.css";
 import IndividualBlog from "./IndividualBlog";
-import { IEvent } from "@database/blogSchema";
+import { IBlog } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 
 export default function Blog() {
-  const [events, setEvents] = useState<Array<IEvent>>([]);
+  const [events, setEvents] = useState<Array<IBlog>>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<Array<IEvent>>([]);
+  const [filteredEvents, setFilteredEvents] = useState<Array<IBlog>>([]);
   const { push } = useRouter();
 
   const fetchAllBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/events", {
+      const res = await fetch("http://localhost:3000/api/blog", {
         cache: "no-store",
       });
 
       if (!res.ok) {
-        throw new Error("Failed to fetch Events");
+        throw new Error("Failed to fetch Blogs");
       }
 
       const res_j = await res.json();
@@ -33,7 +33,7 @@ export default function Blog() {
       try {
         let data = await fetchAllBlogs();
         data = data.sort(
-          (a: IEvent, b: IEvent) =>
+          (a: IBlog, b: IBlog) =>
             new Date(b.date).getTime() - new Date(a.date).getTime()
         );
         setEvents(data);
@@ -87,8 +87,8 @@ export default function Blog() {
     
       <hr className="line" />
       <div className="blogs">
-        {filteredEvents.slice(0, 3).map((e: IEvent, index: number) => (
-          <IndividualBlog key={index} event={e} />
+        {filteredEvents.slice(0, 3).map((b: IBlog, index: number) => (
+          <IndividualBlog key={index} blog={b} />
         ))}
       </div>
       <div className="pageselection">

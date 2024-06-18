@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { IEvent } from "@database/blogSchema";
+import { IBlog } from "@database/blogSchema";
 import Image from "next/image";
 import "./individualBlog.css";
 
-const IndividualBlog = ({ event }: { event: IEvent }) => {
+const IndividualBlog = ({ blog }: { blog: IBlog }) => {
   //const [localBlog, setLocalBlog] = useState(blog);
-  const { picture, alt, description, date, name, blogID, author } = event;
+  const { picture, alt, description, date, name, blogID, author } = blog;
 
   return (
     <div className="blog" tabIndex={0}>
