@@ -338,7 +338,7 @@ const BlogPage = () => {
               type="file"
               accept=".png, .jpg, .jpeg, image/*"
               value={formData.picture}
-              id="pictureInput"
+              // id="pictureInput"
               name="picture"
               placeholder="Upload Image"
               required

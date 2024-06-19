@@ -125,6 +125,22 @@
   border: none;
 }
 
+.deleteButton{
+  width: 100%;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  font-family: "Helvetica", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 40px;
+  background-color: rgb(255, 51, 51);
+  color: white;
+  border: none;
+  margin-bottom:20px;
+}
+.deleteButton:hover {
+  background-color: #e9474790;
+}
 .createEventButton:hover {
   background-color: #1d2f5d90;
 }

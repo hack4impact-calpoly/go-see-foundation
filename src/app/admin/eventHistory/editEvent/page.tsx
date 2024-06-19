@@ -4,6 +4,7 @@ import styles from "./editEvent.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IEvent } from "@database/eventSchema";
 import { PatternFormat } from "react-number-format";
+import UploadImage from "@components/UploadImage";
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
@@ -22,6 +23,7 @@ const ManageEventsPage = () => {
   const searchParams = useSearchParams();
   let eventName = searchParams.get("eventName");
 
+  const [file, setFile] = useState(null);
   const [activeForm, setActiveForm] = useState(0);
   const [formData, setFormData] = useState({
     picture: "",
@@ -30,8 +32,8 @@ const ManageEventsPage = () => {
     date: null,
     name: "",
     eventID: "",
-    startTime: null,
-    endTime: null,
+    startTime: "",
+    endTime: "",
     location: "",
   });
 
@@ -89,6 +91,57 @@ const ManageEventsPage = () => {
     }));
   };
 
+  const deleteEvent = async (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    console.log("updating");
+
+    try {
+      console.log("trying to DELETE event");
+      const response = await fetch("/api/events/" + eventName, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const responseData = await response.json();
+      console.log(" response: ", responseData);
+      if (responseData == "Event deleted.") {
+        alert("Successfully Deleted Event");
+        push("/admin/eventHistory");
+      } else {
+        const errorMessage = responseData.message;
+        alert("Error: " + errorMessage);
+      }
+    } catch (error) {
+      console.error(`Delete New Event Error: ${error}`);
+    }
+  };
+
+  const storeImage = async (e: any) => {
+    // e.preventDefault();
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      // hit the aws route in api folder
+      const response = await fetch("/api/aws", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+      console.log("look here ", data.s3ObjectURL);
+      return data.s3ObjectURL;
+    } catch (error: any) {
+      console.log("error occured while saving image to bucket: ", error);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("updating");
@@ -117,7 +170,6 @@ const ManageEventsPage = () => {
     // post event
     try {
       console.log("trying to submit new event");
-      formData["picture"] = "/Group_Photo.jpeg"; // temporary, need to add picture input
       const response = await fetch("/api/events/", {
         method: "POST",
         headers: {
@@ -125,7 +177,7 @@ const ManageEventsPage = () => {
         },
         body: JSON.stringify({
           picture: formData["picture"],
-          alt: "filler data",
+          alt: formData["alt"],
           description: formData["description"],
           date: formData["date"],
           name: formData["name"],
@@ -269,6 +321,19 @@ const ManageEventsPage = () => {
               ref={eventDescriptionInputRef}
               onKeyDown={handleInputKeyPress}
             ></textarea>
+            <input
+              className={styles.input}
+              id="alt"
+              name="alt"
+              placeholder="Alt Text"
+              required
+              value={formData.alt}
+              ref={altTextInputRef}
+              onKeyDown={handleInputKeyPress}
+            />
+            <button className={styles.deleteButton} onClick={deleteEvent}>
+              Delete Event
+            </button>
             <button
               className={styles.createEventButton}
               id="submitButton"
