@@ -235,7 +235,7 @@ export default function LoginPage() {
 
         {/*TODO: change href to proper forget page*/}
         <Link
-          href="/"
+          href="/forgotPassword"
           className="forgotPasswordLink"
           id="forgotPassword"
           ref={forgetPasswordRef}
