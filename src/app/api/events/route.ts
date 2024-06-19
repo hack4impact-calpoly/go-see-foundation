@@ -7,7 +7,8 @@ export async function GET(req: NextRequest) {
   await connectDB();
 
   try {
-    const events = await EventSchema.find();
+    //return events in order of upcoming events/descending
+    const events = await EventSchema.find().sort({ date: -1 }).exec();;
     return NextResponse.json(events);
   } catch (err) {
     return NextResponse.json(`Events could not be found. Error: ${err}`, {
@@ -31,7 +32,6 @@ export async function POST(req: NextRequest) {
     const { picture, alt, description, date, name, eventID, location, startTime, endTime }: IEvent =
       await req.json();
     if (!(picture && alt && description && date && name && eventID)) {
-      console.log("invalid event!")
       return NextResponse.json("Failed: Invalid Event", { status: 400 });
     }
 

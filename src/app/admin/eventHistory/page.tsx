@@ -53,9 +53,7 @@ export default function EventHistory() {
             {events &&
               events.map((event, index) => (
                 <div key={index} className={styles.eventItem}>
-                  <h1>{event.name}</h1>
-                  <div className={styles.divider} />
-
+                  <h1>{event.name}</h1> <div className={styles.divider} />
                   <h2>{event.location}</h2>
                   <h2>
                     {/* <Image src={pin} alt="Pin" width="35" height="35" /> */}
@@ -63,7 +61,6 @@ export default function EventHistory() {
                     {event.startTime} - {event.endTime}
                   </h2>
                   <div className={styles.divider2} />
-
                   <div className={styles.eventDescription}>
                     {event.description}
                   </div>

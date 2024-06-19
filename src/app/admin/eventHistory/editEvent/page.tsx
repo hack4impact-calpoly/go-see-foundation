@@ -89,6 +89,33 @@ const ManageEventsPage = () => {
     }));
   };
 
+  const deleteEvent = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("updating");
+
+    try {
+      console.log("trying to DELETE event");
+      const response = await fetch("/api/events/" + eventName, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const responseData = await response.json();
+      console.log(" response: ", responseData);
+      if (responseData == "Event deleted.") {
+        alert("Successfully Deleted Event");
+        push("/admin/eventHistory");
+      } else {
+        const errorMessage = responseData.message;
+        alert("Error: " + errorMessage);
+      }
+    } catch (error) {
+      console.error(`Delete New Event Error: ${error}`);
+    }
+  };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("updating");
@@ -269,6 +296,9 @@ const ManageEventsPage = () => {
               ref={eventDescriptionInputRef}
               onKeyDown={handleInputKeyPress}
             ></textarea>
+            <button className={styles.deleteButton} onClick={deleteEvent}>
+              Delete Event
+            </button>
             <button
               className={styles.createEventButton}
               id="submitButton"
