@@ -79,13 +79,15 @@ export default function HomeEvents() {
   }, []);
 
   const handleViewAll = () => {
-    // TODO: probably want to use {name} to navigate to a new page with the event details
     console.log("View All pressed");
     const message =
       "View All pressed. You will now be redirected to a page with all past events, news, and articles.";
     alert(message);
     push("/blog");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
+  
 
   const handleAllEvents = () => {
     // TODO: probably want to use {name} to navigate to a new page with the event details
@@ -122,9 +124,9 @@ export default function HomeEvents() {
             <h3 className={styles.title}>
               Check out our Blog for the latest events and news!{" "}
             </h3>
-            <Link href="/blog" className={styles.viewAllArticles}>
-              VIEW ALL BLOGS
-            </Link>
+            <button className={styles.viewAllArticles} onClick={handleViewAll}>
+            VIEW ALL BLOGS
+          </button>
           </div>
         </div>
       </div>

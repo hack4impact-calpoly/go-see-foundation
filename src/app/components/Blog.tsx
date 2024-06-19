@@ -61,6 +61,7 @@ export default function Blog() {
 
   const handleArchivesClick = () => {
     push("/blog/archive");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
