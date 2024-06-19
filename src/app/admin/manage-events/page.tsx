@@ -117,8 +117,8 @@ const ManageEventsPage = () => {
     const objectUrl = await storeImage(event);
 
     if (objectUrl == "") {
-      console.error("objecturl undefined");
       console.log("error with objecturl");
+      console.error("objecturl undefined");
     }
 
     try {
