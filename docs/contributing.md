@@ -52,7 +52,6 @@ Stay tuned. 👀
 
 Blogs
 - Search bar currently does not work on archive.
-- "View all articles" on home routes to bottom of blog page.
 - Admin create blog: To properly add date, click the box in the calendar. You might need to select one day later to get the current day.
 
 ## Future enhancements 

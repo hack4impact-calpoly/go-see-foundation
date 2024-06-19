@@ -5,9 +5,9 @@ import { IBlog } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 
 export default function Archive() {
-  const [events, setEvents] = useState<Array<IBlog>>([]);
+  const [blogs, setBlogs] = useState<Array<IBlog>>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<Array<IBlog>>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<Array<IBlog>>([]);
   const { push } = useRouter();
 
   const fetchAllBlogs = async () => {
@@ -21,6 +21,7 @@ export default function Archive() {
       }
 
       const res_j = await res.json();
+      
       return res_j;
     } catch (err: unknown) {
       console.error(`Error: ${err}`);
@@ -36,8 +37,8 @@ export default function Archive() {
           (a: IBlog, b: IBlog) =>
             new Date(b.date).getTime() - new Date(a.date).getTime()
         );
-        setEvents(data);
-        setFilteredEvents(data); // Initialize filteredEvents with all events
+        setBlogs(data);
+        setFilteredBlogs(data);
       } catch (err) {
         console.error(err);
       }
@@ -46,21 +47,20 @@ export default function Archive() {
     fetchBlogData();
   }, []);
 
-  const handleSearchInputChange = (
-    blog: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const query = blog.target.value;
+  const handleSearchInputChange = (blog: React.ChangeEvent<HTMLInputElement>) => {
+    const query = blog.target.value.trim(); // Trim whitespace
     setSearchQuery(query);
-
-    // Filter blogs based on the search query
-    const filtered = events.filter((blog) =>
-      blog.name.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredEvents(filtered);
+  
+    const filtered = blogs.filter((blog) => {
+      const regex = new RegExp(query, 'i'); // Create case-insensitive regex
+      return regex.test(blog.name); // Test if blog name matches regex
+    });
+    setFilteredBlogs(filtered);
   };
 
   const handleArchivesClick = () => {
     push("/blog/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -87,7 +87,7 @@ export default function Archive() {
     
       <hr className="line" />
       <div className="blogs">
-      {filteredEvents.slice(3).map((b: IBlog, index: number) => (
+      {filteredBlogs.slice(3).map((b: IBlog, index: number) => (
           <IndividualBlog key={index} blog={b} />
         ))}
       </div>

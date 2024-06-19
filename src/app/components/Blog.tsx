@@ -5,9 +5,9 @@ import { IBlog } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 
 export default function Blog() {
-  const [events, setEvents] = useState<Array<IBlog>>([]);
+  const [blogs, setBlogs] = useState<Array<IBlog>>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<Array<IBlog>>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<Array<IBlog>>([]);
   const { push } = useRouter();
 
   const fetchAllBlogs = async () => {
@@ -36,8 +36,8 @@ export default function Blog() {
           (a: IBlog, b: IBlog) =>
             new Date(b.date).getTime() - new Date(a.date).getTime()
         );
-        setEvents(data);
-        setFilteredEvents(data); // Initialize filteredEvents with all events
+        setBlogs(data);
+        setFilteredBlogs(data);
       } catch (err) {
         console.error(err);
       }
@@ -53,10 +53,10 @@ export default function Blog() {
     setSearchQuery(query);
 
     // Filter events based on the search query
-    const filtered = events.filter((blog) =>
+    const filtered = blogs.filter((blog) =>
       blog.name.toLowerCase().includes(query.toLowerCase())
     );
-    setFilteredEvents(filtered);
+    setFilteredBlogs(filtered);
   };
 
   const handleArchivesClick = () => {
@@ -88,7 +88,7 @@ export default function Blog() {
     
       <hr className="line" />
       <div className="blogs">
-        {filteredEvents.slice(0, 3).map((b: IBlog, index: number) => (
+        {filteredBlogs.slice(0, 3).map((b: IBlog, index: number) => (
           <IndividualBlog key={index} blog={b} />
         ))}
       </div>
