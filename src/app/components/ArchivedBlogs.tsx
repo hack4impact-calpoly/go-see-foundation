@@ -47,9 +47,9 @@ export default function Archive() {
   }, []);
 
   const handleSearchInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    blog: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const query = event.target.value;
+    const query = blog.target.value;
     setSearchQuery(query);
 
     // Filter blogs based on the search query
