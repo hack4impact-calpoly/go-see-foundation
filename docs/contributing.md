@@ -50,7 +50,9 @@ Stay tuned. 👀
 
 ## Known Bugs + Limitations
 
-TBD
+Blogs
+- Search bar currently does not work on archive.
+- Admin create blog: To properly add date, click the box in the calendar. You might need to select one day later to get the current day.
 
 ## Future enhancements 
 

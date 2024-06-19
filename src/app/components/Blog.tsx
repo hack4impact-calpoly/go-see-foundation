@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from "react";
 import "./Blog.css";
 import IndividualBlog from "./IndividualBlog";
-import { IEvent } from "@database/blogSchema";
+import { IBlog } from "@database/blogSchema";
+import { useRouter } from "next/navigation";
 
 export default function Blog() {
-  const [events, setEvents] = useState<Array<IEvent>>([]);
+  const [blogs, setBlogs] = useState<Array<IBlog>>([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [filteredEvents, setFilteredEvents] = useState<Array<IEvent>>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<Array<IBlog>>([]);
+  const { push } = useRouter();
 
   const fetchAllBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/events", {
+      const res = await fetch("http://localhost:3000/api/blog", {
         cache: "no-store",
       });
 
       if (!res.ok) {
-        throw new Error("Failed to fetch Events");
+        throw new Error("Failed to fetch Blogs");
       }
 
       const res_j = await res.json();
@@ -31,11 +33,11 @@ export default function Blog() {
       try {
         let data = await fetchAllBlogs();
         data = data.sort(
-          (a: IEvent, b: IEvent) =>
+          (a: IBlog, b: IBlog) =>
             new Date(b.date).getTime() - new Date(a.date).getTime()
         );
-        setEvents(data);
-        setFilteredEvents(data); // Initialize filteredEvents with all events
+        setBlogs(data);
+        setFilteredBlogs(data);
       } catch (err) {
         console.error(err);
       }
@@ -45,16 +47,21 @@ export default function Blog() {
   }, []);
 
   const handleSearchInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
+    blog: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const query = event.target.value;
+    const query = blog.target.value;
     setSearchQuery(query);
 
     // Filter events based on the search query
-    const filtered = events.filter((event) =>
-      event.name.toLowerCase().includes(query.toLowerCase())
+    const filtered = blogs.filter((blog) =>
+      blog.name.toLowerCase().includes(query.toLowerCase())
     );
-    setFilteredEvents(filtered);
+    setFilteredBlogs(filtered);
+  };
+
+  const handleArchivesClick = () => {
+    push("/blog/archive");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -62,9 +69,9 @@ export default function Blog() {
       <span className="header">
         <h2 className="title">GO See Blog</h2>
         <div className="rightaligned">
-          <select defaultValue="archives">
-            <option value="archives">Archives</option>
-          </select>
+          <button className="olderarticles" onClick={handleArchivesClick}>
+            Archived Blogs
+          </button>
           <form onSubmit={(e) => e.preventDefault()}>
             <input
               type="search"
@@ -78,15 +85,17 @@ export default function Blog() {
           </form>
         </div>
       </span>
+    
       <hr className="line" />
       <div className="blogs">
-        {filteredEvents.slice(0, 3).map((e: IEvent, index: number) => (
-          <IndividualBlog key={index} event={e} />
+        {filteredBlogs.slice(0, 3).map((b: IBlog, index: number) => (
+          <IndividualBlog key={index} blog={b} />
         ))}
       </div>
       <div className="pageselection">
-        <h4 className="pagenumbers">1 2 3</h4>
-        <button className="olderarticles">OLDER ARTICLES &gt;</button>
+        <button className="olderarticles"  onClick={handleArchivesClick}>
+          Archived Blogs {'>'}
+        </button>
       </div>
     </div>
   );
