@@ -6,7 +6,9 @@ import { useRouter } from "next/router";
 export default function Register() {
   const emailRef = useRef<HTMLInputElement>(null);
   const sightedGuideRef = useRef<HTMLInputElement>(null);
+  const nonSightedGuideRef = useRef<HTMLInputElement>(null);
   const haveGoneRef = useRef<HTMLInputElement>(null);
+  const haventGoneRef = useRef<HTMLInputElement>(null);
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const registerButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -109,9 +111,8 @@ export default function Register() {
                 type="radio"
                 name="sightedGuide"
                 value="yes"
-                required
                 onChange={(e) => handleLoginChange(e)}
-                ref={sightedGuideRef}
+                ref={nonSightedGuideRef}
               />
               Yes
             </label>
@@ -119,9 +120,8 @@ export default function Register() {
               <input
                 className={styles.radio}
                 type="radio"
-                name="sightedGuide"
+                name="sightedGuideNo"
                 value="no"
-                required
                 onChange={(e) => handleLoginChange(e)}
                 ref={sightedGuideRef}
               />
@@ -147,7 +147,7 @@ export default function Register() {
               <input
                 className={styles.radio}
                 type="radio"
-                name="haveGone"
+                name="haveGoneNo"
                 onChange={(e) => handleLoginChange(e)}
                 value="no"
                 ref={haveGoneRef}

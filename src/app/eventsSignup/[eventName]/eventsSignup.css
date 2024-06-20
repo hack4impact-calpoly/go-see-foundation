@@ -1,6 +1,6 @@
 .eventPicture {
     width: 100%;
-    height: 30%;
+    height: auto;
 }
 
 .component {
@@ -12,4 +12,5 @@
     background-color: white;
     margin-top: -90px;
     position: relative;
+    padding-top:0;
 }
