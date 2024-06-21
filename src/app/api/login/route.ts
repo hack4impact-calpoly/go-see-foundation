@@ -50,7 +50,7 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
       .setIssuedAt()
       //.setIssuer(process.env.JWT_ISSUER) // issuer
       //.setAudience(process.env.JWT_AUDIENCE) // audience
-      .setExpirationTime('2h') // token expiration time, e.g., "1 day"
+      .setExpirationTime('12h') // token expiration time, e.g., "1 day"
       .sign(secretKey); // secretKey generated from previous step
       console.log("token: ", token);
     }

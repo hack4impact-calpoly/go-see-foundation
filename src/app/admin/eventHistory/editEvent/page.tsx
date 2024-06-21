@@ -2,9 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./editEvent.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
-import { IEvent } from "@database/eventSchema";
 import { PatternFormat } from "react-number-format";
-import UploadImage from "@components/UploadImage";
 
 const ManageEventsPage = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
@@ -17,11 +15,16 @@ const ManageEventsPage = () => {
   const eventDescriptionInputRef = useRef<HTMLTextAreaElement>(null);
   const altTextInputRef = useRef<HTMLInputElement>(null);
   const submitButtonRef = useRef<HTMLButtonElement>(null);
+  const submitImageButtonRef = useRef<HTMLButtonElement>(null);
+
+  const pictureInputRef = useRef<HTMLInputElement>(null);
 
   const moment = require("moment");
   const { push } = useRouter();
   const searchParams = useSearchParams();
   let eventName = searchParams.get("eventName");
+
+  const [fileChanged, setFileChanged] = useState(false);
 
   const [file, setFile] = useState(null);
   const [activeForm, setActiveForm] = useState(0);
@@ -36,6 +39,11 @@ const ManageEventsPage = () => {
     endTime: "",
     location: "",
   });
+
+  const handeFileChange = (e: any) => {
+    setFile(e.target.files[0]);
+    setFileChanged(true);
+  };
 
   const fetchEventInformation = async () => {
     try {
@@ -95,33 +103,37 @@ const ManageEventsPage = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault();
+    const confirmed = window.confirm(
+      "Are you sure you want to delete the event?"
+    );
     console.log("updating");
 
-    try {
-      console.log("trying to DELETE event");
-      const response = await fetch("/api/events/" + eventName, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+    if (confirmed) {
+      try {
+        console.log("trying to DELETE event");
+        const response = await fetch("/api/events/" + eventName, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-      const responseData = await response.json();
-      console.log(" response: ", responseData);
-      if (responseData == "Event deleted.") {
-        alert("Successfully Deleted Event");
-        push("/admin/eventHistory");
-      } else {
-        const errorMessage = responseData.message;
-        alert("Error: " + errorMessage);
+        const responseData = await response.json();
+        console.log(" response: ", responseData);
+        if (responseData == "Event deleted.") {
+          alert("Successfully Deleted Event");
+          push("/admin/eventHistory");
+        } else {
+          const errorMessage = responseData.message;
+          alert("Error: " + errorMessage);
+        }
+      } catch (error) {
+        console.error(`Delete New Event Error: ${error}`);
       }
-    } catch (error) {
-      console.error(`Delete New Event Error: ${error}`);
     }
   };
 
   const storeImage = async (e: any) => {
-    // e.preventDefault();
     if (!file) return;
 
     const formData = new FormData();
@@ -136,9 +148,15 @@ const ManageEventsPage = () => {
 
       const data = await response.json();
       console.log("look here ", data.s3ObjectURL);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        picture: data.s3ObjectURL,
+      }));
+      setFileChanged(true);
       return data.s3ObjectURL;
     } catch (error: any) {
       console.log("error occured while saving image to bucket: ", error);
+      return null;
     }
   };
 
@@ -169,6 +187,15 @@ const ManageEventsPage = () => {
 
     // post event
     try {
+      if (fileChanged) {
+        let rep = await storeImage("any");
+        console.log("rep: ", rep);
+        if (rep != null) {
+          formData["picture"] = rep;
+        }
+      }
+
+      console.log("here: examine", formData["picture"]);
       console.log("trying to submit new event");
       const response = await fetch("/api/events/", {
         method: "POST",
@@ -254,13 +281,13 @@ const ManageEventsPage = () => {
     <div>
       <div className={styles.container}>
         <div className={styles.eventManager}>
-          <div className={styles.topButtons}></div>
           <form
             className={styles.eventForm}
             onChange={handleEventChange}
             onSubmit={handleSubmit}
           >
             <div className={styles.eventTitle}>{eventName}</div>
+            <div className={styles.divider}></div>
             <textarea
               className={styles.descriptionInput}
               id="location"
@@ -321,6 +348,17 @@ const ManageEventsPage = () => {
               ref={eventDescriptionInputRef}
               onKeyDown={handleInputKeyPress}
             ></textarea>
+            <input
+              className={styles.imageContainer}
+              type="file"
+              accept=".png, .jpg, .jpeg, image/*"
+              id="pictureInput"
+              name="picture"
+              placeholder="Upload Image"
+              ref={pictureInputRef}
+              onKeyDown={handleInputKeyPress}
+              onChange={handeFileChange}
+            />
             <input
               className={styles.input}
               id="alt"
