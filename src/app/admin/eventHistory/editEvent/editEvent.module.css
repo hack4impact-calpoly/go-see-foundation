@@ -150,10 +150,11 @@
   font-size: 32px;
   font-weight: 700;
   border-radius: 40px;
-  background-color: rgb(255, 51, 51);
+  background-color: #FBB135;
   color: white;
   border: none;
   margin-bottom:20px;
+  color:black;
 }
 .deleteButton:hover {
   background-color: #e9474790;
