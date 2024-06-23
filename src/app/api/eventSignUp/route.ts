@@ -10,6 +10,18 @@ export async function POST(req: NextRequest) {
 
   try {
     const { email, needSightedGuide,attendedEventBefore, comments,  eventName } = await req.json();
+    const signedUp = await Users.findOne({ email}, {eventName});
+
+    if(signedUp !== null){
+      return NextResponse.json({
+        message: "Error: Already Signed Up For this Event",
+        status: 401,
+      });
+
+    }
+    
+    console.log("signedup?: ", signedUp)
+
     const user = await Users.findOne({ email}).orFail();
 
     try{
@@ -31,9 +43,10 @@ export async function POST(req: NextRequest) {
     console.log(newEventSignUp);
 
     return NextResponse.json({
-      message: "Success: EventSignUp uploaded",
+      message: "Error: Already Signed Up For this Event",
       status: 200,
     });
+
 
     } catch (err) {
         return NextResponse.json(`${err}`, { status: 400 });

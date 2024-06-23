@@ -87,6 +87,11 @@ export default function Register({ event }: { event: IEvent }) {
         alert(
           "No matching email found\nPlease Create an account and try again"
         );
+      } else if (
+        responseData.status === 401 &&
+        responseData.message === "Error: Already Signed Up For this Event"
+      ) {
+        alert("You are already signed up for this event");
       }
     } catch (error) {
       console.log("Event Sign Up Error", error);
