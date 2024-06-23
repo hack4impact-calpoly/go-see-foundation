@@ -67,7 +67,7 @@ export default function EventsSignup() {
         </div>
         <div className="component">
           <EventDescript event={event} />
-          <Register></Register>
+          <Register event={event}></Register>
         </div>
       </div>
     </div>

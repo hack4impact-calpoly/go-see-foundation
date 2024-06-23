@@ -123,3 +123,31 @@
   display:flex;
   align-items: center;
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-color: white;
+  border-radius: 15px;
+  color:black;
+  margin-bottom:20px;
+  text-align: left;
+  margin-right:10px;
+background-color: white;
+
+}
+
+.additionalInfo {
+  display: flex;
+  flex-direction: column;
+  /* border: 3px solid blue; */
+  justify-content: flex-start;
+  /* background-color: rgba(255, 255, 255, 0.95); */
+  background-color: white;
+  color:black;
+  margin-left:25px;
+  font-weight:700;
+  font-size:18px;
+  
+}

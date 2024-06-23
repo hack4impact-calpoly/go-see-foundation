@@ -37,3 +37,38 @@ export async function getSession(req: any){
         return null; // Return null or handle the error appropriately
     }
 }
+
+
+
+export async function getEmail(req: any){
+    let cookie;
+    let token;
+
+    try{
+        cookie = req.cookies.get('Auth_Session');
+        if(cookie){
+            token = cookie.value
+        } else{
+            console.log("cookie is undefined: ", cookie);
+        }
+
+    } catch{
+        console.log("error with auth cookie");
+        return;
+    }
+
+
+    try {
+        const { payload, protectedHeader } = await jose.jwtVerify(token, jwtConfig.secret); // decrypt the token
+        console.log("payload: ", payload);
+        return payload.payload.user.email;
+
+    } catch (error) {
+
+        // ideally this should sign them out / update that componenet and let them know to resign in 
+        //cookies().delete('Auth_Session')
+        // If verification fails (e.g., invalid signature or expired token), an error will be thrown
+        console.log('Error verifying token:', error);
+        return null; // Return null or handle the error appropriately
+    }
+}

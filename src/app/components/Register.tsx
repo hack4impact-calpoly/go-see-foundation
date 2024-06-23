@@ -2,8 +2,9 @@
 import React, { useState, useRef, FormEventHandler } from "react";
 import styles from "./register.module.css";
 import { useRouter } from "next/router";
+import { IEvent } from "@database/eventSchema";
 
-export default function Register() {
+export default function Register({ event }: { event: IEvent }) {
   const emailRef = useRef<HTMLInputElement>(null);
   const sightedGuideRef = useRef<HTMLInputElement>(null);
   const nonSightedGuideRef = useRef<HTMLInputElement>(null);
@@ -21,10 +22,26 @@ export default function Register() {
 
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    let emailInputs;
+
+    try {
+      const response = await fetch("/api/signedInUser/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      emailInputs = await response.json();
+    } catch {
+      alert("Please Sign In to Proceed");
+    }
 
     const comments = registerData.comment;
-    const email = registerData.email.toLowerCase();
-    const eventName = "The Battle Axe Experience";
+    const email = emailInputs.email;
+    console.log("email: ", email);
+    // const eventName = "The Battle Axe Experience";
+    const eventName = event.name;
     let attendedEventBefore;
     let needSightedGuide;
 
@@ -41,6 +58,9 @@ export default function Register() {
     }
 
     try {
+      console.log("needSightedGuide: ", needSightedGuide);
+      console.log("attendedEventBefore: ", attendedEventBefore);
+
       const response = await fetch("/api/eventSignUp/", {
         method: "POST",
         headers: {
@@ -59,7 +79,6 @@ export default function Register() {
 
       if (responseData.status === 200) {
         alert("Successful Event Sign Up!");
-        const router = useRouter();
       } else if (
         responseData.status === 400 &&
         responseData.message === "No matching email found"
@@ -90,18 +109,6 @@ export default function Register() {
     <div className={styles.register}>
       <h1 className={styles.title}>Register for Event</h1>
       <form className={styles.registerInputs} onSubmit={handleRegister}>
-        <div className={styles.emailInputs}>
-          <input
-            className={styles.email}
-            type="text"
-            name="email"
-            id="email"
-            placeholder="name@email.com"
-            required
-            onChange={(e) => handleLoginChange(e)}
-            ref={emailRef}
-          />
-        </div>
         <div className={styles.questions}>
           <p className={styles.question}>Do you need a sighted guide?</p>
           <div className={styles.options}>
