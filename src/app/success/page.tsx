@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import styles from "./success.module.css";
 import backgroundLogo from "../images/backgroundLogo.png";
 import checkMark from "../images/checkMark.png";
+import Success from "@components/Success";
 
 export default function SuccessPage() {
   const loginButtonRef = useRef<HTMLButtonElement>(null);
@@ -30,25 +31,7 @@ export default function SuccessPage() {
         />
       </div>
       <h1 className={styles.pageTitle}>Welcome back to your account!</h1>
-      <form className={styles.successForm} onSubmit={handleSubmit}>
-        <h2 className={styles.successTitle}>Success!</h2>
-        <Image
-          className={styles.checkMark}
-          src={checkMark}
-          alt="success check mark"
-          width="410"
-          height="410"
-        />
-        <h3 className={styles.successSubtitle}>Password Reset Successfully.</h3>
-        <button
-          id="loginButton"
-          className={styles.loginButton}
-          type="submit"
-          ref={loginButtonRef}
-        >
-          LOGIN
-        </button>
-      </form>
+      <Success message="Password Reset" />
     </div>
   );
 }
