@@ -9,7 +9,7 @@ export default function Success({ message }: { message: string }) {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const { push } = useRouter();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log("success! going to home page now");
     push("/");

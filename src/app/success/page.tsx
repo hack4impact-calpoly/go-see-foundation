@@ -1,23 +1,11 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import styles from "./success.module.css";
 import backgroundLogo from "../images/backgroundLogo.png";
-import checkMark from "../images/checkMark.png";
 import Success from "@components/Success";
 
 export default function SuccessPage() {
-  const loginButtonRef = useRef<HTMLButtonElement>(null);
-  const { push } = useRouter();
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("success! going to home page now");
-    push("/");
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.background}>
