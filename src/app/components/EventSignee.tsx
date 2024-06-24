@@ -60,36 +60,40 @@ const eventSignee = ({ mem }: { mem: IEventSignUp }) => {
         <p className={styles.textCard}>{mem.phoneNum}</p>
 
         <div className={styles.dropdownImg}>
-          <div className={styles.removeButton} onClick={deleteEntry}>
+          <button className={styles.removeButton} onClick={deleteEntry}>
             Remove
-          </div>
+          </button>
 
-          <Link
-            href={{
-              pathname: "/admin/email",
-              query: {
-                email: mem.email, // pass the email as a query parameter
-              },
-            }}
-            as={`/admin/email?email=${mem.email}`}
-          >
+          <button className={styles.buttonSettings}>
+            <Link
+              href={{
+                pathname: "/admin/email",
+                query: {
+                  email: mem.email, // pass the email as a query parameter
+                },
+              }}
+              as={`/admin/email?email=${mem.email}`}
+            >
+              <Image
+                src={emailIcon}
+                alt="email event signee"
+                height="40"
+                width="40"
+                priority={true}
+              />
+            </Link>
+          </button>
+
+          <button className={styles.buttonSettings}>
             <Image
-              src={emailIcon}
-              alt="email event signee"
+              src={imageSrc}
+              alt="expand member sign up info"
               height="40"
               width="40"
               priority={true}
+              onClick={setExpandFunc}
             />
-          </Link>
-
-          <Image
-            src={imageSrc}
-            alt="expand member sign up info"
-            height="40"
-            width="40"
-            priority={true}
-            onClick={setExpandFunc}
-          />
+          </button>
         </div>
       </div>
       {clickedExpand ? (

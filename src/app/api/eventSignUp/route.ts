@@ -7,15 +7,18 @@ import EventSignUp from "@database/eventSignUpSchema";
 
 export async function POST(req: NextRequest) {
   await connectDB();
+  console.log("hereeeee")
 
   try {
     const { email, needSightedGuide,attendedEventBefore, comments,  eventName } = await req.json();
-    const signedUp = await Users.findOne({ email}, {eventName});
+    const signedUp = await Users.findOne({ email: email, eventName: eventName });
+    console.log("signedup?: ", signedUp)
+
 
     if(signedUp !== null){
       return NextResponse.json({
         message: "Error: Already Signed Up For this Event",
-        status: 401,
+        status: 400,
       });
 
     }
@@ -23,6 +26,7 @@ export async function POST(req: NextRequest) {
     console.log("signedup?: ", signedUp)
 
     const user = await Users.findOne({ email}).orFail();
+    console.log("user: ", user)
 
     try{
 
@@ -42,20 +46,23 @@ export async function POST(req: NextRequest) {
     await newEventSignUp.save();
     console.log(newEventSignUp);
 
+
     return NextResponse.json({
-      message: "Error: Already Signed Up For this Event",
+      message: "Successful Event Sign Up!",
       status: 200,
     });
 
 
     } catch (err) {
+      
+        console.log("error: ", err)
         return NextResponse.json(`${err}`, { status: 400 });
     }
 
   } catch {
     console.log("Error fetching data for email")
     return NextResponse.json({
-        message: "No matching email found",
+        message: "Please Sign In",
         status: 400,
       });
 

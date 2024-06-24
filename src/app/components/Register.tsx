@@ -17,7 +17,7 @@ export default function Register({ event }: { event: IEvent }) {
     email: "",
     haveGone: "",
     sightedGuide: "",
-    comment: "",
+    comment: "N/A",
   });
 
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
@@ -37,7 +37,10 @@ export default function Register({ event }: { event: IEvent }) {
       alert("Please Sign In to Proceed");
     }
 
-    const comments = registerData.comment;
+    let comments = registerData.comment;
+    if (comments == "") {
+      comments = "N/A";
+    }
     const email = emailInputs.email;
     console.log("email: ", email);
     // const eventName = "The Battle Axe Experience";
@@ -81,17 +84,15 @@ export default function Register({ event }: { event: IEvent }) {
         alert("Successful Event Sign Up!");
       } else if (
         responseData.status === 400 &&
-        responseData.message === "No matching email found"
-      ) {
-        console.log(responseData.status);
-        alert(
-          "No matching email found\nPlease Create an account and try again"
-        );
-      } else if (
-        responseData.status === 401 &&
         responseData.message === "Error: Already Signed Up For this Event"
       ) {
+        console.log(responseData.status);
         alert("You are already signed up for this event");
+      } else if (
+        responseData.status === 400 &&
+        responseData.message === "Please Sign In"
+      ) {
+        alert("Please sign in and try again");
       }
     } catch (error) {
       console.log("Event Sign Up Error", error);
