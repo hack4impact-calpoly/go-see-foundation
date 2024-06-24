@@ -116,23 +116,23 @@ export default function HomeEvents() {
             VIEW ALL EVENTS
           </button>
         </div>
-        <div className={styles.divider}></div>
+        <div className={styles.divider} />
         <div className={styles.blogSection}>
-          <div className={styles.viewBlogsLink}>
-            <h3 className={styles.title}>
-              Check out our Blog for the latest events and news!{" "}
-            </h3>
+          {/* <div className={styles.viewBlogsLink}> */}
+          <h3 className={styles.title}>
+            Check out our Blog for the latest events and news!{" "}
+          </h3>
 
-            <div className={styles.pastEventsCards}>
-              {blogs?.slice(0, 3).map((e: BlogEvent, index: number) => (
-                <PastEventCard blog={e} />
-              ))}
-            </div>
-
-            <Link href="/blog" className={styles.viewAllArticles}>
-              VIEW ALL BLOGS
-            </Link>
+          <div className={styles.pastEventsCards}>
+            {blogs?.slice(0, 3).map((e: BlogEvent, index: number) => (
+              <PastEventCard blog={e} />
+            ))}
           </div>
+
+          <Link href="/blog" className={styles.viewAllArticles}>
+            VIEW ALL BLOGS
+          </Link>
+          {/* </div> */}
         </div>
       </div>
     </div>

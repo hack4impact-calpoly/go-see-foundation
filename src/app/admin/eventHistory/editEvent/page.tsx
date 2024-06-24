@@ -217,7 +217,7 @@ const ManageEventsPage = () => {
 
       const responseData = await response.json();
       if (response.ok && responseData.message == "Success: Event uploaded") {
-        alert("New Event Created!");
+        alert("Event Successfully Updated!");
         push("/admin/eventHistory");
       } else {
         const errorMessage = responseData.message;
