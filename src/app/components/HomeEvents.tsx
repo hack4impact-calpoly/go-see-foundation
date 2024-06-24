@@ -122,6 +122,13 @@ export default function HomeEvents() {
             <h3 className={styles.title}>
               Check out our Blog for the latest events and news!{" "}
             </h3>
+
+            <div className={styles.pastEventsCards}>
+              {blogs?.slice(0, 3).map((e: BlogEvent, index: number) => (
+                <PastEventCard blog={e} />
+              ))}
+            </div>
+
             <Link href="/blog" className={styles.viewAllArticles}>
               VIEW ALL BLOGS
             </Link>

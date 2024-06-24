@@ -4,7 +4,7 @@ import { Schema, model } from "mongoose";
 export type IEvent = {
   picture: string; // assumes URL
   alt: string;
-  description: String;
+  description: string;
   date: Date;
   name: string;
   blogID: string;
