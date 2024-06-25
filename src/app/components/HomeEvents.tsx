@@ -8,7 +8,7 @@ import { IBlog as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import blogIcon from "../images/blog.png";
+import blog_graphic from "../images/blog_graphic.jpg";
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -119,12 +119,10 @@ export default function HomeEvents() {
           </button>
         </div>
         <div className={styles.divider}></div>
-        <div className={styles.blogSection}>
-          <div className={styles.viewBlogsLink}>
-            <h3 className={styles.title}>
-              Check out our Blog for the latest events and news!{" "}
-            </h3>
-            <button className={styles.viewAllArticles} onClick={handleViewAll}>
+        <div className={styles.viewBlogsLink}>
+        <div className={styles.blogText}>
+          <h3 className={styles.blogTitle}>Check out our Blog for the latest events and news!</h3>
+          <button className={styles.viewAllArticles} onClick={handleViewAll}>
             VIEW ALL BLOGS
           </button>
           </div>
