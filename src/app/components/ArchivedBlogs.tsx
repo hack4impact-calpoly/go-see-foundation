@@ -71,17 +71,7 @@ export default function Archive() {
         <button className="olderarticles" onClick={handleArchivesClick}>
             Most Recent
         </button>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={handleSearchInputChange}
-              placeholder="Search..."
-            />
-            <button className="submit" type="submit">
-              Search
-            </button>
-          </form>
+          
         </div>
       </span>
     
