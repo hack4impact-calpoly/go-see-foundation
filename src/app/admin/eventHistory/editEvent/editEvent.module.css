@@ -14,6 +14,22 @@
   
 }
 
+.imageContainer{
+
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "Helvetica", sans-serif;
+    font-size: 23px;
+    border-radius: 16px;
+    /* padding: 7.5px 10px 7.5px 10px; */
+    border: 1px solid;
+    color:black;
+    font-weight: 700;
+    border-width: 2.5px;
+    
+}
+
 .eventManager {
   width: 50%;
   height: fit-content;
@@ -71,6 +87,7 @@
 }
 
 .eventForm {
+  margin-top : 20px;
   display: flex;
   flex-direction: column;
   flex: 4;
@@ -133,10 +150,11 @@
   font-size: 32px;
   font-weight: 700;
   border-radius: 40px;
-  background-color: rgb(255, 51, 51);
+  background-color: #FBB135;
   color: white;
   border: none;
   margin-bottom:20px;
+  color:black;
 }
 .deleteButton:hover {
   background-color: #e9474790;
@@ -155,6 +173,24 @@
   color: #1d2f5d;
   margin-left:auto;
   margin-right:auto;
-  margin-bottom:20px;
+  margin-bottom:0px;
   font-size: 22pt;
+}
+
+
+.divider2 {
+  background-color: #FBB135;
+  height: 10px;
+  margin: 0 auto 5px; /* This centers the element horizontally */
+  width: 40%;
+  margin-top: 20px;
+}
+
+
+.divider {
+  background-color: #FBB135;
+  height: 3px;
+  margin: 0 auto 5px; /* This centers the element horizontally */
+  width: 80%;
+  margin-bottom: 15px;
 }

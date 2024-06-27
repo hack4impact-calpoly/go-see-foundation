@@ -214,26 +214,14 @@ const ManageEventsPage = () => {
       <div className={styles.container}>
         <div className={styles.eventManager}>
           <div className={styles.topButtons}>
-            <button
-              className={`${styles.newEventButton} ${
-                activeForm === 0 ? styles.activeForm : ""
-              }`}
+            <div
+              className={styles.newEventButton}
               id="newEventButton"
-              type="button"
-              ref={newEventButtonRef}
+              // type="button"
+              // ref={newEventButtonRef}
             >
               New Event
-            </button>
-            <button
-              className={`${styles.updateEventButton} ${
-                activeForm === 1 ? styles.activeForm : ""
-              }`}
-              id="updateEventButton"
-              type="button"
-              ref={updateEventButtonRef}
-            >
-              Update Event
-            </button>
+            </div>
           </div>
           <form
             className={styles.eventForm}

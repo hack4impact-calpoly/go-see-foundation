@@ -1,10 +1,11 @@
-import { IEvent } from "@database/blogSchema";
+import { IEvent as BlogEvent } from "@database/blogSchema";
 import styles from "./pastEventCard.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function PastEventCard({ blog }: { blog: IEvent }) {
-  const { picture, alt, description, date, name, blogID, author } = blog;
+export default function PastEventCard({ blog }: { blog: BlogEvent }) {
+  const { picture, alt, description, date, name } = blog;
+  const author = "xd";
   const { push } = useRouter();
 
   const handleLearnMore = () => {
@@ -17,12 +18,11 @@ export default function PastEventCard({ blog }: { blog: IEvent }) {
         className={styles.picture}
         src={picture}
         alt={alt}
-        width="500"
-        height="500"
+        width="400"
+        height="290"
       />
       <div className={styles.text}>
         <p className={styles.name}>{name}</p>
-        <p className={styles.author}>By: {author}</p>
         <p className={styles.description}>{description}</p>
         <button className={styles.learnMore} onClick={handleLearnMore}>
           Learn More
