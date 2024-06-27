@@ -35,8 +35,8 @@
   border-bottom-left-radius: 20px;
 }
 
-.adminOptions .button:hover{
-  background:#BBCFFF;
+.adminOptions .button:hover, .button:focus{
+  background: #FBB135;;
 }
 
 .buttons {

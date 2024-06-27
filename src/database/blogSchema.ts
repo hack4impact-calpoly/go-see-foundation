@@ -4,7 +4,7 @@ import { Schema, model } from "mongoose";
 export type IBlog = {
   picture: string; // assumes URL
   alt: string;
-  description: String;
+  description: string;
   date: Date;
   name: string;
   blogID: string;

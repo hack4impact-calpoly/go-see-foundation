@@ -2,11 +2,14 @@
 import React, { useState, useRef, FormEventHandler } from "react";
 import styles from "./register.module.css";
 import { useRouter } from "next/router";
+import { IEvent } from "@database/eventSchema";
 
-export default function Register() {
+export default function Register({ event }: { event: IEvent }) {
   const emailRef = useRef<HTMLInputElement>(null);
   const sightedGuideRef = useRef<HTMLInputElement>(null);
+  const nonSightedGuideRef = useRef<HTMLInputElement>(null);
   const haveGoneRef = useRef<HTMLInputElement>(null);
+  const haventGoneRef = useRef<HTMLInputElement>(null);
   const commentRef = useRef<HTMLTextAreaElement>(null);
   const registerButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -14,15 +17,34 @@ export default function Register() {
     email: "",
     haveGone: "",
     sightedGuide: "",
-    comment: "",
+    comment: "N/A",
   });
 
   async function handleRegister(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    let emailInputs;
 
-    const comments = registerData.comment;
-    const email = registerData.email.toLowerCase();
-    const eventName = "The Battle Axe Experience";
+    try {
+      const response = await fetch("/api/signedInUser/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      emailInputs = await response.json();
+    } catch {
+      alert("Please Sign In to Proceed");
+    }
+
+    let comments = registerData.comment;
+    if (comments == "") {
+      comments = "N/A";
+    }
+    const email = emailInputs.email;
+    console.log("email: ", email);
+    // const eventName = "The Battle Axe Experience";
+    const eventName = event.name;
     let attendedEventBefore;
     let needSightedGuide;
 
@@ -39,6 +61,9 @@ export default function Register() {
     }
 
     try {
+      console.log("needSightedGuide: ", needSightedGuide);
+      console.log("attendedEventBefore: ", attendedEventBefore);
+
       const response = await fetch("/api/eventSignUp/", {
         method: "POST",
         headers: {
@@ -57,15 +82,17 @@ export default function Register() {
 
       if (responseData.status === 200) {
         alert("Successful Event Sign Up!");
-        const router = useRouter();
       } else if (
         responseData.status === 400 &&
-        responseData.message === "No matching email found"
+        responseData.message === "Error: Already Signed Up For this Event"
       ) {
         console.log(responseData.status);
-        alert(
-          "No matching email found\nPlease Create an account and try again"
-        );
+        alert("You are already signed up for this event");
+      } else if (
+        responseData.status === 400 &&
+        responseData.message === "Please Sign In"
+      ) {
+        alert("Please sign in and try again");
       }
     } catch (error) {
       console.log("Event Sign Up Error", error);
@@ -88,18 +115,6 @@ export default function Register() {
     <div className={styles.register}>
       <h1 className={styles.title}>Register for Event</h1>
       <form className={styles.registerInputs} onSubmit={handleRegister}>
-        <div className={styles.emailInputs}>
-          <input
-            className={styles.email}
-            type="text"
-            name="email"
-            id="email"
-            placeholder="name@email.com"
-            required
-            onChange={(e) => handleLoginChange(e)}
-            ref={emailRef}
-          />
-        </div>
         <div className={styles.questions}>
           <p className={styles.question}>Do you need a sighted guide?</p>
           <div className={styles.options}>
@@ -109,9 +124,8 @@ export default function Register() {
                 type="radio"
                 name="sightedGuide"
                 value="yes"
-                required
                 onChange={(e) => handleLoginChange(e)}
-                ref={sightedGuideRef}
+                ref={nonSightedGuideRef}
               />
               Yes
             </label>
@@ -119,9 +133,8 @@ export default function Register() {
               <input
                 className={styles.radio}
                 type="radio"
-                name="sightedGuide"
+                name="sightedGuideNo"
                 value="no"
-                required
                 onChange={(e) => handleLoginChange(e)}
                 ref={sightedGuideRef}
               />
@@ -147,7 +160,7 @@ export default function Register() {
               <input
                 className={styles.radio}
                 type="radio"
-                name="haveGone"
+                name="haveGoneNo"
                 onChange={(e) => handleLoginChange(e)}
                 value="no"
                 ref={haveGoneRef}

@@ -17,12 +17,11 @@ export default function PastEventCard({ blog }: { blog: IBlog }) {
         className={styles.picture}
         src={picture}
         alt={alt}
-        width="500"
-        height="500"
+        width="400"
+        height="290"
       />
       <div className={styles.text}>
         <p className={styles.name}>{name}</p>
-        <p className={styles.author}>By: {author}</p>
         <p className={styles.description}>{description}</p>
         <button className={styles.learnMore} onClick={handleLearnMore}>
           Learn More

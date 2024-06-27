@@ -1,6 +1,4 @@
 "use client";
-import emailIcon from "../../../images/emailIcon.png";
-import expandDown from "../../../images/Expand_down-2.png";
 import backButton from "../../../images/backButton.png";
 
 import Link from "next/link";
@@ -9,15 +7,14 @@ import styles from "./eventName.module.css";
 import { MouseEventHandler, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
-
+import EventSignee from "@components/EventSignee";
+import { IEventSignUp } from "@database/eventSignUpSchema";
 
 export default function eventName(context: any) {
-  let [members, setMembers] = useState<any[]>([]);
+  let [clickedExpand, setClickedExpand] = useState(false);
+  let [members, setMembers] = useState<IEventSignUp[]>([]);
   const searchParams = useSearchParams();
-
   let eventName = searchParams.get("eventName");
-
-  // const eventName = decodeURIComponent(context.params.eventName);
 
   const handleRedirect = (email: string) => {
     console.log("email:", email);
@@ -84,47 +81,10 @@ export default function eventName(context: any) {
           >
             Email All
           </Link>
-
-          {/* <button className={styles.emailAllButton}>Email All</button> */}
         </div>
 
         {members && members.length > 0 ? (
-          members.map((mem, index) => (
-            <div key={index} className={styles.body}>
-              <p className={styles.textCard}>
-                {mem.firstName + " " + mem.lastName + " (" + mem.userType + ")"}
-              </p>
-              <p className={styles.textCard}>{mem.phoneNum}</p>
-
-              <div className={styles.dropdownImg}>
-                <Link
-                  href={{
-                    pathname: "/admin/email",
-                    query: {
-                      email: mem.email, // pass the email as a query parameter
-                    },
-                  }}
-                  as={`/admin/email?email=${mem.email}`}
-                >
-                  <Image
-                    src={emailIcon}
-                    alt="background logo for the Go See Foundation"
-                    height="30"
-                    width="30"
-                    priority={true}
-                  />
-                </Link>
-
-                <Image
-                  src={expandDown}
-                  alt="background logo for the Go See Foundation"
-                  height="30"
-                  width="30"
-                  priority={true}
-                />
-              </div>
-            </div>
-          ))
+          members.map((mem, index) => <EventSignee mem={mem} key={index} />)
         ) : (
           <div className={styles.noMembers}>
             <h1 className={styles.nomemberText}>

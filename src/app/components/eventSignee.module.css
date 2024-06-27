@@ -1,0 +1,182 @@
+
+
+  .body{
+    background-color: white;
+    margin-bottom: 0px;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    
+  }
+
+  .textCard{
+    margin: 0px;
+    padding-right: 10px;
+    font-weight: 500;
+    color: #1D2F5D;
+    font-size: 24px;
+
+  }
+  
+  .role{
+    margin: 0px;
+    font-weight: 500;
+    color: white;
+    padding: 5px;
+    background-color: #1D2F5D;
+    font-size: 24px;
+    border-radius: 5px;
+    align-items: center;
+    margin-right: 15px;
+    
+  }
+
+  .removeButton{
+    margin: 0px;
+    font-weight: 500;
+    color: white;
+    padding: 5px;
+    background-color: red;
+    font-size: 24px;
+    border-radius: 5px;
+    align-items: center;
+    box-shadow: none; /* Remove any box shadow */
+    border-bottom-color: white;
+    border: 2px solid white; /* Set the border to white */
+
+  }
+
+
+  .dropdownImg{
+
+    display: flex;
+    flex-direction: row;
+
+
+    color:black;
+    margin-left: auto; 
+  }
+
+  .dropdownImg img {
+    padding-left: 10px;
+    
+}
+
+.noMembers{
+
+  background-color: gray;
+  width:auto;
+
+}
+
+.noMembers {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.95);
+  margin-bottom:40px;
+}
+
+.nomemberText{
+  width: 90%;
+  color:black;
+  font-weight:700;
+  font-size: 30px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+.titleBody{
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  
+}
+.emailAllButton{
+  border-radius: 0.61538rem;
+  background: #FBB135;
+  border: none;
+  color:#000000;
+  width: 220px;
+  height: 54px;
+  font-size: 25px;
+  font-weight: 700;
+  border-radius: 9.846px;
+  margin: 10px;  
+  appearance: none; /* Remove default styling */
+  text-decoration: none; /* Remove underline */
+  justify-content: center;
+  display:flex;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-color: white;
+  border-radius: 15px;
+  color:black;
+  margin-bottom:20px;
+  text-align: left;
+  margin-right:10px;
+background-color: white;
+
+}
+
+.additionalInfo {
+  display: flex;
+  flex-direction: column;
+  /* border: 3px solid blue; */
+  justify-content: flex-start;
+  /* background-color: rgba(255, 255, 255, 0.95); */
+  background-color: white;
+  color:black;
+  margin-left:25px;
+  border-radius: 15px;
+
+
+  
+}
+
+.option p{
+    font-weight:700;
+    font-size:18px;
+    margin-bottom:0px;
+    margin-top:0px;
+    border-radius: 15px;
+    margin-left:20px;
+
+}
+
+.option{
+  margin-bottom:10px;
+}
+
+
+.optionTop{
+  margin-bottom:10px;
+  border-top: 4.5px solid #FBB135;
+  padding-top:5px;
+
+}
+
+
+
+.buttonSettings{
+
+padding:0px;
+border: 0px;
+background-color: white;
+}
+
+
+
+
+
+
