@@ -2,7 +2,7 @@
 const nextConfig = {
     images: {
       domains: ['goseetemp.s3.us-east-2.amazonaws.com'],
-    }
+    },
   }
-
-module.exports = nextConfig
+  
+  module.exports = nextConfig

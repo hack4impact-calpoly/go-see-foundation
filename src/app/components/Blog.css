@@ -74,12 +74,13 @@
 
 .olderarticles {
   background-color: #fbb135;
-  width: 200px;
+  width: 250px;
   border: 2px solid #fbb135;
-  height: 30px;
-  font: bold 15px "Helvetica Neue", Helvetica;
+  height: 35px;
+  font: bold 22px "Helvetica Neue", Helvetica;
   color: #1d2f5d;
   margin-left: auto;
+  margin-right: 10px; /* Adjusted margin to match other elements */
 }
 
 .pagenumbers,
@@ -89,18 +90,22 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    flex-direction: column; /* Change to column layout on smaller screens */
-    align-items: flex-start; /* Align items to the start of the container */
+    justify-content: center; /* Center the items horizontally */
   }
 
   .rightaligned {
-    margin-top: 10px; /* Add margin to separate from the title */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    justify-content: center; /* Center the items in the rightaligned div */
   }
 
-  .header select,
   .header input[type="search"],
   .submit {
-    width: 100%; /* Make input elements full width */
-    margin: 10px 0; /* Add spacing between elements */
+    width: calc(100% - 20px); /* Full width minus padding */
+    margin: 10px 5px; /* Add spacing between elements */
+  }
+
+  .olderarticles {
+    width: calc(100% - 20px); /* Full width minus padding */
+    margin: 10px 5px; /* Add spacing between elements */
   }
 }

@@ -62,7 +62,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Key Features
 **Admin**
 - Create/Update/Delete New event for registered users to sign up for. (/src/app/admin/manage-events)
-- Create/Update Blogs to appear in blog page. (/src/app/admin/blog)
+- Create/Delete Blogs (appears in blog page). (/src/app/admin/blog)
+Note: For date, click the box in the calendar (you might need to select the box after today)
 - Create new resource to appear in resources page. (/src/app/admin/resources)
 - Manage members; view/edit an organized list of users, including contact information. (/src/app/admin/members)
 - Send emails by user type (volunteers, members, partners/donors, or individual). (/src/app/admin/email)
@@ -78,7 +79,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 **Navigation & Other Features**
 - Learn Go See's Story (src/app//about)
 - Donate to Go See Foundation (/src/app/donate)
-- View blog page, including search button (/src/app/blog)
+- View blog page- three most recent articles (/src/app/blog)
+- View blog archive - all older articles (/src/app/blog/archive)
 - View resources and supporters of Go See Foundation (/src/app/resources)
 - Sign up for an upcoming event (/src/app/eventSignup)
 

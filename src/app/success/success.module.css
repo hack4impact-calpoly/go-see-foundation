@@ -1,0 +1,43 @@
+.container {
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.background {
+  display: flex;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+
+  /* debugging */
+  /* background-color: yellow; */
+}
+
+.backgroundLogo {
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  top: 5vh;
+  left: 0;
+  height: 90%;
+  object-fit: contain;
+  justify-self: center;
+  align-self: center;
+  opacity: 25%;
+}
+
+.pageTitle {
+  width: 50vw;
+  padding: 10px;
+  line-height: 1.6;
+  font-family: "Helvetica", sans-serif;
+  font-size: 36pt;
+  color: white;
+
+  /* debugging */
+  /* background-color: black; */
+}

@@ -23,6 +23,12 @@
   border-radius: 20px;
 }
 
+.title {
+  font: bold 40px "Helvetica Neue", Helvetica;
+  color: #1d2f5d;
+  margin: 10px 0 20px 10px;
+}
+
 .topButtons {
   display: flex;
   flex-direction: row;

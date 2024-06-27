@@ -50,7 +50,12 @@ Stay tuned. 👀
 
 ## Known Bugs + Limitations
 
-TBD
+**Blogs**
+- Search bar currently does not work on archive.
+- Admin create blog: To properly add date, click the box in the calendar. You might need to select one day later to get the current day.
+
+**Supporters (resource page)**
+- To update current supporters image, please reach out to Hack4Impact and we will substitute current image with newly updated one. For best quality, maintain rectangular shape with white background.
 
 ## Future enhancements 
 
