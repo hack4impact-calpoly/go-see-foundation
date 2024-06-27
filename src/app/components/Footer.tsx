@@ -12,43 +12,38 @@ import "./footer.css";
 export default function Footer() {
   return (
     <div className="footer">
-      <br />
-      <h1> Follow GO See Foundation: </h1>
-      <div className="socials">
-        <a href="https://www.facebook.com/GOSeeFoundation">
-          <Image src={facebook} alt="Facebook" width="35" height="35"></Image>
-        </a>
-        <a href="https://www.instagram.com/goseefoundation/?hl=en">
-          <Image src={insta} alt="Instagram" width="35" height="35"></Image>
-        </a>
-        <a href="https://podcasters.spotify.com/pod/show/go-see/episodes/GSP-003-Laurie-Mileur-e21gcre/a-a9jho7c">
-          <Image src={spotify} alt="Spotify" width="35" height="35"></Image>
-        </a>
-        <a href="https://www.youtube.com/@allysonseye?app=desktop">
-          <Image src={youtube} alt="Youtube" width="35" height="35"></Image>
-        </a>
-      </div>
-      <div className="logo" tabIndex={0}>
-        <Image
-          src={logo}
-          alt="Go See Foundation Logo"
-          width="390"
-          height="300"
-        ></Image>
-       
-        <br />
+      <div className="footerContent">
+        <div className="follow">
+          <h1>Follow GO See Foundation</h1>
+          <div className="socials">
+            <a href="https://www.facebook.com/GOSeeFoundation">
+              <Image src={facebook} alt="Facebook" width="35" height="35" />
+            </a>
+            <a href="https://www.instagram.com/goseefoundation/?hl=en">
+              <Image src={insta} alt="Instagram" width="35" height="35" />
+            </a>
+            <a href="https://podcasters.spotify.com/pod/show/go-see/episodes/GSP-003-Laurie-Mileur-e21gcre/a-a9jho7c">
+              <Image src={spotify} alt="Spotify" width="35" height="35" />
+            </a>
+            <a href="https://www.youtube.com/@allysonseye?app=desktop">
+              <Image src={youtube} alt="Youtube" width="35" height="35" />
+            </a>
+          </div>
+        </div>
+
         <div className="contact">
-          (805) 242-4220 <br />
-          allyson@goseefoundation.org
+          <h1>Contact</h1>
+          <div>
+            Phone: (805) 242-4220 <br />
+            Email: allyson@goseefoundation.org
+          </div>
         </div>
       </div>
+      <div className= "divider"></div>
       <div className="copyright">
         GO See Foundation is a 501(c)(3) not-for-profit organization. © 2024 GO
         See Foundation. All rights reserved.
       </div>
-      <br />
     </div>
   );
 }
-
-/*style={{ textAlign: 'center' }}*/
