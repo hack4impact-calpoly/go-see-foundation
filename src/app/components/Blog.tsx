@@ -77,7 +77,7 @@ export default function Blog() {
               type="search"
               value={searchQuery}
               onChange={handleSearchInputChange}
-              placeholder="Search..."
+              placeholder="Search Blogs..."
             />
             <button className="submit" type="submit">
               Search
