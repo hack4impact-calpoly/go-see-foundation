@@ -1,11 +1,10 @@
-import { IEvent as BlogEvent } from "@database/blogSchema";
+import { IBlog } from "@database/blogSchema";
 import styles from "./pastEventCard.module.css";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function PastEventCard({ blog }: { blog: BlogEvent }) {
-  const { picture, alt, description, date, name } = blog;
-  const author = "xd";
+export default function PastEventCard({ blog }: { blog: IBlog }) {
+  const { picture, alt, description, date, name, blogID, author } = blog;
   const { push } = useRouter();
 
   const handleLearnMore = () => {
