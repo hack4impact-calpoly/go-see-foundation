@@ -141,6 +141,7 @@ export default function Register({ event }: { event: IEvent }) {
               No
             </label>
           </div>
+          <br></br>
           <p className={styles.question}>
             Have you been to a GO See event before?
           </p>
@@ -168,6 +169,7 @@ export default function Register({ event }: { event: IEvent }) {
               No
             </label>
           </div>
+          <br></br>
           <p className={styles.question}>
             Is there anything else you would like us to know?
           </p>
