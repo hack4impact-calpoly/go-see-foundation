@@ -1,0 +1,40 @@
+import { NextRequest, NextResponse } from "next/server";
+import connectDB from "@database/db";
+import EventSignUp from "@database/eventSignUpSchema";
+
+type IParams2 = {
+    params: {
+      eventName: string;
+      email: string;
+
+    };
+  };
+
+
+export async function DELETE(req: NextRequest, { params }: IParams2) {
+    await connectDB();
+    const { eventName, email } = params;
+  
+    console.log("xd: ", eventName, email)
+    
+    if (!eventName || !email) {
+      return NextResponse.json({
+        message: "Event name and user ID are required",
+        status: 400,
+      });
+    }
+  
+    try {
+      const result = await EventSignUp.deleteOne({ eventName: eventName, email:email }).orFail();
+      return NextResponse.json({
+        message: `Successfully deleted entry for event ${eventName} and user ${email}`,
+        status: 200,
+      });
+    } catch (error) {
+      console.log("Error deleting data for Event", error);
+      return NextResponse.json({
+        message: "No Existing Event or error occurred!",
+        status: 400,
+      });
+    }
+  }

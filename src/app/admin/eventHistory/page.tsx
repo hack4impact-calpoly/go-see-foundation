@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./eventHistory.module.css";
 import BackButton from "../../components/BackButton";
+import pin from "../../images/pin-icon.png";
 
 export default function EventHistory() {
   let [events, setEvents] = useState<any[]>([]);
@@ -46,33 +47,45 @@ export default function EventHistory() {
       <BackButton />
       <div className={styles.eventHistory}>
         <div className={styles.formBody}>
-          <h1 className={styles.eventTitle}>Events</h1>
+          <h1 className={styles.eventTitle}>Event Information</h1>
 
           <div className={styles.eventsBody}>
             {events &&
               events.map((event, index) => (
                 <div key={index} className={styles.eventItem}>
-                  <h1>{event.name}</h1>
+                  <h1>{event.name}</h1> <div className={styles.divider} />
+                  <h2>{event.location}</h2>
                   <h2>
-                    {event.location}
-                    {"     "}
-                    {moment(event.date).format("MMM Do YYYY")} {event.startTime}{" "}
-                    - {event.endTime}
+                    {/* <Image src={pin} alt="Pin" width="35" height="35" /> */}
+                    {moment(event.date).format("MMM Do YYYY")} {"     "}
+                    {event.startTime} - {event.endTime}
                   </h2>
+                  <div className={styles.divider2} />
                   <div className={styles.eventDescription}>
                     {event.description}
                   </div>
-
                   <div className={styles.options}>
+                    <Link
+                      className={styles.editEvent}
+                      href={{
+                        pathname: "/admin",
+                        query: {
+                          eventName: event.name, // pass the email as a query parameter
+                        },
+                      }}
+                      as={`/admin/eventHistory/editEvent?eventName=${event.name}`}
+                    >
+                      Edit Event
+                    </Link>
                     <Link
                       className={styles.eventSignup}
                       href={{
-                        pathname: `/admin/eventHistory/[eventName]`,
+                        pathname: "/admin",
                         query: {
-                          id: event.name,
+                          eventName: event.name, // pass the email as a query parameter
                         },
                       }}
-                      as={`/admin/eventHistory/${event.name}`}
+                      as={`/admin/eventHistory/event?eventName=${event.name}`}
                     >
                       View Attendance
                     </Link>

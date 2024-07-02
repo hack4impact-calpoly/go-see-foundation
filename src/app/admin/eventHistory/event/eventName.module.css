@@ -106,3 +106,20 @@
   align-items: center;
   
 }
+.emailAllButton{
+  border-radius: 0.61538rem;
+  background: #FBB135;
+  border: none;
+  color:#000000;
+  width: 220px;
+  height: 54px;
+  font-size: 25px;
+  font-weight: 700;
+  border-radius: 9.846px;
+  margin: 10px;  
+  appearance: none; /* Remove default styling */
+  text-decoration: none; /* Remove underline */
+  justify-content: center;
+  display:flex;
+  align-items: center;
+}

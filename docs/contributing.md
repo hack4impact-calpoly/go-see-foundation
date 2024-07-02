@@ -28,3 +28,39 @@ When interacting with Git/GitHub, feel free to use the command line, VSCode exte
 4. Link your PR to the corresponding **Issue**
 5. Request a reviewer to check your code
 6. Once approved, your code is ready to be merged in 🎉
+
+## Environment Variables
+
+You will need a proper **.env** file. Add all required environment variables here.
+
+- MONGO_URI: MongoDB connection string.
+- JWT_SECRET: Stores the secret key used for signing JSON Web Tokens (JWTs).
+- NEXT_STRIPE_PUBLIC_KEY: Donations; stores public key associated with Stripe account; used on the client side.
+- STRIPE_BUTTON_ID: Donations; stores an identifier for a specific Stripe payment button or element within your application.
+- STRIPE_SECRET_KEY: Donations; stores secret key associated with Stripe account; used on the server-side to authenticate requests to Stripe's APIs.
+- STRIPE_WEBHOOK_SECRET: Donations; a secret key used for securing webhook endpoints that receive notifications from Stripe.
+
+## Running Code
+
+- **npm run dev** for a local test.
+
+## Deployment
+
+Stay tuned. 👀 
+
+## Known Bugs + Limitations
+
+**Blogs**
+- Search bar currently does not work on archive.
+- Admin create blog: To properly add date, click the box in the calendar. You might need to select one day later to get the current day.
+
+**Supporters (resource page)**
+- To update current supporters image, please reach out to Hack4Impact and we will substitute current image with newly updated one. For best quality, maintain rectangular shape with white background.
+
+## Future enhancements 
+
+TBD
+
+## Contact Information
+
+TBD

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./blog.module.css";
 import { useRouter } from "next/navigation";
 import { IEvent } from "@database/blogSchema";
-import BackButton from '../../components/BackButton';
+import BackButton from "../../components/BackButton";
 
 const BlogPage = () => {
   const newBlogButtonRef = useRef<HTMLButtonElement>(null);
@@ -138,7 +138,7 @@ const BlogPage = () => {
           alert("New Blog Created!");
           window.location.reload();
           window.scrollTo(0, 0);
-          // push("/admin");
+          push("/admin");
         } else {
           const errorMessage = responseData.message;
           alert("Error: " + errorMessage);
@@ -235,155 +235,160 @@ const BlogPage = () => {
   };
 
   return (
-    <div> <BackButton/>
-    <div className={styles.container}>
-      <div className={styles.blogManager}>
-        <div className={styles.topButtons}>
-          <button
-            className={`${styles.newBlogButton} ${
-              activeForm === 0 ? styles.activeForm : ""
-            }`}
-            id="newBlogButton"
-            type="button"
-            ref={newBlogButtonRef}
-            onClick={handleFormSwitch}
+    <div>
+      {" "}
+      <BackButton />
+      <div className={styles.container}>
+        <div className={styles.blogManager}>
+          <div className={styles.topButtons}>
+            <button
+              className={`${styles.newBlogButton} ${
+                activeForm === 0 ? styles.activeForm : ""
+              }`}
+              id="newBlogButton"
+              type="button"
+              ref={newBlogButtonRef}
+              onClick={handleFormSwitch}
+            >
+              New Blog
+            </button>
+            <button
+              className={`${styles.deleteBlogButton} ${
+                activeForm === 1 ? styles.activeForm : ""
+              }`}
+              id="deleteBlogButton"
+              type="button"
+              ref={deleteBlogButtonRef}
+              onClick={handleFormSwitch}
+            >
+              Delete Blog
+            </button>
+          </div>
+          <form
+            className={styles.blogForm}
+            onChange={handleEventChange}
+            onSubmit={handleSubmit}
           >
-            New Blog
-          </button>
-          <button
-            className={`${styles.deleteBlogButton} ${
-              activeForm === 1 ? styles.activeForm : ""
-            }`}
-            id="deleteBlogButton"
-            type="button"
-            ref={deleteBlogButtonRef}
-            onClick={handleFormSwitch}
-          >
-            Delete Blog
-          </button>
-        </div>
-        <form
-          className={styles.blogForm}
-          onChange={handleEventChange}
-          onSubmit={handleSubmit}
-        >
-          {activeForm === 0 ? (
+            {activeForm === 0 ? (
+              <input
+                className={styles.input}
+                type="text"
+                id="firstInput"
+                name="name"
+                placeholder="Title"
+                value={formData["name"]}
+                required
+                ref={firstInputRef}
+                onKeyDown={handleInputKeyPress}
+              />
+            ) : (
+              <select
+                className={styles.selectBlog}
+                id="firstInput"
+                name="name"
+                required
+                onKeyDown={handleInputKeyPress}
+                onChange={handleBlogSelection}
+              >
+                <option value="-1">Select Blog...</option>
+                {blogs.map((blog: IEvent, index: number) => (
+                  <option
+                    key={index}
+                    value={index}
+                  >{`Name: ${blog.name}`}</option>
+                ))}
+              </select>
+            )}
             <input
               className={styles.input}
               type="text"
-              id="firstInput"
-              name="name"
-              placeholder="Title"
-              value={formData["name"]}
+              id="authorInput"
+              name="author"
+              value={
+                selectedBlogIndex === -1
+                  ? formData["author"]
+                  : blogs[selectedBlogIndex].author
+              }
+              placeholder="Author"
               required
-              ref={firstInputRef}
+              ref={authorInputRef}
               onKeyDown={handleInputKeyPress}
+              disabled={selectedBlogIndex === -1 ? false : true}
             />
-          ) : (
-            <select
-            className={styles.selectBlog}
-            id="firstInput"
-            name="name"
-            required
-            onKeyDown={handleInputKeyPress}
-            onChange={handleBlogSelection}
-          >
-            <option value="-1">Select Blog...</option>
-            {blogs.map((blog: IEvent, index: number) => (
-              <option key={index} value={index}>{`Name: ${blog.name}`}</option>
-            ))}
-          </select>
-          )}
-          <input
-            className={styles.input}
-            type="text"
-            id="authorInput"
-            name="author"
-            value={
-              selectedBlogIndex === -1
-                ? formData["author"]
-                : blogs[selectedBlogIndex].author
-            }
-            placeholder="Author"
-            required
-            ref={authorInputRef}
-            onKeyDown={handleInputKeyPress}
-            disabled={selectedBlogIndex === -1 ? false : true}
-          />
-          <input
-            className={styles.input}
-            type="date"
-            id="date"
-            name="date"
-            value={
-              selectedBlogIndex === -1
-                ? formData["date"]
-                  ? formatDate(formData["date"])
-                  : ""
-                : formatDate(blogs[selectedBlogIndex].date)
-            }
-            placeholder="Date"
-            required
-            ref={dateInputRef}
-            onKeyDown={handleInputKeyPress}
-            disabled={selectedBlogIndex === -1 ? false : true}
-          />
-          <input
-            className={styles.input}
-            type="file"
-            accept=".png, .jpg, .jpeg, image/*"
-            value={formData.picture}
-            id="pictureInput"
-            name="picture"
-            placeholder="Upload Image"
-            required
-            ref={pictureInputRef}
-            onKeyDown={handleInputKeyPress}
-            onChange={handleFileInput}
-            disabled={selectedBlogIndex === -1 ? false : true}
-          />
-          <input
-            className={styles.input}
-            type="text"
-            id="altTextInput"
-            name="alt"
-            value={
-              selectedBlogIndex === -1
-                ? formData["alt"]
-                : blogs[selectedBlogIndex].alt
-            }
-            placeholder="Alternative Text for Image"
-            required
-            ref={altTextInputRef}
-            onKeyDown={handleInputKeyPress}
-            disabled={selectedBlogIndex === -1 ? false : true}
-          />
-          <textarea
-            className={styles.descriptionInput}
-            id="blogDescription"
-            name="description"
-            placeholder="Blog Description"
-            value={
-              selectedBlogIndex === -1
-                ? formData["description"]
-                : String(blogs[selectedBlogIndex].description)
-            }
-            required
-            ref={blogDescriptionInputRef}
-            onKeyDown={handleInputKeyPress}
-            disabled={selectedBlogIndex === -1 ? false : true}
-          ></textarea>
-          <button
-            className={styles.createBlogButton}
-            id="submitButton"
-            type="submit"
-            ref={submitButtonRef}
-          >
-            {activeForm === 0 ? "Create New Blog" : "Delete Blog"}
-          </button>
-        </form>
+            <input
+              className={styles.input}
+              type="date"
+              id="date"
+              name="date"
+              value={
+                selectedBlogIndex === -1
+                  ? formData["date"]
+                    ? formatDate(formData["date"])
+                    : ""
+                  : formatDate(blogs[selectedBlogIndex].date)
+              }
+              placeholder="Date"
+              required
+              ref={dateInputRef}
+              onKeyDown={handleInputKeyPress}
+              disabled={selectedBlogIndex === -1 ? false : true}
+            />
+            <input
+              className={styles.input}
+              type="file"
+              accept=".png, .jpg, .jpeg, image/*"
+              value={formData.picture}
+              // id="pictureInput"
+              name="picture"
+              placeholder="Upload Image"
+              required
+              ref={pictureInputRef}
+              onKeyDown={handleInputKeyPress}
+              onChange={handleFileInput}
+              disabled={selectedBlogIndex === -1 ? false : true}
+            />
+            <input
+              className={styles.input}
+              type="text"
+              id="altTextInput"
+              name="alt"
+              value={
+                selectedBlogIndex === -1
+                  ? formData["alt"]
+                  : blogs[selectedBlogIndex].alt
+              }
+              placeholder="Alternative Text for Image"
+              required
+              ref={altTextInputRef}
+              onKeyDown={handleInputKeyPress}
+              disabled={selectedBlogIndex === -1 ? false : true}
+            />
+            <textarea
+              className={styles.descriptionInput}
+              id="blogDescription"
+              name="description"
+              placeholder="Blog Description"
+              value={
+                selectedBlogIndex === -1
+                  ? formData["description"]
+                  : String(blogs[selectedBlogIndex].description)
+              }
+              required
+              ref={blogDescriptionInputRef}
+              onKeyDown={handleInputKeyPress}
+              disabled={selectedBlogIndex === -1 ? false : true}
+            ></textarea>
+            <button
+              className={styles.createBlogButton}
+              id="submitButton"
+              type="submit"
+              ref={submitButtonRef}
+            >
+              {activeForm === 0 ? "Create New Blog" : "Delete Blog"}
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

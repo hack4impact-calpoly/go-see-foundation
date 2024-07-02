@@ -1,13 +1,14 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import Image from "next/image";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
 import SeussQuote from "@components/seussQuote";
-import Link from 'next/link';
-import "./page.css"; 
+import Link from "next/link";
+import "./page.css";
+import threeBridges from "./Three_Bridges_Hike.png";
 
 export default function Home() {
   const navbarRef = useRef<HTMLDivElement>(null);
@@ -30,7 +31,7 @@ export default function Home() {
         className="groupImage"
         src="/Group_Photo.jpeg"
         alt="Go See Foundation's Group Photo"
-        width={500}
+        width={800}
         height={500}
       />
 
@@ -66,19 +67,22 @@ export default function Home() {
       <Carousel
         images={[
           "/Group_Photo.jpeg",
-          "/backgroundLogo.png",
-          "/GO-See-HLogo.fw_.png",
+          "/Three_Bridges_Hike.png",
+          "Pismo_Beach_Hike.jpg",
+          "Kayaking.jpg",
+          "/Ziplining.jpg",
+          "/Garden_Tour.jpg",
+          "/Bike.jpg",
         ]}
-        imageAlts={["a group photo", "a menu", "the go see logo"]}
+        imageAlts={["a group photo", "three bridges hike", "the go see logo"]}
         quotes={[
           "Practicing Yoga has always been a challenge for me, but doing it with my GO SEE friends has been so much fun!!",
-          "We need a Dr. Seuss quote here",
-          "Third quote testing the buttons",
-        ]}
-        quoteSrc={[
-          "Mark Jonas (member)",
-          "Quote Author 2 (member)",
-          "Quote Author 3 (admin)",
+          "Beautiful Hike at Three Bridges Oak Preserve with Delta Gamma and Delta Upsilon",
+          "Beautiful Beach Walk at Pismo Beach",
+          "Amazing Kayaking Tour in Morro Bay",
+          "Fun Day of Ziplining at Santa Margarita Adventures",
+          "Visit & Tour of the Beautiful SLO Botanical Gardens",
+          "Cal Poly EyeCycle Ride",
         ]}
       />
       <HomeEvents />

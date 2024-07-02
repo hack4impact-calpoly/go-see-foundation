@@ -1,0 +1,196 @@
+.container {
+  height: fit-content;
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url(/colorful.jpeg);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
+  
+}
+
+.imageContainer{
+
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: "Helvetica", sans-serif;
+    font-size: 23px;
+    border-radius: 16px;
+    /* padding: 7.5px 10px 7.5px 10px; */
+    border: 1px solid;
+    color:black;
+    font-weight: 700;
+    border-width: 2.5px;
+    
+}
+
+.eventManager {
+  width: 50%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: white;
+  border-radius: 20px;
+}
+
+.topButtons {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  width: 80%;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  justify-content: center;
+}
+
+.newEventButton,
+.updateEventButton {
+  width: 50%;
+  padding: 2% 0;
+  justify-content: center;
+  font-family: "Helvetica", sans-serif;
+  font-size: 26px;
+  color: white;
+  background-color: #1d2f5d75;
+  border: none;
+  font-weight: 700;
+}
+
+.newEventButton {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.updateEventButton {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+    color: white;
+
+}
+
+.newEventButton:not(.active):hover,
+.updateEventButton:not(.active):hover {
+  background-color: #1d2f5d99;
+}
+
+.activeForm {
+  background-color: #1d2f5d;
+}
+
+.eventForm {
+  margin-top : 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 4;
+  width: 60%;
+  height: max-content;
+  margin-bottom: 5%;
+}
+
+.eventForm input,
+.eventForm textarea,
+.eventForm select {
+  display: flex;
+  margin-bottom: 5%;
+  font-family: "Helvetica", sans-serif;
+  font-size: 23px;
+  border-radius: 16px;
+  padding: 7.5px 10px 7.5px 10px;
+  border: 1px solid;
+  color:black;
+  font-weight: 700;
+  border-width: 2.5px;
+  
+}
+
+.inputTimes {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.inputTimes .input {
+  width: 40%;
+}
+
+.descriptionInput {
+  display: flex;
+  height: 20vh;
+}
+
+.createEventButton {
+  width: 100%;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  font-family: "Helvetica", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 40px;
+  background-color: #1d2f5d;
+  color: white;
+  border: none;
+}
+
+.deleteButton{
+  width: 100%;
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  font-family: "Helvetica", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  border-radius: 40px;
+  background-color: #FBB135;
+  color: white;
+  border: none;
+  margin-bottom:20px;
+  color:black;
+}
+.deleteButton:hover {
+  background-color: #e9474790;
+}
+.createEventButton:hover {
+  background-color: #1d2f5d90;
+}
+
+.container button:hover {
+  cursor: pointer;
+}
+
+
+.eventTitle{
+  font-weight: 700;
+  color: #1d2f5d;
+  margin-left:auto;
+  margin-right:auto;
+  margin-bottom:0px;
+  font-size: 22pt;
+}
+
+
+.divider2 {
+  background-color: #FBB135;
+  height: 10px;
+  margin: 0 auto 5px; /* This centers the element horizontally */
+  width: 40%;
+  margin-top: 20px;
+}
+
+
+.divider {
+  background-color: #FBB135;
+  height: 3px;
+  margin: 0 auto 5px; /* This centers the element horizontally */
+  width: 80%;
+  margin-bottom: 15px;
+}

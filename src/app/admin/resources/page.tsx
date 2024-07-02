@@ -124,7 +124,7 @@ const ResourcePage = () => {
       <div className={styles.container}>
         <div className={styles.resourceManager}>
           <div className={styles.topButtons}>
-            <button
+            {/* <button
               className={styles.newResourceButton}
               id="newResourceButton"
               type="button"
@@ -132,7 +132,8 @@ const ResourcePage = () => {
               // onClick={handleFormSwitch} // only 1 tab, so no longer needed
             >
               New Resource
-            </button>
+            </button> */}
+            <h2 className = {styles.title}>Add New Resource </h2>
           </div>
           <form
             className={styles.resourceForm}
