@@ -7,7 +7,6 @@ import "./login.css";
 import backgroundLogo from "../images/backgroundLogo.png";
 import emailIcon from "../images/emailIcon.png";
 import passwordIcon from "../images/passwordIcon.png";
-import { sign } from "crypto";
 
 export default function LoginPage() {
   const { push } = useRouter();
@@ -17,6 +16,8 @@ export default function LoginPage() {
   const loginButtonRef = useRef<HTMLButtonElement>(null);
   const forgetPasswordRef = useRef<HTMLAnchorElement>(null);
   const signUpRef = useRef<HTMLButtonElement>(null);
+
+  
 
   const [loginData, setLoginData] = useState({
     email: "",
@@ -57,7 +58,7 @@ export default function LoginPage() {
       } else {
         const errorMessage = responseData.message;
         if (errorMessage == "Failed: Login Incomplete") {
-          alert("Incomplete Feilds");
+          alert("Incomplete Fields");
         } else if (errorMessage == "Admin Success: Login Complete") {
           alert("Successful Login!");
           push("/admin");
@@ -126,29 +127,6 @@ export default function LoginPage() {
     }
   };
 
-  const handleButtonKeyPress = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === "Tab") {
-      e.preventDefault();
-      switch (e.currentTarget.id) {
-        case "rememberMe":
-          loginButtonRef?.current?.focus();
-          break;
-        case "login":
-          forgetPasswordRef?.current?.focus();
-          break;
-        case "forgotPassword":
-          signUpRef?.current?.focus();
-          break;
-        case "signUp":
-          console.log("Hither");
-          emailInputRef?.current?.focus();
-          break;
-        default:
-          break;
-      }
-    }
-  };
-
   return (
     <div className="loginPage">
       <div className="backgroundLogoContainer">
@@ -164,6 +142,7 @@ export default function LoginPage() {
       <h1 className="welcomeTitle">Welcome back to your account!</h1>
       <form className="loginForm" onSubmit={handleLogin}>
         <h2 className="formTitle">LOGIN</h2>
+
         <div className="inputWrapper">
           <Image
             className="emailIcon"
@@ -179,9 +158,9 @@ export default function LoginPage() {
             name="email"
             placeholder="Email"
             value={loginData.email}
+            ref={emailInputRef}
             onChange={handleLoginChange}
             onKeyDown={(e) => handleInputKeyPress(e)}
-            ref={emailInputRef}
             required
           />
         </div>

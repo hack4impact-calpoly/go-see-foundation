@@ -67,7 +67,7 @@ export default function ResourcePage() {
         width="2513" // original image dimensions
         height="1285"
         tabIndex={0}
-      />{" "}
+      />
     </div>
   );
 }

@@ -86,8 +86,6 @@ export default function HomeEvents() {
     push("/blog");
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
-  
 
   const handleAllEvents = () => {
     // TODO: probably want to use {name} to navigate to a new page with the event details
@@ -106,17 +104,29 @@ export default function HomeEvents() {
         <div className={styles.upcomingEvents}>
           <h2 className={styles.title}>Upcoming Events</h2>
           <div className={styles.upcomingEventsCards}>
-            {events?.slice(0, 1).map((e: IEvent, index: number) => (
-              <UpcomingEventCard key={e.eventID.toString()} event={e} />
-            ))}
-            <div className={styles.break2}></div>
-            {events?.slice(1, 2).map((e: IEvent, index: number) => (
-              <UpcomingEventCard key={e.eventID.toString()} event={e} />
-            ))}
+            {events?.length >= 1 ? (
+              <>
+                {events.slice(0, 1).map((e: IEvent, index: number) => (
+                  <UpcomingEventCard key={e.eventID.toString()} event={e} />
+                ))}
+
+                {events.length >= 2 && <div className={styles.break2}></div>}
+                {events.length >= 2 &&
+                  events
+                    .slice(1, 2)
+                    .map((e: IEvent, index: number) => (
+                      <UpcomingEventCard key={e.eventID.toString()} event={e} />
+                    ))}
+              </>
+            ) : (
+              <div className={styles.noEvents}>
+                No upcoming events. Stay posted for updates!
+              </div>
+            )}
           </div>
-          <button className={styles.allEventsButton} onClick={handleAllEvents}>
+          {/* <button className={styles.allEventsButton} onClick={handleAllEvents}>
             VIEW ALL EVENTS
-          </button>
+          </button> */}
         </div>
         <div className={styles.divider} />
         <div className={styles.blogSection}>
@@ -129,13 +139,16 @@ export default function HomeEvents() {
             {blogs?.slice(0, 3).map((e: BlogEvent, index: number) => (
               <PastEventCard blog={e} />
             ))}
-
           </div>
 
-          <Link href="/blog" className={styles.viewAllArticles}>
+          <button
+            onClick={() => {
+              window.location.href = "/blog";
+            }}
+            className={styles.viewAllArticles}
+          >
             VIEW ALL BLOGS
-          </Link>
-          {/* </div> */}
+          </button>
         </div>
       </div>
     </div>

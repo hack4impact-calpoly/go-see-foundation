@@ -136,6 +136,14 @@ div.wrapper {
 }
 
 
+.loginText{
+  font-family: Helvetica;
+  font-weight: 700;
+  color: black;
+  font-size: 20px;
+  text-decoration: none; /* Remove underline */
+
+}
 
 
 /* Media queries for smaller screens */

@@ -129,7 +129,6 @@
   margin-bottom: 0;
   border-radius: 16px;
   border: none; /* Remove the default button border */
-  outline: none; /* Remove the focus outline */
   box-shadow: none;
   font-family: "Helvetica", sans-serif;
   font-size: 24pt;
@@ -180,7 +179,7 @@
   height: 60px;
   margin-bottom: 4vh;
   border-radius: 16px;
-  outline: none; /* Remove the focus outline */
+  /* outline: none; Remove the focus outline */
   box-shadow: none;
   font-family: "Helvetica", sans-serif;
   font-size: 22pt;
@@ -189,6 +188,7 @@
   border: 2.5pt solid #1d2f5d;
   background-color: #bbcfff;
   z-index: 20;
+  
 
   &:hover {
     cursor: pointer;

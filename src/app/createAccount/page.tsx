@@ -89,9 +89,6 @@ const CreateAccount = () => {
           repeatPasswordInputRef?.current?.focus();
           break;
         case "repeatPassword":
-          checkboxRef?.current?.focus();
-          break;
-        case "myCheckbox":
           signupButtonRef?.current?.focus();
           break;
         case "signup":
@@ -247,6 +244,7 @@ const CreateAccount = () => {
               onKeyDown={handleInputKeyPress}
             />
             <PatternFormat
+              getInputRef={birthInputRef}
               className={styles.input}
               type="text"
               format="##/##/####"
@@ -286,6 +284,7 @@ const CreateAccount = () => {
               onChange={handleEmailChange}
             />
             <PatternFormat
+              getInputRef={phoneInputRef}
               className={styles.input}
               type="tel"
               format="+1 (###) ###-####"
@@ -347,7 +346,9 @@ const CreateAccount = () => {
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
             >
-              <Link href="/login">LOG IN</Link>
+              <Link href="/login" className={styles.loginText}>
+                LOG IN
+              </Link>
             </button>
           </div>
         </form>
