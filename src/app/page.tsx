@@ -86,7 +86,7 @@ export default function Home() {
         ]}
       />
       <HomeEvents />
-      <SeussQuote />
+      
     </div>
   );
 }

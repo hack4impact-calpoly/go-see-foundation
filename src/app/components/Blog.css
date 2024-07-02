@@ -1,3 +1,35 @@
+Copy code
+.search-form {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  
+}
+
+.search-input {
+  width: 90%;
+  max-width: 300px; 
+  padding: 15px;
+  font-size: 18px; 
+  border: 2px solid #1D2F5D;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease;
+  font-weight: bold;
+}
+
+.search-input:focus {
+  border-color: black;
+  box-shadow: 0 0 5px rgba(0, 86, 179, 0.5); 
+}
+
+.search-input::placeholder {
+  color: black; 
+  font-style: italic;
+  font-weight: bold;
+}
+
 .container {
   background-color: white;
   display: flex;
@@ -76,11 +108,11 @@
   background-color: #fbb135;
   width: 250px;
   border: 2px solid #fbb135;
-  height: 35px;
+  height: 40px;
   font: bold 22px "Helvetica Neue", Helvetica;
   color: #1d2f5d;
   margin-left: auto;
-  margin-right: 10px; /* Adjusted margin to match other elements */
+  margin-right: 10px; 
 }
 
 .pagenumbers,
@@ -90,22 +122,23 @@
 
 @media screen and (max-width: 768px) {
   .header {
-    justify-content: center; /* Center the items horizontally */
+    justify-content: center; 
   }
 
   .rightaligned {
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    justify-content: center; /* Center the items in the rightaligned div */
+    flex-wrap: wrap; 
+    justify-content: center; 
   }
 
   .header input[type="search"],
   .submit {
-    width: calc(100% - 20px); /* Full width minus padding */
-    margin: 10px 5px; /* Add spacing between elements */
+    width: calc(100% - 20px); 
+    margin: 10px 5px; 
   }
 
   .olderarticles {
-    width: calc(100% - 20px); /* Full width minus padding */
-    margin: 10px 5px; /* Add spacing between elements */
+    width: calc(100% - 18px);
+    height: calc(100% - 20px);
+    margin: 10px 15px; 
   }
 }

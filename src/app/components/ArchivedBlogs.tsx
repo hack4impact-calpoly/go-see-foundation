@@ -66,10 +66,10 @@ export default function Archive() {
   return (
     <div className="container">
       <span className="header">
-        <h2 className="title">GO See Blog</h2>
+        <h2 className="title">GSF Blog</h2>
         <div className="rightaligned">
         <button className="olderarticles" onClick={handleArchivesClick}>
-            Most Recent
+             Recent Articles
         </button>
           
         </div>

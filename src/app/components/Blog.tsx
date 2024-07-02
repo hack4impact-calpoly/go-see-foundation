@@ -67,21 +67,19 @@ export default function Blog() {
   return (
     <div className="container">
       <span className="header">
-        <h2 className="title">GO See Blog</h2>
+        <h2 className="title">GSF Blog</h2>
         <div className="rightaligned">
           <button className="olderarticles" onClick={handleArchivesClick}>
-            Archived Blogs
+            VIEW ARCHIVE
           </button>
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form className="search-form" onSubmit={(e) => e.preventDefault()}>
             <input
+              className="search-input"
               type="search"
               value={searchQuery}
               onChange={handleSearchInputChange}
               placeholder="Search All Blogs..."
             />
-            <button className="submit" type="submit">
-              Search
-            </button>
           </form>
         </div>
       </span>
