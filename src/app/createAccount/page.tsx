@@ -28,6 +28,9 @@ const CreateAccount = () => {
   const [email, setEmail] = useState("");
   const [userType, setUserType] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState(true);
+  const [validNumber, setValidNumber] = useState(true);
+  const [validBDAY, setValidBDAY] = useState(true);
 
   const { push } = useRouter();
 
@@ -125,59 +128,55 @@ const CreateAccount = () => {
     push("/");
   };
 
-  // check the current states
-  const handleStates = () => {
-    return;
-  };
-
   const handlePasswordChange = (e: any) => {
-    console.log(e.target.value)
     setPassword(e.target.value);
   };
 
   const handleRepeatPasswordChange = (e: any) => {
-    console.log(e.target.value);
     setRepeatPassword(e.target.value);
   };
 
   const handleEmailChange = (e: any) => {
-    console.log(e.target.value);
     setEmail(e.target.value);
   };
 
   const handleAccountTypeChange = (e: any) => {
-    console.log(e.target.value);
     setUserType(e.target.value);
   };
 
   const handlePhoneNumberChange = (e: any) => {
-    console.log(e.target.value);
     setPhoneNumber(e.target.value);
   };
 
-  const passwordsMatch = (password: string, repeatPassword: string): boolean => {
+  const passwordsMatch = (
+    password: string,
+    repeatPassword: string
+  ): boolean => {
     return password === repeatPassword;
-  };
-  
-  const isPhoneFilled = (phoneNumber: string): boolean => {
-    return phoneNumber.trim() !== "";
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
+    if (phoneNumber[9] == "_") {
+      setValidBDAY(false);
+    } else {
+      setValidBDAY(true);
+    }
+
+    if (phoneNumber[16] == "_") {
+      setValidNumber(false);
+    } else {
+      setValidNumber(true);
+    }
+
     // Check if passwords match
     if (!passwordsMatch(password, repeatPassword)) {
       console.error("Passwords do not match");
+      setPasswordMatch(false);
       return;
     }
-  
-    // Check if phone number is filled
-    if (!isPhoneFilled(phoneNumber)) {
-      console.error("Phone number is required");
-      return;
-    }
-  
+
     console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
@@ -188,13 +187,13 @@ const CreateAccount = () => {
       phoneNum: account.phone,
       email: account.email,
     };
-  
+
     newUser.username = newUser.firstName + " " + newUser.lastName;
-  
+
     try {
       console.log("newUser", newUser);
       console.log("fetching");
-  
+
       const response = await fetch("/api/registration/", {
         // Updated API endpoint
         method: "POST",
@@ -203,9 +202,9 @@ const CreateAccount = () => {
         },
         body: JSON.stringify(newUser),
       });
-  
+
       console.log(response);
-  
+
       if (response.ok) {
         console.log("Account created successfully!");
         handleCreateAccount();
@@ -317,8 +316,19 @@ const CreateAccount = () => {
               onKeyDown={handleInputKeyPress}
               onChange={handleRepeatPasswordChange}
             />
+
+            {!validBDAY && (
+              <div className={styles.errors}>ENTER VALID BIRTHDAY</div>
+            )}
+            {!validNumber && (
+              <div className={styles.errors}>ENTER VALID PHONE NUMBER </div>
+            )}
+            {!passwordMatch && (
+              <div className={styles.errors}>PASSWORDS DO NOT MATCH</div>
+            )}
           </div>
           <br></br>
+
           <div className={styles.buttons}>
             <button
               className={styles.signup}
