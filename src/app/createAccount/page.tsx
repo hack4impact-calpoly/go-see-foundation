@@ -21,6 +21,17 @@ const CreateAccount = () => {
   const checkboxRef = useRef<HTMLInputElement>(null);
   const signupButtonRef = useRef<HTMLButtonElement>(null);
   const loginButtonRef = useRef<HTMLButtonElement>(null);
+
+  // states for fields
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [userType, setUserType] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState(true);
+  const [validNumber, setValidNumber] = useState(true);
+  const [validBDAY, setValidBDAY] = useState(true);
+
   const { push } = useRouter();
 
   const [account, setAccount] = useState({
@@ -117,8 +128,55 @@ const CreateAccount = () => {
     push("/");
   };
 
+  const handlePasswordChange = (e: any) => {
+    setPassword(e.target.value);
+  };
+
+  const handleRepeatPasswordChange = (e: any) => {
+    setRepeatPassword(e.target.value);
+  };
+
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  };
+
+  const handleAccountTypeChange = (e: any) => {
+    setUserType(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e: any) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  const passwordsMatch = (
+    password: string,
+    repeatPassword: string
+  ): boolean => {
+    return password === repeatPassword;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (phoneNumber[9] == "_") {
+      setValidBDAY(false);
+    } else {
+      setValidBDAY(true);
+    }
+
+    if (phoneNumber[16] == "_") {
+      setValidNumber(false);
+    } else {
+      setValidNumber(true);
+    }
+
+    // Check if passwords match
+    if (!passwordsMatch(password, repeatPassword)) {
+      console.error("Passwords do not match");
+      setPasswordMatch(false);
+      return;
+    }
+
     console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
@@ -203,6 +261,8 @@ const CreateAccount = () => {
               id="user"
               ref={userSelectRef}
               onKeyDown={handleSelectKeyPress}
+              value={userType}
+              onChange={handleAccountTypeChange}
             >
               <option value="select" disabled selected>
                 Select One
@@ -223,6 +283,7 @@ const CreateAccount = () => {
               required
               ref={emailInputRef}
               onKeyDown={handleInputKeyPress}
+              onChange={handleEmailChange}
             />
             <PatternFormat
               className={styles.input}
@@ -233,8 +294,8 @@ const CreateAccount = () => {
               required
               onKeyDown={handleInputKeyPress}
               placeholder="Phone Number"
+              onChange={handlePhoneNumberChange}
             />
-
             <input
               className={styles.input}
               type="password"
@@ -243,6 +304,7 @@ const CreateAccount = () => {
               required
               ref={passwordInputRef}
               onKeyDown={handleInputKeyPress}
+              onChange={handlePasswordChange}
             />
             <input
               className={styles.input}
@@ -252,10 +314,21 @@ const CreateAccount = () => {
               required
               ref={repeatPasswordInputRef}
               onKeyDown={handleInputKeyPress}
+              onChange={handleRepeatPasswordChange}
             />
+
+            {!validBDAY && (
+              <div className={styles.errors}>ENTER VALID BIRTHDAY</div>
+            )}
+            {!validNumber && (
+              <div className={styles.errors}>ENTER VALID PHONE NUMBER </div>
+            )}
+            {!passwordMatch && (
+              <div className={styles.errors}>PASSWORDS DO NOT MATCH</div>
+            )}
           </div>
-         
           <br></br>
+
           <div className={styles.buttons}>
             <button
               className={styles.signup}
@@ -268,16 +341,13 @@ const CreateAccount = () => {
             <br></br>
             <div className={styles.break}></div>
             <p className={styles.accounttext}>Already have an account?</p>
-            
             <button
               className={styles.login}
               id="login"
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
             >
-              <Link href="/login" >
-                LOG IN
-              </Link>
+              <Link href="/login">LOG IN</Link>
             </button>
           </div>
         </form>
