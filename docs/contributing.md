@@ -51,11 +51,15 @@ Stay tuned. 👀
 ## Known Bugs + Limitations
 
 **Blogs**
-- Search bar currently does not work on archive.
+- No search bar on archive blog page. However, search bar on main blog page (/blog) can filter all blogs.
 - Admin create blog: To properly add date, click the box in the calendar. You might need to select one day later to get the current day.
 
 **Supporters (resource page)**
 - To update current supporters image, please reach out to Hack4Impact and we will substitute current image with newly updated one. For best quality, maintain rectangular shape with white background.
+
+**Resources**
+- For best quality, when creating a resource in admin, ensure image is rectangular shaped.
+- IMPORTANT: For links, ensure the full URL (ie, https://.....) is included to properly route to the desired page.
 
 ## Future enhancements 
 
