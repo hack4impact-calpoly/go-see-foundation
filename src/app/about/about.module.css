@@ -52,7 +52,11 @@
   }
 
   .video {
+    
     text-align: center;
+    max-width: calc(100vw - 2rem); 
+    margin: 0 auto;
+    overflow-x: auto;
   }
 
   .videoHeader {
@@ -63,10 +67,11 @@
     display: flex;
     flex-direction: column;
     background-color: white;
-    width: 80rem;
+    max-width: calc(100vw - 2rem); 
     border-radius: 30px;
     margin: 3rem auto;
     padding-bottom: 3rem;
+    overflow-x: auto; 
   }
 
   .podcastContent {

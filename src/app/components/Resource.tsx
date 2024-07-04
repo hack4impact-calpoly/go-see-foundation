@@ -15,15 +15,12 @@ export default function Resource({ resource }: { resource: IResource }) {
           alt={alt}
           width="1000"
           height="1000"
-        />{" "}
+        />{""}
+
       </Link>
-      <div className={styles.text}>
-        <p className={styles.title}>
-          <Link className={styles.titleLink} href={url}>
-            {title}
-          </Link>
-        </p>{" "}
-      </div>
+      <Link href={url} className={styles.titleLink}>
+        <h3 className={styles.title}>{title}</h3>
+      </Link>
     </div>
   );
 }

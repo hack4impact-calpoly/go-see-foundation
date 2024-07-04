@@ -24,3 +24,23 @@
   height: auto;
   margin: auto;
 }
+
+
+@media (max-width: 600px) {
+  
+  .supportersPicture {
+    width: 100%;
+  }
+  .container {
+    width: 100%;
+  }
+  .resourceRow {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .resourceRow > * {
+    width: 100%;
+  }
+}
