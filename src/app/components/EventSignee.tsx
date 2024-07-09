@@ -8,7 +8,7 @@ import expandDown2 from "../images/Expand_down.png";
 import { useState } from "react";
 import { IEventSignUp } from "@database/eventSignUpSchema";
 
-const eventSignee = ({ mem }: { mem: IEventSignUp }) => {
+const EventSignee = ({ mem }: { mem: IEventSignUp }) => {
   let [clickedExpand, setClickedExpand] = useState(false);
   const [imageSrc, setImageSrc] = useState(expandDown);
 
@@ -116,4 +116,4 @@ const eventSignee = ({ mem }: { mem: IEventSignUp }) => {
   );
 };
 
-export default eventSignee;
+export default EventSignee;

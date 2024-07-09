@@ -10,13 +10,13 @@ import { useSearchParams } from "next/navigation";
 import EventSignee from "@components/EventSignee";
 import { IEventSignUp } from "@database/eventSignUpSchema";
 
-export default function eventName(context: any) {
+export default function EventName(context: any) {
   let [clickedExpand, setClickedExpand] = useState(false);
   let [members, setMembers] = useState<IEventSignUp[]>([]);
   const searchParams = useSearchParams();
   let eventName = searchParams.get("eventName");
 
-  const handleRedirect = (email: string) => {
+  const HandleRedirect = (email: string) => {
     console.log("email:", email);
     const router = useRouter();
     router.push({

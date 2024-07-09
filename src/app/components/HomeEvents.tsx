@@ -127,15 +127,14 @@ export default function HomeEvents() {
 
           <div className={styles.pastEventsCards}>
             {blogs?.slice(0, 3).map((e: BlogEvent, index: number) => (
-              <PastEventCard blog={e} />
+              <PastEventCard key={e.blogID.toString()} blog={e} />
             ))}
-
           </div>
 
           <Link href="/blog" className={styles.viewAllArticles}>
             VIEW ALL BLOGS
           </Link>
-          {/* </div> */}
+          
         </div>
       </div>
     </div>

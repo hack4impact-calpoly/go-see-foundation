@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./donations.module.css";
 import BackButton from '../../components/BackButton';
 
-export default function manageMembers() {
+export default function ManageMembers() {
   const [donations, setDonations] = useState([]);
 
   interface TableProps {

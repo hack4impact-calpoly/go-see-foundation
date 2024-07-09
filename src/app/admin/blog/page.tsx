@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./blog.module.css";
 import { useRouter } from "next/navigation";
-import { IEvent } from "@database/blogSchema";
+import { IBlog } from "@database/blogSchema";
 import BackButton from "../../components/BackButton";
 
 const BlogPage = () => {
@@ -18,7 +18,7 @@ const BlogPage = () => {
   const { push } = useRouter();
 
   const [activeForm, setActiveForm] = useState(0);
-  const [blogs, setBlogs] = useState<Array<IEvent>>([]);
+  const [blogs, setBlogs] = useState<Array<IBlog>>([]);
   const [selectedBlogIndex, setSelectedBlogIndex] = useState(-1);
   const [imageDataURL, setImageDataURL] = useState("");
   const [formData, setFormData] = useState({
@@ -291,7 +291,7 @@ const BlogPage = () => {
                 onChange={handleBlogSelection}
               >
                 <option value="-1">Select Blog...</option>
-                {blogs.map((blog: IEvent, index: number) => (
+                {blogs.map((blog: IBlog, index: number) => (
                   <option
                     key={index}
                     value={index}

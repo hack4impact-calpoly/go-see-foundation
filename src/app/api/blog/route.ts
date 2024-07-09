@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
 import {getSession} from "services/auth/cookietoUsertype"
-import BlogSchema, { IEvent } from "@database/blogSchema";
+import BlogSchema, { IBlog } from "@database/blogSchema";
 
 export async function GET(req: NextRequest) {
   await connectDB();
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
   await connectDB();
 
   try {
-    const { picture, alt, description, date, name, blogID, author }: IEvent =
+    const { picture, alt, description, date, name, blogID, author }: IBlog =
       await req.json();
     if (!(picture && alt && description && date && name && blogID && author)) {
       return NextResponse.json("Failed: Invalid Blog, missing fields", {
