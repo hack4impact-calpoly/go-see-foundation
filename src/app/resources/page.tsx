@@ -5,8 +5,42 @@ import ResourceRow from "@components/ResourceRow";
 import { IResource } from "@database/resourceSchema";
 import Image from "next/image";
 
+// define type for dynamic number of resource references (used in useRefs)
+export type RefObjectMap<T> = {
+  [key: string]: React.RefObject<T>;
+};
+
 export default function ResourcePage() {
   const [resources2D, setResources2D] = useState<Array<Array<IResource>>>([]);
+  const [count, setCount] = useState<number>(0);
+  const [references, setReferences] = useState<RefObjectMap<HTMLAnchorElement>>(
+    {}
+  );
+
+  const handleInputKeyPress = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      console.log(`count: ${count}`);
+
+      let i = 0;
+      while (i < count) {
+        if (e.currentTarget.id === `resource${i}`) {
+          if (i === count - 1) {
+            console.log("at the end");
+            // at the end, loop back to start
+            references[0]?.current?.focus();
+          } else {
+            console.log("NOT at the end");
+            references[i + 1]?.current?.focus();
+            break;
+          }
+          i = count; // end loop
+        } else {
+          i++;
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchResourceData = async () => {
@@ -26,6 +60,8 @@ export default function ResourcePage() {
           tempResources2D.push(row);
         }
         setResources2D(tempResources2D);
+        setCount(data.length * 2);
+
       } catch (err: unknown) {
         console.error(`Resources could not be fetched. Error: ${err}`);
       }
@@ -55,7 +91,13 @@ export default function ResourcePage() {
     <div className={styles.container}>
       <h2 className={styles.sectionHeader}>Resources</h2>
       {resources2D?.map((row: Array<IResource>, index: number) => (
-        <ResourceRow key={index} resources={row} />
+        <ResourceRow
+          key={index}
+          resources={row}
+          startIndex={index * 3 * 2}
+          setRefs={setReferences}
+          refHandler={handleInputKeyPress}
+        />
       ))}
       <h2 className={styles.sectionHeader} tabIndex={0}>
         Supporters
