@@ -34,7 +34,6 @@ export default function Resource({
     addRef(refIndex, refIndex + 1);
   }, []);
 
-  console.log("resource created");
   return (
     <div className={styles.container}>
       <Link
@@ -58,6 +57,7 @@ export default function Resource({
         className={styles.titleLink}
         id={`resource${refIndex + 1}`}
         ref={titleRef}
+        onKeyDown={refHandler}
       >
         <h3 className={styles.title}>{title}</h3>
       </Link>

@@ -20,11 +20,11 @@ export default function ResourcePage() {
   const handleInputKeyPress = (e: React.KeyboardEvent<HTMLAnchorElement>) => {
     if (e.key === "Tab") {
       e.preventDefault();
-      console.log(`count: ${count}`);
 
       let i = 0;
       while (i < count) {
         if (e.currentTarget.id === `resource${i}`) {
+          console.log(e.currentTarget.id);
           if (i === count - 1) {
             console.log("at the end");
             // at the end, loop back to start
@@ -32,7 +32,6 @@ export default function ResourcePage() {
           } else {
             console.log("NOT at the end");
             references[i + 1]?.current?.focus();
-            break;
           }
           i = count; // end loop
         } else {
@@ -61,7 +60,6 @@ export default function ResourcePage() {
         }
         setResources2D(tempResources2D);
         setCount(data.length * 2);
-
       } catch (err: unknown) {
         console.error(`Resources could not be fetched. Error: ${err}`);
       }
