@@ -114,9 +114,7 @@ export default function HomeEvents() {
               <UpcomingEventCard key={e.eventID.toString()} event={e} />
             ))}
           </div>
-          <button className={styles.allEventsButton} onClick={handleAllEvents}>
-            VIEW ALL EVENTS
-          </button>
+         
         </div>
         <div className={styles.divider} />
         <div className={styles.blogSection}>

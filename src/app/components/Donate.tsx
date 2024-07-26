@@ -83,7 +83,7 @@ export default function Donate() {
         </div>
         <form className="donateForm" onSubmit={handleSubmit}>
           <DonateButtonComponent />
-          <button type="submit">DONATE</button>
+          
         </form>
       </div>
     </div>
