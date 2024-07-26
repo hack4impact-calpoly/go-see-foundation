@@ -76,7 +76,7 @@ export default function LoginPage() {
     console.log("sign up pressed");
     const message =
       "Sign up pressed. You will now be redirected to the Create Account page.";
-    alert(message);
+    // alert(message);
     push("/createAccount");
   }
 

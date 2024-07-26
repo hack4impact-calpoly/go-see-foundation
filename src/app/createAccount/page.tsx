@@ -344,10 +344,12 @@ const CreateAccount = () => {
             <button
               className={styles.login}
               id="login"
+              type="button" // Change type to "button"
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
+              onClick={() => push("/login")} // Use router to navigate to the login page
             >
-              <Link href="/login">LOG IN</Link>
+              LOG IN
             </button>
           </div>
         </form>
