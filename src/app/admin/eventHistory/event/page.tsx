@@ -4,13 +4,13 @@ import backButton from "../../../images/backButton.png";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "./eventName.module.css";
-import { MouseEventHandler, useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState, Suspense } from "react";
 import { useRouter } from "next/router";
 import { useSearchParams } from "next/navigation";
 import EventSignee from "@components/EventSignee";
 import { IEventSignUp } from "@database/eventSignUpSchema";
 
-export default function EventName(context: any) {
+function EventNameContent(context: any) {
   let [clickedExpand, setClickedExpand] = useState(false);
   let [members, setMembers] = useState<IEventSignUp[]>([]);
   const searchParams = useSearchParams();
@@ -94,5 +94,13 @@ export default function EventName(context: any) {
         )}
       </div>
     </div>
+  );
+}
+
+export default function EventName(context: any) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <EventNameContent />
+    </Suspense>
   );
 }
