@@ -1,10 +1,10 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import styles from "./editEvent.module.css";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PatternFormat } from "react-number-format";
 
-const ManageEventsPage = () => {
+const ManageEventsPageContent = () => {
   const newEventButtonRef = useRef<HTMLButtonElement>(null);
   const updateEventButtonRef = useRef<HTMLButtonElement>(null);
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -386,5 +386,11 @@ const ManageEventsPage = () => {
     </div>
   );
 };
+
+const ManageEventsPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <ManageEventsPageContent />
+  </Suspense>
+);
 
 export default ManageEventsPage;

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import BackButton from "../../components/BackButton";
 import { IEventSignUp } from "@database/eventSignUpSchema";
 
-export default function AdminPage() {
+const AdminPageContent: React.FC = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [individualEmail, setIndividualEmail] = useState("");
   const [isEventOptionDisabled, setIsEventOptionDisabled] = useState(true);
@@ -179,3 +179,11 @@ export default function AdminPage() {
     </div>
   );
 }
+
+const AdminPage: React.FC = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <AdminPageContent />
+  </Suspense>
+);
+
+export default AdminPage;
