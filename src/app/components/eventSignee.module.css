@@ -43,9 +43,9 @@
     font-size: 24px;
     border-radius: 5px;
     align-items: center;
-    box-shadow: none; /* Remove any box shadow */
+    box-shadow: none;
     border-bottom-color: white;
-    border: 2px solid white; /* Set the border to white */
+    border: 2px solid white;
 
   }
 
@@ -108,8 +108,8 @@
   font-weight: 700;
   border-radius: 9.846px;
   margin: 10px;  
-  appearance: none; /* Remove default styling */
-  text-decoration: none; /* Remove underline */
+  appearance: none;
+  text-decoration: none;
   justify-content: center;
   display:flex;
   align-items: center;
@@ -125,23 +125,17 @@
   margin-bottom:20px;
   text-align: left;
   margin-right:10px;
-background-color: white;
-
+  background-color: white;
 }
 
 .additionalInfo {
   display: flex;
   flex-direction: column;
-  /* border: 3px solid blue; */
   justify-content: flex-start;
-  /* background-color: rgba(255, 255, 255, 0.95); */
   background-color: white;
   color:black;
   margin-left:25px;
   border-radius: 15px;
-
-
-  
 }
 
 .option p{
@@ -151,28 +145,24 @@ background-color: white;
     margin-top:0px;
     border-radius: 15px;
     margin-left:20px;
-
 }
 
 .option{
   margin-bottom:10px;
 }
 
-
 .optionTop{
   margin-bottom:10px;
   border-top: 4.5px solid #FBB135;
   padding-top:5px;
-
 }
 
 
 
 .buttonSettings{
-
-padding:0px;
-border: 0px;
-background-color: white;
+  padding:0px;
+  border: 0px;
+  background-color: white;
 }
 
 

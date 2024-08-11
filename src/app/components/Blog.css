@@ -49,12 +49,12 @@ Copy code
 
 .header {
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
   justify-content: space-between;
 }
 
 .rightaligned {
-  display: flex; /* Change to flex */
+  display: flex;
   align-items: center;
 }
 

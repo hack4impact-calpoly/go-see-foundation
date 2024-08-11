@@ -1,13 +1,10 @@
 .navbar {
   background-color: white;
   width: 100%;
-  /* flex-shrink: 0; */
 }
 
 
 .mainButtons {
-  /* display: flex;
-  vertical-align: middle; */
   position: relative;
   right: 0;
   margin-left: auto;

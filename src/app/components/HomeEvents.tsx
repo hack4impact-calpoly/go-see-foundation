@@ -7,8 +7,6 @@ import { IEvent } from "@database/eventSchema";
 import { IBlog as BlogEvent } from "@database/blogSchema";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-import blog_graphic from "../images/blog_graphic.jpg";
 
 export default function HomeEvents() {
   const [events, setEvents] = useState<Array<IEvent>>([]);
@@ -90,7 +88,6 @@ export default function HomeEvents() {
   
 
   const handleAllEvents = () => {
-    // TODO: probably want to use {name} to navigate to a new page with the event details
     console.log("All Events pressed");
     const message =
       "All Events pressed. You will now be redirected to a page with all upcoming.";
@@ -118,7 +115,6 @@ export default function HomeEvents() {
         </div>
         <div className={styles.divider} />
         <div className={styles.blogSection}>
-          {/* <div className={styles.viewBlogsLink}> */}
           <h3 className={styles.title}>
             Check out our Blog for the latest events and news!{" "}
           </h3>

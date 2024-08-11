@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef, FormEventHandler } from "react";
 import styles from "./register.module.css";
-import { useRouter } from "next/router";
 import { IEvent } from "@database/eventSchema";
 
 export default function Register({ event }: { event: IEvent }) {
@@ -43,7 +42,6 @@ export default function Register({ event }: { event: IEvent }) {
     }
     const email = emailInputs.email;
     console.log("email: ", email);
-    // const eventName = "The Battle Axe Experience";
     const eventName = event.name;
     let attendedEventBefore;
     let needSightedGuide;
