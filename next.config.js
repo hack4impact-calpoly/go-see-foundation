@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-      domains: ['goseetemp.s3.us-east-2.amazonaws.com'],
+      domains: ['goseefoundation.s3.us-east-1.amazonaws.com'],
     },
   }
   

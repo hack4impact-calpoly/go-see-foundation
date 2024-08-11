@@ -51,11 +51,11 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileName = await uploadFileToS3(buffer, file.name);
-    const s3ObjectURL = "https://goseetemp.s3.us-east-2.amazonaws.com/" + fileName;
+    const s3ObjectURL = "https://goseefoundation.s3.us-east-1.amazonaws.com/" + fileName;
     return NextResponse.json({ success : true, s3ObjectURL});
 
   } catch (error : any) {
-    console.log("failed to upload image to bucket")
+    console.log("failed to upload image to bucket", error)
     return NextResponse.json({error});
   }
 }
