@@ -7,7 +7,6 @@ import "./login.css";
 import backgroundLogo from "../images/backgroundLogo.png";
 import emailIcon from "../images/emailIcon.png";
 import passwordIcon from "../images/passwordIcon.png";
-import { sign } from "crypto";
 
 export default function LoginPage() {
   const { push } = useRouter();
@@ -76,7 +75,6 @@ export default function LoginPage() {
     console.log("sign up pressed");
     const message =
       "Sign up pressed. You will now be redirected to the Create Account page.";
-    // alert(message);
     push("/createAccount");
   }
 
@@ -233,7 +231,6 @@ export default function LoginPage() {
           LOG IN
         </button>
 
-        {/*TODO: change href to proper forget page*/}
         <Link
           href="/forgotPassword"
           className="forgotPasswordLink"
@@ -258,7 +255,6 @@ export default function LoginPage() {
           >
             SIGN UP
           </button>
-          {/* change href when signup page made*/}
         </div>
       </form>
     </div>

@@ -10,12 +10,10 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    /* background-color: #1D2F5D */
     background-image: url(/colorful.jpeg);
 }
 
 /* Table Structure Styling */
-
 .table {
     width: auto;
     height: auto;
@@ -30,7 +28,6 @@
 .table2{
     border-collapse: collapse;
 }
-
 
 /* Table Header Styling */
 .tableheader {

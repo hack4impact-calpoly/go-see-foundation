@@ -5,7 +5,6 @@ import ResourceRow from "@components/ResourceRow";
 import { IResource } from "@database/resourceSchema";
 import Image from "next/image";
 
-// define type for dynamic number of resource references (used in useRefs)
 export type RefObjectMap<T> = {
   [key: string]: React.RefObject<T>;
 };

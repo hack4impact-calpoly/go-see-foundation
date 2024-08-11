@@ -1,10 +1,6 @@
 .emailArea {
   height: 90vh;
   display: grid;
-  /* background-image: url("/colorful.jpeg");
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover; */
   background: #1d2f5d;
   background-size: cover;
 }
@@ -66,7 +62,7 @@
 }
 
 .selectStyle{
-  appearance: none; /* Remove default styling */
+  appearance: none;
   border-radius: 10pt;
   font-size: 10pt;
   padding: 0.2em;

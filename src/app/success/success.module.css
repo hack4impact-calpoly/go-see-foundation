@@ -12,9 +12,6 @@
   width: 100vw;
   height: 100vh;
   z-index: -2;
-
-  /* debugging */
-  /* background-color: yellow; */
 }
 
 .backgroundLogo {
@@ -37,7 +34,4 @@
   font-family: "Helvetica", sans-serif;
   font-size: 36pt;
   color: white;
-
-  /* debugging */
-  /* background-color: black; */
 }

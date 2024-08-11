@@ -297,7 +297,6 @@ const ManageEventsPageContent = () => {
               required
               ref={locationInputRef}
               onKeyDown={handleInputKeyPress}
-              // disabled={selectedEventIndex === -1 ? false : true}
             />
             <PatternFormat
               className={styles.input}
@@ -311,7 +310,6 @@ const ManageEventsPageContent = () => {
               getInputRef={dateInputRef}
               onKeyDown={handleInputKeyPress}
               placeholder="Date (MM/DD/YYYY)"
-              // disabled={selectedEventIndex === -1 ? false : true}
             />
             <div className={styles.inputTimes}>
               <input
@@ -335,7 +333,6 @@ const ManageEventsPageContent = () => {
                 value={formData.endTime}
                 ref={endTimeInputRef}
                 onKeyDown={handleInputKeyPress}
-                // disabled={selectedEventIndex === -1 ? false : true}
               />
             </div>
             <textarea

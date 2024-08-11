@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@database/db";
-import {getSession} from "services/auth/cookietoUsertype"
 import BlogSchema, { IBlog } from "@database/blogSchema";
 
 export async function GET(req: NextRequest) {
