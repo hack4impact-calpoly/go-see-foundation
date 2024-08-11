@@ -54,7 +54,6 @@
   padding: 10px;
   margin: 5px;
   gap: 15px;
-
   border-radius: 12px;
   background: #fff;
   box-sizing: content-box;
@@ -116,7 +115,6 @@
 }
 
 .errors{
-  /* margin-right:auto; */
   color:red;
   font-weight: 700;
   padding-bottom: 5px;
@@ -135,11 +133,7 @@ div.wrapper {
   margin: 10px;
 }
 
-
-
-
 /* Media queries for smaller screens */
-
 @media only screen and (max-width: 800px) {
   .createAccount {
     display: flex;

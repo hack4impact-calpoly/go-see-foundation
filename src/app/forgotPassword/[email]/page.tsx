@@ -2,10 +2,8 @@
 import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import styles from "./emailSent.module.css";
 import backgroundLogo from "../../images/backgroundLogo.png";
-import { style } from "motion";
 
 export default function EmailSent(context: any) {
   //console.log("here: ", decodeURIComponent(context.params.email));

@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import EventDescript from "@components/EventDescript";
-import kayak from "../../images/kayak.png";
-import logo from "../images/backgroundLogo.png";
 import Register from "@components/Register";
 import { IEvent } from "@database/eventSchema";
 import "./eventsSignup.css";

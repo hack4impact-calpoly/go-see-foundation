@@ -2,11 +2,7 @@
 import React, { MouseEventHandler, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-import { redirect, useRouter, permanentRedirect } from "next/navigation";
 import backgroundLogo from "../images/backgroundLogo.png";
-import emailIcon from "../images/emailIcon.png";
-import passwordIcon from "../images/passwordIcon.png";
 import styles from "./forgotPassword.module.css";
 
 export default function ForgotPassword() {

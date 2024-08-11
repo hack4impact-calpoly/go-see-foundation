@@ -1,13 +1,9 @@
 "use client";
 import React, { useState, useRef } from "react";
-import Image from "next/image";
-import connectDB from "../../helpers/db";
-import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./createAccount.module.css";
 import { IUser } from "@database/userSchema";
 import { useRouter } from "next/navigation";
 import { PatternFormat } from "react-number-format";
-import Link from "next/link";
 
 const CreateAccount = () => {
   const firstInputRef = useRef<HTMLInputElement>(null);
@@ -344,10 +340,10 @@ const CreateAccount = () => {
             <button
               className={styles.login}
               id="login"
-              type="button" // Change type to "button"
+              type="button" 
               ref={loginButtonRef}
               onKeyDown={handleButtonKeyPress}
-              onClick={() => push("/login")} // Use router to navigate to the login page
+              onClick={() => push("/login")} 
             >
               LOG IN
             </button>
