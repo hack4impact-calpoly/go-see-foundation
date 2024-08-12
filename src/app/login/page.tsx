@@ -138,7 +138,6 @@ export default function LoginPage() {
           signUpRef?.current?.focus();
           break;
         case "signUp":
-          console.log("Hither");
           emailInputRef?.current?.focus();
           break;
         default:

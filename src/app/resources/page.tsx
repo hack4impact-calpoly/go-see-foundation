@@ -23,13 +23,10 @@ export default function ResourcePage() {
       let i = 0;
       while (i < count) {
         if (e.currentTarget.id === `resource${i}`) {
-          console.log(e.currentTarget.id);
           if (i === count - 1) {
-            console.log("at the end");
             // at the end, loop back to start
             references[0]?.current?.focus();
           } else {
-            console.log("NOT at the end");
             references[i + 1]?.current?.focus();
           }
           i = count; // end loop

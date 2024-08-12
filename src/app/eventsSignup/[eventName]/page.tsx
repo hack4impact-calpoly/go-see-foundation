@@ -26,7 +26,6 @@ export default function EventsSignup() {
     const pathArray = window.location.pathname.split("/");
     const nameIndex = pathArray.indexOf("eventsSignup") + 1;
     const eventName = nameIndex !== 0 ? pathArray[nameIndex] : null;
-    console.log(eventName);
     setEventName(eventName);
   }, []);
 
@@ -41,7 +40,6 @@ export default function EventsSignup() {
       const response = await fetch(`/api/events/${eventName}`);
       if (response.ok) {
         const eventData = await response.json();
-        console.log("Fetched event data:", eventData);
         setEvent(eventData);
       } else {
         console.error("Failed to fetch event data");

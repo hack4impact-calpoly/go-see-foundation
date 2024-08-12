@@ -120,7 +120,6 @@ const CreateAccount = () => {
 
   const handleCreateAccount = () => {
     // If successful, redirect to a different page
-    console.log("hi");
     push("/");
   };
 
@@ -173,7 +172,6 @@ const CreateAccount = () => {
       return;
     }
 
-    console.log("in handle");
     const newUser: IUser = {
       username: "place_holder",
       password: account.password,
@@ -187,8 +185,6 @@ const CreateAccount = () => {
     newUser.username = newUser.firstName + " " + newUser.lastName;
 
     try {
-      console.log("newUser", newUser);
-      console.log("fetching");
 
       const response = await fetch("/api/registration/", {
         // Updated API endpoint

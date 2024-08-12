@@ -6,7 +6,6 @@ import styles from "./emailSent.module.css";
 import backgroundLogo from "../../images/backgroundLogo.png";
 
 export default function EmailSent(context: any) {
-  //console.log("here: ", decodeURIComponent(context.params.email));
 
   const email = decodeURIComponent(context.params.email);
 

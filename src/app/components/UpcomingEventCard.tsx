@@ -9,7 +9,6 @@ export default function UpcomingEventCard({ event }: { event: IEvent }) {
   const { push } = useRouter();
 
   const handleSignUp = () => {
-    console.log("Sign Up pressed");
     const message =
       "Sign Up for Event pressed. You will now be redirected to an event sign up page.";
     alert(message);

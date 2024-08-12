@@ -16,7 +16,6 @@ function DonateButtonComponent() {
         stripeScript.onload = () => setStripeLoaded(true);
         document.head.appendChild(stripeScript);
       } catch (error) {
-        console.error("Error loading Stripe script:", error);
       }
     };
 

@@ -26,7 +26,6 @@ export default function HomeEvents() {
       const res_j = await res.json();
       return res_j;
     } catch (err: unknown) {
-      console.error(`Error: ${err}`);
       return null;
     }
   };
@@ -44,7 +43,6 @@ export default function HomeEvents() {
       const res_j = await res.json();
       return res_j;
     } catch (err: unknown) {
-      console.error(`Error: ${err}`);
       return null;
     }
   };
@@ -59,7 +57,6 @@ export default function HomeEvents() {
         );
         setEvents(data);
       } catch (err) {
-        console.error(err);
       }
     };
 
@@ -68,7 +65,6 @@ export default function HomeEvents() {
         const data = await fetchAllBlogs();
         setBlogs(data);
       } catch (err) {
-        console.error(err);
       }
     };
 
@@ -77,7 +73,6 @@ export default function HomeEvents() {
   }, []);
 
   const handleViewAll = () => {
-    console.log("View All pressed");
     const message =
       "View All pressed. You will now be redirected to a page with all past events, news, and articles.";
     alert(message);
@@ -88,7 +83,6 @@ export default function HomeEvents() {
   
 
   const handleAllEvents = () => {
-    console.log("All Events pressed");
     const message =
       "All Events pressed. You will now be redirected to a page with all upcoming.";
     alert(message);

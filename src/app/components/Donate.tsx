@@ -65,7 +65,6 @@ export default function Donate() {
   const handleSubmit = (e: any) => {
     e.preventDefault();
 
-    console.log(time, amount);
   };
 
   return (

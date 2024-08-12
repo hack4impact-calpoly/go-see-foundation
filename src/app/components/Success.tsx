@@ -11,7 +11,6 @@ export default function Success({ message }: { message: string }) {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("success! going to home page now");
     push("/");
   };
 

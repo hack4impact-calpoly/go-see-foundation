@@ -43,7 +43,6 @@ const EventSignee = ({ mem }: { mem: IEventSignUp }) => {
           alert("Successfully Deleted Entry!");
           window.location.reload();
         } else if (responseData.status === 400) {
-          console.log(responseData.status);
           alert("Error deleting Entry");
         }
       } catch {
