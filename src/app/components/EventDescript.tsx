@@ -3,11 +3,9 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import calender from "../images/calendar-icon.png";
 import clock from "../images/clock-icon.png";
-import dollar from "../images/dollar-icon.png";
 import pin from "../images/pin-icon.png";
 import "./EventDescript.css";
 import { IEvent } from "@database/eventSchema";
-import { useRouter } from "next/navigation";
 
 export default function EventDescript({ event }: { event: IEvent | null }) {
   if (!event) return <div>Loading...</div>;
@@ -19,8 +17,6 @@ export default function EventDescript({ event }: { event: IEvent | null }) {
     endTime,
     description,
     location,
-    picture,
-    alt,
   } = event;
 
   return (

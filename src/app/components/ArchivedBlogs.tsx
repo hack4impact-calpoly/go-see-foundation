@@ -24,7 +24,6 @@ export default function Archive() {
       
       return res_j;
     } catch (err: unknown) {
-      console.error(`Error: ${err}`);
       return null;
     }
   };
@@ -40,7 +39,6 @@ export default function Archive() {
         setBlogs(data);
         setFilteredBlogs(data);
       } catch (err) {
-        console.error(err);
       }
     };
 

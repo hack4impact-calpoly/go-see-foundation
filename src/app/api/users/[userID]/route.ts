@@ -26,7 +26,8 @@ export async function GET(req: NextRequest, { params }: IParams) {
   try {
     const event = await UserSchema.findOne({ email }).orFail();
     return NextResponse.json(event);
-  } catch (err) {
+  } 
+  catch (err) {
     return NextResponse.json(`User email ${email} not found. Error: ${err}`, {
       status: 404,
     });

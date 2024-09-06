@@ -6,12 +6,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background-image: url(/colorful.jpeg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
-  
 }
 
 .imageContainer{
@@ -22,12 +16,10 @@
     font-family: "Helvetica", sans-serif;
     font-size: 23px;
     border-radius: 16px;
-    /* padding: 7.5px 10px 7.5px 10px; */
     border: 1px solid;
     color:black;
     font-weight: 700;
-    border-width: 2.5px;
-    
+    border-width: 2.5px; 
 }
 
 .eventManager {
@@ -36,7 +28,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
   background-color: white;
   border-radius: 20px;
 }
@@ -181,7 +172,7 @@
 .divider2 {
   background-color: #FBB135;
   height: 10px;
-  margin: 0 auto 5px; /* This centers the element horizontally */
+  margin: 0 auto 5px;
   width: 40%;
   margin-top: 20px;
 }
@@ -190,7 +181,7 @@
 .divider {
   background-color: #FBB135;
   height: 3px;
-  margin: 0 auto 5px; /* This centers the element horizontally */
+  margin: 0 auto 5px;
   width: 80%;
   margin-bottom: 15px;
 }

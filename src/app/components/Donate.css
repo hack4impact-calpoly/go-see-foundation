@@ -39,18 +39,18 @@ h1 {
   font-weight: bold;
   border-radius: 4pt;
   border-width: 0.2em;
-  border-color: #1d2f5d; /* Dark blue border color */
+  border-color: #1d2f5d;
   background-color: white;
   font-size: 20pt;
   width: 100%;
-  height: 60px; /* Reduced height for donate button */
-  border: 2px solid #1d2f5d; /* Dark blue border */
+  height: 60px; 
+  border: 2px solid #1d2f5d;
   background: #fff;
-  box-sizing: border-box; /* Ensures size includes border and padding */
+  box-sizing: border-box;
 }
 
 .donateComponent button:hover {
-  background-color: #1d2f5d; /* Dark blue on hover */
+  background-color: #1d2f5d;
   color: white;
 }
 
@@ -89,10 +89,10 @@ h1 {
   width: 100%;
   font-size: 1.1em;
   border-radius: 4pt;
-  height: 60px; /* Adjusted height to match buttons */
-  border: 2px solid #1d2f5d; /* Dark blue border color */
+  height: 60px; 
+  border: 2px solid #1d2f5d;
   padding: 0 10px;
-  box-sizing: border-box; /* Ensures size includes border and padding */
+  box-sizing: border-box;
 }
 
 .personalInformation {
@@ -103,11 +103,11 @@ h1 {
 
 .donateComponent button[type="submit"] {
   justify-self: center;
-  background-color: #fbb135; /* FBB135 color for donate button */
-  width: 80%; /* Adjust width as needed */
-  border-color: #fbb135; /* FBB135 border color */
+  background-color: #fbb135; 
+  width: 80%; 
+  border-color: #fbb135;
   height: 60px;
-  font-size: 18px; /* Adjust font size as needed */
+  font-size: 18px; 
 }
 
 .donateComponent button[type="submit"] {

@@ -2,8 +2,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import EventDescript from "@components/EventDescript";
-import kayak from "../../images/kayak.png";
-import logo from "../images/backgroundLogo.png";
 import Register from "@components/Register";
 import { IEvent } from "@database/eventSchema";
 import "./eventsSignup.css";
@@ -28,7 +26,6 @@ export default function EventsSignup() {
     const pathArray = window.location.pathname.split("/");
     const nameIndex = pathArray.indexOf("eventsSignup") + 1;
     const eventName = nameIndex !== 0 ? pathArray[nameIndex] : null;
-    console.log(eventName);
     setEventName(eventName);
   }, []);
 
@@ -43,7 +40,6 @@ export default function EventsSignup() {
       const response = await fetch(`/api/events/${eventName}`);
       if (response.ok) {
         const eventData = await response.json();
-        console.log("Fetched event data:", eventData);
         setEvent(eventData);
       } else {
         console.error("Failed to fetch event data");

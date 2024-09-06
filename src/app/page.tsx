@@ -1,14 +1,11 @@
 "use client";
 import React, { useEffect, useRef } from "react";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import FounderStory from "@components/FounderStory";
 import Carousel from "@components/Carousel";
 import HomeEvents from "@components/HomeEvents";
-import SeussQuote from "@components/seussQuote";
 import Link from "next/link";
 import "./page.css";
-import threeBridges from "./Three_Bridges_Hike.png";
 
 export default function Home() {
   const navbarRef = useRef<HTMLDivElement>(null);

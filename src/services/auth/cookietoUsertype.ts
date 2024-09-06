@@ -34,7 +34,7 @@ export async function getSession(req: any){
         //cookies().delete('Auth_Session')
         // If verification fails (e.g., invalid signature or expired token), an error will be thrown
         console.log('Error verifying token:', error);
-        return null; // Return null or handle the error appropriately
+        return null;
     }
 }
 
@@ -69,6 +69,6 @@ export async function getEmail(req: any){
         //cookies().delete('Auth_Session')
         // If verification fails (e.g., invalid signature or expired token), an error will be thrown
         console.log('Error verifying token:', error);
-        return null; // Return null or handle the error appropriately
+        return null;
     }
 }

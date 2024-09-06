@@ -40,14 +40,14 @@ export default function Donate() {
       return;
     }
 
-    // make sure it's the only button selected
+    // Ensure it is the only button selected
     document.querySelectorAll(".amountButton").forEach((b) => {
       b.classList.remove("selected");
     });
 
     e.target.classList.add("selected");
 
-    // make sure it's the only button selected
+    // Ensure it's the only button selected
     setAmount(e.target.innerHTML);
   };
 
@@ -61,12 +61,10 @@ export default function Donate() {
     setAmount(`$${e.target.value}`);
   };
 
-  /* for submitting the form */
+  /* Submitting the form */
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // handle the form submission here
-    // FUNCTIONALITY TO DO FOR BACKEND
-    console.log(time, amount);
+
   };
 
   return (

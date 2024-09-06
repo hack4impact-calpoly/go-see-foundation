@@ -25,7 +25,6 @@ const UploadImage = () => {
       });
 
       const data = await response.json();
-      console.log(data.status);
       // at this point file is done uplaoding therefore set it back to false;
       setUploading(false);
     } catch (error: any) {

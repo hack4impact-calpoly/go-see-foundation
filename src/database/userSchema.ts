@@ -10,7 +10,7 @@ export type IUser = {
   email: string;
 };
 
-//! Example user schema. Not guaranteed to work
+
 const UserSchema = new Schema<IUser>({
   username: { type: String, required: false, unique: false },
   password: { type: String, required: true },
@@ -21,7 +21,7 @@ const UserSchema = new Schema<IUser>({
   email: { type: String, required: true, unique: true },
 });
 
-// export default mongoose.models.User || mongoose.model("User", UserSchema);
+
 const Users = mongoose.models["users"] || mongoose.model("users", UserSchema);
 
 export default Users;

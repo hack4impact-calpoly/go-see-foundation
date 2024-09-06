@@ -31,7 +31,6 @@ export default function ResetPasswordPage() {
 
     if (resetData.newPassword === resetData.repeatPassword) {
       try {
-        // TODO: Backend, PUT request to update new password
         console.log("passwords match");
         const response = null;
       } catch (error) {
