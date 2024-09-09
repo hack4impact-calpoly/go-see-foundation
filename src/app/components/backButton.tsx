@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './BackButton.module.css';
 
-const BackButton = () => {
+export default function BackButton() {
   return (
     <div>
       <Link href="/admin" passHref>
@@ -10,5 +10,3 @@ const BackButton = () => {
     </div>
   );
 };
-
-export default BackButton;
