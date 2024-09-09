@@ -1,7 +1,7 @@
 import connectDB from "@database/db";
 import { NextRequest, NextResponse } from "next/server";
 import Users, { IUser } from "@database/userSchema";
-const bcrypt = require("bcrypt"); 
+const bcrypt = require("bcryptjs"); 
 
 export async function POST(req: NextRequest) {
     await connectDB();
