@@ -2,7 +2,7 @@
 import { IUser } from "@database/userSchema";
 import React, {useState, useEffect} from "react";
 import styles from './members.module.css'
-import BackButton from '@components/BackButton';
+// import BackButton from '@components/BackButton';
 import Image from 'next/image';
 
 export default function ManageMembers() {
@@ -124,7 +124,8 @@ export default function ManageMembers() {
     }
 
     return(
-        <div><BackButton/> 
+        <div>
+            {/* <BackButton/>  */}
             <div className={styles.container}>
                 <div className={styles.table}>
                     <Table 

@@ -2,7 +2,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./resources.module.css";
 import { useRouter } from "next/navigation";
-import BackButton from "@components/BackButton";
+//import BackButton from "@components/BackButton";
 
 const ResourcePage = () => {
   const newResourceButtonRef = useRef<HTMLButtonElement>(null);
@@ -119,7 +119,7 @@ const ResourcePage = () => {
 
   return (
     <div>
-      <BackButton />
+      {/* <BackButton /> */}
       <div className={styles.container}>
         <div className={styles.resourceManager}>
           <div className={styles.topButtons}>
