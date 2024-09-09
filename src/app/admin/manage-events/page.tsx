@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./manage-events.module.css";
 import { useRouter } from "next/navigation";
 import { IEvent } from "@database/eventSchema";
-import BackButton from "../../components/BackButton";
+import BackButton from "@components/BackButton";
 import { PatternFormat } from "react-number-format";
 
 

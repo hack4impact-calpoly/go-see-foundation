@@ -2,7 +2,7 @@
 import { IDonation } from "@database/donationSchema";
 import React, { useState, useEffect } from "react";
 import styles from "./donations.module.css";
-import BackButton from '../../components/BackButton';
+import BackButton from '@components/BackButton';
 
 export default function ManageMembers() {
   const [donations, setDonations] = useState([]);

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./eventHistory.module.css";
-import BackButton from "../../components/BackButton";
+import BackButton from "@components/BackButton";
 
 export default function EventHistory() {
   let [events, setEvents] = useState<any[]>([]);
