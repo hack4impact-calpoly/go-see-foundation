@@ -23,7 +23,6 @@ export default function Blog() {
       const res_j = await res.json();
       return res_j;
     } catch (err: unknown) {
-      console.error(`Error: ${err}`);
       return null;
     }
   };
@@ -39,7 +38,6 @@ export default function Blog() {
         setBlogs(data);
         setFilteredBlogs(data);
       } catch (err) {
-        console.error(err);
       }
     };
 

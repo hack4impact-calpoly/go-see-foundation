@@ -111,8 +111,6 @@ const AboutPage = () => {
             videoId="0sjTI04kwUw"
             width={screenSize.width > 800 ? 1000 : 350}
             height={screenSize.width > 800 ? 550 : 200}
-            // width={1000}
-            // height={550}
           />
         </div>
       </div>

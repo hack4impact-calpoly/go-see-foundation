@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef, FormEventHandler } from "react";
 import styles from "./register.module.css";
-import { useRouter } from "next/router";
 import { IEvent } from "@database/eventSchema";
 
 export default function Register({ event }: { event: IEvent }) {
@@ -42,8 +41,6 @@ export default function Register({ event }: { event: IEvent }) {
       comments = "N/A";
     }
     const email = emailInputs.email;
-    console.log("email: ", email);
-    // const eventName = "The Battle Axe Experience";
     const eventName = event.name;
     let attendedEventBefore;
     let needSightedGuide;
@@ -61,9 +58,6 @@ export default function Register({ event }: { event: IEvent }) {
     }
 
     try {
-      console.log("needSightedGuide: ", needSightedGuide);
-      console.log("attendedEventBefore: ", attendedEventBefore);
-
       const response = await fetch("/api/eventSignUp/", {
         method: "POST",
         headers: {
@@ -86,7 +80,6 @@ export default function Register({ event }: { event: IEvent }) {
         responseData.status === 400 &&
         responseData.message === "Error: Already Signed Up For this Event"
       ) {
-        console.log(responseData.status);
         alert("You are already signed up for this event");
       } else if (
         responseData.status === 400 &&
@@ -102,9 +95,7 @@ export default function Register({ event }: { event: IEvent }) {
   const handleLoginChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void => {
-    console.log("changing");
     const { name, value } = e.target;
-    console.log(name);
     setRegisterData((prevRegisterData) => ({
       ...prevRegisterData,
       [name]: value,

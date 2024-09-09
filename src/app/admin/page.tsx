@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef } from "react";
 import styles from "./admin.module.css";
-import emailjs from "emailjs-com";
 import Link from "next/link";
 import Image from "next/image";
 import logo from "../images/GO-See-HLogo.fw_.png";

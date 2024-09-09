@@ -6,9 +6,7 @@
   justify-self: center;
   border-radius: 16px;
   font-size: 100%;
-
   background-color: #1d2f5d;
-  /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
 .container h2 {
@@ -19,10 +17,8 @@
   font-weight: bold;
   text-align: center;
   color: white;
-
   justify-self: center;
   align-self: center;
-  /* background-color: green; */
 }
 
 .fullCarousel {
@@ -30,8 +26,6 @@
   flex: 18;
   flex-direction: column;
   border-radius: 15px;
-
-  /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
 .carousel {
@@ -43,9 +37,6 @@
   margin: auto;
   display: flex;
   flex-direction: row;
-  /* padding: 0 2%; */
-
-  /* background-color: lime; */
 }
 
 .carouselImage {
@@ -53,13 +44,8 @@
   height: 55vh;
   min-width: 70vw;
   max-width: 70vw;
-
   margin: auto;
-  /* padding-left: 2em;
-  padding-right: 2em; */
-
   border-radius: 16px;
-  /* background-color: navy; */
 }
 
 .image {
@@ -67,11 +53,9 @@
   height: 100%;
   max-width: 100%;
   object-fit: cover;
-
   margin: auto;
   justify-self: center;
   align-self: center;
-
   border-radius: 25px;
 }
 
@@ -79,8 +63,6 @@
   display: flex;
   flex: 1;
   margin: auto;
-
-  /* background-color: pink; */
 }
 
 .arrow {
@@ -98,7 +80,6 @@
   text-align: center;
   font-size: 2em;
   color: #33363f;
-
   background-color: #fbb135;
 }
 
@@ -119,8 +100,6 @@
   color: black;
   border-color: black;
   border-width: 2px;
-
-  /* background-color: black; */
 }
 
 .dot {
@@ -138,8 +117,6 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-
-  /* background-color: cyan; */
 }
 
 .quote,
@@ -153,8 +130,6 @@
   max-height: 30vh;
   margin: 0 10%;
   text-align: center;
-
-  /* background-color: lavender; */
 }
 
 .quote {
@@ -170,7 +145,6 @@
 }
 
 /* Media queries for smaller screens */
-
 @media only screen and (max-width: 800px) {
   .container {
     height: 100vh;

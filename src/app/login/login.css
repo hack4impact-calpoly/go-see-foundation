@@ -13,9 +13,6 @@
   width: 100vw;
   height: 100vh;
   z-index: -2;
-
-  /* debugging */
-  /* background-color: yellow; */
 }
 
 .backgroundLogo {
@@ -38,9 +35,6 @@
   font-family: "Helvetica", sans-serif;
   font-size: 36pt;
   color: white;
-
-  /* debugging */
-  /* background-color: black; */
 }
 
 .loginForm {
@@ -61,9 +55,6 @@
   color: black;
   margin-top: 2vh;
   margin-bottom: 3vh;
-
-  /* debugging */
-  /* background-color: purple; */
 }
 
 .inputWrapper {
@@ -73,11 +64,8 @@
   margin-bottom: 2%;
 
   border-radius: 16px;
-  border: 2pt solid black; /*width style color*/
+  border: 2pt solid black;
   background-color: white;
-
-  /* debugging */
-  /* background-color: bisque; */
 }
 
 .inputWrapper input {
@@ -89,11 +77,11 @@
   font-size: 18pt;
   color: black;
   border: none;
-
-  &:focus {
-    outline: none;
-  }
 }
+.inputWrapper input:focus { 
+  outline: none;  
+}
+
 
 .emailIcon,
 .passwordIcon {
@@ -128,8 +116,8 @@
   margin: 10px;
   margin-bottom: 0;
   border-radius: 16px;
-  border: none; /* Remove the default button border */
-  outline: none; /* Remove the focus outline */
+  border: none;
+  outline: none;
   box-shadow: none;
   font-family: "Helvetica", sans-serif;
   font-size: 24pt;
@@ -180,7 +168,7 @@
   height: 60px;
   margin-bottom: 4vh;
   border-radius: 16px;
-  outline: none; /* Remove the focus outline */
+  outline: none;
   box-shadow: none;
   font-family: "Helvetica", sans-serif;
   font-size: 22pt;
@@ -189,14 +177,12 @@
   border: 2.5pt solid #1d2f5d;
   background-color: #bbcfff;
   z-index: 20;
-
-  &:hover {
-    cursor: pointer;
-  }
+}
+.signUpButton:hover {  
+  cursor: pointer;  
 }
 
 /* Media queries for smaller screens */
-
 @media only screen and (max-width: 800px) {
   .welcomeTitle {
     width: 70vw;

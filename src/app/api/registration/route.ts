@@ -4,8 +4,6 @@ import Users, { IUser } from "@database/userSchema";
 const bcrypt = require("bcryptjs");
 
 export async function POST(req: NextRequest) {
-
-
   await connectDB();
   try {
     const {

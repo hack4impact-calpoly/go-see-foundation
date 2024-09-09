@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { IBlog } from "@database/blogSchema";
-import Image from "next/image";
 import "./individualBlog.css";
 
 const IndividualBlog = ({ blog }: { blog: IBlog }) => {
-  //const [localBlog, setLocalBlog] = useState(blog);
   const { picture, alt, description, date, name, blogID, author } = blog;
 
   const formatDateTime = (dateTimeString: string) => {

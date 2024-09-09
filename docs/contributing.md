@@ -59,7 +59,7 @@ Stay tuned. 👀
 
 **Resources**
 - For best quality, when creating a resource in admin, ensure image is rectangular shaped.
-- IMPORTANT: For links, ensure the full URL (ie, https://.....) is included to properly route to the desired page.
+- IMPORTANT: For links, include the full URL (ie, https://.....) to properly route to the desired page.
 
 ## Future enhancements 
 

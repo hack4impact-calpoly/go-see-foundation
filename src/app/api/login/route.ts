@@ -63,7 +63,6 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
     cookies().set('Auth_Session', token, {
       sameSite: 'strict',
       httpOnly: true,
-      // secure: true, # Uncomment this line when using HTTPS
     });
 
     console.log("type:", user.userType);
@@ -72,7 +71,6 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
       return NextResponse.json({ message: "Admin Success: Login Complete" });
     }
 
-    //return NextResponse.redirect(new URL('/', req.nextUrl))
     return NextResponse.json({ message: "Success: Login Complete" });
   } catch (err) {
     return NextResponse.json(`${err}`, { status: 400 });

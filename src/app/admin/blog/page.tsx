@@ -218,7 +218,6 @@ const BlogPage = () => {
 
   const handleBlogSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedBlogIndex(Number(event.target.value));
-    // TODO: load all info for inputs
   };
 
   // formats a Date object to YYYY-MM-DD for the date input element

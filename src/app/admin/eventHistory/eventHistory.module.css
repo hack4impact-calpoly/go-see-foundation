@@ -114,7 +114,7 @@
     justify-content: center;
     align-items: center;
     background-color: #FBB135;
-    appearance: none; /* Remove default styling */
+    appearance: none;
     width: 27%;
     height: 40px;
     text-decoration: none; /* Remove underline */
@@ -154,12 +154,10 @@
     height: 3px;
     margin: 0 auto 5px; /* This centers the element horizontally */
     width: 50%;
-    /* border-radius: 5px; */
 }
 .divider2 {
   background-color: #FBB135;
   height: 3px;
   margin: 0 auto 5px; /* This centers the element horizontally */
   width: 30%;
-  /* border-radius: 5px; */
 }

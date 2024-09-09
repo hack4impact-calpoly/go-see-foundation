@@ -6,12 +6,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background-image: url(/colorful.jpeg);
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
-  
 }
 
 .eventManager {
@@ -61,10 +55,6 @@
 
 }
 
-/* .newEventButton:not(.active):hover,
-.updateEventButton:not(.active):hover {
-  background-color: #1d2f5d99;
-} */
 
 .activeForm {
   background-color: #1d2f5d;

@@ -85,7 +85,6 @@ const ResourcePage = () => {
         alert("New Event Created!");
         window.location.reload();
         window.scrollTo(0, 0);
-        // push("/admin");
       } else {
         const errorMessage = responseData.message;
         alert("Error: " + errorMessage);
@@ -124,15 +123,6 @@ const ResourcePage = () => {
       <div className={styles.container}>
         <div className={styles.resourceManager}>
           <div className={styles.topButtons}>
-            {/* <button
-              className={styles.newResourceButton}
-              id="newResourceButton"
-              type="button"
-              ref={newResourceButtonRef}
-              // onClick={handleFormSwitch} // only 1 tab, so no longer needed
-            >
-              New Resource
-            </button> */}
             <h2 className = {styles.title}>Add New Resource </h2>
           </div>
           <form

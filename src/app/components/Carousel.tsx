@@ -151,7 +151,6 @@ export default function Carousel({
       <div className={styles.quoteContainer}>
         <p className={styles.quote}>&quot;{quotes[currentIndex]}&quot;</p>
       </div>
-      {/* </div> */}
     </div>
   );
 }

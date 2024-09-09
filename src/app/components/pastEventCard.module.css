@@ -9,8 +9,8 @@
 }
 
 .picture {
-  width: 100%; /* Set the image width to 100% of its container */
-  object-fit: cover; /* Scale the image to cover its entire container */
+  width: 100%;
+  object-fit: cover;
 }
 
 .text {
@@ -18,7 +18,7 @@
   width:auto;
   justify-content: center;
   overflow: hidden;
-  word-wrap: break-word; /* or overflow-wrap: break-word */
+  word-wrap: break-word;
   overflow-wrap: break-word;
 }
 

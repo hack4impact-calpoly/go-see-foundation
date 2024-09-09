@@ -34,14 +34,14 @@
   border-radius: 5px;
   border: 2px solid #1d2f5d;
   background-color: white;
-  cursor: pointer; /* Adding cursor pointer for better UX */
+  cursor: pointer;
 
 }
 
 
 .signUp:hover, .signUp:focus {
-    background-color: #1d2f5d; /* Change background color on hover and focus */
-    color: white; /* Change text color on hover and focus */
+    background-color: #1d2f5d;
+    color: white;
   }
 
 
