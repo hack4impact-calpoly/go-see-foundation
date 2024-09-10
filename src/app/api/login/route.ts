@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Users, { IUser } from "@database/userSchema";
 import { cookies } from 'next/headers'
 import type {NextApiRequest, NextApiResponse} from 'next'
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jose = require('jose')
 
 // library for generating symmetric key for jwt

@@ -3,7 +3,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./blog.module.css";
 import { useRouter } from "next/navigation";
 import { IBlog } from "@database/blogSchema";
-import BackButton from "../../components/BackButton";
+// import BackButton from "@components/BackButton";
 
 const BlogPage = () => {
   const newBlogButtonRef = useRef<HTMLButtonElement>(null);
@@ -236,7 +236,7 @@ const BlogPage = () => {
   return (
     <div>
       {" "}
-      <BackButton />
+      {/* <BackButton /> */}
       <div className={styles.container}>
         <div className={styles.blogManager}>
           <div className={styles.topButtons}>

@@ -4,7 +4,7 @@ import styles from "./emailPage.module.css";
 import { IUser } from "@database/userSchema";
 import emailjs from "@emailjs/browser";
 import { useSearchParams } from "next/navigation";
-import BackButton from "../../components/BackButton";
+// import BackButton from "@components/BackButton";
 import { IEventSignUp } from "@database/eventSignUpSchema";
 
 const AdminPageContent: React.FC = () => {
@@ -135,7 +135,7 @@ const AdminPageContent: React.FC = () => {
 
   return (
     <div>
-      <BackButton />
+      {/* <BackButton /> */}
       <div className={styles.emailArea}>
         <div className={styles.emailForm}>
           <label htmlFor="dropdown" className={styles.group}>
