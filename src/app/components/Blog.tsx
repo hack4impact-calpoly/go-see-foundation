@@ -12,7 +12,7 @@ export default function Blog() {
 
   const fetchAllBlogs = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/blog", {
+      const res = await fetch("/api/blog", {
         cache: "no-store",
       });
 
@@ -23,6 +23,7 @@ export default function Blog() {
       const res_j = await res.json();
       return res_j;
     } catch (err: unknown) {
+      console.error("Error fetching blogs:", err);
       return null;
     }
   };

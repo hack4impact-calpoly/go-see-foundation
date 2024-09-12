@@ -17,6 +17,9 @@ button {
   font-weight: bold;
   margin-bottom: 30px;
 }
+.joinButton:hover {  
+  cursor: pointer;  
+}
 
 .homedescript {
   margin-left: 3.9em;
