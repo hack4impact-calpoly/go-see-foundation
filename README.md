@@ -1,19 +1,23 @@
 # Go See Foundation 👁
 
-An accessible website for the Go See Foundation to facilitate event postings, streamline volunteer operations, and manage member-volunteer-donor contacts.
+An accessible web application for Go See Foundation to facilitate event postings, streamline volunteer operations, and manage member-volunteer-donor contacts.
 
 ## Table of Contents
 
 
   - [Purpose](#purpose)
   - [Team](#team)
+  - [Deployed Solution](#deployed-solution)
 - [Getting Started And Contributing](#getting-started-and-contributing)
 
 
 ### Purpose
 
-Go See Foundation’s mission is to encourage, inspire and empower those experiencing vision loss to remain active and engaged with their world. They provide accessible resources, podcasts, and fun excursions to connect and empower others
+Go See Foundation’s mission is to encourage, inspire and empower those experiencing vision loss to remain active and engaged with their world. They provide accessible resources, podcasts, and fun excursions to connect and empower others.
 
+### Deployed Solution
+
+Visit our deployed solution here: https://go-see-foundation-neon.vercel.app 
 
 ### Team
 
@@ -23,8 +27,8 @@ The Go See Foundation team consists of 16 Cal Poly students. Over the course of 
 - Garrett Reinhard - Designer
 - Jasmine Sayed - Designer
 - Marta Lukomska - Designer
-- Eduardo Huezo - Tech Lead
-- Ryan Agdassi - Tech Lead
+- Eduardo Huezo - Technical Lead
+- Ryan Agdassi - Technical Lead
 - Aarav Sharma - Software Developer
 - Aiden Tung - Software Developer
 - Angela Chen - Software Developer
