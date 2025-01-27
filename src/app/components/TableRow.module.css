@@ -1,0 +1,10 @@
+.editing {
+  background-color: rgb(210, 210, 245);
+}
+
+.rowinput {
+  display: flex;
+  flex: 1;
+  width: min-content;
+  block-size: min-content;
+}
