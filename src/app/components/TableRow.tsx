@@ -13,7 +13,7 @@ export interface RowProps {
 export default function TableRow({ index, userData, deleteUser }: RowProps) {
   const [editUser, setEditUser] = useState(false);
   const [rowData, setRowData] = useState({
-    username: `${userData.firstName} ${userData.lastName}`,
+    fullname: `${userData.firstName} ${userData.lastName}`,
     phoneNumber: userData.phoneNum,
     role: userData.userType,
     history: "No History",
@@ -44,7 +44,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     Currently, only checks that every field is not empty
     */
     return (
-      rowData["username"] &&
+      rowData["fullname"] &&
       rowData["phoneNumber"] &&
       rowData["role"] &&
       rowData["history"] &&
@@ -52,21 +52,11 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     );
   }
 
-  function handleSaveEdit(): void {
-    // TODO: add other saves
-
-    if (validateEdits()) {
-      setEditUser(false);
-    } else {
-      console.log("Cannot save edits, member details not validated");
-    }
-  }
-
   function handleCancelEdit(): void {
     setEditUser(false);
 
     setRowData({
-      username: `${userData.firstName} ${userData.lastName}`,
+      fullname: `${userData.firstName} ${userData.lastName}`,
       phoneNumber: userData.phoneNum,
       role: userData.userType,
       history: "No History", // currently, 'history' is not used anywher
@@ -74,15 +64,46 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     });
   }
 
+  async function handleSaveEdit() {
+    // TODO: add other saves
+    if (validateEdits()) {
+      const putData: IUser = {
+        username: userData.username,
+        password: userData.password,
+        firstName: rowData.fullname.split(" ")[0],
+        lastName: rowData.fullname.split(" ")[1],
+        phoneNum: rowData.phoneNumber,
+        userType: rowData.role,
+        email: rowData.email,
+      };
+      console.log("updating:", putData);
+      await updateUserData(putData);
+      setEditUser(false);
+    } else {
+      console.log("Cannot save edits, member details not validated");
+    }
+  }
+
+  async function updateUserData(userToUpdate: IUser) {
+    const response = await fetch(`/api/users/${userToUpdate.email}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userToUpdate),
+    });
+    return response;
+  }
+
   return editUser ? (
     <tr key={index} className={editUser ? styles.editing : ""}>
-      <td>
+      <td key={`row-${index}-fullname`}>
         <input
           type="text"
           className={styles.rowinput}
-          id="username"
-          name="username"
-          value={rowData["username"] || ""}
+          id="fullname"
+          name="fullname"
+          value={rowData["fullname"] || ""}
           onChange={handleRowChange}
         />
       </td>
@@ -96,7 +117,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           onChange={handleRowChange}
         />
       </td>
-      <td>
+      <td key={`row-${index}-role`}>
         <select
           className={styles.dropdown}
           id="role"
@@ -109,7 +130,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           <option value="admin">admin</option>
         </select>
       </td>
-      <td>
+      <td key={`row-${index}-history`}>
         <input
           type="text"
           className={styles.rowinput}
@@ -119,7 +140,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           onChange={handleRowChange}
         />
       </td>
-      <td>
+      <td key={`row-${index}-email`}>
         <input
           type="text"
           className={styles.rowinput}
@@ -129,7 +150,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           onChange={handleRowChange}
         />
       </td>
-      <td>
+      <td key={`row-${index}-editButtons`}>
         <div>
           <button
             onClick={handleCancelEdit}
@@ -147,7 +168,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           </button>
         </div>
       </td>
-      <td>
+      <td key={`row-${index}-deleteButton`}>
         <button
           onClick={() => deleteUser(index)}
           className="deletebutton"
@@ -165,12 +186,12 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     </tr>
   ) : (
     <tr key={index} className={editUser ? styles.editing : ""}>
-      <td>{rowData.username}</td>
-      <td key={`row-${index}-phoneNumber`}>{userData.phoneNum}</td>
-      <td>{rowData.role}</td>
-      <td>{rowData.history}</td>
-      <td>{rowData.email}</td>
-      <td>
+      <td key={`row-${index}-fullname`}>{rowData.fullname}</td>
+      <td key={`row-${index}-phoneNumber`}>{rowData.phoneNumber}</td>
+      <td key={`row-${index}-role`}>{rowData.role}</td>
+      <td key={`row-${index}-history`}>{rowData.history}</td>
+      <td key={`row-${index}-email`}>{rowData.email}</td>
+      <td key={`row-${index}-editButton`}>
         <button
           onClick={() => handleEdit(index)}
           className="deletebutton"
@@ -179,7 +200,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           Edit
         </button>
       </td>
-      <td>
+      <td key={`row-${index}-deleteButton`}>
         <button
           onClick={() => deleteUser(index)}
           className="deletebutton"
