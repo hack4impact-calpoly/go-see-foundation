@@ -3,6 +3,7 @@ import { IUser } from "@database/userSchema";
 import styles from "./TableRow.module.css";
 import React, { useState } from "react";
 import Image from "next/image";
+import { PatternFormat } from "react-number-format";
 
 export interface RowProps {
   index: number;
@@ -48,7 +49,8 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
       rowData["phoneNumber"] &&
       rowData["role"] &&
       rowData["history"] &&
-      rowData["email"]
+      rowData["email"] &&
+      !rowData["phoneNumber"].includes("_") // phone number must be complete
     );
   }
 
@@ -105,16 +107,21 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           name="fullname"
           value={rowData["fullname"] || ""}
           onChange={handleRowChange}
+          required
         />
       </td>
       <td key={`row-${index}-phoneNumber`}>
-        <input
-          type="text"
-          className={styles.rowinput}
+        <PatternFormat
+          className={styles.input}
+          type="tel"
+          format="+1 (###) ###-####"
           id="phoneNumber"
           name="phoneNumber"
+          mask="_"
           value={rowData["phoneNumber"] || ""}
+          placeholder="Phone Number"
           onChange={handleRowChange}
+          required
         />
       </td>
       <td key={`row-${index}-role`}>
@@ -138,16 +145,18 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           name="history"
           value={rowData["history"] || ""}
           onChange={handleRowChange}
+          required
         />
       </td>
       <td key={`row-${index}-email`}>
         <input
-          type="text"
+          type="email"
           className={styles.rowinput}
           id="email"
           name="email"
           value={rowData["email"] || ""}
           onChange={handleRowChange}
+          required
         />
       </td>
       <td key={`row-${index}-editButtons`}>
@@ -159,6 +168,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           >
             Cancel
           </button>
+          {/** TODO: add PatternFormat */}
           <button
             onClick={handleSaveEdit}
             className="savebutton"
