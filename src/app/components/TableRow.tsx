@@ -159,31 +159,19 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
           required
         />
       </td>
-      <td key={`row-${index}-editButtons`}>
+      <td key={`row-${index}-editButtons`} className={styles.rowButtons}>
         <div>
-          <button
-            onClick={handleCancelEdit}
-            className="cancelbutton"
-            style={{ cursor: "pointer" }}
-          >
+          <button onClick={handleCancelEdit} className={styles.button}>
             Cancel
           </button>
           {/** TODO: add PatternFormat */}
-          <button
-            onClick={handleSaveEdit}
-            className="savebutton"
-            style={{ cursor: "pointer" }}
-          >
+          <button onClick={handleSaveEdit} className={styles.button}>
             Confirm
           </button>
         </div>
       </td>
       <td key={`row-${index}-deleteButton`}>
-        <button
-          onClick={() => deleteUser(index)}
-          className="deletebutton"
-          style={{ cursor: "pointer" }}
-        >
+        <button onClick={() => deleteUser(index)} className={styles.button}>
           <Image
             src="/delete.jpg"
             alt="Delete"
@@ -201,21 +189,13 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
       <td key={`row-${index}-role`}>{rowData.role}</td>
       <td key={`row-${index}-history`}>{rowData.history}</td>
       <td key={`row-${index}-email`}>{rowData.email}</td>
-      <td key={`row-${index}-editButton`}>
-        <button
-          onClick={() => handleEdit(index)}
-          className="deletebutton"
-          style={{ cursor: "pointer" }}
-        >
+      <td key={`row-${index}-editButton`} className={styles.rowButtons}>
+        <button onClick={() => handleEdit(index)} className={styles.button}>
           Edit
         </button>
       </td>
       <td key={`row-${index}-deleteButton`}>
-        <button
-          onClick={() => deleteUser(index)}
-          className="deletebutton"
-          style={{ cursor: "pointer" }}
-        >
+        <button onClick={() => deleteUser(index)} className={styles.button}>
           <Image
             src="/delete.jpg"
             alt="Delete"

@@ -7,13 +7,26 @@ import styles from "./members.module.css";
 
 export default function ManageMembers() {
   const [users, setUsers] = useState<Array<IUser>>([]);
-  const [rowData, setRowData] = useState({
+  const [addingUser, setAddingUser] = useState<Boolean>(false);
+  const [newUserData, setNewUserData] = useState({
     user: "",
     phoneNumber: "",
     role: "",
     history: "",
     email: "",
   });
+
+  function handleAddUser() {
+    setAddingUser(true);
+  }
+
+  function handleCancelAddUser() {
+    setAddingUser(false);
+  }
+
+  function handleConfirmAddUser() {
+    setAddingUser(false);
+  }
 
   interface TableProps {
     userData: IUser[];
@@ -44,10 +57,6 @@ export default function ManageMembers() {
       </thead>
     );
   }
-
-  useEffect(() => {
-    console.log("Current rowData:", rowData);
-  }, [rowData]);
 
   function TableBody(props: TableProps) {
     const userRows = props.userData.map((row, index) => {
@@ -113,12 +122,46 @@ export default function ManageMembers() {
     return response;
   }
 
+  async function postUser() {
+    // TODO: find out if empty password acceptable
+    const postUserData: IUser = {
+      username: newUserData.user,
+      password: "",
+      userType: newUserData.role,
+      firstName: newUserData.user.split(" ")[0],
+      lastName: newUserData.user.split(" ")[1],
+      phoneNum: newUserData.phoneNumber,
+      email: newUserData.email,
+    };
+
+    const response = await fetch(`/api/registration/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postUserData),
+    });
+    return response;
+  }
+
   return (
     <div>
       {/* <BackButton/>  */}
       <div className={styles.container}>
         <div className={styles.table}>
           <Table userData={users} deleteUser={deleteUserByID} />
+        </div>
+        <div className={styles.addButtons}>
+          {addingUser ? (
+            <div>
+              <button onClick={handleCancelAddUser}>Cancel</button>{" "}
+              <button onClick={handleConfirmAddUser}>Confirm</button>
+            </div>
+          ) : (
+            <button className={styles.addButton} onClick={handleAddUser}>
+              Add User
+            </button>
+          )}
         </div>
       </div>
     </div>
