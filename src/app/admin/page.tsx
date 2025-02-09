@@ -39,7 +39,7 @@ export default function AdminPage() {
           </Link>
           <Link className={styles.buttonLink} href="/admin/blog">
             <button className={`${styles.button} ${styles.events}`}>
-              Create/Delete Blogs
+              Create/Delete/Edit Blogs
             </button>
           </Link>
 
