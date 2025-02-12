@@ -39,12 +39,33 @@
   color: white;
   background-color: #1d2f5d75;
   border: none;
-  font-weight: 700;
+ 
+  
 }
 
 .newBlogButton {
   border-top-left-radius: 16px;
   border-bottom-left-radius: 16px;
+}
+
+/* blog.module.css */
+.selectBlogReadable {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.selectBlogReadable:focus {
+  border-color: #0070f3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0,112,243,0.2);
 }
 
 .deleteBlogButton {
