@@ -1,31 +1,18 @@
 "use client";
 import { IUser } from "@database/userSchema";
 import TableRow, { RowProps } from "@components/TableRow";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./members.module.css";
-// import BackButton from '@components/BackButton';
+import AddUserPopUp from "@components/AddUserPopUp";
+import ErrorMessageDisplay from "@components/ErrorMessageDisplay";
+import { ErrorProvider } from "@components/ErrorContext";
 
 export default function ManageMembers() {
   const [users, setUsers] = useState<Array<IUser>>([]);
   const [addingUser, setAddingUser] = useState<Boolean>(false);
-  const [newUserData, setNewUserData] = useState({
-    user: "",
-    phoneNumber: "",
-    role: "",
-    history: "",
-    email: "",
-  });
 
   function handleAddUser() {
     setAddingUser(true);
-  }
-
-  function handleCancelAddUser() {
-    setAddingUser(false);
-  }
-
-  function handleConfirmAddUser() {
-    setAddingUser(false);
   }
 
   interface TableProps {
@@ -61,7 +48,12 @@ export default function ManageMembers() {
   function TableBody(props: TableProps) {
     const userRows = props.userData.map((row, index) => {
       return (
-        <TableRow index={index} userData={row} deleteUser={props.deleteUser} />
+        <TableRow
+          key={index}
+          index={index}
+          userData={row}
+          deleteUser={props.deleteUser}
+        />
       );
     });
     return <tbody className={styles.tablebody}>{userRows}</tbody>;
@@ -93,6 +85,10 @@ export default function ManageMembers() {
     fetchUserData();
   }, []);
 
+  function handleUpdateUsers(newUser: IUser) {
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+  }
+
   async function deleteUserByID(index: number) {
     const userToDelete: IUser = users[index];
     backendUserDelete(userToDelete)
@@ -122,48 +118,31 @@ export default function ManageMembers() {
     return response;
   }
 
-  async function postUser() {
-    // TODO: find out if empty password acceptable
-    const postUserData: IUser = {
-      username: newUserData.user,
-      password: "",
-      userType: newUserData.role,
-      firstName: newUserData.user.split(" ")[0],
-      lastName: newUserData.user.split(" ")[1],
-      phoneNum: newUserData.phoneNumber,
-      email: newUserData.email,
-    };
-
-    const response = await fetch(`/api/registration/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postUserData),
-    });
-    return response;
-  }
-
   return (
-    <div>
-      {/* <BackButton/>  */}
-      <div className={styles.container}>
-        <div className={styles.table}>
-          <Table userData={users} deleteUser={deleteUserByID} />
-        </div>
-        <div className={styles.addButtons}>
-          {addingUser ? (
-            <div>
-              <button onClick={handleCancelAddUser}>Cancel</button>{" "}
-              <button onClick={handleConfirmAddUser}>Confirm</button>
-            </div>
-          ) : (
-            <button className={styles.addButton} onClick={handleAddUser}>
-              Add User
-            </button>
-          )}
+    <ErrorProvider>
+      <div>
+        {/* <BackButton/>  */}
+        <div className={styles.container}>
+          <div className={styles.table}>
+            <Table userData={users} deleteUser={deleteUserByID} />
+          </div>
+          <ErrorMessageDisplay />
+          <div className={styles.addButtons}>
+            {addingUser ? (
+              <div>
+                <AddUserPopUp
+                  setShowPopUp={setAddingUser}
+                  onUserAdded={handleUpdateUsers}
+                />
+              </div>
+            ) : (
+              <button className={styles.addButton} onClick={handleAddUser}>
+                Add User
+              </button>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </ErrorProvider>
   );
 }

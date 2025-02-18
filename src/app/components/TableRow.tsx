@@ -4,6 +4,7 @@ import styles from "./TableRow.module.css";
 import React, { useState } from "react";
 import Image from "next/image";
 import { PatternFormat } from "react-number-format";
+import { useErrorContext } from "./ErrorContext";
 
 export interface RowProps {
   index: number;
@@ -12,6 +13,7 @@ export interface RowProps {
 }
 
 export default function TableRow({ index, userData, deleteUser }: RowProps) {
+  const { appendErrorMessage, clearErrorMessages } = useErrorContext();
   const [editUser, setEditUser] = useState(false);
   const [rowData, setRowData] = useState({
     fullname: `${userData.firstName} ${userData.lastName}`,
@@ -25,7 +27,6 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ): void {
     const { name, value } = event.target;
-    console.log(name, value);
     setRowData((prevRowData) => ({
       ...prevRowData,
       [name]: value,
@@ -34,28 +35,51 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
 
   function handleEdit(index: number): void {
     setEditUser(true);
-
-    console.log("editing", index);
-    console.log(rowData);
   }
 
   function validateEdits() {
     /*
     Function to validate edits to a member
-    Currently, only checks that every field is not empty
     */
-    return (
-      rowData["fullname"] &&
-      rowData["phoneNumber"] &&
-      rowData["role"] &&
-      rowData["history"] &&
-      rowData["email"] &&
-      !rowData["phoneNumber"].includes("_") // phone number must be complete
-    );
+    let isValid: boolean = true;
+    if (!rowData["fullname"]) {
+      isValid = false;
+      appendErrorMessage("Fullname cannot be empty");
+    }
+
+    if (!rowData["phoneNumber"]) {
+      isValid = false;
+      appendErrorMessage("Phone Number cannot be empty");
+    } else if (rowData["phoneNumber"].includes("_")) {
+      isValid = false;
+      appendErrorMessage("Phone Number must contain 10 digits (0-9)");
+    }
+
+    if (!rowData["role"]) {
+      isValid = false;
+      appendErrorMessage("Role cannot be empty");
+    }
+    if (!rowData["history"]) {
+      isValid = false;
+      appendErrorMessage("History cannot be empty");
+    }
+
+    if (!rowData["email"]) {
+      isValid = false;
+      appendErrorMessage("Email cannot be empty");
+    } else if (!rowData["email"].includes("@")) {
+      isValid = false;
+      appendErrorMessage("Email must contain a domain (ex: @gmail, @yahoo)");
+    } else if (!rowData["email"].includes(".")) {
+      isValid = false;
+      appendErrorMessage('Email must contain a "." (ex: .com, .edu, .gov)');
+    }
+    return isValid;
   }
 
   function handleCancelEdit(): void {
     setEditUser(false);
+    clearErrorMessages();
 
     setRowData({
       fullname: `${userData.firstName} ${userData.lastName}`,
@@ -68,21 +92,31 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
 
   async function handleSaveEdit() {
     // TODO: add other saves
-    if (validateEdits()) {
-      const putData: IUser = {
-        username: userData.username,
-        password: userData.password,
-        firstName: rowData.fullname.split(" ")[0],
-        lastName: rowData.fullname.split(" ")[1],
-        phoneNum: rowData.phoneNumber,
-        userType: rowData.role,
-        email: rowData.email,
-      };
-      console.log("updating:", putData);
-      await updateUserData(putData);
-      setEditUser(false);
-    } else {
-      console.log("Cannot save edits, member details not validated");
+    if (!validateEdits()) {
+      return;
+    }
+
+    const putData: IUser = {
+      username: userData.username,
+      password: userData.password,
+      firstName: rowData.fullname.split(" ")[0],
+      lastName: rowData.fullname.split(" ")[1],
+      phoneNum: rowData.phoneNumber,
+      userType: rowData.role,
+      email: rowData.email,
+    };
+
+    try {
+      const response = await updateUserData(putData);
+      console.log("Response: " + response);
+      if (response.ok) {
+        setEditUser(false);
+        clearErrorMessages();
+      } else {
+        appendErrorMessage("Update failed");
+      }
+    } catch (error) {
+      appendErrorMessage("An error occured while updating the user");
     }
   }
 
@@ -98,7 +132,7 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
   }
 
   return editUser ? (
-    <tr key={index} className={editUser ? styles.editing : ""}>
+    <tr key={index} className={styles.editing}>
       <td key={`row-${index}-fullname`}>
         <input
           type="text"
@@ -161,11 +195,19 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
       </td>
       <td key={`row-${index}-editButtons`} className={styles.rowButtons}>
         <div>
-          <button onClick={handleCancelEdit} className={styles.button}>
+          <button
+            type="button"
+            onClick={handleCancelEdit}
+            className={styles.button}
+          >
             Cancel
           </button>
           {/** TODO: add PatternFormat */}
-          <button onClick={handleSaveEdit} className={styles.button}>
+          <button
+            type="button"
+            onClick={handleSaveEdit}
+            className={styles.button}
+          >
             Confirm
           </button>
         </div>
