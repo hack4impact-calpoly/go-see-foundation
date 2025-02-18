@@ -4,6 +4,7 @@ import { createContext, useContext, useRef, useState } from "react";
 const ErrorContext = createContext<{
   errorMessages: Set<string>;
   appendErrorMessage: (msg: string) => void;
+  removeErrorMessage: (msg: string) => void;
   clearErrorMessages: () => void;
 } | null>(null);
 
@@ -17,6 +18,11 @@ export function ErrorProvider({ children }: { children: React.ReactNode }) {
     forceRender((prev) => prev + 1); // Only updates the error UI
   };
 
+  const removeErrorMessage = (msg: string) => {
+    errorMessagesRef.current.delete(msg);
+    forceRender((prev) => prev - 1);
+  };
+
   const clearErrorMessages = () => {
     errorMessagesRef.current.clear();
     forceRender(0); // Updates the error UI
@@ -27,6 +33,7 @@ export function ErrorProvider({ children }: { children: React.ReactNode }) {
       value={{
         errorMessages: errorMessagesRef.current,
         appendErrorMessage,
+        removeErrorMessage,
         clearErrorMessages,
       }}
     >
