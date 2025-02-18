@@ -10,7 +10,7 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  background-color: #1d2f5d;
+  /* background-color: #1d2f5d; */
   background-image: url(/colorful.jpeg);
 }
 
