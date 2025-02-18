@@ -13,7 +13,8 @@ export interface RowProps {
 }
 
 export default function TableRow({ index, userData, deleteUser }: RowProps) {
-  const { appendErrorMessage, clearErrorMessages } = useErrorContext();
+  const { appendErrorMessage, clearErrorMessages, removeErrorMessage } =
+    useErrorContext();
   const [editUser, setEditUser] = useState(false);
   const [rowData, setRowData] = useState({
     fullname: `${userData.firstName} ${userData.lastName}`,
@@ -22,6 +23,14 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     history: "No History",
     email: userData.email,
   });
+  const FULLNAME_EMPTY_MSG = "Fullname cannot be empty";
+  const PHONE_NUMBER_EMPTY_MSG = "Phone Number cannot be empty";
+  const PHONE_NUMBER_DIGITS_MSG = "Phone Number must contain 10 digits (0-9)";
+  const ROLE_EMPTY_MSG = "Role cannot be empty";
+  const HISTORY_EMPTY_MSG = "History cannot be empty";
+  const EMAIL_EMPTY_MSG = "Email cannot be empty";
+  const EMAIL_DOMAIN_MSG = "Email must contain a domain (ex: @gmail, @yahoo)";
+  const EMAIL_DOT_MSG = 'Email must contain a "." (ex: .com, .edu, .gov)';
 
   function handleRowChange(
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -44,35 +53,49 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     let isValid: boolean = true;
     if (!rowData["fullname"]) {
       isValid = false;
-      appendErrorMessage("Fullname cannot be empty");
+      appendErrorMessage(FULLNAME_EMPTY_MSG);
+    } else {
+      removeErrorMessage(FULLNAME_EMPTY_MSG);
     }
 
     if (!rowData["phoneNumber"]) {
       isValid = false;
-      appendErrorMessage("Phone Number cannot be empty");
+      appendErrorMessage(PHONE_NUMBER_EMPTY_MSG);
     } else if (rowData["phoneNumber"].includes("_")) {
       isValid = false;
-      appendErrorMessage("Phone Number must contain 10 digits (0-9)");
+      removeErrorMessage(PHONE_NUMBER_EMPTY_MSG);
+      appendErrorMessage(PHONE_NUMBER_DIGITS_MSG);
+    } else {
+      removeErrorMessage(PHONE_NUMBER_DIGITS_MSG);
     }
 
     if (!rowData["role"]) {
       isValid = false;
-      appendErrorMessage("Role cannot be empty");
+      appendErrorMessage(ROLE_EMPTY_MSG);
+    } else {
+      removeErrorMessage(ROLE_EMPTY_MSG);
     }
+
     if (!rowData["history"]) {
       isValid = false;
-      appendErrorMessage("History cannot be empty");
+      appendErrorMessage(HISTORY_EMPTY_MSG);
+    } else {
+      removeErrorMessage(HISTORY_EMPTY_MSG);
     }
 
     if (!rowData["email"]) {
       isValid = false;
-      appendErrorMessage("Email cannot be empty");
+      appendErrorMessage(EMAIL_EMPTY_MSG);
     } else if (!rowData["email"].includes("@")) {
       isValid = false;
-      appendErrorMessage("Email must contain a domain (ex: @gmail, @yahoo)");
+      removeErrorMessage(EMAIL_EMPTY_MSG);
+      appendErrorMessage(EMAIL_DOMAIN_MSG);
     } else if (!rowData["email"].includes(".")) {
       isValid = false;
-      appendErrorMessage('Email must contain a "." (ex: .com, .edu, .gov)');
+      removeErrorMessage(EMAIL_DOMAIN_MSG);
+      appendErrorMessage(EMAIL_DOT_MSG);
+    } else {
+      removeErrorMessage(EMAIL_DOT_MSG);
     }
     return isValid;
   }
@@ -108,7 +131,6 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
 
     try {
       const response = await updateUserData(putData);
-      console.log("Response: " + response);
       if (response.ok) {
         setEditUser(false);
         clearErrorMessages();
