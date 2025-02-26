@@ -6,6 +6,7 @@ import styles from "./members.module.css";
 import AddUserPopUp from "@components/AddUserPopUp";
 import ErrorMessageDisplay from "@components/ErrorMessageDisplay";
 import { ErrorProvider } from "@components/ErrorContext";
+import BackButton from "@components/backButton";
 
 export default function ManageMembers() {
   const [users, setUsers] = useState<Array<IUser>>([]);
@@ -121,7 +122,7 @@ export default function ManageMembers() {
   return (
     <ErrorProvider>
       <div>
-        {/* <BackButton/>  */}
+        <BackButton />
         <div className={styles.container}>
           <div className={styles.table}>
             <Table userData={users} deleteUser={deleteUserByID} />
