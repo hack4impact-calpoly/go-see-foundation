@@ -29,7 +29,6 @@ export default function AddUserPopUp({
   const PHONE_NUMBER_EMPTY_MSG = "Phone Number cannot be empty";
   const PHONE_NUMBER_DIGITS_MSG = "Phone Number must contain 10 digits (0-9)";
   const ROLE_EMPTY_MSG = "Role cannot be empty";
-  const HISTORY_EMPTY_MSG = "History cannot be empty";
   const EMAIL_EMPTY_MSG = "Email cannot be empty";
   const EMAIL_DOMAIN_MSG = "Email must contain a domain (ex: @gmail, @yahoo)";
   const EMAIL_DOT_MSG = 'Email must contain a "." (ex: .com, .edu, .gov)';
@@ -204,7 +203,7 @@ export default function AddUserPopUp({
                 >
                   <option value="Member">Member</option>
                   <option value="Volunteer">Volunteer</option>
-                  <option value="admin">admin</option>
+                  <option value="Admin">Admin</option>
                 </select>
               </td>
               <td>

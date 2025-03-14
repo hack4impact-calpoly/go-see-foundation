@@ -7,10 +7,9 @@ export async function GET(req: NextRequest) {
   await connectDB();
 
   // makes route exclusive to admin
-  let usertype;
-  usertype = await getSession(req);
+  const usertype: string = await getSession(req);
 
-  if (usertype != "admin") {
+  if (usertype?.toLocaleLowerCase() != "admin") {
     return NextResponse.json(`Forbidden Action`, { status: 400 });
   }
 
