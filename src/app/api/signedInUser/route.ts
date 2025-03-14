@@ -7,8 +7,5 @@ export async function GET(req: NextRequest) {
   const email = await getEmail(req);
   const userType = await getSession(req);
 
-  console.log("email that will be returned: ", email);
-  console.log("usertype that will be returned: ", userType);
-
   return NextResponse.json({ email: email, userType: userType });
 }

@@ -26,6 +26,26 @@ export default function Navbar() {
     fetchUserType();
   }, [pathname]);
 
+  const handleSignOut = async () => {
+    try {
+      const response = await fetch("/api/logout", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        window.location.href = "/";
+        return;
+      } else {
+        console.error("Logout failed");
+      }
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
   return (
     <div className={styles.navbar}>
       <a href="#main" className="skip-to-main-content-link">
@@ -48,11 +68,22 @@ export default function Navbar() {
                 DONATE
               </button>
             </Link>
-            <Link href="/login">
-              <button className={`${styles.button} ${styles.login}`}>
-                LOG IN
-              </button>
-            </Link>
+            {userType === null ? (
+              <Link href="/login">
+                <button className={`${styles.button} ${styles.login}`}>
+                  LOG IN
+                </button>
+              </Link>
+            ) : (
+              <Link href="/">
+                <button
+                  onClick={handleSignOut}
+                  className={`${styles.button} ${styles.login}`}
+                >
+                  SIGN OUT
+                </button>{" "}
+              </Link>
+            )}
           </div>
           <div className={styles.mainBottom}>
             <Link href="/createAccount">
