@@ -1,0 +1,117 @@
+.popupContainer {
+  height: fit-content;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  border-radius: 15px;
+  border-collapse: collapse;
+  background-size: cover;
+  width: auto;
+  height: auto;
+}
+
+/* Table Header Styling */
+.tableheader {
+  /* display: flex;
+  flex-direction: row;
+  flex: 1; */
+  background-color: #1d2f5d;
+  color: white;
+}
+
+.tableheader th {
+  /* display: flex;
+  flex-direction: row;
+  flex: 1; */
+  justify-content: center;
+  padding: 10px 15px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+}
+
+.tableheader tr {
+  /* display: flex;
+  flex: 1; */
+  border-color: yellow;
+  border-width: 2px;
+}
+
+/* Header left-most cell */
+.tableheader th:first-child,
+.tableContainer {
+  border-top-left-radius: 10px;
+}
+
+/* Header right-most cell */
+.tableheader th:last-child,
+.tableContainer {
+  border-top-right-radius: 10px;
+}
+
+.tablebody,
+.tablebody tr {
+  /* display: flex;
+  flex-direction: row; */
+  background-color: white;
+}
+
+/* Table Body Styling */
+.tablebody td,
+.tablebody input {
+  padding: 2px;
+  text-align: center;
+  /* display: flex;
+  flex: 1; */
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-width: 0;
+}
+
+/* Last row, left-most column */
+.tablebody tr:last-child td:first-child {
+  border-bottom-left-radius: 15px;
+  padding-left: 10px;
+}
+
+/* Last row, right-most column */
+.tablebody tr:last-child td:last-child {
+  border-bottom-right-radius: 15px;
+  padding-right: 10px;
+}
+
+.dropdown {
+  font-family: "DM Sans", sans-serif;
+  font-size: 18px;
+  padding: 5px;
+}
+
+/* Add User styling */
+.formButtonContainer {
+  display: flex;
+  margin: 2% 0;
+  justify-content: flex-end;
+}
+
+.formButton {
+  display: flex;
+  margin: 0 2px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Error Message */
+.errorMessage {
+  /* color: rgb(200, 0, 0); */
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  font-weight: bolder;
+}
