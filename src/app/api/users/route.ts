@@ -8,12 +8,11 @@ export async function GET(req: NextRequest) {
 
   // makes route exclusive to admin
   let usertype;
-    usertype = await getSession(req);
-  
-    if (usertype != 'admin'){
-      return NextResponse.json(`Forbidden Action`, {  status: 400,
-      });
-    }
+  usertype = await getSession(req);
+
+  if (usertype != "admin") {
+    return NextResponse.json(`Forbidden Action`, { status: 400 });
+  }
 
   try {
     const url = new URL(req.url);

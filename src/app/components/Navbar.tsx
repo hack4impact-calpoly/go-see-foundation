@@ -2,10 +2,30 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import logo from "../images/GO-See-HLogo.fw_.png";
 import styles from "./navbar.module.css";
 
 export default function Navbar() {
+  const [userType, setUserType] = useState("member");
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const fetchUserType = async () => {
+      const response = await fetch("/api/signedInUser/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const userData = await response.json();
+      console.log("USER TYPE:", userData.userType);
+      setUserType(userData.userType);
+    };
+    fetchUserType();
+  }, [pathname]);
+
   return (
     <div className={styles.navbar}>
       <a href="#main" className="skip-to-main-content-link">
@@ -40,20 +60,19 @@ export default function Navbar() {
                 JOIN US
               </button>
             </Link>
-            <Link href = "/">
-            <button className={`${styles.button} ${styles.menu}`}>
-              HOME
-            </button>
+            <Link href="/">
+              <button className={`${styles.button} ${styles.menu}`}>
+                HOME
+              </button>
             </Link>
           </div>
           <div className={styles.mainBottom}>
-            <Link href = "/resources">
-            <button className={`${styles.button} ${styles.menu}`}>
-              Resources
-            </button>
+            <Link href="/resources">
+              <button className={`${styles.button} ${styles.menu}`}>
+                Resources
+              </button>
             </Link>
           </div>
-
         </div>
       </div>
       <div className={styles.subbar}>
@@ -72,6 +91,15 @@ export default function Navbar() {
             ABOUT US
           </Link>
         </div>
+        {userType === "admin" ? (
+          <div className={styles.mainButton}>
+            <Link className={styles.link} href="/admin" id="about-us">
+              ADMIN
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
