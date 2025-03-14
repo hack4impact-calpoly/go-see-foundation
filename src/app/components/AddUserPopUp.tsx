@@ -142,7 +142,7 @@ export default function AddUserPopUp({
   return (
     <ErrorProvider>
       <div className={styles.popupContainer}>
-        <h1 className="title">Add a new member</h1>
+        <h1 className={styles.title}>Add a new member</h1>
         <table className={styles.table}>
           <thead className={styles.tableheader}>
             <tr>

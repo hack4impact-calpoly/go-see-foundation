@@ -136,7 +136,7 @@ export default function ManageMembers() {
                 />
               </div>
             ) : (
-              <button className={styles.addButton} onClick={handleAddUser}>
+              <button className={styles.addButtons} onClick={handleAddUser}>
                 Add User
               </button>
             )}
