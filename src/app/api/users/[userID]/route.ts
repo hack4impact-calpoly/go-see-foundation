@@ -54,7 +54,7 @@ export async function PUT(req: NextRequest, { params }: IParams) {
   await connectDB();
   const email = params.userID;
   const updateData: IUser = await req.json();
-  console.log("route:", updateData);
+
   try {
     const event = await UserSchema.findOneAndUpdate(
       { email },
@@ -66,8 +66,8 @@ export async function PUT(req: NextRequest, { params }: IParams) {
           phoneNum: updateData.phoneNum,
         },
       },
-      { upsert: true, returnNewDocument: true }
-    ).orFail();
+      { new: true, upsert: true, returnDocument: "after" }
+    );
     return NextResponse.json(event);
   } catch (err) {
     return NextResponse.json(`Error updating user=${email}. Error: ${err}`, {
