@@ -122,7 +122,7 @@ export default function Navbar() {
             ABOUT US
           </Link>
         </div>
-        {userType === "admin" ? (
+        {userType?.toLocaleLowerCase() === "admin" ? (
           <div className={styles.mainButton}>
             <Link className={styles.link} href="/admin" id="about-us">
               ADMIN

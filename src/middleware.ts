@@ -11,7 +11,7 @@ export default async function middleware(req: NextRequest) {
   const isProtectedRoute = protectedRoutes.includes(path);
   const isPublicRoute = publicRoutes.includes(path);
 
-  const usertype = await getSession(req);
+  const usertype: string = await getSession(req);
 
   if (usertype === null && isProtectedRoute) {
     // return res.status(401).json({ message: 'Token has expired' });
@@ -19,7 +19,7 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
 
-  if (usertype != "admin" && isProtectedRoute) {
+  if (usertype?.toLocaleLowerCase() != "admin" && isProtectedRoute) {
     return NextResponse.redirect(new URL("/", req.nextUrl));
   }
 

@@ -26,10 +26,9 @@ export async function GET(req: NextRequest, { params }: IParams) {
 export async function DELETE(req: NextRequest, { params }: IParams) {
   await connectDB();
   // makes route exclusive to admin
-  let usertype;
-  usertype = await getSession(req);
-  if (usertype != 'admin'){
-    return NextResponse.json(`Forbidden Action`, {  status: 400, });
+  const usertype: string = await getSession(req);
+  if (usertype?.toLocaleLowerCase() != "admin") {
+    return NextResponse.json(`Forbidden Action`, { status: 400 });
   }
 
   const { eventName } = params;
@@ -37,9 +36,8 @@ export async function DELETE(req: NextRequest, { params }: IParams) {
     await EventSchema.deleteOne({ name: eventName }).orFail();
     return NextResponse.json(`Event deleted.`, { status: 200 });
   } catch (err) {
-    return NextResponse.json(`Event ${eventName} not found. Error: ${err}`, { status: 400 });
+    return NextResponse.json(`Event ${eventName} not found. Error: ${err}`, {
+      status: 400,
+    });
   }
 }
-
-
-

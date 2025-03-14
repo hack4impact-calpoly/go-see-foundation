@@ -20,14 +20,12 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
     fullname: `${userData.firstName} ${userData.lastName}`,
     phoneNumber: userData.phoneNum,
     role: userData.userType,
-    history: "No History",
     email: userData.email,
   });
   const FULLNAME_EMPTY_MSG = "Fullname cannot be empty";
   const PHONE_NUMBER_EMPTY_MSG = "Phone Number cannot be empty";
   const PHONE_NUMBER_DIGITS_MSG = "Phone Number must contain 10 digits (0-9)";
   const ROLE_EMPTY_MSG = "Role cannot be empty";
-  const HISTORY_EMPTY_MSG = "History cannot be empty";
   const EMAIL_EMPTY_MSG = "Email cannot be empty";
   const EMAIL_DOMAIN_MSG = "Email must contain a domain (ex: @gmail, @yahoo)";
   const EMAIL_DOT_MSG = 'Email must contain a "." (ex: .com, .edu, .gov)';
@@ -76,13 +74,6 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
       removeErrorMessage(ROLE_EMPTY_MSG);
     }
 
-    if (!rowData["history"]) {
-      isValid = false;
-      appendErrorMessage(HISTORY_EMPTY_MSG);
-    } else {
-      removeErrorMessage(HISTORY_EMPTY_MSG);
-    }
-
     if (!rowData["email"]) {
       isValid = false;
       appendErrorMessage(EMAIL_EMPTY_MSG);
@@ -108,7 +99,6 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
       fullname: `${userData.firstName} ${userData.lastName}`,
       phoneNumber: userData.phoneNum,
       role: userData.userType,
-      history: "No History", // currently, 'history' is not used anywher
       email: userData.email,
     });
   }
@@ -190,19 +180,8 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
         >
           <option value="Member">Member</option>
           <option value="Volunteer">Volunteer</option>
-          <option value="admin">admin</option>
+          <option value="Admin">Admin</option>
         </select>
-      </td>
-      <td key={`row-${index}-history`}>
-        <input
-          type="text"
-          className={styles.rowinput}
-          id="history"
-          name="history"
-          value={rowData["history"] || ""}
-          onChange={handleRowChange}
-          required
-        />
       </td>
       <td key={`row-${index}-email`}>
         <input
@@ -251,7 +230,6 @@ export default function TableRow({ index, userData, deleteUser }: RowProps) {
       <td key={`row-${index}-fullname`}>{rowData.fullname}</td>
       <td key={`row-${index}-phoneNumber`}>{rowData.phoneNumber}</td>
       <td key={`row-${index}-role`}>{rowData.role}</td>
-      <td key={`row-${index}-history`}>{rowData.history}</td>
       <td key={`row-${index}-email`}>{rowData.email}</td>
       <td key={`row-${index}-editButton`} className={styles.rowButtons}>
         <button onClick={() => handleEdit(index)} className={styles.button}>

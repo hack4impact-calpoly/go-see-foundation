@@ -1,33 +1,35 @@
 import connectDB from "@database/db";
 import { NextRequest, NextResponse } from "next/server";
 import Users, { IUser } from "@database/userSchema";
-import { cookies } from 'next/headers'
-import type {NextApiRequest, NextApiResponse} from 'next'
+import { cookies } from "next/headers";
+import type { NextApiRequest, NextApiResponse } from "next";
 const bcrypt = require("bcryptjs");
-const jose = require('jose')
+const jose = require("jose");
 
 // library for generating symmetric key for jwt
-const { createSecretKey } = require('crypto');
+const { createSecretKey } = require("crypto");
 
-export async function POST(req: NextRequest, res: NextApiResponse<{ message: string }>) {
-
-  console.log("in login api route")
+export async function POST(
+  req: NextRequest,
+  res: NextApiResponse<{ message: string }>
+) {
+  console.log("in login api route");
   await connectDB();
   try {
     const { email, password } = await req.json();
     let errorMessage = null;
     if (!process.env.JWT_SECRET) {
-      console.error('JWT_SECRET environment variable is not defined.');
+      console.error("JWT_SECRET environment variable is not defined.");
       // jwt secrets is not defined
       errorMessage = "An error occurred. Please try again later."; // Custom error message
       return NextResponse.json({ message: errorMessage }, { status: 400 });
-  }
-  
+    }
+
     const jwtSecretKey = process.env.JWT_SECRET;
 
     if (!email || !password) {
       errorMessage = "Failed: Login Incomplete";
-      return NextResponse.json({ message: errorMessage}, { status: 400 });
+      return NextResponse.json({ message: errorMessage }, { status: 400 });
     }
     const user = await Users.findOne({ email: email }).orFail();
     const passwordsMatch = bcrypt.compareSync(password, user.password);
@@ -42,32 +44,31 @@ export async function POST(req: NextRequest, res: NextApiResponse<{ message: str
     const exp_time_sec = curr_time_sec + 1800; // exp time sec (current time + 30 mins)
     const data = { signInTime: curr_time_sec, exp: exp_time_sec, user };
 
-    const secretKey = createSecretKey(process.env.JWT_SECRET, 'utf-8');
+    const secretKey = createSecretKey(process.env.JWT_SECRET, "utf-8");
     let token;
     try {
       token = await new jose.SignJWT({ payload: data }) // details to  encode in the token
-      .setProtectedHeader({ alg: 'HS256' }) // algorithm
-      .setIssuedAt()
-      //.setIssuer(process.env.JWT_ISSUER) // issuer
-      //.setAudience(process.env.JWT_AUDIENCE) // audience
-      .setExpirationTime('2h') // token expiration time, e.g., "1 day"
-      .sign(secretKey); // secretKey generated from previous step
+        .setProtectedHeader({ alg: "HS256" }) // algorithm
+        .setIssuedAt()
+        //.setIssuer(process.env.JWT_ISSUER) // issuer
+        //.setAudience(process.env.JWT_AUDIENCE) // audience
+        .setExpirationTime("2h") // token expiration time, e.g., "1 day"
+        .sign(secretKey); // secretKey generated from previous step
       console.log("token: ", token);
-    }
-    catch(err){
+    } catch (err) {
       console.log("error", err);
     }
 
-    console.log("worked")
-    
-    cookies().set('Auth_Session', token, {
-      sameSite: 'strict',
+    console.log("worked");
+
+    cookies().set("Auth_Session", token, {
+      sameSite: "strict",
       httpOnly: true,
     });
 
     console.log("type:", user.userType);
 
-    if(user.userType == 'admin'){
+    if (user.userType?.toLocaleLowerCase() == "admin") {
       return NextResponse.json({ message: "Admin Success: Login Complete" });
     }
 
