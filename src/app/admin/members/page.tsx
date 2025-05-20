@@ -1,7 +1,7 @@
 "use client";
 import { IUser } from "@database/userSchema";
-import TableRow, { RowProps } from "@components/TableRow";
-import React, { useState, useEffect, useRef } from "react";
+import TableRow from "@components/TableRow";
+import React, { useState, useEffect } from "react";
 import styles from "./members.module.css";
 import AddUserPopUp from "@components/AddUserPopUp";
 import ErrorMessageDisplay from "@components/ErrorMessageDisplay";
@@ -37,7 +37,6 @@ export default function ManageMembers() {
           <th>Name</th>
           <th>Phone Number</th>
           <th>Role</th>
-          <th>History</th>
           <th>Email</th>
           <th>Edit</th>
           <th>Delete</th>
@@ -137,7 +136,7 @@ export default function ManageMembers() {
                 />
               </div>
             ) : (
-              <button className={styles.addButton} onClick={handleAddUser}>
+              <button className={styles.addButtons} onClick={handleAddUser}>
                 Add User
               </button>
             )}

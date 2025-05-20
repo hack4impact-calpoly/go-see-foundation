@@ -93,7 +93,9 @@ const BlogPage = () => {
     }
   }, [selectedBlogIndex, activeForm, blogs]);
 
-  const handleEventChange = (event: React.ChangeEvent<HTMLFormElement>): void => {
+  const handleEventChange = (
+    event: React.ChangeEvent<HTMLFormElement>
+  ): void => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -224,7 +226,9 @@ const BlogPage = () => {
           setImageDataURL(image_URL);
           setFormData((prev) => ({ ...prev, picture: image_URL }));
         } else {
-          alert("Image could not be uploaded. Please try again or select a different file");
+          alert(
+            "Image could not be uploaded. Please try again or select a different file"
+          );
         }
       };
       reader.readAsDataURL(image);
@@ -284,7 +288,7 @@ const BlogPage = () => {
               Delete Blog
             </button>
             <button
-              className={`${styles.deleteBlogButton} ${
+              className={`${styles.editBlogButton} ${
                 activeForm === 2 ? styles.activeForm : ""
               }`}
               id="editBlogButton"
@@ -298,7 +302,7 @@ const BlogPage = () => {
           {/* In edit and delete modes, first render a blog selector */}
           {(activeForm === 1 || activeForm === 2) && (
             <select
-            className={styles.selectBlogReadable}
+              className={styles.selectBlogReadable}
               id="blogSelector"
               name="blogSelector"
               onChange={handleBlogSelection}
@@ -361,7 +365,11 @@ const BlogPage = () => {
               required
               ref={authorInputRef}
               onKeyDown={handleInputKeyPress}
-              value={activeForm === 1 && selectedBlogIndex !== -1 ? blogs[selectedBlogIndex].author : formData.author}
+              value={
+                activeForm === 1 && selectedBlogIndex !== -1
+                  ? blogs[selectedBlogIndex].author
+                  : formData.author
+              }
               disabled={inputsDisabled}
             />
 
@@ -408,7 +416,9 @@ const BlogPage = () => {
               ref={altTextInputRef}
               onKeyDown={handleInputKeyPress}
               value={
-                activeForm === 1 && selectedBlogIndex !== -1 ? blogs[selectedBlogIndex].alt : formData.alt
+                activeForm === 1 && selectedBlogIndex !== -1
+                  ? blogs[selectedBlogIndex].alt
+                  : formData.alt
               }
               disabled={inputsDisabled}
             />

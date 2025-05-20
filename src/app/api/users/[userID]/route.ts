@@ -13,10 +13,9 @@ export async function GET(req: NextRequest, { params }: IParams) {
   await connectDB();
 
   // makes route exclusive to admin
-  let usertype;
-  usertype = await getSession(req);
+  const usertype: string = await getSession(req);
 
-  if (usertype != "admin") {
+  if (usertype?.toLocaleLowerCase() != "admin") {
     return NextResponse.json(`Forbidden Action`, { status: 400 });
   }
 
@@ -47,15 +46,15 @@ export async function DELETE(req: NextRequest, { params }: IParams) {
 
 export async function PUT(req: NextRequest, { params }: IParams) {
   // makes route exclusive to admin
-  const usertype = await getSession(req);
-  if (usertype != "admin") {
+  const usertype: string = await getSession(req);
+  if (usertype?.toLocaleLowerCase() != "admin") {
     return NextResponse.json(`Forbidden Action`, { status: 400 });
   }
 
   await connectDB();
   const email = params.userID;
   const updateData: IUser = await req.json();
-  console.log("route:", updateData);
+
   try {
     const event = await UserSchema.findOneAndUpdate(
       { email },
@@ -67,8 +66,8 @@ export async function PUT(req: NextRequest, { params }: IParams) {
           phoneNum: updateData.phoneNum,
         },
       },
-      { upsert: true, returnNewDocument: true }
-    ).orFail();
+      { new: true, upsert: true, returnDocument: "after" }
+    );
     return NextResponse.json(event);
   } catch (err) {
     return NextResponse.json(`Error updating user=${email}. Error: ${err}`, {
