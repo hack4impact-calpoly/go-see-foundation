@@ -106,7 +106,7 @@ const AdminPageContent: React.FC = () => {
           };
 
           emailjs
-            .send("service_cppo4i7", "template_izma6p8", params, {
+            .send("service_goseecpanel", "template_izma6p8", params, {
               publicKey: "GKeCNmE1q3H0bTjJE",
             })
             .then((response) => {
